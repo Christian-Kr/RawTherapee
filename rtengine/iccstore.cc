@@ -774,7 +774,7 @@ private:
     {
         Glib::ustring fullpath = filename;
 
-        if (!Glib::path_is_absolute(fullpath)) {
+        if (!Glib::path_is_absolute(fullpath.c_str())) {
             fullpath = Glib::build_filename(path, filename);
         }
 
