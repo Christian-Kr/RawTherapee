@@ -14,7 +14,7 @@ endif()
 # Must stay before the project() command:
 if(${CMAKE_EXTRA_GENERATOR} MATCHES "Eclipse CDT4")
     set(CMAKE_CXX_COMPILER_ARG1
-        "-std=c++11"
+        "-std=c++17"
         CACHE STRING "C++ version for eclipse" FORCE)
     # Users building with Eclipse should set CMAKE_ECLIPSE_VERSION through the
     # command line to their current version of Eclipse:
@@ -34,8 +34,8 @@ endif()
 string(TOUPPER ${CMAKE_BUILD_TYPE} UPPER_CMAKE_BUILD_TYPE)
 
 # Set required C and C++ standards and check GCC version:
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c17")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION
                                             VERSION_LESS "4.9")
