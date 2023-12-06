@@ -61,52 +61,49 @@ void loadProfiles(
         return;
     }
 
-    try {
-        Glib::Dir dir(dirName);
+    Glib::Dir dir(dirName);
 
-        for (Glib::DirIterator entry = dir.begin(); entry != dir.end(); ++entry) {
-            const Glib::ustring fileName = *entry;
+    for (Glib::DirIterator entry = dir.begin(); entry != dir.end(); ++entry) {
+        const Glib::ustring fileName = *entry;
 
-            if (fileName.size() < 4) {
-                continue;
-            }
+        if (fileName.size() < 4) {
+            continue;
+        }
 
-            const Glib::ustring extension = rtengine::getFileExtension(fileName);
+        const Glib::ustring extension = rtengine::getFileExtension(fileName);
 
-            if (extension != "icc" && extension != "icm") {
-                continue;
-            }
+        if (extension != "icc" && extension != "icm") {
+            continue;
+        }
 
-            const Glib::ustring filePath = Glib::build_filename(dirName, fileName);
+        const Glib::ustring filePath = Glib::build_filename(dirName, fileName);
 
-            if (!Glib::file_test(filePath, Glib::FileTest::IS_REGULAR)) {
-                continue;
-            }
+        if (!Glib::file_test(filePath, Glib::FileTest::IS_REGULAR)) {
+            continue;
+        }
 
-            Glib::ustring name = fileName.substr(0, fileName.size() - 4);
+        Glib::ustring name = fileName.substr(0, fileName.size() - 4);
 
-            if (nameUpper) {
-                name = name.uppercase();
-            }
+        if (nameUpper) {
+            name = name.uppercase();
+        }
 
-            if (profiles) {
-                const rtengine::ProfileContent content(filePath);
-                const cmsHPROFILE profile = content.toProfile();
+        if (profiles) {
+            const rtengine::ProfileContent content(filePath);
+            const cmsHPROFILE profile = content.toProfile();
 
-                if (profile) {
-                    profiles->emplace(name, profile);
+            if (profile) {
+                profiles->emplace(name, profile);
 
-                    if (profileContents) {
-                        profileContents->emplace(name, content);
-                    }
+                if (profileContents) {
+                    profileContents->emplace(name, content);
                 }
             }
-
-            if (profileNames) {
-                profileNames->emplace(name, filePath);
-            }
         }
-    } catch (Glib::Exception&) {
+
+        if (profileNames) {
+            profileNames->emplace(name, filePath);
+        }
     }
 }
 
