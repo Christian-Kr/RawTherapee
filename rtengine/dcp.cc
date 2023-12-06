@@ -2169,7 +2169,7 @@ void DCPStore::init(const Glib::ustring& rt_profile_dir, bool loadAll)
         std::unique_ptr<Glib::Dir> dir;
 
         try {
-            if (!Glib::file_test(dirname, Glib::FILE_TEST_IS_DIR)) {
+            if (!Glib::file_test(dirname, Glib::FileTest::IS_DIR)) {
                 continue;
             }
 
@@ -2181,7 +2181,7 @@ void DCPStore::init(const Glib::ustring& rt_profile_dir, bool loadAll)
         for (const Glib::ustring& sname : *dir) {
             const Glib::ustring fname = Glib::build_filename(dirname, sname);
 
-            if (!Glib::file_test(fname, Glib::FILE_TEST_IS_DIR)) {
+            if (!Glib::file_test(fname, Glib::FileTest::IS_DIR)) {
                 // File
                 const auto lastdot = sname.rfind('.');
 
@@ -2211,7 +2211,7 @@ void DCPStore::init(const Glib::ustring& rt_profile_dir, bool loadAll)
 
 bool DCPStore::isValidDCPFileName(const Glib::ustring& filename)
 {
-    if (!Glib::file_test(filename, Glib::FileTest::EXISTS) || Glib::file_test(filename, Glib::FILE_TEST_IS_DIR)) {
+    if (!Glib::file_test(filename, Glib::FileTest::EXISTS) || Glib::file_test(filename, Glib::FileTest::IS_DIR)) {
         return false;
     }
 
