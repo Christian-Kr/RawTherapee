@@ -874,7 +874,7 @@ rtengine::LCPStore* rtengine::LCPStore::getInstance()
 
 bool rtengine::LCPStore::isValidLCPFileName(const Glib::ustring& filename) const
 {
-    if (!Glib::file_test(filename, Glib::FILE_TEST_EXISTS) || Glib::file_test (filename, Glib::FILE_TEST_IS_DIR)) {
+    if (!Glib::file_test(filename, Glib::FileTest::EXISTS) || Glib::file_test (filename, Glib::FILE_TEST_IS_DIR)) {
         return false;
     }
 
