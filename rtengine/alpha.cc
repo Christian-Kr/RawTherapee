@@ -42,7 +42,7 @@ void Alpha::setSize (int width, int height)
     if (width > 0 && height > 0) {
         if (surface) {
             if (width != getWidth() && height != getHeight()) {
-                surface.clear();  // does this delete the referenced object? Unreferencing doesn't work, since Cairo expect to have a non null refCount in the destructor!
+                surface.reset();  // does this delete the referenced object? Unreferencing doesn't work, since Cairo expect to have a non null refCount in the destructor!
             } else {
                 return;
             }
@@ -50,7 +50,7 @@ void Alpha::setSize (int width, int height)
 
         surface = Cairo::ImageSurface::create (Cairo::Surface::Format::A8, width, height);
     } else if (surface) {
-        surface.clear();
+        surface.reset();
     }
 }
 
