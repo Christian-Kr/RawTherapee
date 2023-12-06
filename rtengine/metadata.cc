@@ -165,7 +165,10 @@ void Exiv2Metadata::load() const
             }
         }
 
-        if (cache_ && cache_->get(src_, val) && val.image_mtime >= finfo->get_modification_date_time() && val.use_xmp == merge_xmp_ && val.xmp_mtime >= xmp_mtime) {
+        if (cache_ && cache_->get(src_, val) &&
+            val.image_mtime.compare(finfo->get_modification_date_time()) >= 0 &&
+            val.use_xmp == merge_xmp_ &&
+            val.xmp_mtime.compare(xmp_mtime) >= 0) {
             image_ = val.image;
         } else {
             auto img = open_exiv2(src_, true);
