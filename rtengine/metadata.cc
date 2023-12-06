@@ -161,11 +161,11 @@ void Exiv2Metadata::load() const
         if (merge_xmp_) {
             auto xmpname = xmpSidecarPath(src_);
             if (Glib::file_test(xmpname.c_str(), Glib::FileTest::EXISTS)) {
-                xmp_mtime = Gio::File::create_for_path(xmpname)->query_info(G_FILE_ATTRIBUTE_TIME_MODIFIED)->modification_time();
+                xmp_mtime = Gio::File::create_for_path(xmpname)->query_info(G_FILE_ATTRIBUTE_TIME_MODIFIED)->get_modification_date_time();
             }
         }
 
-        if (cache_ && cache_->get(src_, val) && val.image_mtime >= finfo->modification_time() && val.use_xmp == merge_xmp_ && val.xmp_mtime >= xmp_mtime) {
+        if (cache_ && cache_->get(src_, val) && val.image_mtime >= finfo->get_modification_date_time() && val.use_xmp == merge_xmp_ && val.xmp_mtime >= xmp_mtime) {
             image_ = val.image;
         } else {
             auto img = open_exiv2(src_, true);
@@ -175,7 +175,7 @@ void Exiv2Metadata::load() const
             }
             if (cache_) {
                 val.image = image_;
-                val.image_mtime = finfo->modification_time();
+                val.image_mtime = finfo->get_modification_date_time();
                 val.xmp_mtime = xmp_mtime;
                 val.use_xmp = merge_xmp_;
                 cache_->set(src_, val);
