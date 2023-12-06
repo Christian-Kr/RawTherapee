@@ -18,7 +18,7 @@
  */
 #include <fstream>
 
-#include <glibmm/thread.h>
+#include <thread>
 
 #include "improccoordinator.h"
 

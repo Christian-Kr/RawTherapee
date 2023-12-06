@@ -239,7 +239,7 @@ protected:
     bool lastOutputBPC;
 
     // members of the updater:
-    Glib::Thread* thread;
+    std::thread* thread;
     MyMutex updaterThreadStart;
     MyMutex paramsUpdateMutex;
     int  changeSinceLast;

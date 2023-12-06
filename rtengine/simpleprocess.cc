@@ -17,7 +17,7 @@
  *  along with RawTherapee.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <glibmm/thread.h>
+#include <thread>
 #include <glibmm/ustring.h>
 
 #include "cieimage.h"
@@ -2371,7 +2371,7 @@ void batchProcessingThread(ProcessingJob* job, BatchProcessingListener* bpl)
         } else {
             try {
                 currentJob = bpl->imageReady(img);
-            } catch (Glib::Exception& ex) {
+            } catch (std::exception& ex) {
                 bpl->error(ex.what());
                 currentJob = nullptr;
             }
@@ -2383,7 +2383,8 @@ void startBatchProcessing(ProcessingJob* job, BatchProcessingListener* bpl)
 {
 
     if (bpl) {
-        Glib::Thread::create(sigc::bind(sigc::ptr_fun(batchProcessingThread), job, bpl), 0, true, true, Glib::THREAD_PRIORITY_LOW);
+        // todo: Check whether this is a good idea; There is no ways to delete the object?
+        new std::thread(sigc::bind(sigc::ptr_fun(batchProcessingThread), job, bpl));
     }
 
 }
