@@ -272,12 +272,12 @@ bool DynamicProfileRules::storeRules()
     }
 
 	std::string fn = Glib::build_filename (Options::rtdir, "dynamicprofile.cfg");
-	if (Glib::file_test(fn, Glib::FILE_TEST_IS_SYMLINK)) {
+	if (Glib::file_test(fn, Glib::FileTest::IS_SYMLINK)) {
 		// file is symlink; use target instead
 		// symlinks apparently are not recognízed on Windows
-		return kf.save_to_file (g_file_read_link (fn.c_str(), NULL));
+		return kf->save_to_file (g_file_read_link (fn.c_str(), NULL));
 	} else {
-		return kf.save_to_file (fn);
+		return kf->save_to_file (fn);
 	}
 }
 
