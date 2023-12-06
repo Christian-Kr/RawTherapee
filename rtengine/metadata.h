@@ -87,8 +87,8 @@ private:
 
     struct CacheVal {
         std::shared_ptr<Exiv2::Image> image;
-        Glib::TimeVal image_mtime;
-        Glib::TimeVal xmp_mtime;
+        Glib::DateTime image_mtime;
+        Glib::DateTime xmp_mtime;
         bool use_xmp;
         CacheVal(): image(nullptr), image_mtime(), xmp_mtime(), use_xmp(false) {}
     };
