@@ -79,7 +79,7 @@ void loadProfiles(
 
             const Glib::ustring filePath = Glib::build_filename(dirName, fileName);
 
-            if (!Glib::file_test(filePath, Glib::FILE_TEST_IS_REGULAR)) {
+            if (!Glib::file_test(filePath, Glib::FileTest::IS_REGULAR)) {
                 continue;
             }
 
