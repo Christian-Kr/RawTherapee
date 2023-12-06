@@ -337,7 +337,7 @@ void rtengine::DFManager::Implementation::init(const Glib::ustring& pathname)
         return;
     }
 
-    try {
+    //try {
 
         const auto enumerator = dir->enumerate_children("standard::name");
 
@@ -345,7 +345,7 @@ void rtengine::DFManager::Implementation::init(const Glib::ustring& pathname)
             names.emplace_back(Glib::build_filename(pathname, file->get_name()));
         }
 
-    } catch (Glib::Exception&) {}
+    //} catch (Glib::Exception&) {}
 
     dfList.clear();
     bpList.clear();
