@@ -27,7 +27,7 @@ Alpha::Alpha () {}
 Alpha::Alpha (int width, int height)
 {
     if (width > 0 && height > 0) {
-        surface = Cairo::ImageSurface::create (Cairo::FORMAT_A8, width, height);
+        surface = Cairo::ImageSurface::create (Cairo::Surface::Format::A8, width, height);
     }
 }
 
@@ -48,7 +48,7 @@ void Alpha::setSize (int width, int height)
             }
         }
 
-        surface = Cairo::ImageSurface::create (Cairo::FORMAT_A8, width, height);
+        surface = Cairo::ImageSurface::create (Cairo::Surface::Format::A8, width, height);
     } else if (surface) {
         surface.clear();
     }
