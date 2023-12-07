@@ -100,14 +100,14 @@ int refreshmap[rtengine::NUMOFEVENTS] = {
     ALLNORAW,         // EvIProfile,
     HDR,        // EvVignettingAmount,
     AUTOEXP,         // EvChMixer,
-    RESIZE,           // EvResizeScale,
-    RESIZE,           // EvResizeMethod,
+    REFMAP_RESIZE,           // EvResizeScale,
+    REFMAP_RESIZE,           // EvResizeMethod,
     EXIF,             // EvExif,
     IPTC,             // EvIPTC
     0,           // EvResizeSpec : obsolete,
-    RESIZE,           // EvResizeWidth
-    RESIZE,           // EvResizeHeight
-    RESIZE,           // EvResizeEnabled
+    REFMAP_RESIZE,           // EvResizeWidth
+    REFMAP_RESIZE,           // EvResizeHeight
+    REFMAP_RESIZE,           // EvResizeEnabled
     REFMAP_ALL,              // EvProfileChangeNotification
     0,          // EvSHHighQuality : obsolete
     HDR,        // EvPerspCorr
@@ -135,8 +135,8 @@ int refreshmap[rtengine::NUMOFEVENTS] = {
     DEFRINGE,         // EvDefringeRadius,
     DEFRINGE,         // EvDefringeThreshold,
     AUTOEXP,         // EvHLComprThreshold,
-    RESIZE,           // EvResizeBoundingBox
-    RESIZE,           // EvResizeAppliesTo
+    REFMAP_RESIZE,           // EvResizeBoundingBox
+    REFMAP_RESIZE,           // EvResizeAppliesTo
     LUMINANCECURVE,   // EvCBAvoidClip,
     LUMINANCECURVE,   // EvCBSatLimiter,
     LUMINANCECURVE,   // EvCBSatLimit,
@@ -397,20 +397,20 @@ int refreshmap[rtengine::NUMOFEVENTS] = {
     DIRPYREQUALIZER,  // EvWavopacity
     DIRPYREQUALIZER,  // EvWavBAmet
     DIRPYREQUALIZER,  // EvWavopacityWL
-    RESIZE,           // EvPrShrEnabled
-    RESIZE,           // EvPrShrRadius
-    RESIZE,           // EvPrShrAmount
-    RESIZE,           // EvPrShrThresh
-    RESIZE,           // EvPrShrEdgeOnly
-    RESIZE,           // EvPrShrEdgeRadius=375,
-    RESIZE,           // EvPrShrEdgeTolerance=376,
-    RESIZE,           // EvPrShrHaloControl=377,
-    RESIZE,           // EvPrShrHaloAmount=378,
-    RESIZE,           // EvPrShrMethod=379,
-    RESIZE,           // EvPrShrDRadius=380,
-    RESIZE,           // EvPrShrDAmount=381,
-    RESIZE,           // EvPrShrDDamping=382,
-    RESIZE,           // EvPrShrDIterations=383,
+    REFMAP_RESIZE,           // EvPrShrEnabled
+    REFMAP_RESIZE,           // EvPrShrRadius
+    REFMAP_RESIZE,           // EvPrShrAmount
+    REFMAP_RESIZE,           // EvPrShrThresh
+    REFMAP_RESIZE,           // EvPrShrEdgeOnly
+    REFMAP_RESIZE,           // EvPrShrEdgeRadius=375,
+    REFMAP_RESIZE,           // EvPrShrEdgeTolerance=376,
+    REFMAP_RESIZE,           // EvPrShrHaloControl=377,
+    REFMAP_RESIZE,           // EvPrShrHaloAmount=378,
+    REFMAP_RESIZE,           // EvPrShrMethod=379,
+    REFMAP_RESIZE,           // EvPrShrDRadius=380,
+    REFMAP_RESIZE,           // EvPrShrDAmount=381,
+    REFMAP_RESIZE,           // EvPrShrDDamping=382,
+    REFMAP_RESIZE,           // EvPrShrDIterations=383,
     DIRPYREQUALIZER,  // EvWavcbenab
     DIRPYREQUALIZER,  // EvWavgreenhigh
     DIRPYREQUALIZER,  // EvWavbluehigh

@@ -23,12 +23,12 @@
 #include "procevents.h"
 
 // Use M_VOID if you wish to update the proc params without updating the preview at all !
-#define M_VOID       1<<20
+#define M_VOID       (1<<20)
 // Use M_MINUPDATE if you wish to update the preview without modifying the image (think about it like a "refreshPreview")
 // Must NOT be used with other event (i.e. will be used for MINUPDATE only)
-#define M_MINUPDATE  1<<19
+#define M_MINUPDATE  (1<<19)
 // Force high quality
-#define M_HIGHQUAL   1<<18
+#define M_HIGHQUAL   (1<<18)
 
 // Elementary functions that can be done to
 // the preview image when an event occurs
@@ -75,7 +75,7 @@
 #define DIRPYREQUALIZER                                                                                                          (M_LUMINANCE|M_COLOR)
 #define GAMMA             M_VOID //M_MONITOR
 #define CROP              M_CROP
-#define RESIZE            M_VOID
+#define REFMAP_RESIZE            M_VOID
 #define EXIF              M_VOID
 #define IPTC              M_VOID
 #define MINUPDATE         M_MINUPDATE
