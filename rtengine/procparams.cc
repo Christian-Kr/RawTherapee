@@ -350,8 +350,7 @@ void putToKeyfile(
     Glib::KeyFile& keyfile
 )
 {
-    const Glib::ArrayHandle<int> list = value;
-    keyfile.set_integer_list(group_name, key, list);
+    keyfile.set_integer_list(group_name, key, value);
 }
 
 void putToKeyfile(
@@ -361,19 +360,28 @@ void putToKeyfile(
     Glib::KeyFile& keyfile
 )
 {
-    const Glib::ArrayHandle<double> list = value;
-    keyfile.set_double_list(group_name, key, list);
+    keyfile.set_double_list(group_name, key, value);
 }
 
 void putToKeyfile(
     const Glib::ustring& group_name,
     const Glib::ustring& key,
-    const std::vector<std::string>& value,
+    const std::vector<Glib::ustring>& value,
     Glib::KeyFile& keyfile
 )
 {
-    const Glib::ArrayHandle<Glib::ustring> list = value;
-    keyfile.set_string_list(group_name, key, list);
+    keyfile.set_string_list(group_name, key, value);
+}
+
+void putToKeyfile(
+        const Glib::ustring& group_name,
+        const Glib::ustring& key,
+        const std::vector<std::string>& value,
+        Glib::KeyFile& keyfile
+)
+{
+    const std::vector<Glib::ustring> tmpValue(value.begin(), value.end());
+    keyfile.set_string_list(group_name, key, tmpValue);
 }
 
 void putToKeyfile(
