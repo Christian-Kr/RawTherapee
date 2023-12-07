@@ -2280,7 +2280,7 @@ bool Thumbnail::readData  (const Glib::ustring& fname)
         return true;
     } catch (Glib::Error &err) {
         if (settings->verbose) {
-            printf ("Thumbnail::readData / Error code %d while reading values from \"%s\":\n%s\n", err.code(), fname.c_str(), err.what().c_str());
+            printf ("Thumbnail::readData / Error code %d while reading values from \"%s\":\n%s\n", err.code(), fname.c_str(), err.what());
         }
     } catch (...) {
         if (settings->verbose) {
