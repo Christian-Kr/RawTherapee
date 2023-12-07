@@ -88,7 +88,7 @@ Glib::ustring expandRelativePath2(const Glib::ustring &procparams_fname, const G
 	// try to convert it using procparams_fname (the directory of the raw file) as prefix
 	Glib::ustring rPath = expandRelativePath(procparams_fname, prefix, embedded_fname);
 	if (rPath.length() >= prefix.length()
-		&& !Glib::file_test(rPath.substr(prefix.length()), Glib::FILE_TEST_IS_REGULAR)
+		&& !Glib::file_test(rPath.substr(prefix.length()), Glib::FileTest::IS_REGULAR)
 		&& !procparams_fname2.empty()
 		&& Glib::path_is_absolute(procparams_fname2.c_str())) {
 		// embedded_fname is not a valid path;
