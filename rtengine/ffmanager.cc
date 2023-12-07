@@ -251,15 +251,11 @@ void FFManager::init(const Glib::ustring& pathname)
         return;
     }
 
-    try {
+    auto enumerator = dir->enumerate_children ("standard::name");
 
-        auto enumerator = dir->enumerate_children ("standard::name");
-
-        while (auto file = enumerator->next_file ()) {
-            names.emplace_back (Glib::build_filename (pathname, file->get_name ()));
-        }
-
-    } catch (Glib::Exception&) {}
+    while (auto file = enumerator->next_file ()) {
+        names.emplace_back (Glib::build_filename (pathname, file->get_name ()));
+    }
 
     ffList.clear();
 
