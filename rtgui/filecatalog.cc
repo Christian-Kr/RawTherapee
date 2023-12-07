@@ -968,7 +968,7 @@ void FileCatalog::deleteRequested(const std::vector<FileBrowserEntry*>& tbe, boo
         msd.set_secondary_text(Glib::ustring::compose (M("FILEBROWSER_DELETEDIALOG_ALL"), tbe.size()), true);
     }
 
-    if (msd.run() == Gtk::RESPONSE_YES) {
+    if (msd.run() == Gtk::ResponseType::YES) {
         for (unsigned int i = 0; i < tbe.size(); i++) {
             const auto fname = tbe[i]->filename;
             // remove from browser

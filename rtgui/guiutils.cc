@@ -179,7 +179,7 @@ bool confirmOverwrite (Gtk::Window& parent, const std::string& filename)
         Glib::ustring msg_ = Glib::ustring ("<b>\"") + escapeHtmlChars(Glib::path_get_basename (filename)) + "\": "
                              + M("MAIN_MSG_ALREADYEXISTS") + "</b>\n" + M("MAIN_MSG_QOVERWRITE");
         Gtk::MessageDialog msgd (parent, msg_, true, Gtk::MessageType::WARNING, Gtk::ButtonsType::YES_NO, true);
-        safe = (msgd.run () == Gtk::RESPONSE_YES);
+        safe = (msgd.run () == Gtk::ResponseType::YES);
     }
 
     return safe;
