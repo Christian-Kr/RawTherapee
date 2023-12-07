@@ -2324,7 +2324,7 @@ bool Thumbnail::writeData  (const Glib::ustring& fname)
         keyFile->set_double  ("LiveThumbData", "DefaultGain", defGain);
         keyFile->set_integer ("LiveThumbData", "ScaleForSave", scaleForSave);
         keyFile->set_boolean ("LiveThumbData", "GammaCorrected", gammaCorrected);
-        Glib::ArrayHandle<double> cm ((double*)colorMatrix, 9, Glib::OWNERSHIP_NONE);
+        std::vector<double> cm (std::begin(*colorMatrix), std::end(*colorMatrix) + 9);
         keyFile->set_double_list ("LiveThumbData", "ColorMatrix", cm);
         keyFile->set_double  ("LiveThumbData", "ScaleGain", scaleGain);
 
@@ -2332,7 +2332,7 @@ bool Thumbnail::writeData  (const Glib::ustring& fname)
 
     } catch (Glib::Error& err) {
         if (settings->verbose) {
-            printf ("Thumbnail::writeData / Error code %d while reading values from \"%s\":\n%s\n", err.code(), fname.c_str(), err.what().c_str());
+            printf ("Thumbnail::writeData / Error code %d while reading values from \"%s\":\n%s\n", err.code(), fname.c_str(), err.what());
         }
     } catch (...) {
         if (settings->verbose) {
