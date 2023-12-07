@@ -116,7 +116,7 @@ BatchQueuePanel::BatchQueuePanel (FileCatalog* aFileCatalog) : parent(nullptr)
     fformat = Gtk::manage (new Gtk::Frame (M("QUEUE_FORMAT_TITLE")));
     fformat->set_label_align(0.025, 0.5);
     saveFormatPanel = Gtk::manage (new SaveFormatPanel ());
-    setExpandAlignProperties(saveFormatPanel, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(saveFormatPanel, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     fformat->add (*saveFormatPanel);
 
     outdirTemplate->set_text (options.savePathTemplate);

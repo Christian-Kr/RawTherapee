@@ -128,7 +128,7 @@ void CurveEditorGroup::newLine()
 
     if (curveEditors.size() > numberOfPackedCurve) {
         Gtk::Grid* currLine = Gtk::manage (new Gtk::Grid ());
-        setExpandAlignProperties(currLine, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+        setExpandAlignProperties(currLine, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
         currLine->set_column_spacing(RTScalable::getScale());
 
         bool isHeader = false;
@@ -148,11 +148,11 @@ void CurveEditorGroup::newLine()
         }
 
         for (int i = numberOfPackedCurve; i < (int)(curveEditors.size()); ++i) {
-            setExpandAlignProperties(curveEditors[i]->curveType->buttonGroup, !rwe, true, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+            setExpandAlignProperties(curveEditors[i]->curveType->buttonGroup, !rwe, true, Gtk::Align::FILL, Gtk::Align::FILL);
             currLine->attach(*curveEditors[i]->curveType->buttonGroup, x++, 0, 1, 1);
 
             if (curveEditors[i]->relatedWidget != nullptr) {
-                setExpandAlignProperties(curveEditors[i]->relatedWidget, curveEditors[i]->expandRelatedWidget, true, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+                setExpandAlignProperties(curveEditors[i]->relatedWidget, curveEditors[i]->expandRelatedWidget, true, Gtk::Align::FILL, Gtk::Align::FILL);
                 currLine->attach(*curveEditors[i]->relatedWidget, x++, 0, 1, 1);
             }
 
@@ -161,7 +161,7 @@ void CurveEditorGroup::newLine()
 
         if (isHeader) {
             curve_reset = Gtk::manage (new Gtk::Button ());
-            setExpandAlignProperties(curve_reset, false, false, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
+            setExpandAlignProperties(curve_reset, false, false, Gtk::ALIGN_CENTER, Gtk::Align::FILL);
             curve_reset->add (*Gtk::manage (new RTImage ("undo-small.png", "redo-small.png")));
             curve_reset->set_relief (Gtk::RELIEF_NONE);
             curve_reset->set_tooltip_text (M("CURVEEDITOR_TOOLTIPLINEAR"));
@@ -434,11 +434,11 @@ void CurveEditorSubGroup::initButton (Gtk::Button &button, const Glib::ustring &
     }
     Gtk::Align hAlign, vAlign;
     if (align == Gtk::ALIGN_START) {
-        hAlign = options.curvebboxpos == 0 || options.curvebboxpos == 2 ? Gtk::ALIGN_START : Gtk::ALIGN_FILL;
-        vAlign = options.curvebboxpos == 0 || options.curvebboxpos == 2 ? Gtk::ALIGN_FILL : Gtk::ALIGN_START;
+        hAlign = options.curvebboxpos == 0 || options.curvebboxpos == 2 ? Gtk::ALIGN_START : Gtk::Align::FILL;
+        vAlign = options.curvebboxpos == 0 || options.curvebboxpos == 2 ? Gtk::Align::FILL : Gtk::ALIGN_START;
     } else {
-        hAlign = options.curvebboxpos == 0 || options.curvebboxpos == 2 ?  Gtk::ALIGN_END : Gtk::ALIGN_FILL;
-        vAlign = options.curvebboxpos == 0 || options.curvebboxpos == 2 ?  Gtk::ALIGN_FILL : Gtk::ALIGN_END;
+        hAlign = options.curvebboxpos == 0 || options.curvebboxpos == 2 ?  Gtk::ALIGN_END : Gtk::Align::FILL;
+        vAlign = options.curvebboxpos == 0 || options.curvebboxpos == 2 ?  Gtk::Align::FILL : Gtk::ALIGN_END;
     }
 
     button.add (*Gtk::manage (new RTImage (iconName)));

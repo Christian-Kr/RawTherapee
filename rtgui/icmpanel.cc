@@ -131,7 +131,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
     dcpIllLabel->set_tooltip_text(M("TP_ICM_DCPILLUMINANT_TOOLTIP"));
     dcpIllLabel->show();
     dcpIll = Gtk::manage(new MyComboBoxText());
-    setExpandAlignProperties(dcpIll, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(dcpIll, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     dcpIll->set_tooltip_text(M("TP_ICM_DCPILLUMINANT_TOOLTIP"));
     dcpIll->append(M("TP_ICM_DCPILLUMINANT_INTERPOLATED"));
     dcpIll->append(M("TP_ICM_DCPILLUMINANT") + " 1");
@@ -206,7 +206,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
     //-----------------gamma TRC working
 //    Gtk::Frame *trcFrame = Gtk::manage(new Gtk::Frame(M("TP_ICM_TRCFRAME")));
     trcExp = Gtk::manage(new MyExpander(false, M("TP_ICM_TRCFRAME")));
-    setExpandAlignProperties(trcExp, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(trcExp, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 //    trcFrame->set_label_align(0.025, 0.5);
     Gtk::Box *trcProfVBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     trcExp->set_tooltip_text(M("TP_ICM_TRCFRAME_TOOLTIP"));
@@ -277,7 +277,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
     trcProfVBox->pack_start(*gamut, Gtk::PACK_EXPAND_WIDGET);
 
     neutral = Gtk::manage (new Gtk::Button (M ("TP_ICM_NEUTRAL")));
-    setExpandAlignProperties (neutral, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties (neutral, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
     RTImage *resetImg = Gtk::manage (new RTImage ("undo-small.png", "redo-small.png"));
     setExpandAlignProperties (resetImg, false, false, Gtk::ALIGN_CENTER, Gtk::ALIGN_CENTER);
     neutral->set_image (*resetImg);
@@ -307,17 +307,17 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
 
 
     redx = Gtk::manage(new Adjuster(M("TC_PRIM_REDX"), 0.41, 1.0, 0.0001, 0.7347));
-    setExpandAlignProperties(redx, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(redx, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     redy = Gtk::manage(new Adjuster(M("TC_PRIM_REDY"), 0.0, 0.70, 0.0001, 0.2653));
-    setExpandAlignProperties(redy, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(redy, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     grex = Gtk::manage(new Adjuster(M("TC_PRIM_GREX"), -0.1, 0.4, 0.0001, 0.1596));
-    setExpandAlignProperties(grex, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(grex, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     grey = Gtk::manage(new Adjuster(M("TC_PRIM_GREY"), 0.50, 1.0, 0.0001, 0.8404));
-    setExpandAlignProperties(grey, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(grey, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     blux = Gtk::manage(new Adjuster(M("TC_PRIM_BLUX"), -0.1, 0.4, 0.0001, 0.0366));
-    setExpandAlignProperties(blux, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(blux, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     bluy = Gtk::manage(new Adjuster(M("TC_PRIM_BLUY"), -0.1, 0.49, 0.0001, 0.0001));
-    setExpandAlignProperties(bluy, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(bluy, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     redx->set_tooltip_text(M("TP_ICM_PRIMRED_TOOLTIP"));
     grex->set_tooltip_text(M("TP_ICM_PRIMGRE_TOOLTIP"));

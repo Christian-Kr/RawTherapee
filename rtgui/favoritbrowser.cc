@@ -55,7 +55,7 @@ FavoritBrowser::FavoritBrowser () : listener (NULL)
     add->set_tooltip_text(M("MAIN_FRAME_PLACES_ADD"));
     add->set_hexpand(true);
     add->set_vexpand(false);
-    add->set_halign(Gtk::ALIGN_FILL);
+    add->set_halign(Gtk::Align::FILL);
     add->set_valign(Gtk::ALIGN_START);
     add->set_image (*Gtk::manage (new RTImage ("add-small.png")));
     add->get_style_context()->add_class("Left");
@@ -63,7 +63,7 @@ FavoritBrowser::FavoritBrowser () : listener (NULL)
     del->set_tooltip_text(M("MAIN_FRAME_PLACES_DEL"));
     del->set_hexpand(true);
     del->set_vexpand(false);
-    del->set_halign(Gtk::ALIGN_FILL);
+    del->set_halign(Gtk::Align::FILL);
     del->set_valign(Gtk::ALIGN_START);
     del->set_image (*Gtk::manage (new RTImage ("remove-small.png")));
     del->get_style_context()->add_class("Right");

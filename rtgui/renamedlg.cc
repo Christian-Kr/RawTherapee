@@ -34,7 +34,7 @@ RenameDialog::RenameDialog (Gtk::Window* parent)
     oldName->set_halign(Gtk::ALIGN_START);
     newName = Gtk::manage (new Gtk::Entry());
     newName->set_hexpand();
-    newName->set_halign(Gtk::ALIGN_FILL);
+    newName->set_halign(Gtk::Align::FILL);
     
     names->attach(*onlab, 0, 0, 1, 1);
     names->attach(*oldName, 1, 0, 1, 1);

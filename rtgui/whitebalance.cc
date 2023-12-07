@@ -152,7 +152,7 @@ WhiteBalance::WhiteBalance () : FoldableToolPanel(this, TOOL_NAME, M("TP_WBALANC
 
     Gtk::Grid* methodgrid = Gtk::manage(new Gtk::Grid());
     methodgrid->get_style_context()->add_class("grid-spacing");
-    setExpandAlignProperties(methodgrid, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(methodgrid, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     Gtk::Label* lab = Gtk::manage (new Gtk::Label (M("TP_WBALANCE_METHOD") + ":"));
     setExpandAlignProperties(lab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
@@ -161,7 +161,7 @@ WhiteBalance::WhiteBalance () : FoldableToolPanel(this, TOOL_NAME, M("TP_WBALANC
     refTreeModel = Gtk::TreeStore::create(methodColumns);
     // Create the Combobox
     method = Gtk::manage (new MyComboBox ());
-    setExpandAlignProperties(method, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(method, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     // Assign the model to the Combobox
     method->set_model(refTreeModel);
 
@@ -276,10 +276,10 @@ WhiteBalance::WhiteBalance () : FoldableToolPanel(this, TOOL_NAME, M("TP_WBALANC
 
     Gtk::Grid* spotgrid = Gtk::manage(new Gtk::Grid());
     spotgrid->get_style_context()->add_class("grid-spacing");
-    setExpandAlignProperties(spotgrid, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(spotgrid, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     spotbutton = Gtk::manage (new Gtk::Button (M("TP_WBALANCE_PICKER")));
-    setExpandAlignProperties(spotbutton, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(spotbutton, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     spotbutton->get_style_context()->add_class("independent");
     spotbutton->set_tooltip_text(M("TP_WBALANCE_SPOTWB"));
     spotbutton->set_image (*Gtk::manage (new RTImage ("color-picker-small.png")));
@@ -292,7 +292,7 @@ WhiteBalance::WhiteBalance () : FoldableToolPanel(this, TOOL_NAME, M("TP_WBALANC
     setExpandAlignProperties(wbsizehelper, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
     spotsize = Gtk::manage (new MyComboBoxText ());
-    setExpandAlignProperties(spotsize, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(spotsize, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     spotsize->append ("2");
 
     if (options.whiteBalanceSpotSize == 2) {

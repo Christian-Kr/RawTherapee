@@ -550,14 +550,14 @@ Gtk::Widget* Preferences::getImageProcessingPanel ()
     rprofiles = Gtk::manage(new ProfileStoreComboBox());
     const ProfileStoreEntry* dynpse = ProfileStore::getInstance()->getInternalDynamicPSE();
     rprofiles->addRow(dynpse);
-    setExpandAlignProperties(rprofiles, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(rprofiles, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     rprofiles->set_size_request(50, -1);
     rpconn = rprofiles->signal_changed().connect(sigc::mem_fun(*this, &Preferences::forRAWComboChanged));
     Gtk::Label* drimg = Gtk::manage(new Gtk::Label(M("PREFERENCES_FORIMAGE") + ":", Gtk::ALIGN_START));
     iprofiles = Gtk::manage(new ProfileStoreComboBox());
     iprofiles->addRow(dynpse);
     iprofiles->set_size_request(50, -1);
-    setExpandAlignProperties(iprofiles, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(iprofiles, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
     ipconn = iprofiles->signal_changed().connect(sigc::mem_fun(*this, &Preferences::forImageComboChanged));
 
     Gtk::Grid* defpt = Gtk::manage(new Gtk::Grid());
@@ -616,7 +616,7 @@ Gtk::Widget* Preferences::getImageProcessingPanel ()
     // Metadata
     Gtk::Frame *mf = Gtk::manage(new Gtk::Frame(M("PREFERENCES_METADATA")));
     Gtk::Grid *mtbl = Gtk::manage(new Gtk::Grid());
-    setExpandAlignProperties(mtbl, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(mtbl, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     metadataSyncCombo = Gtk::manage(new Gtk::ComboBoxText());
     metadataSyncCombo->set_active(0);
@@ -627,7 +627,7 @@ Gtk::Widget* Preferences::getImageProcessingPanel ()
     mtbl->attach(*mlbl, 0, 0, 1, 1);
     mtbl->attach_next_to(*metadataSyncCombo, *mlbl, Gtk::POS_RIGHT, 1, 1);
     setExpandAlignProperties(mlbl, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
-    setExpandAlignProperties(metadataSyncCombo, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(metadataSyncCombo, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     xmpSidecarCombo = Gtk::manage(new Gtk::ComboBoxText());
     xmpSidecarCombo->set_active(0);
@@ -638,7 +638,7 @@ Gtk::Widget* Preferences::getImageProcessingPanel ()
     mtbl->attach(*mlbl, 0, 2, 1, 1);
     mtbl->attach_next_to(*xmpSidecarCombo, *mlbl, Gtk::POS_RIGHT, 1, 1);
     setExpandAlignProperties(mlbl, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
-    setExpandAlignProperties(xmpSidecarCombo, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(xmpSidecarCombo, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     mf->add(*mtbl);
     vbImageProcessing->pack_start(*mf, Gtk::PACK_SHRINK, 4);
@@ -646,13 +646,13 @@ Gtk::Widget* Preferences::getImageProcessingPanel ()
     // Directories
     Gtk::Frame* cdf = Gtk::manage(new Gtk::Frame(M("PREFERENCES_DIRECTORIES")));
     Gtk::Grid* dirgrid = Gtk::manage(new Gtk::Grid());
-    setExpandAlignProperties(dirgrid, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(dirgrid, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
 	// Dark Frames Dir
     Gtk::Label *dfLab = Gtk::manage(new Gtk::Label(M("PREFERENCES_DIRDARKFRAMES") + ":"));
     setExpandAlignProperties(dfLab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
     darkFrameDir = Gtk::manage(new MyFileChooserButton(M("PREFERENCES_DIRDARKFRAMES"), Gtk::FILE_CHOOSER_ACTION_SELECT_FOLDER));
-    setExpandAlignProperties(darkFrameDir, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(darkFrameDir, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     dfLabel = Gtk::manage(new Gtk::Label("Found:"));
     setExpandAlignProperties(dfLabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
@@ -666,7 +666,7 @@ Gtk::Widget* Preferences::getImageProcessingPanel ()
     Gtk::Label *ffLab = Gtk::manage(new Gtk::Label(M("PREFERENCES_FLATFIELDSDIR") + ":"));
     setExpandAlignProperties(ffLab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
     flatFieldDir = Gtk::manage(new MyFileChooserButton(M("PREFERENCES_FLATFIELDSDIR"), Gtk::FILE_CHOOSER_ACTION_SELECT_FOLDER));
-    setExpandAlignProperties(flatFieldDir, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(flatFieldDir, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     ffLabel = Gtk::manage(new Gtk::Label("Found:"));
     setExpandAlignProperties(ffLabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
@@ -680,7 +680,7 @@ Gtk::Widget* Preferences::getImageProcessingPanel ()
     Gtk::Label *clutsDirLabel = Gtk::manage(new Gtk::Label(M("PREFERENCES_CLUTSDIR") + ":"));
     setExpandAlignProperties(clutsDirLabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
     clutsDir = Gtk::manage(new MyFileChooserButton(M("PREFERENCES_CLUTSDIR"), Gtk::FILE_CHOOSER_ACTION_SELECT_FOLDER));
-    setExpandAlignProperties(clutsDir, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(clutsDir, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     Gtk::Label* clutsRestartNeeded = Gtk::manage(new Gtk::Label(Glib::ustring(" (") + M("PREFERENCES_APPLNEXTSTARTUP") + ")"));
     setExpandAlignProperties(clutsRestartNeeded, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
@@ -692,7 +692,7 @@ Gtk::Widget* Preferences::getImageProcessingPanel ()
     Gtk::Label *cameraProfilesDirLabel = Gtk::manage(new Gtk::Label(M("PREFERENCES_CAMERAPROFILESDIR") + ":"));
     setExpandAlignProperties(cameraProfilesDirLabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
     cameraProfilesDir = Gtk::manage(new MyFileChooserButton(M("PREFERENCES_CAMERAPROFILESDIR"), Gtk::FILE_CHOOSER_ACTION_SELECT_FOLDER));
-    setExpandAlignProperties(cameraProfilesDir, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(cameraProfilesDir, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     dirgrid->attach_next_to(*cameraProfilesDirLabel, *clutsDirLabel, Gtk::POS_BOTTOM, 1, 1);
     dirgrid->attach_next_to(*cameraProfilesDir, *cameraProfilesDirLabel, Gtk::POS_RIGHT, 1, 1);
@@ -702,7 +702,7 @@ Gtk::Widget* Preferences::getImageProcessingPanel ()
     lensProfilesDirLabel->set_tooltip_text(M("PREFERENCES_LENSPROFILESDIR_TOOLTIP"));
     setExpandAlignProperties(lensProfilesDirLabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
     lensProfilesDir = Gtk::manage(new MyFileChooserButton(M("PREFERENCES_LENSPROFILESDIR"), Gtk::FILE_CHOOSER_ACTION_SELECT_FOLDER));
-    setExpandAlignProperties(lensProfilesDir, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(lensProfilesDir, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     dirgrid->attach_next_to(*lensProfilesDirLabel, *cameraProfilesDirLabel, Gtk::POS_BOTTOM, 1, 1);
     dirgrid->attach_next_to(*lensProfilesDir, *lensProfilesDirLabel, Gtk::POS_RIGHT, 1, 1);
@@ -713,7 +713,7 @@ Gtk::Widget* Preferences::getImageProcessingPanel ()
     setExpandAlignProperties(lensfunDbDirLabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
     lensfunDbDir = Gtk::manage(new MyFileChooserEntry(M("PREFERENCES_LENSFUNDBDIR"), Gtk::FILE_CHOOSER_ACTION_SELECT_FOLDER));
     lensfunDbDir->set_placeholder_text(Glib::ustring::compose("(%1)", M("GENERAL_AUTO")));
-    setExpandAlignProperties(lensfunDbDir, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(lensfunDbDir, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     Gtk::Label* lensfunDbDirRestartNeededLabel = Gtk::manage(new Gtk::Label(Glib::ustring(" (") + M("PREFERENCES_APPLNEXTSTARTUP") + ")"));
     setExpandAlignProperties(lensfunDbDirRestartNeededLabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
@@ -854,12 +854,12 @@ Gtk::Widget* Preferences::getColorManPanel ()
     vbColorMan->set_spacing (4);
 
     iccDir = Gtk::manage(new MyFileChooserButton(M("PREFERENCES_ICCDIR"), Gtk::FILE_CHOOSER_ACTION_SELECT_FOLDER));
-    setExpandAlignProperties(iccDir, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(iccDir, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     Gtk::Label* pdlabel = Gtk::manage(new Gtk::Label(M("PREFERENCES_ICCDIR") + ":", Gtk::ALIGN_START));
-    setExpandAlignProperties(pdlabel, false, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(pdlabel, false, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     Gtk::Grid* iccdgrid = Gtk::manage(new Gtk::Grid());
-    setExpandAlignProperties(iccdgrid, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(iccdgrid, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
     iccdgrid->set_column_spacing(4);
 
     Gtk::Label* monProfileRestartNeeded = Gtk::manage ( new Gtk::Label (Glib::ustring (" (") + M ("PREFERENCES_APPLNEXTSTARTUP") + ")") );
@@ -881,12 +881,12 @@ Gtk::Widget* Preferences::getColorManPanel ()
     gmonitor->set_column_spacing(4);
 
     monProfile = Gtk::manage(new Gtk::ComboBoxText());
-    setExpandAlignProperties(monProfile, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(monProfile, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     Gtk::Label* mplabel = Gtk::manage(new Gtk::Label(M("PREFERENCES_MONPROFILE") + ":", Gtk::ALIGN_START));
     setExpandAlignProperties(mplabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
     monIntent = Gtk::manage(new Gtk::ComboBoxText());
-    setExpandAlignProperties(monIntent, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(monIntent, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     Gtk::Label* milabel = Gtk::manage(new Gtk::Label(M("PREFERENCES_MONINTENT") + ":", Gtk::ALIGN_START));
     setExpandAlignProperties(milabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
@@ -950,12 +950,12 @@ Gtk::Widget* Preferences::getColorManPanel ()
     Gtk::Grid* gprinter = Gtk::manage(new Gtk::Grid());
     gprinter->set_column_spacing(4);
     prtProfile = Gtk::manage(new Gtk::ComboBoxText());
-    setExpandAlignProperties(prtProfile, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(prtProfile, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     Gtk::Label* pplabel = Gtk::manage(new Gtk::Label(M("PREFERENCES_PRTPROFILE") + ":"));
     setExpandAlignProperties(pplabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
     prtIntent = Gtk::manage(new Gtk::ComboBoxText());
-    setExpandAlignProperties(prtIntent, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(prtIntent, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     Gtk::Label* pilabel = Gtk::manage(new Gtk::Label(M("PREFERENCES_PRTINTENT") + ":"));
     setExpandAlignProperties(pilabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
@@ -1040,16 +1040,16 @@ Gtk::Widget* Preferences::getGeneralPanel()
     vbGeneral->set_row_spacing (4);
 
     Gtk::Frame* fworklflow = Gtk::manage(new Gtk::Frame(M("PREFERENCES_WORKFLOW")));
-    setExpandAlignProperties(fworklflow, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(fworklflow, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
     Gtk::Grid* workflowGrid = Gtk::manage(new Gtk::Grid());
     workflowGrid->set_column_spacing(4);
     workflowGrid->set_row_spacing(4);
-    setExpandAlignProperties(workflowGrid, false, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(workflowGrid, false, false, Gtk::Align::FILL, Gtk::Align::FILL);
 
     Gtk::Label* flayoutlab = Gtk::manage(new Gtk::Label(M("PREFERENCES_EDITORLAYOUT") + ":"));
     setExpandAlignProperties(flayoutlab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     editorLayout = Gtk::manage (new MyComboBoxText ());
-    setExpandAlignProperties(editorLayout, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_BASELINE);
+    setExpandAlignProperties(editorLayout, true, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     editorLayout->append(M("PREFERENCES_SINGLETAB"));
     editorLayout->append(M("PREFERENCES_SINGLETABVERTAB"));
     editorLayout->append(M("PREFERENCES_MULTITAB"));
@@ -1069,7 +1069,7 @@ Gtk::Widget* Preferences::getGeneralPanel()
     Gtk::Label* curveBBoxPosL = Gtk::manage(new Gtk::Label(M("PREFERENCES_CURVEBBOXPOS") + ":"));
     setExpandAlignProperties(curveBBoxPosL, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     curveBBoxPosC = Gtk::manage(new Gtk::ComboBoxText());
-    setExpandAlignProperties(curveBBoxPosC, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_BASELINE);
+    setExpandAlignProperties(curveBBoxPosC, true, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     curveBBoxPosC->append(M("PREFERENCES_CURVEBBOXPOS_ABOVE"));
     curveBBoxPosC->append(M("PREFERENCES_CURVEBBOXPOS_RIGHT"));
     curveBBoxPosC->append(M("PREFERENCES_CURVEBBOXPOS_BELOW"));
@@ -1084,7 +1084,7 @@ Gtk::Widget* Preferences::getGeneralPanel()
     Gtk::Label* complexityL = Gtk::manage(new Gtk::Label(M("PREFERENCES_COMPLEXITYLOC") + ":"));
     setExpandAlignProperties(complexityL, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     complexitylocal = Gtk::manage(new Gtk::ComboBoxText());
-    setExpandAlignProperties(complexitylocal, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_BASELINE);
+    setExpandAlignProperties(complexitylocal, true, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     complexitylocal->append(M("PREFERENCES_COMPLEXITY_EXP"));
     complexitylocal->append(M("PREFERENCES_COMPLEXITY_NORM"));
     complexitylocal->append(M("PREFERENCES_COMPLEXITY_SIMP"));
@@ -1143,11 +1143,11 @@ Gtk::Widget* Preferences::getGeneralPanel()
     // ---------------------------------------------
 
     Gtk::Frame* flang = Gtk::manage(new Gtk::Frame(M("PREFERENCES_LANG")));
-    setExpandAlignProperties(flang, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(flang, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
     Gtk::Grid* langGrid = Gtk::manage(new Gtk::Grid());
     langGrid->set_column_spacing(4);
     langGrid->set_row_spacing(4);
-    setExpandAlignProperties(langGrid, false, false, Gtk::ALIGN_FILL, Gtk::ALIGN_BASELINE);
+    setExpandAlignProperties(langGrid, false, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
 
     ckbLangAutoDetect =  Gtk::manage(new Gtk::CheckButton(M("PREFERENCES_LANGAUTODETECT")));
     setExpandAlignProperties(ckbLangAutoDetect, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
@@ -1260,11 +1260,11 @@ Gtk::Widget* Preferences::getGeneralPanel()
     // ---------------------------------------------
 
     Gtk::Frame* fclip = Gtk::manage(new Gtk::Frame(M("PREFERENCES_CLIPPINGIND")));
-    setExpandAlignProperties(fclip, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(fclip, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
     Gtk::Grid* clipGrid = Gtk::manage(new Gtk::Grid());
     clipGrid->set_column_spacing(4);
     clipGrid->set_row_spacing(4);
-    setExpandAlignProperties(clipGrid, false, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(clipGrid, false, false, Gtk::Align::FILL, Gtk::Align::FILL);
 
     Gtk::Label* hll = Gtk::manage(new Gtk::Label(M("PREFERENCES_HLTHRESHOLD") + ": "));
     setExpandAlignProperties(hll, true, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
@@ -1293,11 +1293,11 @@ Gtk::Widget* Preferences::getGeneralPanel()
     // ---------------------------------------------
 
     Gtk::Frame* fnav = Gtk::manage(new Gtk::Frame(M("PREFERENCES_NAVIGATIONFRAME")));
-    setExpandAlignProperties(fclip, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(fclip, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
     Gtk::Grid* navigationGrid = Gtk::manage(new Gtk::Grid());
     navigationGrid->set_column_spacing(4);
     navigationGrid->set_row_spacing(4);
-    setExpandAlignProperties(fclip, false, false, Gtk::ALIGN_START, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(fclip, false, false, Gtk::ALIGN_START, Gtk::Align::FILL);
 
     Gtk::Label* panFactorLabel = Gtk::manage(new Gtk::Label(M("PREFERENCES_PANFACTORLABEL") + ":", Gtk::ALIGN_START));
     setExpandAlignProperties(panFactorLabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
@@ -1321,7 +1321,7 @@ Gtk::Widget* Preferences::getGeneralPanel()
     // ---------------------------------------------
 
     Gtk::Frame* fdg = Gtk::manage(new Gtk::Frame(M("PREFERENCES_EXTERNALEDITOR")));
-    setExpandAlignProperties(fdg, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(fdg, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
 
     externalEditors = Gtk::manage(new ExternalEditorPreferences());
     externalEditors->set_size_request(-1, 200);
@@ -1340,7 +1340,7 @@ Gtk::Widget* Preferences::getGeneralPanel()
     editor_bypass_output_profile = Gtk::manage(new Gtk::CheckButton(M("PREFERENCES_EXTEDITOR_BYPASS_OUTPUT_PROFILE")));
     {
         Gtk::Frame *f = Gtk::manage(new Gtk::Frame(M("PREFERENCES_EXTEDITOR_DIR")));
-        setExpandAlignProperties(f, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+        setExpandAlignProperties(f, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
         Gtk::Box *vb = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
         vb->pack_start(*editor_dir_temp);
         vb->pack_start(*editor_dir_current);

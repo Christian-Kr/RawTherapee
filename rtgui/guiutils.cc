@@ -574,11 +574,11 @@ MyExpander::MyExpander(bool useEnabled, Gtk::Widget* titleWidget) :
     set_spacing(0);
     set_name("MyExpander");
     set_can_focus(false);
-    setExpandAlignProperties(this, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(this, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
 
     headerHBox = Gtk::manage( new Gtk::Box());
     headerHBox->set_can_focus(false);
-    setExpandAlignProperties(headerHBox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(headerHBox, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
 
     if (useEnabled) {
         get_style_context()->add_class("OnOff");
@@ -600,7 +600,7 @@ MyExpander::MyExpander(bool useEnabled, Gtk::Widget* titleWidget) :
     statusImage->set_can_focus(false);
 
     if (titleWidget) {
-        setExpandAlignProperties(titleWidget, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+        setExpandAlignProperties(titleWidget, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
         headerHBox->pack_start(*titleWidget, Gtk::PACK_EXPAND_WIDGET, 0);
         headerWidget = titleWidget;
     }
@@ -630,11 +630,11 @@ MyExpander::MyExpander(bool useEnabled, Glib::ustring titleLabel) :
     set_spacing(0);
     set_name("MyExpander");
     set_can_focus(false);
-    setExpandAlignProperties(this, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(this, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
 
     headerHBox = Gtk::manage( new Gtk::Box());
     headerHBox->set_can_focus(false);
-    setExpandAlignProperties(headerHBox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(headerHBox, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
 
     if (useEnabled) {
         get_style_context()->add_class("OnOff");
@@ -1983,7 +1983,7 @@ SpotPicker::SpotPicker(int const defaultValue, Glib::ustring const &buttonKey, G
 
 {
     this->get_style_context()->add_class("grid-spacing");
-    setExpandAlignProperties(this, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(this, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     this->attach (_spotButton, 0, 0, 1, 1);
     this->attach (_spotLabel, 1, 0, 1, 1);
@@ -2037,7 +2037,7 @@ MyComboBoxText SpotPicker::selecterSetup() const
 Gtk::ToggleButton SpotPicker::spotButtonTemplate(Glib::ustring const &key, const Glib::ustring &tooltip) const
 {
     Gtk::ToggleButton spotButton = Gtk::ToggleButton(key);
-    setExpandAlignProperties(&spotButton, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(&spotButton, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     spotButton.get_style_context()->add_class("independent");
     spotButton.set_tooltip_text(tooltip);
     spotButton.set_image(*Gtk::manage(new RTImage("color-picker-small.png")));

@@ -120,7 +120,7 @@ ExifPanel::ExifPanel() :
     Gtk::Grid* buttons1 = Gtk::manage (new Gtk::Grid());
     buttons1->set_row_homogeneous (true);
     buttons1->set_column_homogeneous (true);
-    setExpandAlignProperties (buttons1, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties (buttons1, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     const auto addbtn =
         [&](const Glib::ustring &tip, const Glib::ustring &icon1, const Glib::ustring &icon2=Glib::ustring()) -> Gtk::Button *
@@ -129,7 +129,7 @@ ExifPanel::ExifPanel() :
             b->set_image(*Gtk::manage(new RTImage(icon1, icon2)));
             b->set_tooltip_text(M(tip));
             b->get_style_context()->add_class("Right");
-            setExpandAlignProperties(b, true, true, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+            setExpandAlignProperties(b, true, true, Gtk::Align::FILL, Gtk::Align::FILL);
             buttons1->attach_next_to(*b, Gtk::POS_RIGHT, 1, 1);
             return b;
         };

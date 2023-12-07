@@ -143,7 +143,7 @@ Crop::Crop():
 
     methodgrid = Gtk::manage(new Gtk::Grid());
     methodgrid->get_style_context()->add_class("grid-spacing");
-    setExpandAlignProperties(methodgrid, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(methodgrid, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     Gtk::Label* xlab = Gtk::manage (new Gtk::Label (M("TP_CROP_X") + ":"));
     setExpandAlignProperties(xlab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
@@ -174,12 +174,12 @@ Crop::Crop():
     h->set_width_chars(6);
 
     selectCrop = Gtk::manage (new Gtk::Button (M("TP_CROP_SELECTCROP")));
-    setExpandAlignProperties(selectCrop, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(selectCrop, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     selectCrop->get_style_context()->add_class("independent");
     selectCrop->set_image (*Gtk::manage (new RTImage ("crop-small.png")));
 
     resetCrop = Gtk::manage (new Gtk::Button (M("TP_CROP_RESETCROP")));
-    setExpandAlignProperties(resetCrop, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(resetCrop, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     resetCrop->get_style_context()->add_class("independent");
     resetCrop->set_image (*Gtk::manage (new RTImage ("undo-small.png")));
 
@@ -201,7 +201,7 @@ Crop::Crop():
 
     Gtk::Grid* settingsgrid = Gtk::manage(new Gtk::Grid());
     settingsgrid->get_style_context()->add_class("grid-spacing");
-    setExpandAlignProperties(settingsgrid, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(settingsgrid, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     fixr = Gtk::manage (new Gtk::CheckButton (M("TP_CROP_FIXRATIO")));
     setExpandAlignProperties(fixr, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
@@ -209,13 +209,13 @@ Crop::Crop():
 
     Gtk::Grid* ratiogrid = Gtk::manage(new Gtk::Grid());
     ratiogrid->get_style_context()->add_class("grid-spacing");
-    setExpandAlignProperties(ratiogrid, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(ratiogrid, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     ratio = Gtk::manage (new MyComboBoxText ());
-    setExpandAlignProperties(ratio, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(ratio, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     orientation = Gtk::manage (new MyComboBoxText ());
-    setExpandAlignProperties(orientation, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(orientation, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     customRatioLabel = Gtk::manage(new Gtk::Label(""));
     customRatioLabel->hide();
@@ -230,7 +230,7 @@ Crop::Crop():
     setExpandAlignProperties(guidelab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
     guide = Gtk::manage (new MyComboBoxText ());
-    setExpandAlignProperties(guide, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(guide, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     settingsgrid->attach (*fixr, 0, 0, 1, 1);
     settingsgrid->attach (*ratiogrid, 1, 0, 1, 1);
@@ -243,14 +243,14 @@ Crop::Crop():
     ppigrid = Gtk::manage(new Gtk::Grid());
     ppigrid->get_style_context()->add_class("grid-spacing");
     ppigrid->set_column_homogeneous (true);
-    setExpandAlignProperties(ppigrid, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(ppigrid, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     Gtk::Separator* ppiseparator = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_HORIZONTAL));
     ppiseparator->get_style_context()->add_class("grid-row-separator");
 
     Gtk::Grid* ppisubgrid = Gtk::manage(new Gtk::Grid());
     ppisubgrid->get_style_context()->add_class("grid-spacing");
-    setExpandAlignProperties(ppisubgrid, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(ppisubgrid, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     Gtk::Label* ppilab = Gtk::manage (new Gtk::Label (M("TP_CROP_PPI") + ":"));
     setExpandAlignProperties(ppilab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);

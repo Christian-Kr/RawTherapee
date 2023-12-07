@@ -77,17 +77,17 @@ HistogramPanel::HistogramPanel () :
     ),
     panel_listener(nullptr)
 {
-    setExpandAlignProperties(this, true, true, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(this, true, true, Gtk::Align::FILL, Gtk::Align::FILL);
     set_name("HistogramPanel");
 
     histogramArea = Gtk::manage (new HistogramArea (this));
-    setExpandAlignProperties(histogramArea, true, true, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(histogramArea, true, true, Gtk::Align::FILL, Gtk::Align::FILL);
 
     histogramRGBAreaHori.reset(new HistogramRGBAreaHori());
-    setExpandAlignProperties(histogramRGBAreaHori.get(), true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_END);
+    setExpandAlignProperties(histogramRGBAreaHori.get(), true, false, Gtk::Align::FILL, Gtk::ALIGN_END);
 
     histogramRGBAreaVert.reset(new HistogramRGBAreaVert());
-    setExpandAlignProperties(histogramRGBAreaVert.get(), false, true, Gtk::ALIGN_END, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(histogramRGBAreaVert.get(), false, true, Gtk::ALIGN_END, Gtk::Align::FILL);
 
     switch (options.histogramScopeType) {
         case ScopeType::NONE:
@@ -295,15 +295,15 @@ HistogramPanel::HistogramPanel () :
     setExpandAlignProperties(showMode , false, false, Gtk::ALIGN_CENTER, Gtk::ALIGN_CENTER);
     setExpandAlignProperties(scopeOptions, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
     setExpandAlignProperties(showBAR  , false, false, Gtk::ALIGN_CENTER, Gtk::ALIGN_CENTER);
-    setExpandAlignProperties(scopeOptions, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
-    setExpandAlignProperties(scopeHistBtn, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
-    setExpandAlignProperties(scopeHistRawBtn, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
-    setExpandAlignProperties(scopeParadeBtn, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
-    setExpandAlignProperties(scopeWaveBtn, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
-    setExpandAlignProperties(scopeVectHcBtn, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
-    setExpandAlignProperties(scopeVectHsBtn, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_FILL);
-    setExpandAlignProperties(persistentButtons, false, true, Gtk::ALIGN_START, Gtk::ALIGN_FILL);
-    setExpandAlignProperties(optionButtons, false, true, Gtk::ALIGN_START, Gtk::ALIGN_FILL);
+    setExpandAlignProperties(scopeOptions, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
+    setExpandAlignProperties(scopeHistBtn, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
+    setExpandAlignProperties(scopeHistRawBtn, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
+    setExpandAlignProperties(scopeParadeBtn, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
+    setExpandAlignProperties(scopeWaveBtn, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
+    setExpandAlignProperties(scopeVectHcBtn, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
+    setExpandAlignProperties(scopeVectHsBtn, true, false, Gtk::Align::FILL, Gtk::Align::FILL);
+    setExpandAlignProperties(persistentButtons, false, true, Gtk::ALIGN_START, Gtk::Align::FILL);
+    setExpandAlignProperties(optionButtons, false, true, Gtk::ALIGN_START, Gtk::Align::FILL);
 
     showRed->signal_toggled().connect( sigc::mem_fun(*this, &HistogramPanel::red_toggled), showRed );
     showGreen->signal_toggled().connect( sigc::mem_fun(*this, &HistogramPanel::green_toggled), showGreen );
@@ -339,7 +339,7 @@ HistogramPanel::HistogramPanel () :
     optionButtons->add(*brightnessWidget);
 
     Gtk::Separator* separator = Gtk::manage(new Gtk::Separator(Gtk::Orientation::VERTICAL));
-    setExpandAlignProperties(separator, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(separator, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     persistentButtons->add(*scopeHistBtn);
     persistentButtons->add(*scopeHistRawBtn);
     persistentButtons->add(*scopeParadeBtn);

@@ -129,7 +129,7 @@ void CoordinateAdjuster::createWidgets(const std::vector<Axis> &axis)
         box->set_orientation(Gtk::ORIENTATION_HORIZONTAL);
 
         setExpandAlignProperties(currAdjuster->label, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
-        setExpandAlignProperties(currAdjuster->spinButton, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+        setExpandAlignProperties(currAdjuster->spinButton, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
         box->attach_next_to(*(currAdjuster->spinButton), Gtk::POS_LEFT, 1, 1);
         box->attach_next_to(*(currAdjuster->label), Gtk::POS_LEFT, 1, 1);

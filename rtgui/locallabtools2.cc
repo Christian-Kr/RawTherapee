@@ -187,9 +187,9 @@ LocallabTone::LocallabTone():
     lowthrest->setAdjusterListener(this);
     higthrest->setAdjusterListener(this);
     decayt->setAdjusterListener(this);
-    setExpandAlignProperties(exprecovt, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(exprecovt, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
-    setExpandAlignProperties(expmasktm, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expmasktm, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     showmasktmMethod->append(M("TP_LOCALLAB_SHOWMNONE"));
     showmasktmMethod->append(M("TP_LOCALLAB_SHOWMODIF"));
@@ -895,7 +895,7 @@ LocallabRetinex::LocallabRetinex():
 
     offs->setAdjusterListener(this);
 
-    setExpandAlignProperties(expretitools, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expretitools, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     chrrt->setAdjusterListener(this);
 
@@ -932,9 +932,9 @@ LocallabRetinex::LocallabRetinex():
     lowthresr->setAdjusterListener(this);
     higthresr->setAdjusterListener(this);
     decayr->setAdjusterListener(this);
-    setExpandAlignProperties(exprecovr, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(exprecovr, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
-    setExpandAlignProperties(expmaskreti, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expmaskreti, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     showmaskretiMethod->append(M("TP_LOCALLAB_SHOWMNONE"));
     showmaskretiMethod->append(M("TP_LOCALLAB_SHOWMODIF"));
@@ -2508,7 +2508,7 @@ LocallabContrast::LocallabContrast():
     LresLabel->set_alignment(Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
     LresTitleHBox->pack_start(*LresLabel, Gtk::PACK_EXPAND_WIDGET, 0);
     expresidpyr->setLabel(LresTitleHBox);
-    setExpandAlignProperties(expresidpyr, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expresidpyr, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     residcont->setAdjusterListener(this);
 
@@ -2563,7 +2563,7 @@ LocallabContrast::LocallabContrast():
     TittleVBox->pack_start(*LCTitleHBox, Gtk::PACK_SHRINK);
     TittleVBox->pack_start(*LCTitleHBox11, Gtk::PACK_SHRINK);
     expcontrastpyr->setLabel(TittleVBox);
-    setExpandAlignProperties(expcontrastpyr, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expcontrastpyr, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
 
     wavgradlConn = wavgradl->signal_toggled().connect(sigc::mem_fun(*this, &LocallabContrast::wavgradlChanged));
@@ -2654,7 +2654,7 @@ LocallabContrast::LocallabContrast():
     TittleVBox2->pack_start(*LCTitleHBox22, Gtk::PACK_SHRINK);
     expcontrastpyr2->setLabel(TittleVBox2);
     
-    setExpandAlignProperties(expcontrastpyr2, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expcontrastpyr2, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     wavcontConn = wavcont->signal_toggled().connect(sigc::mem_fun(*this, &LocallabContrast::wavcontChanged));
 
@@ -2709,10 +2709,10 @@ LocallabContrast::LocallabContrast():
     lowthresw->setAdjusterListener(this);
     higthresw->setAdjusterListener(this);
     decayw->setAdjusterListener(this);
-    setExpandAlignProperties(exprecovw, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(exprecovw, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
 
-    setExpandAlignProperties(expmasklc, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expmasklc, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     showmasklcMethod->append(M("TP_LOCALLAB_SHOWMNONE"));
     showmasklcMethod->append(M("TP_LOCALLAB_SHOWMODIF"));
@@ -4516,7 +4516,7 @@ LocallabCBDL::LocallabCBDL():
     lowthrescb->setAdjusterListener(this);
     higthrescb->setAdjusterListener(this);
     decaycb->setAdjusterListener(this);
-    setExpandAlignProperties(exprecovcb, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(exprecovcb, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     showmaskcbMethod->append(M("TP_LOCALLAB_SHOWMNONE"));
     showmaskcbMethod->append(M("TP_LOCALLAB_SHOWMODIF"));
@@ -5327,7 +5327,7 @@ LocallabLog::LocallabLog():
 
     catad->setAdjusterListener(this);
 
-    setExpandAlignProperties(expL, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expL, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     saturl->setAdjusterListener(this);
 
@@ -5360,7 +5360,7 @@ LocallabLog::LocallabLog():
     lowthresl->setAdjusterListener(this);
     higthresl->setAdjusterListener(this);
     decayl->setAdjusterListener(this);
-    setExpandAlignProperties(exprecovl, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(exprecovl, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     sensilog->setAdjusterListener(this);
 
@@ -5393,7 +5393,7 @@ LocallabLog::LocallabLog():
     surrHBox->pack_start (*surround);
     surroundconn = surround->signal_changed().connect ( sigc::mem_fun (*this, &LocallabLog::surroundChanged) );
 
-    setExpandAlignProperties(expmaskL, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expmaskL, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     showmaskLMethod->append(M("TP_LOCALLAB_SHOWMNONE"));
     showmaskLMethod->append(M("TP_LOCALLAB_SHOWMODIF"));
@@ -7672,7 +7672,7 @@ Locallabcie::Locallabcie():
     TittleVBoxjz->pack_start(*LCTitleHBoxjz, Gtk::PACK_SHRINK);
     expjz->setLabel(TittleVBoxjz);
 
-    setExpandAlignProperties(expjz, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expjz, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     float R, G, B;
     std::vector<GradientMilestone> six_shape;
@@ -7806,7 +7806,7 @@ Locallabcie::Locallabcie():
     jzshFrame->add(*jzshBox);
     jzBox->pack_start(*jzshFrame);
 
-    setExpandAlignProperties(expwavjz, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expwavjz, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     contFramejz->set_label_align(0.025, 0.5);
 
@@ -7863,7 +7863,7 @@ Locallabcie::Locallabcie():
     sourceabscie->setLogScale(500, 0);
 
     sourceabscie->setAdjusterListener(this);
-    setExpandAlignProperties(expLcie, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expLcie, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     saturlcie->setAdjusterListener(this);
 
@@ -7979,7 +7979,7 @@ Locallabcie::Locallabcie():
     TittleVBoxcam16->pack_start(*LCTitleHBoxcam16, Gtk::PACK_SHRINK);
     expcam16->setLabel(TittleVBoxcam16);
 
-    setExpandAlignProperties(expcam16, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expcam16, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     surrHBoxcie->set_spacing (2);
     surrHBoxcie->set_tooltip_markup (M ("TP_COLORAPP_SURROUND_TOOLTIP"));
@@ -8074,10 +8074,10 @@ Locallabcie::Locallabcie():
     lowthrescie->setAdjusterListener(this);
     higthrescie->setAdjusterListener(this);
     decaycie->setAdjusterListener(this);
-    setExpandAlignProperties(exprecovcie, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(exprecovcie, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
 
-    setExpandAlignProperties(expmaskcie, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_START);
+    setExpandAlignProperties(expmaskcie, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 
     showmaskcieMethod->append(M("TP_LOCALLAB_SHOWMNONE"));
     showmaskcieMethod->append(M("TP_LOCALLAB_SHOWMODIF"));

@@ -49,7 +49,7 @@ Resize::Resize () : FoldableToolPanel(this, TOOL_NAME, M("TP_RESIZE_LABEL"), fal
     appliesTo->append (M("TP_RESIZE_FULLIMAGE"));
     appliesTo->set_active (0);
     appliesTo->set_hexpand();
-    appliesTo->set_halign(Gtk::ALIGN_FILL);
+    appliesTo->set_halign(Gtk::Align::FILL);
 
     Gtk::Label *label = Gtk::manage (new Gtk::Label (M("TP_RESIZE_APPLIESTO"), Gtk::ALIGN_START));
     
@@ -62,7 +62,7 @@ Resize::Resize () : FoldableToolPanel(this, TOOL_NAME, M("TP_RESIZE_LABEL"), fal
     method->append (M("TP_RESIZE_NEAREST"));
     method->set_active (0);
     method->set_hexpand();
-    method->set_halign(Gtk::ALIGN_FILL);
+    method->set_halign(Gtk::Align::FILL);
 
     label = Gtk::manage (new Gtk::Label (M("TP_RESIZE_METHOD"), Gtk::ALIGN_START));
     
@@ -78,7 +78,7 @@ Resize::Resize () : FoldableToolPanel(this, TOOL_NAME, M("TP_RESIZE_LABEL"), fal
     spec->append (M("TP_RESIZE_SHORT"));
     spec->set_active (0);
     spec->set_hexpand();
-    spec->set_halign(Gtk::ALIGN_FILL);
+    spec->set_halign(Gtk::Align::FILL);
 
     label = Gtk::manage (new Gtk::Label (M("TP_RESIZE_SPECIFY"), Gtk::ALIGN_START));
 

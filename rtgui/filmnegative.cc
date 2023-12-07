@@ -224,7 +224,7 @@ FilmNegative::FilmNegative() :
 
     colorSpace->append(M("TP_FILMNEGATIVE_COLORSPACE_INPUT"));
     colorSpace->append(M("TP_FILMNEGATIVE_COLORSPACE_WORKING"));
-    setExpandAlignProperties(colorSpace, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+    setExpandAlignProperties(colorSpace, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     colorSpace->set_tooltip_markup(M("TP_FILMNEGATIVE_COLORSPACE_TOOLTIP"));
 
     Gtk::Grid* csGrid = Gtk::manage(new Gtk::Grid());

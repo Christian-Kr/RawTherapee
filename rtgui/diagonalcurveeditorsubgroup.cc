@@ -68,19 +68,19 @@ DiagonalCurveEditorSubGroup::DiagonalCurveEditorSubGroup (CurveEditorGroup* prt,
 
     if (options.curvebboxpos == 0) {
         custombbox->set_orientation(Gtk::ORIENTATION_HORIZONTAL);
-        setExpandAlignProperties(custombbox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+        setExpandAlignProperties(custombbox, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
         customCurveGrid->get_style_context()->add_class("top");
     } else if (options.curvebboxpos == 2) {
         custombbox->set_orientation(Gtk::ORIENTATION_HORIZONTAL);
-        setExpandAlignProperties(custombbox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+        setExpandAlignProperties(custombbox, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
         customCurveGrid->get_style_context()->add_class("bottom");
     } else if (options.curvebboxpos == 1) {
         custombbox->set_orientation(Gtk::Orientation::VERTICAL);
-        setExpandAlignProperties(custombbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
+        setExpandAlignProperties(custombbox, false, true, Gtk::ALIGN_CENTER, Gtk::Align::FILL);
         customCurveGrid->get_style_context()->add_class("right");
     } else if (options.curvebboxpos == 3){
         custombbox->set_orientation(Gtk::Orientation::VERTICAL);
-        setExpandAlignProperties(custombbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
+        setExpandAlignProperties(custombbox, false, true, Gtk::ALIGN_CENTER, Gtk::Align::FILL);
         customCurveGrid->get_style_context()->add_class("left");
     }
 
@@ -160,19 +160,19 @@ DiagonalCurveEditorSubGroup::DiagonalCurveEditorSubGroup (CurveEditorGroup* prt,
 
     if (options.curvebboxpos == 0) {
         NURBSbbox->set_orientation(Gtk::ORIENTATION_HORIZONTAL);
-        setExpandAlignProperties(NURBSbbox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+        setExpandAlignProperties(NURBSbbox, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
         NURBSCurveGrid->get_style_context()->add_class("top");
     } else if (options.curvebboxpos == 2) {
         NURBSbbox->set_orientation(Gtk::ORIENTATION_HORIZONTAL);
-        setExpandAlignProperties(NURBSbbox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+        setExpandAlignProperties(NURBSbbox, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
         NURBSCurveGrid->get_style_context()->add_class("bottom");
     } else if (options.curvebboxpos == 1) {
         NURBSbbox->set_orientation(Gtk::Orientation::VERTICAL);
-        setExpandAlignProperties(NURBSbbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
+        setExpandAlignProperties(NURBSbbox, false, true, Gtk::ALIGN_CENTER, Gtk::Align::FILL);
         NURBSCurveGrid->get_style_context()->add_class("right");
     } else if (options.curvebboxpos == 3){
         NURBSbbox->set_orientation(Gtk::Orientation::VERTICAL);
-        setExpandAlignProperties(NURBSbbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
+        setExpandAlignProperties(NURBSbbox, false, true, Gtk::ALIGN_CENTER, Gtk::Align::FILL);
         NURBSCurveGrid->get_style_context()->add_class("left");
     }
 
@@ -252,19 +252,19 @@ DiagonalCurveEditorSubGroup::DiagonalCurveEditorSubGroup (CurveEditorGroup* prt,
 
     if (options.curvebboxpos == 0) {
         parambbox->set_orientation(Gtk::ORIENTATION_HORIZONTAL);
-        setExpandAlignProperties(parambbox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+        setExpandAlignProperties(parambbox, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
         paramCurveGrid->get_style_context()->add_class("top");
     } else if (options.curvebboxpos == 2) {
         parambbox->set_orientation(Gtk::ORIENTATION_HORIZONTAL);
-        setExpandAlignProperties(parambbox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
+        setExpandAlignProperties(parambbox, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
         paramCurveGrid->get_style_context()->add_class("bottom");
     } else if (options.curvebboxpos == 1) {
         parambbox->set_orientation(Gtk::Orientation::VERTICAL);
-        setExpandAlignProperties(parambbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
+        setExpandAlignProperties(parambbox, false, true, Gtk::ALIGN_CENTER, Gtk::Align::FILL);
         paramCurveGrid->get_style_context()->add_class("right");
     } else if (options.curvebboxpos == 3){
         parambbox->set_orientation(Gtk::Orientation::VERTICAL);
-        setExpandAlignProperties(parambbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
+        setExpandAlignProperties(parambbox, false, true, Gtk::ALIGN_CENTER, Gtk::Align::FILL);
         paramCurveGrid->get_style_context()->add_class("left");
     }
 
