@@ -3065,7 +3065,7 @@ void ImProcCoordinator::startProcessing()
 
             //batchThread->yield(); //the running batch should wait other threads to avoid conflict
 
-            thread = Glib::Thread::create(sigc::mem_fun(*this, &ImProcCoordinator::process), 0, true, true, Glib::THREAD_PRIORITY_NORMAL);
+            thread = new std::thread(sigc::mem_fun(*this, &ImProcCoordinator::process));
 
         }
     }
