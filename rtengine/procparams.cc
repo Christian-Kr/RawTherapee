@@ -147,84 +147,84 @@ Glib::ustring relativePathIfInside2(const Glib::ustring &procparams_fname, const
 
 
 void getFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     int& value
 )
 {
-    value = keyfile.get_integer(group_name, key);
+    value = keyfile->get_integer(group_name, key);
 }
 
 void getFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     double& value
 )
 {
-    value = keyfile.get_double(group_name, key);
+    value = keyfile->get_double(group_name, key);
 }
 
 void getFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     float& value
 )
 {
-    value = static_cast<float>(keyfile.get_double(group_name, key));
+    value = static_cast<float>(keyfile->get_double(group_name, key));
 }
 
 void getFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     bool& value
 )
 {
-    value = keyfile.get_boolean(group_name, key);
+    value = keyfile->get_boolean(group_name, key);
 }
 
 void getFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     Glib::ustring& value
 )
 {
-    value = keyfile.get_string(group_name, key);
+    value = keyfile->get_string(group_name, key);
 }
 
 void getFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     std::vector<int>& value
 )
 {
-    value = keyfile.get_integer_list(group_name, key);
+    value = keyfile->get_integer_list(group_name, key);
 }
 
 void getFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     std::vector<double>& value
 )
 {
-    value = keyfile.get_double_list(group_name, key);
+    value = keyfile->get_double_list(group_name, key);
     rtengine::sanitizeCurve(value);
 }
 
 void getFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     rtengine::procparams::FilmNegativeParams::RGB& value
 )
 {
-    const std::vector<double> v = keyfile.get_double_list(group_name, key);
+    const std::vector<double> v = keyfile->get_double_list(group_name, key);
     if(v.size() >= 3) {
         value.r = v[0];
         value.g = v[1];
@@ -233,26 +233,26 @@ void getFromKeyfile(
 }
 
 void getFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     std::vector<std::string>& value
 )
 {
-    auto tmpval = keyfile.get_string_list(group_name, key);
+    auto tmpval = keyfile->get_string_list(group_name, key);
     value.assign(tmpval.begin(), tmpval.end());
 }
 
 template<typename T>
 bool assignFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     T& value,
     bool& params_edited_value
 )
 {
-    if (keyfile.has_key(group_name, key)) {
+    if (keyfile->has_key(group_name, key)) {
         getFromKeyfile(keyfile, group_name, key, value);
 
         params_edited_value = true;
@@ -265,7 +265,7 @@ bool assignFromKeyfile(
 
 template<typename T, typename = typename std::enable_if<std::is_enum<T>::value>::type>
 bool assignFromKeyfile(
-    const Glib::KeyFile& keyfile,
+    Glib::RefPtr<Glib::KeyFile>& keyfile,
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     const std::map<std::string, T>& mapping,
@@ -273,7 +273,7 @@ bool assignFromKeyfile(
     bool& params_edited_value
 )
 {
-    if (keyfile.has_key(group_name, key)) {
+    if (keyfile->has_key(group_name, key)) {
         Glib::ustring v;
         getFromKeyfile(keyfile, group_name, key, v);
 
@@ -297,112 +297,112 @@ void putToKeyfile(
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     int value,
-    Glib::KeyFile& keyfile
+    Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
-    keyfile.set_integer(group_name, key, value);
+    keyfile->set_integer(group_name, key, value);
 }
 
 void putToKeyfile(
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     float value,
-    Glib::KeyFile& keyfile
+    Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
-    keyfile.set_double(group_name, key, static_cast<double>(value));
+    keyfile->set_double(group_name, key, static_cast<double>(value));
 }
 
 void putToKeyfile(
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     double value,
-    Glib::KeyFile& keyfile
+    Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
-    keyfile.set_double(group_name, key, value);
+    keyfile->set_double(group_name, key, value);
 }
 
 void putToKeyfile(
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     bool value,
-    Glib::KeyFile& keyfile
+    Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
-    keyfile.set_boolean(group_name, key, value);
+    keyfile->set_boolean(group_name, key, value);
 }
 
 void putToKeyfile(
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     const Glib::ustring& value,
-    Glib::KeyFile& keyfile
+    Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
-    keyfile.set_string(group_name, key, value);
+    keyfile->set_string(group_name, key, value);
 }
 
 void putToKeyfile(
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     const std::vector<int>& value,
-    Glib::KeyFile& keyfile
+    Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
-    keyfile.set_integer_list(group_name, key, value);
+    keyfile->set_integer_list(group_name, key, value);
 }
 
 void putToKeyfile(
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     const std::vector<double>& value,
-    Glib::KeyFile& keyfile
+    Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
-    keyfile.set_double_list(group_name, key, value);
+    keyfile->set_double_list(group_name, key, value);
 }
 
 void putToKeyfile(
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     const std::vector<Glib::ustring>& value,
-    Glib::KeyFile& keyfile
+    Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
-    keyfile.set_string_list(group_name, key, value);
+    keyfile->set_string_list(group_name, key, value);
 }
 
 void putToKeyfile(
         const Glib::ustring& group_name,
         const Glib::ustring& key,
         const std::vector<std::string>& value,
-        Glib::KeyFile& keyfile
+        Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
     const std::vector<Glib::ustring> tmpValue(value.begin(), value.end());
-    keyfile.set_string_list(group_name, key, tmpValue);
+    keyfile->set_string_list(group_name, key, tmpValue);
 }
 
 void putToKeyfile(
     const Glib::ustring& group_name,
     const Glib::ustring& key,
     const rtengine::procparams::FilmNegativeParams::RGB& value,
-    Glib::KeyFile& keyfile
+    Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
     const std::vector<double> vec = { value.r, value.g, value.b };
-    keyfile.set_double_list(group_name, key, vec);
+    keyfile->set_double_list(group_name, key, vec);
 }
 
 
 template<typename T>
 bool saveToKeyfile(
-    bool save,
-    const Glib::ustring& group_name,
-    const Glib::ustring& key,
-    const T& value,
-    Glib::KeyFile& keyfile
+        bool save,
+        const Glib::ustring& group_name,
+        const Glib::ustring& key,
+        const T& value,
+        shared_ptr<Glib::KeyFile> keyfile
 )
 {
     if (save) {
@@ -420,14 +420,14 @@ bool saveToKeyfile(
     const Glib::ustring& key,
     const std::map<T, const char*>& mapping,
     const T& value,
-    Glib::KeyFile& keyfile
+    Glib::RefPtr<Glib::KeyFile>& keyfile
 )
 {
     if (save) {
         const typename std::map<T, const char*>::const_iterator m = mapping.find(value);
 
         if (m != mapping.end()) {
-            keyfile.set_string(group_name, key, m->second);
+            keyfile->set_string(group_name, key, m->second);
             return true;
         }
     }
@@ -6091,11 +6091,11 @@ int ProcParams::save(const Glib::ustring& fname, const Glib::ustring& fname2, bo
     Glib::ustring sPParams;
 
     try {
-        Glib::KeyFile keyFile;
+        Glib::RefPtr<Glib::KeyFile> keyFile;
 
 // Version
-        keyFile.set_string("Version", "AppVersion", RTVERSION);
-        keyFile.set_integer("Version", "Version", PPVERSION);
+        keyFile->set_string("Version", "AppVersion", RTVERSION);
+        keyFile->set_integer("Version", "Version", PPVERSION);
 
         if (rank >= 0) {
             saveToKeyfile(!pedited || pedited->general.rank, "General", "Rank", rank, keyFile);
@@ -6187,17 +6187,17 @@ int ProcParams::save(const Glib::ustring& fname, const Glib::ustring& fname2, bo
 
         if (!pedited || pedited->chmixer.red[0] || pedited->chmixer.red[1] || pedited->chmixer.red[2]) {
             Glib::ArrayHandle<int> rmix(chmixer.red, 3, Glib::OWNERSHIP_NONE);
-            keyFile.set_integer_list("Channel Mixer", "Red", rmix);
+            keyFile->set_integer_list("Channel Mixer", "Red", rmix);
         }
 
         if (!pedited || pedited->chmixer.green[0] || pedited->chmixer.green[1] || pedited->chmixer.green[2]) {
             Glib::ArrayHandle<int> gmix(chmixer.green, 3, Glib::OWNERSHIP_NONE);
-            keyFile.set_integer_list("Channel Mixer", "Green", gmix);
+            keyFile->set_integer_list("Channel Mixer", "Green", gmix);
         }
 
         if (!pedited || pedited->chmixer.blue[0] || pedited->chmixer.blue[1] || pedited->chmixer.blue[2]) {
             Glib::ArrayHandle<int> bmix(chmixer.blue, 3, Glib::OWNERSHIP_NONE);
-            keyFile.set_integer_list("Channel Mixer", "Blue", bmix);
+            keyFile->set_integer_list("Channel Mixer", "Blue", bmix);
         }
 
 // Black & White
@@ -7807,7 +7807,7 @@ int ProcParams::save(const Glib::ustring& fname, const Glib::ustring& fname2, bo
             for (auto &p : metadata.exif) {
                 auto it = m.find(p.first);
                 if (it != m.end()) {
-                    keyFile.set_string("Exif", it->second, p.second);
+                    keyFile->set_string("Exif", it->second, p.second);
                 }
             }
         }
@@ -7822,12 +7822,12 @@ int ProcParams::save(const Glib::ustring& fname, const Glib::ustring& fname2, bo
                 auto it = m.find(p.first);
                 if (it != m.end()) {
                     Glib::ArrayHandle<Glib::ustring> values = p.second;
-                    keyFile.set_string_list("IPTC", it->second, values);
+                    keyFile->set_string_list("IPTC", it->second, values);
                 }
             }
         }
 
-        sPParams = keyFile.to_data();
+        sPParams = keyFile->to_data();
 
     } catch (Glib::KeyFileError&) {}
 
@@ -7856,7 +7856,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
         return 1;
     }
 
-    Glib::KeyFile keyFile;
+    Glib::RefPtr<Glib::KeyFile> keyFile;
 
     try {
         std::unique_ptr<ParamsEdited> dummy_pedited;
@@ -7870,30 +7870,30 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
         }
 
         if (!Glib::file_test(fname, Glib::FileTest::EXISTS) ||
-                !keyFile.load_from_file(fname)) {
+                !keyFile->load_from_file(fname)) {
             return 1;
         }
 
         ppVersion = PPVERSION;
         appVersion = RTVERSION;
 
-        if (keyFile.has_group("Version")) {
-            if (keyFile.has_key("Version", "AppVersion")) {
-                appVersion = keyFile.get_string("Version", "AppVersion");
+        if (keyFile->has_group("Version")) {
+            if (keyFile->has_key("Version", "AppVersion")) {
+                appVersion = keyFile->get_string("Version", "AppVersion");
             }
 
-            if (keyFile.has_key("Version", "Version")) {
-                ppVersion = keyFile.get_integer("Version", "Version");
+            if (keyFile->has_key("Version", "Version")) {
+                ppVersion = keyFile->get_integer("Version", "Version");
             }
         }
 
-        if (keyFile.has_group("General")) {
+        if (keyFile->has_group("General")) {
             assignFromKeyfile(keyFile, "General", "Rank", rank, pedited->general.rank);
             assignFromKeyfile(keyFile, "General", "ColorLabel", colorlabel, pedited->general.colorlabel);
             assignFromKeyfile(keyFile, "General", "InTrash", inTrash, pedited->general.intrash);
         }
 
-        if (keyFile.has_group("Exposure")) {
+        if (keyFile->has_group("Exposure")) {
             if (ppVersion < PPVERSION_AEXP) {
                 toneCurve.autoexp = false; // prevent execution of autoexp when opening file created with earlier versions of autoexp algorithm
             } else {
@@ -7943,14 +7943,14 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Exposure", "ClampOOG", toneCurve.clampOOG, pedited->toneCurve.clampOOG);
         }
 
-        if (keyFile.has_group("HLRecovery")) {
+        if (keyFile->has_group("HLRecovery")) {
             assignFromKeyfile(keyFile, "HLRecovery", "Enabled", toneCurve.hrenabled, pedited->toneCurve.hrenabled);
             assignFromKeyfile(keyFile, "HLRecovery", "Method", toneCurve.method, pedited->toneCurve.method);
             assignFromKeyfile(keyFile, "HLRecovery", "Hlbl", toneCurve.hlbl, pedited->toneCurve.hlbl);
             assignFromKeyfile(keyFile, "HLRecovery", "Hlth", toneCurve.hlth, pedited->toneCurve.hlth);
         }
 
-        if (keyFile.has_group("Channel Mixer")) {
+        if (keyFile->has_group("Channel Mixer")) {
             if (ppVersion >= 329) {
                 assignFromKeyfile(keyFile, "Channel Mixer", "Enabled", chmixer.enabled, pedited->chmixer.enabled);
             } else {
@@ -7961,10 +7961,10 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Channel Mixer", "Red") && keyFile.has_key("Channel Mixer", "Green") && keyFile.has_key("Channel Mixer", "Blue")) {
-                const std::vector<int> rmix = keyFile.get_integer_list("Channel Mixer", "Red");
-                const std::vector<int> gmix = keyFile.get_integer_list("Channel Mixer", "Green");
-                const std::vector<int> bmix = keyFile.get_integer_list("Channel Mixer", "Blue");
+            if (keyFile->has_key("Channel Mixer", "Red") && keyFile->has_key("Channel Mixer", "Green") && keyFile->has_key("Channel Mixer", "Blue")) {
+                const std::vector<int> rmix = keyFile->get_integer_list("Channel Mixer", "Red");
+                const std::vector<int> gmix = keyFile->get_integer_list("Channel Mixer", "Green");
+                const std::vector<int> bmix = keyFile->get_integer_list("Channel Mixer", "Blue");
 
                 if (rmix.size() == 3 && gmix.size() == 3 && bmix.size() == 3) {
                     memcpy(chmixer.red,   rmix.data(), 3 * sizeof(int));
@@ -7987,7 +7987,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("Black & White")) {
+        if (keyFile->has_group("Black & White")) {
             assignFromKeyfile(keyFile, "Black & White", "Enabled", blackwhite.enabled, pedited->blackwhite.enabled);
             assignFromKeyfile(keyFile, "Black & White", "Method", blackwhite.method, pedited->blackwhite.method);
             assignFromKeyfile(keyFile, "Black & White", "Auto", blackwhite.autoc, pedited->blackwhite.autoc);
@@ -8038,10 +8038,10 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             );
         }
 
-        if (keyFile.has_group("Retinex")) {
+        if (keyFile->has_group("Retinex")) {
             assignFromKeyfile(keyFile, "Retinex", "Median", retinex.medianmap, pedited->retinex.medianmap);
 
-            if (keyFile.has_key("Retinex", "complexMethod")) {
+            if (keyFile->has_key("Retinex", "complexMethod")) {
                 assignFromKeyfile(keyFile, "Retinex", "complexMethod", retinex.complexmethod, pedited->retinex.complexmethod);
             } else if (retinex.enabled) {
                 retinex.complexmethod = "expert";
@@ -8090,7 +8090,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Retinex", "GainTransmissionCurve", retinex.gaintransmissionCurve, pedited->retinex.gaintransmissionCurve);
         }
 
-        if (keyFile.has_group("Local Contrast")) {
+        if (keyFile->has_group("Local Contrast")) {
             assignFromKeyfile(keyFile, "Local Contrast", "Enabled", localContrast.enabled, pedited->localContrast.enabled);
             assignFromKeyfile(keyFile, "Local Contrast", "Radius", localContrast.radius, pedited->localContrast.radius);
             assignFromKeyfile(keyFile, "Local Contrast", "Amount", localContrast.amount, pedited->localContrast.amount);
@@ -8098,7 +8098,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Local Contrast", "Lightness", localContrast.lightness, pedited->localContrast.lightness);
         }
 
-        if (keyFile.has_group("Luminance Curve")) {
+        if (keyFile->has_group("Luminance Curve")) {
             if (ppVersion >= 329) {
                 assignFromKeyfile(keyFile, "Luminance Curve", "Enabled", labCurve.enabled, pedited->labCurve.enabled);
             } else {
@@ -8119,8 +8119,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 // transform AvoidColorClipping into AvoidColorShift
 //                assignFromKeyfile(keyFile, "Luminance Curve", "AvoidColorClipping", labCurve.avoidcolorshift, pedited->labCurve.avoidcolorshift);
             } else {
-                if (keyFile.has_key("Luminance Curve", "Chromaticity")) {
-                    labCurve.chromaticity = keyFile.get_integer("Luminance Curve", "Chromaticity");
+                if (keyFile->has_key("Luminance Curve", "Chromaticity")) {
+                    labCurve.chromaticity = keyFile->get_integer("Luminance Curve", "Chromaticity");
 
                     if (ppVersion >= 303 && ppVersion < 314 && labCurve.chromaticity == -100) {
                         blackwhite.enabled = true;
@@ -8139,8 +8139,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             if (ppVersion < 314) {
                 // Backward compatibility: If BWtoning is true, Chromaticity has to be set to -100, which will produce the same effect
                 // and will enable the b&w toning mode ('a' & 'b' curves)
-                if (keyFile.has_key("Luminance Curve", "BWtoning")) {
-                    if (keyFile.get_boolean("Luminance Curve", "BWtoning")) {
+                if (keyFile->has_key("Luminance Curve", "BWtoning")) {
+                    if (keyFile->get_boolean("Luminance Curve", "BWtoning")) {
                         labCurve.chromaticity = -100;
 
                         if (pedited) {
@@ -8159,20 +8159,20 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Luminance Curve", "hhCurve", labCurve.hhcurve, pedited->labCurve.hhcurve);
             assignFromKeyfile(keyFile, "Luminance Curve", "LcCurve", labCurve.lccurve, pedited->labCurve.lccurve);
             assignFromKeyfile(keyFile, "Luminance Curve", "ClCurve", labCurve.clcurve, pedited->labCurve.clcurve);
-            if (keyFile.has_key("Luminance Curve", "Gamutmunse")) {
+            if (keyFile->has_key("Luminance Curve", "Gamutmunse")) {
                 assignFromKeyfile(keyFile, "Luminance Curve", "Gamutmunse", labCurve.gamutmunselmethod, pedited->labCurve.gamutmunselmethod);
             } else {
                 if (ppVersion < 303) {
-                    if (keyFile.has_key("Luminance Curve", "AvoidColorClipping")) {
+                    if (keyFile->has_key("Luminance Curve", "AvoidColorClipping")) {
                         labCurve.gamutmunselmethod =
-                            keyFile.get_boolean("Luminance Curve", "AvoidColorClipping") ? "LAB" : "NONE";
+                            keyFile->get_boolean("Luminance Curve", "AvoidColorClipping") ? "LAB" : "NONE";
                         if (pedited) {
                            pedited->labCurve.gamutmunselmethod = true;
                         }
                     }
-                } else if (keyFile.has_key("Luminance Curve", "AvoidColorShift")) {
+                } else if (keyFile->has_key("Luminance Curve", "AvoidColorShift")) {
                     labCurve.gamutmunselmethod =
-                        keyFile.get_boolean("Luminance Curve", "AvoidColorShift") ? "LAB" : "NONE";
+                        keyFile->get_boolean("Luminance Curve", "AvoidColorShift") ? "LAB" : "NONE";
                    if (pedited) {
                        pedited->labCurve.gamutmunselmethod = true;
                    }
@@ -8180,7 +8180,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
            }
         }
 
-        if (keyFile.has_group("Sharpening")) {
+        if (keyFile->has_group("Sharpening")) {
             assignFromKeyfile(keyFile, "Sharpening", "Enabled", sharpening.enabled, pedited->sharpening.enabled);
 
             if (ppVersion >= 334) {
@@ -8197,12 +8197,12 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Sharpening", "BlurRadius", sharpening.blurradius, pedited->sharpening.blurradius);
             assignFromKeyfile(keyFile, "Sharpening", "Amount", sharpening.amount, pedited->sharpening.amount);
 
-            if (keyFile.has_key("Sharpening", "Threshold")) {
+            if (keyFile->has_key("Sharpening", "Threshold")) {
                 if (ppVersion < 302) {
-                    int thresh = min(keyFile.get_integer("Sharpening", "Threshold"), 2000);
+                    int thresh = min(keyFile->get_integer("Sharpening", "Threshold"), 2000);
                     sharpening.threshold.setValues(thresh, thresh, 2000, 2000);  // TODO: 2000 is the maximum value and is taken of rtgui/sharpening.cc ; should be changed by the tool modularization
                 } else {
-                    const std::vector<int> thresh = keyFile.get_integer_list("Sharpening", "Threshold");
+                    const std::vector<int> thresh = keyFile->get_integer_list("Sharpening", "Threshold");
 
                     if (thresh.size() >= 4) {
                         sharpening.threshold.setValues(thresh[0], thresh[1], min(thresh[2], 2000), min(thresh[3], 2000));
@@ -8226,14 +8226,14 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Sharpening", "DeconvIterations", sharpening.deconviter, pedited->sharpening.deconviter);
         }
 
-        if (keyFile.has_group("SharpenEdge")) {
+        if (keyFile->has_group("SharpenEdge")) {
             assignFromKeyfile(keyFile, "SharpenEdge", "Enabled", sharpenEdge.enabled, pedited->sharpenEdge.enabled);
             assignFromKeyfile(keyFile, "SharpenEdge", "Passes", sharpenEdge.passes, pedited->sharpenEdge.passes);
             assignFromKeyfile(keyFile, "SharpenEdge", "Strength", sharpenEdge.amount, pedited->sharpenEdge.amount);
             assignFromKeyfile(keyFile, "SharpenEdge", "ThreeChannels", sharpenEdge.threechannels, pedited->sharpenEdge.threechannels);
         }
 
-        if (keyFile.has_group("SharpenMicro")) {
+        if (keyFile->has_group("SharpenMicro")) {
             assignFromKeyfile(keyFile, "SharpenMicro", "Enabled", sharpenMicro.enabled, pedited->sharpenMicro.enabled);
             assignFromKeyfile(keyFile, "SharpenMicro", "Matrix", sharpenMicro.matrix, pedited->sharpenMicro.matrix);
             assignFromKeyfile(keyFile, "SharpenMicro", "Strength", sharpenMicro.amount, pedited->sharpenMicro.amount);
@@ -8256,17 +8256,17 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("Vibrance")) {
+        if (keyFile->has_group("Vibrance")) {
             assignFromKeyfile(keyFile, "Vibrance", "Enabled", vibrance.enabled, pedited->vibrance.enabled);
             assignFromKeyfile(keyFile, "Vibrance", "Pastels", vibrance.pastels, pedited->vibrance.pastels);
             assignFromKeyfile(keyFile, "Vibrance", "Saturated", vibrance.saturated, pedited->vibrance.saturated);
 
-            if (keyFile.has_key("Vibrance", "PSThreshold")) {
+            if (keyFile->has_key("Vibrance", "PSThreshold")) {
                 if (ppVersion < 302) {
-                    int thresh = keyFile.get_integer("Vibrance", "PSThreshold");
+                    int thresh = keyFile->get_integer("Vibrance", "PSThreshold");
                     vibrance.psthreshold.setValues(thresh, thresh);
                 } else {
-                    const std::vector<int> thresh = keyFile.get_integer_list("Vibrance", "PSThreshold");
+                    const std::vector<int> thresh = keyFile->get_integer_list("Vibrance", "PSThreshold");
 
                     if (thresh.size() >= 2) {
                         vibrance.psthreshold.setValues(thresh[0], thresh[1]);
@@ -8294,7 +8294,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 pedited->wb.observer = true;
             }
         }
-        if (keyFile.has_group("White Balance")) {
+        if (keyFile->has_group("White Balance")) {
             assignFromKeyfile(keyFile, "White Balance", "Enabled", wb.enabled, pedited->wb.enabled);
             assignFromKeyfile(keyFile, "White Balance", "Setting", wb.method, pedited->wb.method);
             if (wb.method == "Auto") {
@@ -8325,12 +8325,12 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "White Balance", "Itcwb_sampling", wb.itcwb_sampling, pedited->wb.itcwb_sampling);
         }
 
-        if (keyFile.has_group("Defringing")) {
+        if (keyFile->has_group("Defringing")) {
             assignFromKeyfile(keyFile, "Defringing", "Enabled", defringe.enabled, pedited->defringe.enabled);
             assignFromKeyfile(keyFile, "Defringing", "Radius", defringe.radius, pedited->defringe.radius);
 
-            if (keyFile.has_key("Defringing", "Threshold")) {
-                defringe.threshold = (float)keyFile.get_integer("Defringing", "Threshold");
+            if (keyFile->has_key("Defringing", "Threshold")) {
+                defringe.threshold = (float)keyFile->get_integer("Defringing", "Threshold");
 
                 if (pedited) {
                     pedited->defringe.threshold = true;
@@ -8344,7 +8344,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Defringing", "HueCurve", defringe.huecurve, pedited->defringe.huecurve);
         }
 
-        if (keyFile.has_group("Color appearance")) {
+        if (keyFile->has_group("Color appearance")) {
             assignFromKeyfile(keyFile, "Color appearance", "Enabled", colorappearance.enabled, pedited->colorappearance.enabled);
             assignFromKeyfile(keyFile, "Color appearance", "Degree", colorappearance.degree, pedited->colorappearance.degree);
             assignFromKeyfile(keyFile, "Color appearance", "AutoDegree", colorappearance.autodegree, pedited->colorappearance.autodegree);
@@ -8352,7 +8352,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
 
             assignFromKeyfile(keyFile, "Color appearance", "AutoDegreeout", colorappearance.autodegreeout, pedited->colorappearance.autodegreeout);
 
-            if (keyFile.has_key("Color appearance", "complex")) {
+            if (keyFile->has_key("Color appearance", "complex")) {
                 assignFromKeyfile(keyFile, "Color appearance", "complex", colorappearance.complexmethod, pedited->colorappearance.complexmethod);
             } else if (colorappearance.enabled) {
                 colorappearance.complexmethod = "expert";
@@ -8361,7 +8361,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Color appearance", "ModelCat")) {
+            if (keyFile->has_key("Color appearance", "ModelCat")) {
                 assignFromKeyfile(keyFile, "Color appearance", "ModelCat", colorappearance.modelmethod, pedited->colorappearance.modelmethod);
             } else if (colorappearance.enabled) {
                 colorappearance.modelmethod = "02";
@@ -8430,12 +8430,12 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
 
         }
 
-        if (keyFile.has_group("Impulse Denoising")) {
+        if (keyFile->has_group("Impulse Denoising")) {
             assignFromKeyfile(keyFile, "Impulse Denoising", "Enabled", impulseDenoise.enabled, pedited->impulseDenoise.enabled);
             assignFromKeyfile(keyFile, "Impulse Denoising", "Threshold", impulseDenoise.thresh, pedited->impulseDenoise.thresh);
         }
 
-        if (keyFile.has_group("Directional Pyramid Denoising")) { //TODO: No longer an accurate description for FT denoise
+        if (keyFile->has_group("Directional Pyramid Denoising")) { //TODO: No longer an accurate description for FT denoise
             assignFromKeyfile(keyFile, "Directional Pyramid Denoising", "Enabled", dirpyrDenoise.enabled, pedited->dirpyrDenoise.enabled);
             assignFromKeyfile(keyFile, "Directional Pyramid Denoising", "Enhance", dirpyrDenoise.enhance, pedited->dirpyrDenoise.enhance);
             assignFromKeyfile(keyFile, "Directional Pyramid Denoising", "Median", dirpyrDenoise.median, pedited->dirpyrDenoise.median);
@@ -8470,7 +8470,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Directional Pyramid Denoising", "Passes", dirpyrDenoise.passes, pedited->dirpyrDenoise.passes);
         }
 
-        if (keyFile.has_group("EPD")) {
+        if (keyFile->has_group("EPD")) {
             assignFromKeyfile(keyFile, "EPD", "Enabled", epd.enabled, pedited->epd.enabled);
             assignFromKeyfile(keyFile, "EPD", "Strength", epd.strength, pedited->epd.strength);
             assignFromKeyfile(keyFile, "EPD", "Gamma", epd.gamma, pedited->epd.gamma);
@@ -8479,14 +8479,14 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "EPD", "ReweightingIterates", epd.reweightingIterates, pedited->epd.reweightingIterates);
         }
 
-        if (keyFile.has_group("FattalToneMapping")) {
+        if (keyFile->has_group("FattalToneMapping")) {
             assignFromKeyfile(keyFile, "FattalToneMapping", "Enabled", fattal.enabled, pedited->fattal.enabled);
             assignFromKeyfile(keyFile, "FattalToneMapping", "Threshold", fattal.threshold, pedited->fattal.threshold);
             assignFromKeyfile(keyFile, "FattalToneMapping", "Amount", fattal.amount, pedited->fattal.amount);
             assignFromKeyfile(keyFile, "FattalToneMapping", "Anchor", fattal.anchor, pedited->fattal.anchor);
         }
 
-        if (keyFile.has_group("Shadows & Highlights") && ppVersion >= 333) {
+        if (keyFile->has_group("Shadows & Highlights") && ppVersion >= 333) {
             assignFromKeyfile(keyFile, "Shadows & Highlights", "Enabled", sh.enabled, pedited->sh.enabled);
             assignFromKeyfile(keyFile, "Shadows & Highlights", "Highlights", sh.highlights, pedited->sh.highlights);
             assignFromKeyfile(keyFile, "Shadows & Highlights", "HighlightTonalWidth", sh.htonalwidth, pedited->sh.htonalwidth);
@@ -8499,8 +8499,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 sh.lab = true;
             }
 
-            if (keyFile.has_key("Shadows & Highlights", "LocalContrast") && ppVersion < 329) {
-                int lc = keyFile.get_integer("Shadows & Highlights", "LocalContrast");
+            if (keyFile->has_key("Shadows & Highlights", "LocalContrast") && ppVersion < 329) {
+                int lc = keyFile->get_integer("Shadows & Highlights", "LocalContrast");
                 localContrast.amount = float(lc) / 30.f;
 
                 if (pedited) {
@@ -8521,7 +8521,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("ToneEqualizer")) {
+        if (keyFile->has_group("ToneEqualizer")) {
             assignFromKeyfile(keyFile, "ToneEqualizer", "Enabled", toneEqualizer.enabled, pedited->toneEqualizer.enabled);
             for (size_t i = 0; i < toneEqualizer.bands.size(); ++i) {
                 assignFromKeyfile(keyFile, "ToneEqualizer", "Band" + std::to_string(i), toneEqualizer.bands[i], pedited->toneEqualizer.bands[i]);
@@ -8530,21 +8530,21 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "ToneEqualizer", "Pivot", toneEqualizer.pivot, pedited->toneEqualizer.pivot);
         }
 
-        if (keyFile.has_group("Crop")) {
+        if (keyFile->has_group("Crop")) {
             assignFromKeyfile(keyFile, "Crop", "Enabled", crop.enabled, pedited->crop.enabled);
             assignFromKeyfile(keyFile, "Crop", "X", crop.x, pedited->crop.x);
             assignFromKeyfile(keyFile, "Crop", "Y", crop.y, pedited->crop.y);
 
-            if (keyFile.has_key("Crop", "W")) {
-                crop.w = std::max(keyFile.get_integer("Crop", "W"), 1);
+            if (keyFile->has_key("Crop", "W")) {
+                crop.w = std::max(keyFile->get_integer("Crop", "W"), 1);
 
                 if (pedited) {
                     pedited->crop.w = true;
                 }
             }
 
-            if (keyFile.has_key("Crop", "H")) {
-                crop.h = std::max(keyFile.get_integer("Crop", "H"), 1);
+            if (keyFile->has_key("Crop", "H")) {
+                crop.h = std::max(keyFile->get_integer("Crop", "H"), 1);
 
                 if (pedited) {
                     pedited->crop.h = true;
@@ -8590,18 +8590,18 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             );
         }
 
-        if (keyFile.has_group("Coarse Transformation")) {
+        if (keyFile->has_group("Coarse Transformation")) {
             assignFromKeyfile(keyFile, "Coarse Transformation", "Rotate", coarse.rotate, pedited->coarse.rotate);
             assignFromKeyfile(keyFile, "Coarse Transformation", "HorizontalFlip", coarse.hflip, pedited->coarse.hflip);
             assignFromKeyfile(keyFile, "Coarse Transformation", "VerticalFlip", coarse.vflip, pedited->coarse.vflip);
         }
 
-        if (keyFile.has_group("Rotation")) {
+        if (keyFile->has_group("Rotation")) {
             assignFromKeyfile(keyFile, "Rotation", "Degree", rotate.degree, pedited->rotate.degree);
         }
 
-        if (keyFile.has_group("Common Properties for Transformations")) {
-            if (keyFile.has_key("Common Properties for Transformations", "Method")) {
+        if (keyFile->has_group("Common Properties for Transformations")) {
+            if (keyFile->has_key("Common Properties for Transformations", "Method")) {
                 assignFromKeyfile(keyFile, "Common Properties for Transformations", "Method", commonTrans.method, pedited->commonTrans.method);
             } else {
                 commonTrans.method = "lin";
@@ -8609,21 +8609,21 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Common Properties for Transformations", "AutoFill", commonTrans.autofill, pedited->commonTrans.autofill);
         }
 
-        if (keyFile.has_group("Distortion")) {
+        if (keyFile->has_group("Distortion")) {
             assignFromKeyfile(keyFile, "Distortion", "Amount", distortion.amount, pedited->distortion.amount);
         }
 
-        if (keyFile.has_group("LensProfile")) {
-            if (keyFile.has_key("LensProfile", "LcMode")) {
-                lensProf.lcMode = lensProf.getMethodNumber(keyFile.get_string("LensProfile", "LcMode"));
+        if (keyFile->has_group("LensProfile")) {
+            if (keyFile->has_key("LensProfile", "LcMode")) {
+                lensProf.lcMode = lensProf.getMethodNumber(keyFile->get_string("LensProfile", "LcMode"));
 
                 if (pedited) {
                     pedited->lensProf.lcMode = true;
                 }
             }
 
-            if (keyFile.has_key("LensProfile", "LCPFile")) {
-				lensProf.lcpFile = expandRelativePath2(fname, options.rtSettings.lensProfilesPath, "", keyFile.get_string("LensProfile", "LCPFile"));
+            if (keyFile->has_key("LensProfile", "LCPFile")) {
+				lensProf.lcpFile = expandRelativePath2(fname, options.rtSettings.lensProfilesPath, "", keyFile->get_string("LensProfile", "LCPFile"));
 
                 if (pedited) {
                     pedited->lensProf.lcpFile = true;
@@ -8638,24 +8638,24 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "LensProfile", "UseVignette", lensProf.useVign, pedited->lensProf.useVign);
             assignFromKeyfile(keyFile, "LensProfile", "UseCA", lensProf.useCA, pedited->lensProf.useCA);
 
-            if (keyFile.has_key("LensProfile", "LFCameraMake")) {
-                lensProf.lfCameraMake = keyFile.get_string("LensProfile", "LFCameraMake");
+            if (keyFile->has_key("LensProfile", "LFCameraMake")) {
+                lensProf.lfCameraMake = keyFile->get_string("LensProfile", "LFCameraMake");
 
                 if (pedited) {
                     pedited->lensProf.lfCameraMake = true;
                 }
             }
 
-            if (keyFile.has_key("LensProfile", "LFCameraModel")) {
-                lensProf.lfCameraModel = keyFile.get_string("LensProfile", "LFCameraModel");
+            if (keyFile->has_key("LensProfile", "LFCameraModel")) {
+                lensProf.lfCameraModel = keyFile->get_string("LensProfile", "LFCameraModel");
 
                 if (pedited) {
                     pedited->lensProf.lfCameraModel = true;
                 }
             }
 
-            if (keyFile.has_key("LensProfile", "LFLens")) {
-                lensProf.lfLens = keyFile.get_string("LensProfile", "LFLens");
+            if (keyFile->has_key("LensProfile", "LFLens")) {
+                lensProf.lfLens = keyFile->get_string("LensProfile", "LFLens");
 
                 if (pedited) {
                     pedited->lensProf.lfLens = true;
@@ -8663,7 +8663,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("Perspective")) {
+        if (keyFile->has_group("Perspective")) {
             assignFromKeyfile(keyFile, "Perspective", "Method", perspective.method, pedited->perspective.method);
             assignFromKeyfile(keyFile, "Perspective", "Horizontal", perspective.horizontal, pedited->perspective.horizontal);
             assignFromKeyfile(keyFile, "Perspective", "Vertical", perspective.vertical, pedited->perspective.vertical);
@@ -8679,16 +8679,16 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Perspective", "ProjectionShiftHorizontal", perspective.projection_shift_horiz, pedited->perspective.projection_shift_horiz);
             assignFromKeyfile(keyFile, "Perspective", "ProjectionShiftVertical", perspective.projection_shift_vert, pedited->perspective.projection_shift_vert);
             assignFromKeyfile(keyFile, "Perspective", "ProjectionYaw", perspective.projection_yaw, pedited->perspective.projection_yaw);
-            if (keyFile.has_key("Perspective", "ControlLineValues") && keyFile.has_key("Perspective", "ControlLineTypes")) {
-                perspective.control_line_values = keyFile.get_integer_list("Perspective", "ControlLineValues");
-                perspective.control_line_types = keyFile.get_integer_list("Perspective", "ControlLineTypes");
+            if (keyFile->has_key("Perspective", "ControlLineValues") && keyFile->has_key("Perspective", "ControlLineTypes")) {
+                perspective.control_line_values = keyFile->get_integer_list("Perspective", "ControlLineValues");
+                perspective.control_line_types = keyFile->get_integer_list("Perspective", "ControlLineTypes");
                 if (pedited) {
                     pedited->perspective.control_lines = true;
                 }
             }
         }
 
-        if (keyFile.has_group("Gradient")) {
+        if (keyFile->has_group("Gradient")) {
             assignFromKeyfile(keyFile, "Gradient", "Enabled", gradient.enabled, pedited->gradient.enabled);
             assignFromKeyfile(keyFile, "Gradient", "Degree", gradient.degree, pedited->gradient.degree);
             assignFromKeyfile(keyFile, "Gradient", "Feather", gradient.feather, pedited->gradient.feather);
@@ -8697,7 +8697,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Gradient", "CenterY", gradient.centerY, pedited->gradient.centerY);
         }
 
-        if (keyFile.has_group("Locallab")) {
+        if (keyFile->has_group("Locallab")) {
             assignFromKeyfile(keyFile, "Locallab", "Enabled", locallab.enabled, pedited->locallab.enabled);
             assignFromKeyfile(keyFile, "Locallab", "Selspot", locallab.selspot, pedited->locallab.selspot);
 
@@ -8724,11 +8724,11 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 assignFromKeyfile(keyFile, "Locallab", "StructExclu_" + index_str, spot.structexclu, spotEdited.structexclu);
                 assignFromKeyfile(keyFile, "Locallab", "Struc_" + index_str, spot.struc, spotEdited.struc);
                 assignFromKeyfile(keyFile, "Locallab", "ShapeMethod_" + index_str, spot.shapeMethod, spotEdited.shapeMethod);
-                if (keyFile.has_key("Locallab", "AvoidgamutMethod_" + index_str)) {
+                if (keyFile->has_key("Locallab", "AvoidgamutMethod_" + index_str)) {
                     assignFromKeyfile(keyFile, "Locallab", "AvoidgamutMethod_" + index_str, spot.avoidgamutMethod, spotEdited.avoidgamutMethod);
-                } else if (keyFile.has_key("Locallab", "Avoid_" + index_str)) {
-                    const bool avoid = keyFile.get_boolean("Locallab", "Avoid_" + index_str);
-                    const bool munsell = keyFile.has_key("Locallab", "Avoidmun_" + index_str) && keyFile.get_boolean("Locallab", "Avoidmun_" + index_str);
+                } else if (keyFile->has_key("Locallab", "Avoid_" + index_str)) {
+                    const bool avoid = keyFile->get_boolean("Locallab", "Avoid_" + index_str);
+                    const bool munsell = keyFile->has_key("Locallab", "Avoidmun_" + index_str) && keyFile->get_boolean("Locallab", "Avoidmun_" + index_str);
                     spot.avoidgamutMethod = avoid ? (munsell ? "MUNS" : "LAB") : "NONE";
                     if (pedited) {
                         spotEdited.avoidgamutMethod = true;
@@ -8832,8 +8832,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 assignFromKeyfile(keyFile, "Locallab", "LmaskCurve_" + index_str, spot.Lmaskcurve, spotEdited.Lmaskcurve);
                 assignFromKeyfile(keyFile, "Locallab", "LLmaskcolCurvewav_" + index_str, spot.LLmaskcolcurvewav, spotEdited.LLmaskcolcurvewav);
 
-                if (keyFile.has_key("Locallab", "CSThresholdcol_" + index_str)) {
-                    const std::vector<int> thresh = keyFile.get_integer_list("Locallab", "CSThresholdcol_" + index_str);
+                if (keyFile->has_key("Locallab", "CSThresholdcol_" + index_str)) {
+                    const std::vector<int> thresh = keyFile->get_integer_list("Locallab", "CSThresholdcol_" + index_str);
 
                     if (thresh.size() >= 4) {
                         spot.csthresholdcol.setValues(thresh[0], thresh[1], min(thresh[2], 10), min(thresh[3], 10));
@@ -8960,8 +8960,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 assignFromKeyfile(keyFile, "Locallab", "Vibgam_" + index_str, spot.vibgam, spotEdited.vibgam);
                 assignFromKeyfile(keyFile, "Locallab", "Warm_" + index_str, spot.warm, spotEdited.warm);
 
-                if (keyFile.has_key("Locallab", "PSThreshold_" + index_str)) {
-                    const std::vector<int> thresh = keyFile.get_integer_list("Locallab", "PSThreshold_" + index_str);
+                if (keyFile->has_key("Locallab", "PSThreshold_" + index_str)) {
+                    const std::vector<int> thresh = keyFile->get_integer_list("Locallab", "PSThreshold_" + index_str);
 
                     if (thresh.size() >= 2) {
                         spot.psthreshold.setValues(thresh[0], thresh[1]);
@@ -9088,8 +9088,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 assignFromKeyfile(keyFile, "Locallab", "LmaskblCurve_" + index_str, spot.Lmaskblcurve, spotEdited.Lmaskblcurve);
                 assignFromKeyfile(keyFile, "Locallab", "LLmaskblCurvewav_" + index_str, spot.LLmaskblcurvewav, spotEdited.LLmaskblcurvewav);
 
-                if (keyFile.has_key("Locallab", "CSThresholdblur_" + index_str)) {
-                    const std::vector<int> thresh = keyFile.get_integer_list("Locallab", "CSThresholdblur_" + index_str);
+                if (keyFile->has_key("Locallab", "CSThresholdblur_" + index_str)) {
+                    const std::vector<int> thresh = keyFile->get_integer_list("Locallab", "CSThresholdblur_" + index_str);
 
                     if (thresh.size() >= 4) {
                         spot.csthresholdblur.setValues(thresh[0], thresh[1], min(thresh[2], 10), min(thresh[3], 10));
@@ -9269,9 +9269,9 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 assignFromKeyfile(keyFile, "Locallab", "LoccomprewavCurve_" + index_str, spot.loccomprewavcurve, spotEdited.loccomprewavcurve);
                 assignFromKeyfile(keyFile, "Locallab", "LocedgwavCurve_" + index_str, spot.locedgwavcurve, spotEdited.locedgwavcurve);
 
-                if (keyFile.has_key("Locallab", "CSThreshold_" + index_str)) {
+                if (keyFile->has_key("Locallab", "CSThreshold_" + index_str)) {
 
-                    const std::vector<int> thresh = keyFile.get_integer_list("Locallab", "CSThreshold_" + index_str);
+                    const std::vector<int> thresh = keyFile->get_integer_list("Locallab", "CSThreshold_" + index_str);
 
                     if (thresh.size() >= 4) {
                         spot.csthreshold.setValues(thresh[0], thresh[1], min(thresh[2], 10), min(thresh[3], 10));
@@ -9403,8 +9403,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 assignFromKeyfile(keyFile, "Locallab", "Lmask_Curve_" + index_str, spot.Lmask_curve, spotEdited.Lmask_curve);
                 assignFromKeyfile(keyFile, "Locallab", "LLmask_Curvewav_" + index_str, spot.LLmask_curvewav, spotEdited.LLmask_curvewav);
 
-                if (keyFile.has_key("Locallab", "CSThresholdmask_" + index_str)) {
-                    const std::vector<int> thresh = keyFile.get_integer_list("Locallab", "CSThresholdmask_" + index_str);
+                if (keyFile->has_key("Locallab", "CSThresholdmask_" + index_str)) {
+                    const std::vector<int> thresh = keyFile->get_integer_list("Locallab", "CSThresholdmask_" + index_str);
 
                     if (thresh.size() >= 4) {
                         spot.csthresholdmask.setValues(thresh[0], thresh[1], min(thresh[2], 10), min(thresh[3], 10));
@@ -9476,9 +9476,9 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 assignFromKeyfile(keyFile, "Locallab", "Shjzcie_" + index_str, spot.shjzcie, spotEdited.shjzcie);
                 assignFromKeyfile(keyFile, "Locallab", "Shthjzcie_" + index_str, spot.shthjzcie, spotEdited.shthjzcie);
                 assignFromKeyfile(keyFile, "Locallab", "Radjzcie_" + index_str, spot.radjzcie, spotEdited.radjzcie);
-                if (keyFile.has_key("Locallab", "CSThresholdjz_" + index_str)) {
+                if (keyFile->has_key("Locallab", "CSThresholdjz_" + index_str)) {
 
-                    const std::vector<int> thresh = keyFile.get_integer_list("Locallab", "CSThresholdjz_" + index_str);
+                    const std::vector<int> thresh = keyFile->get_integer_list("Locallab", "CSThresholdjz_" + index_str);
 
                     if (thresh.size() >= 4) {
                         spot.csthresholdjz.setValues(thresh[0], thresh[1], min(thresh[2], 10), min(thresh[3], 10));
@@ -9547,19 +9547,19 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("PCVignette")) {
+        if (keyFile->has_group("PCVignette")) {
             assignFromKeyfile(keyFile, "PCVignette", "Enabled", pcvignette.enabled, pedited->pcvignette.enabled);
             assignFromKeyfile(keyFile, "PCVignette", "Strength", pcvignette.strength, pedited->pcvignette.strength);
             assignFromKeyfile(keyFile, "PCVignette", "Feather", pcvignette.feather, pedited->pcvignette.feather);
             assignFromKeyfile(keyFile, "PCVignette", "Roundness", pcvignette.roundness, pedited->pcvignette.roundness);
         }
 
-        if (keyFile.has_group("CACorrection")) {
+        if (keyFile->has_group("CACorrection")) {
             assignFromKeyfile(keyFile, "CACorrection", "Red", cacorrection.red, pedited->cacorrection.red);
             assignFromKeyfile(keyFile, "CACorrection", "Blue", cacorrection.blue, pedited->cacorrection.blue);
         }
 
-        if (keyFile.has_group("Vignetting Correction")) {
+        if (keyFile->has_group("Vignetting Correction")) {
             assignFromKeyfile(keyFile, "Vignetting Correction", "Amount", vignetting.amount, pedited->vignetting.amount);
             assignFromKeyfile(keyFile, "Vignetting Correction", "Radius", vignetting.radius, pedited->vignetting.radius);
             assignFromKeyfile(keyFile, "Vignetting Correction", "Strength", vignetting.strength, pedited->vignetting.strength);
@@ -9567,7 +9567,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Vignetting Correction", "CenterY", vignetting.centerY, pedited->vignetting.centerY);
         }
 
-        if (keyFile.has_group("Resize")) {
+        if (keyFile->has_group("Resize")) {
             assignFromKeyfile(keyFile, "Resize", "Enabled", resize.enabled, pedited->resize.enabled);
             assignFromKeyfile(keyFile, "Resize", "Scale", resize.scale, pedited->resize.scale);
             assignFromKeyfile(keyFile, "Resize", "AppliesTo", resize.appliesTo, pedited->resize.appliesTo);
@@ -9587,15 +9587,15 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group ("Spot removal")) {
+        if (keyFile->has_group ("Spot removal")) {
             assignFromKeyfile(keyFile, "Spot removal", "Enabled", spot.enabled, pedited->spot.enabled);
             int i = 0;
             do {
                 std::stringstream ss;
                 ss << "Spot" << (i++ + 1);
 
-                if (keyFile.has_key ("Spot removal", ss.str())) {
-                    Glib::ArrayHandle<double> entry = keyFile.get_double_list ("Spot removal", ss.str());
+                if (keyFile->has_key ("Spot removal", ss.str())) {
+                    Glib::ArrayHandle<double> entry = keyFile->get_double_list ("Spot removal", ss.str());
                     const double epsilon = 0.001;  // to circumvent rounding of integer saved as double
                     SpotEntry se;
 
@@ -9615,7 +9615,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             } while (1);
         }
 
-        if (keyFile.has_group("PostDemosaicSharpening")) {
+        if (keyFile->has_group("PostDemosaicSharpening")) {
             assignFromKeyfile(keyFile, "PostDemosaicSharpening", "Enabled", pdsharpening.enabled, pedited->pdsharpening.enabled);
             assignFromKeyfile(keyFile, "PostDemosaicSharpening", "Contrast", pdsharpening.contrast, pedited->pdsharpening.contrast);
             assignFromKeyfile(keyFile, "PostDemosaicSharpening", "AutoContrast", pdsharpening.autoContrast, pedited->pdsharpening.autoContrast);
@@ -9626,18 +9626,18 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "PostDemosaicSharpening", "DeconvIterations", pdsharpening.deconviter, pedited->pdsharpening.deconviter);
         }
 
-        if (keyFile.has_group("PostResizeSharpening")) {
+        if (keyFile->has_group("PostResizeSharpening")) {
             assignFromKeyfile(keyFile, "PostResizeSharpening", "Enabled", prsharpening.enabled, pedited->prsharpening.enabled);
             assignFromKeyfile(keyFile, "PostResizeSharpening", "Contrast", prsharpening.contrast, pedited->prsharpening.contrast);
             assignFromKeyfile(keyFile, "PostResizeSharpening", "Radius", prsharpening.radius, pedited->prsharpening.radius);
             assignFromKeyfile(keyFile, "PostResizeSharpening", "Amount", prsharpening.amount, pedited->prsharpening.amount);
 
-            if (keyFile.has_key("PostResizeSharpening", "Threshold")) {
+            if (keyFile->has_key("PostResizeSharpening", "Threshold")) {
                 if (ppVersion < 302) {
-                    int thresh = min(keyFile.get_integer("PostResizeSharpening", "Threshold"), 2000);
+                    int thresh = min(keyFile->get_integer("PostResizeSharpening", "Threshold"), 2000);
                     prsharpening.threshold.setValues(thresh, thresh, 2000, 2000);  // TODO: 2000 is the maximum value and is taken of rtgui/sharpening.cc ; should be changed by the tool modularization
                 } else {
-                    const std::vector<int> thresh = keyFile.get_integer_list("PostResizeSharpening", "Threshold");
+                    const std::vector<int> thresh = keyFile->get_integer_list("PostResizeSharpening", "Threshold");
 
                     if (thresh.size() >= 4) {
                         prsharpening.threshold.setValues(thresh[0], thresh[1], min(thresh[2], 2000), min(thresh[3], 2000));
@@ -9661,9 +9661,9 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "PostResizeSharpening", "DeconvIterations", prsharpening.deconviter, pedited->prsharpening.deconviter);
         }
 
-        if (keyFile.has_group("Color Management")) {
-            if (keyFile.has_key("Color Management", "InputProfile")) {
-				icm.inputProfile = expandRelativePath2(fname, options.rtSettings.cameraProfilesPath, "file:", keyFile.get_string("Color Management", "InputProfile"));
+        if (keyFile->has_group("Color Management")) {
+            if (keyFile->has_key("Color Management", "InputProfile")) {
+				icm.inputProfile = expandRelativePath2(fname, options.rtSettings.cameraProfilesPath, "file:", keyFile->get_string("Color Management", "InputProfile"));
 
                 if (pedited) {
                     pedited->icm.inputProfile = true;
@@ -9775,8 +9775,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Color Management", "LabGridcieGy", icm.labgridcieGy, pedited->icm.labgridcieGy);
             assignFromKeyfile(keyFile, "Color Management", "LabGridcieWx", icm.labgridcieWx, pedited->icm.labgridcieWx);
             assignFromKeyfile(keyFile, "Color Management", "LabGridcieWy", icm.labgridcieWy, pedited->icm.labgridcieWy);
-            if (keyFile.has_key("Color Management", "aIntent")) {
-                Glib::ustring intent = keyFile.get_string("Color Management", "aIntent");
+            if (keyFile->has_key("Color Management", "aIntent")) {
+                Glib::ustring intent = keyFile->get_string("Color Management", "aIntent");
 
                 if (intent == "Perceptual") {
                     icm.aRendIntent = RI_PERCEPTUAL;
@@ -9815,8 +9815,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                     icm.outputProfile = "RTv4_ACES-AP0";
                 }
             }
-            if (keyFile.has_key("Color Management", "OutputProfileIntent")) {
-                Glib::ustring intent = keyFile.get_string("Color Management", "OutputProfileIntent");
+            if (keyFile->has_key("Color Management", "OutputProfileIntent")) {
+                Glib::ustring intent = keyFile->get_string("Color Management", "OutputProfileIntent");
 
                 if (intent == "Perceptual") {
                     icm.outputIntent = RI_PERCEPTUAL;
@@ -9835,7 +9835,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Color Management", "OutputBPC", icm.outputBPC, pedited->icm.outputBPC);
         }
 
-        if (keyFile.has_group("Wavelet")) {
+        if (keyFile->has_group("Wavelet")) {
             assignFromKeyfile(keyFile, "Wavelet", "Enabled", wavelet.enabled, pedited->wavelet.enabled);
             assignFromKeyfile(keyFile, "Wavelet", "Strength", wavelet.strength, pedited->wavelet.strength);
             assignFromKeyfile(keyFile, "Wavelet", "Balance", wavelet.balance, pedited->wavelet.balance);
@@ -9897,7 +9897,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Wavelet", "BackMethod", wavelet.Backmethod, pedited->wavelet.Backmethod);
             assignFromKeyfile(keyFile, "Wavelet", "TilesMethod", wavelet.Tilesmethod, pedited->wavelet.Tilesmethod);
 
-            if (keyFile.has_key("Wavelet", "complexMethod")) {
+            if (keyFile->has_key("Wavelet", "complexMethod")) {
                 assignFromKeyfile(keyFile, "Wavelet", "complexMethod", wavelet.complexmethod, pedited->wavelet.complexmethod);
             } else if (wavelet.enabled) {
                 wavelet.complexmethod = "expert";
@@ -9968,8 +9968,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Wavelet", "CHcurve", wavelet.Chcurve, pedited->wavelet.Chcurve);
             assignFromKeyfile(keyFile, "Wavelet", "WavclCurve", wavelet.wavclCurve, pedited->wavelet.wavclCurve);
 
-            if (keyFile.has_key("Wavelet", "Hueskin")) {
-                const std::vector<int> thresh = keyFile.get_integer_list("Wavelet", "Hueskin");
+            if (keyFile->has_key("Wavelet", "Hueskin")) {
+                const std::vector<int> thresh = keyFile->get_integer_list("Wavelet", "Hueskin");
 
                 if (thresh.size() >= 4) {
                     wavelet.hueskin.setValues(thresh[0], thresh[1], min(thresh[2], 300), min(thresh[3], 300));
@@ -9980,8 +9980,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "HueRange")) {
-                const std::vector<int> thresh = keyFile.get_integer_list("Wavelet", "HueRange");
+            if (keyFile->has_key("Wavelet", "HueRange")) {
+                const std::vector<int> thresh = keyFile->get_integer_list("Wavelet", "HueRange");
 
                 if (thresh.size() >= 4) {
                     wavelet.hueskin2.setValues(thresh[0], thresh[1], min(thresh[2], 300), min(thresh[3], 300));
@@ -9992,8 +9992,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "HLRange")) {
-                const std::vector<int> thresh = keyFile.get_integer_list("Wavelet", "HLRange");
+            if (keyFile->has_key("Wavelet", "HLRange")) {
+                const std::vector<int> thresh = keyFile->get_integer_list("Wavelet", "HLRange");
 
                 if (thresh.size() >= 4) {
                     wavelet.hllev.setValues(thresh[0], thresh[1], min(thresh[2], 300), min(thresh[3], 300));
@@ -10004,8 +10004,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "SHRange")) {
-                const std::vector<int> thresh = keyFile.get_integer_list("Wavelet", "SHRange");
+            if (keyFile->has_key("Wavelet", "SHRange")) {
+                const std::vector<int> thresh = keyFile->get_integer_list("Wavelet", "SHRange");
 
                 if (thresh.size() >= 4) {
                     wavelet.bllev.setValues(thresh[0], thresh[1], min(thresh[2], 300), min(thresh[3], 300));
@@ -10016,8 +10016,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "Edgcont")) {
-                const std::vector<int> thresh = keyFile.get_integer_list("Wavelet", "Edgcont");
+            if (keyFile->has_key("Wavelet", "Edgcont")) {
+                const std::vector<int> thresh = keyFile->get_integer_list("Wavelet", "Edgcont");
 
                 if (thresh.size() >= 4) {
                     wavelet.edgcont.setValues(thresh[0], thresh[1], min(thresh[2], 300), min(thresh[3], 300));
@@ -10028,8 +10028,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "Level0noise")) {
-                const std::vector<double> thresh = keyFile.get_double_list("Wavelet", "Level0noise");
+            if (keyFile->has_key("Wavelet", "Level0noise")) {
+                const std::vector<double> thresh = keyFile->get_double_list("Wavelet", "Level0noise");
 
                 if (thresh.size() >= 2) {
                     wavelet.level0noise.setValues(thresh[0], thresh[1]);
@@ -10040,8 +10040,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "Level1noise")) {
-                const std::vector<double> thresh = keyFile.get_double_list("Wavelet", "Level1noise");
+            if (keyFile->has_key("Wavelet", "Level1noise")) {
+                const std::vector<double> thresh = keyFile->get_double_list("Wavelet", "Level1noise");
 
                 if (thresh.size() >= 2) {
                     wavelet.level1noise.setValues(thresh[0], thresh[1]);
@@ -10052,8 +10052,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "Level2noise")) {
-                const std::vector<double> thresh = keyFile.get_double_list("Wavelet", "Level2noise");
+            if (keyFile->has_key("Wavelet", "Level2noise")) {
+                const std::vector<double> thresh = keyFile->get_double_list("Wavelet", "Level2noise");
 
                 if (thresh.size() >= 2) {
                     wavelet.level2noise.setValues(thresh[0], thresh[1]);
@@ -10064,8 +10064,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "Level3noise")) {
-                const std::vector<double> thresh = keyFile.get_double_list("Wavelet", "Level3noise");
+            if (keyFile->has_key("Wavelet", "Level3noise")) {
+                const std::vector<double> thresh = keyFile->get_double_list("Wavelet", "Level3noise");
 
                 if (thresh.size() >= 2) {
                     wavelet.level3noise.setValues(thresh[0], thresh[1]);
@@ -10076,8 +10076,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "Leveldenoise")) {
-                const std::vector<double> thresh = keyFile.get_double_list("Wavelet", "Leveldenoise");
+            if (keyFile->has_key("Wavelet", "Leveldenoise")) {
+                const std::vector<double> thresh = keyFile->get_double_list("Wavelet", "Leveldenoise");
 
                 if (thresh.size() >= 2) {
                     wavelet.leveldenoise.setValues(thresh[0], thresh[1]);
@@ -10088,8 +10088,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "Levelsigm")) {
-                const std::vector<double> thresh = keyFile.get_double_list("Wavelet", "Levelsigm");
+            if (keyFile->has_key("Wavelet", "Levelsigm")) {
+                const std::vector<double> thresh = keyFile->get_double_list("Wavelet", "Levelsigm");
 
                 if (thresh.size() >= 2) {
                     wavelet.levelsigm.setValues(thresh[0], thresh[1]);
@@ -10100,8 +10100,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "Pastlev")) {
-                const std::vector<int> thresh = keyFile.get_integer_list("Wavelet", "Pastlev");
+            if (keyFile->has_key("Wavelet", "Pastlev")) {
+                const std::vector<int> thresh = keyFile->get_integer_list("Wavelet", "Pastlev");
 
                 if (thresh.size() >= 4) {
                     wavelet.pastlev.setValues(thresh[0], thresh[1], min(thresh[2], 300), min(thresh[3], 300));
@@ -10112,8 +10112,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("Wavelet", "Satlev")) {
-                const std::vector<int> thresh = keyFile.get_integer_list("Wavelet", "Satlev");
+            if (keyFile->has_key("Wavelet", "Satlev")) {
+                const std::vector<int> thresh = keyFile->get_integer_list("Wavelet", "Satlev");
 
                 if (thresh.size() >= 4) {
                     wavelet.satlev.setValues(thresh[0], thresh[1], min(thresh[2], 300), min(thresh[3], 300));
@@ -10134,8 +10134,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 std::stringstream ss;
                 ss << "Contrast" << (i + 1);
 
-                if (keyFile.has_key("Wavelet", ss.str())) {
-                    wavelet.c[i] = keyFile.get_integer("Wavelet", ss.str());
+                if (keyFile->has_key("Wavelet", ss.str())) {
+                    wavelet.c[i] = keyFile->get_integer("Wavelet", ss.str());
 
                     if (pedited) {
                         pedited->wavelet.c[i] = true;
@@ -10147,8 +10147,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 std::stringstream ss;
                 ss << "Chroma" << (i + 1);
 
-                if (keyFile.has_key("Wavelet", ss.str())) {
-                    wavelet.ch[i] = keyFile.get_integer("Wavelet", ss.str());
+                if (keyFile->has_key("Wavelet", ss.str())) {
+                    wavelet.ch[i] = keyFile->get_integer("Wavelet", ss.str());
 
                     if (pedited) {
                         pedited->wavelet.ch[i] = true;
@@ -10165,13 +10165,13 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "Wavelet", "Expclari", wavelet.expclari, pedited->wavelet.expclari);
         }
 
-        if (keyFile.has_group("Directional Pyramid Equalizer")) {
+        if (keyFile->has_group("Directional Pyramid Equalizer")) {
             assignFromKeyfile(keyFile, "Directional Pyramid Equalizer", "Enabled", dirpyrequalizer.enabled, pedited->dirpyrequalizer.enabled);
             assignFromKeyfile(keyFile, "Directional Pyramid Equalizer", "Gamutlab", dirpyrequalizer.gamutlab, pedited->dirpyrequalizer.gamutlab);
             assignFromKeyfile(keyFile, "Directional Pyramid Equalizer", "cbdlMethod", dirpyrequalizer.cbdlMethod, pedited->dirpyrequalizer.cbdlMethod);
 
-            if (keyFile.has_key("Directional Pyramid Equalizer", "Hueskin")) {
-                const std::vector<int> thresh = keyFile.get_integer_list("Directional Pyramid Equalizer", "Hueskin");
+            if (keyFile->has_key("Directional Pyramid Equalizer", "Hueskin")) {
+                const std::vector<int> thresh = keyFile->get_integer_list("Directional Pyramid Equalizer", "Hueskin");
 
                 if (thresh.size() >= 4) {
                     dirpyrequalizer.hueskin.setValues(thresh[0], thresh[1], min(thresh[2], 300), min(thresh[3], 300));
@@ -10187,15 +10187,15 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                     std::stringstream ss;
                     ss << "Mult" << i;
 
-                    if (keyFile.has_key("Directional Pyramid Equalizer", ss.str())) {
+                    if (keyFile->has_key("Directional Pyramid Equalizer", ss.str())) {
                         if (i == 4) {
-                            dirpyrequalizer.threshold = keyFile.get_double("Directional Pyramid Equalizer", ss.str());
+                            dirpyrequalizer.threshold = keyFile->get_double("Directional Pyramid Equalizer", ss.str());
 
                             if (pedited) {
                                 pedited->dirpyrequalizer.threshold = true;
                             }
                         } else {
-                            dirpyrequalizer.mult[i] = keyFile.get_double("Directional Pyramid Equalizer", ss.str());
+                            dirpyrequalizer.mult[i] = keyFile->get_double("Directional Pyramid Equalizer", ss.str());
 
                             if (pedited) {
                                 pedited->dirpyrequalizer.mult[i] = true;
@@ -10211,8 +10211,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                     std::stringstream ss;
                     ss << "Mult" << i;
 
-                    if (keyFile.has_key("Directional Pyramid Equalizer", ss.str())) {
-                        dirpyrequalizer.mult[i] = keyFile.get_double("Directional Pyramid Equalizer", ss.str());
+                    if (keyFile->has_key("Directional Pyramid Equalizer", ss.str())) {
+                        dirpyrequalizer.mult[i] = keyFile->get_double("Directional Pyramid Equalizer", ss.str());
 
                         if (pedited) {
                             pedited->dirpyrequalizer.mult[i] = true;
@@ -10225,18 +10225,18 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("SoftLight")) {
+        if (keyFile->has_group("SoftLight")) {
             assignFromKeyfile(keyFile, "SoftLight", "Enabled", softlight.enabled, pedited->softlight.enabled);
             assignFromKeyfile(keyFile, "SoftLight", "Strength", softlight.strength, pedited->softlight.strength);
         }
 
-        if (keyFile.has_group("Dehaze")) {
+        if (keyFile->has_group("Dehaze")) {
             assignFromKeyfile(keyFile, "Dehaze", "Enabled", dehaze.enabled, pedited->dehaze.enabled);
             assignFromKeyfile(keyFile, "Dehaze", "Strength", dehaze.strength, pedited->dehaze.strength);
             assignFromKeyfile(keyFile, "Dehaze", "ShowDepthMap", dehaze.showDepthMap, pedited->dehaze.showDepthMap);
             assignFromKeyfile(keyFile, "Dehaze", "Depth", dehaze.depth, pedited->dehaze.depth);
-            if (ppVersion < 349 && dehaze.enabled && keyFile.has_key("Dehaze", "Luminance")) {
-                const bool luminance = keyFile.get_boolean("Dehaze", "Luminance");
+            if (ppVersion < 349 && dehaze.enabled && keyFile->has_key("Dehaze", "Luminance")) {
+                const bool luminance = keyFile->get_boolean("Dehaze", "Luminance");
                 dehaze.saturation = luminance ? 0 : 100;
                 if (pedited) {
                     pedited->dehaze.saturation = true;
@@ -10246,7 +10246,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("Film Simulation")) {
+        if (keyFile->has_group("Film Simulation")) {
             assignFromKeyfile(keyFile, "Film Simulation", "Enabled", filmSimulation.enabled, pedited->filmSimulation.enabled);
 			assignFromKeyfile(keyFile, "Film Simulation", "ClutFilename", filmSimulation.clutFilename, pedited->filmSimulation.clutFilename);
 			#if defined (_WIN32)
@@ -10266,11 +10266,11 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
 			}
 			#endif
 
-            if (keyFile.has_key("Film Simulation", "Strength")) {
+            if (keyFile->has_key("Film Simulation", "Strength")) {
                 if (ppVersion < 321) {
-                    filmSimulation.strength = keyFile.get_double("Film Simulation", "Strength") * 100 + 0.1;
+                    filmSimulation.strength = keyFile->get_double("Film Simulation", "Strength") * 100 + 0.1;
                 } else {
-                    filmSimulation.strength = keyFile.get_integer("Film Simulation", "Strength");
+                    filmSimulation.strength = keyFile->get_integer("Film Simulation", "Strength");
                 }
 
                 if (pedited) {
@@ -10279,7 +10279,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("HSV Equalizer")) {
+        if (keyFile->has_group("HSV Equalizer")) {
             if (ppVersion >= 329) {
                 assignFromKeyfile(keyFile, "HSV Equalizer", "Enabled", hsvequalizer.enabled, pedited->hsvequalizer.enabled);
             } else {
@@ -10297,7 +10297,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("RGB Curves")) {
+        if (keyFile->has_group("RGB Curves")) {
             if (ppVersion >= 329) {
                 assignFromKeyfile(keyFile, "RGB Curves", "Enabled", rgbCurves.enabled, pedited->rgbCurves.enabled);
             } else {
@@ -10314,7 +10314,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "RGB Curves", "bCurve", rgbCurves.bcurve, pedited->rgbCurves.bcurve);
         }
 
-        if (keyFile.has_group("ColorToning")) {
+        if (keyFile->has_group("ColorToning")) {
             assignFromKeyfile(keyFile, "ColorToning", "Enabled", colorToning.enabled, pedited->colorToning.enabled);
             assignFromKeyfile(keyFile, "ColorToning", "Method", colorToning.method, pedited->colorToning.method);
             assignFromKeyfile(keyFile, "ColorToning", "Lumamode", colorToning.lumamode, pedited->colorToning.lumamode);
@@ -10326,8 +10326,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "ColorToning", "SaturatedOpacity", colorToning.saturatedOpacity, pedited->colorToning.saturatedopacity);
             assignFromKeyfile(keyFile, "ColorToning", "Strength", colorToning.strength, pedited->colorToning.strength);
 
-            if (keyFile.has_key("ColorToning", "HighlightsColorSaturation")) {
-                const std::vector<int> thresh = keyFile.get_integer_list("ColorToning", "HighlightsColorSaturation");
+            if (keyFile->has_key("ColorToning", "HighlightsColorSaturation")) {
+                const std::vector<int> thresh = keyFile->get_integer_list("ColorToning", "HighlightsColorSaturation");
 
                 if (thresh.size() >= 2) {
                     colorToning.hlColSat.setValues(thresh[0], thresh[1]);
@@ -10338,8 +10338,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
             }
 
-            if (keyFile.has_key("ColorToning", "ShadowsColorSaturation")) {
-                const std::vector<int> thresh = keyFile.get_integer_list("ColorToning", "ShadowsColorSaturation");
+            if (keyFile->has_key("ColorToning", "ShadowsColorSaturation")) {
+                const std::vector<int> thresh = keyFile->get_integer_list("ColorToning", "ShadowsColorSaturation");
 
                 if (thresh.size() >= 2) {
                     colorToning.shadowsColSat.setValues(thresh[0], thresh[1]);
@@ -10437,17 +10437,17 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "ColorToning", "LabRegionsShowMask", colorToning.labregionsShowMask, pedited->colorToning.labregionsShowMask);
         }
 
-        if (keyFile.has_group("RAW")) {
-            if (keyFile.has_key("RAW", "DarkFrame")) {
-                raw.dark_frame = expandRelativePath2(fname, options.rtSettings.darkFramesPath, "", keyFile.get_string("RAW", "DarkFrame"));
+        if (keyFile->has_group("RAW")) {
+            if (keyFile->has_key("RAW", "DarkFrame")) {
+                raw.dark_frame = expandRelativePath2(fname, options.rtSettings.darkFramesPath, "", keyFile->get_string("RAW", "DarkFrame"));
 
                 if (pedited) {
                     pedited->raw.darkFrame = true;
                 }
             }
             assignFromKeyfile(keyFile, "RAW", "DarkFrameAuto", raw.df_autoselect, pedited->raw.df_autoselect);
-            if (keyFile.has_key("RAW", "FlatFieldFile")) {
-                raw.ff_file = expandRelativePath2(fname, options.rtSettings.flatFieldsPath, "", keyFile.get_string("RAW", "FlatFieldFile"));
+            if (keyFile->has_key("RAW", "FlatFieldFile")) {
+                raw.ff_file = expandRelativePath2(fname, options.rtSettings.flatFieldsPath, "", keyFile->get_string("RAW", "FlatFieldFile"));
 
                 if (pedited) {
                     pedited->raw.ff_file = true;
@@ -10510,12 +10510,12 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("RAW Bayer")) {
+        if (keyFile->has_group("RAW Bayer")) {
             assignFromKeyfile(keyFile, "RAW Bayer", "Method", raw.bayersensor.method, pedited->raw.bayersensor.method);
             assignFromKeyfile(keyFile, "RAW Bayer", "Border", raw.bayersensor.border, pedited->raw.bayersensor.border);
 
-            if (keyFile.has_key("RAW Bayer", "ImageNum")) {
-                raw.bayersensor.imageNum = keyFile.get_integer("RAW Bayer", "ImageNum") - 1;
+            if (keyFile->has_key("RAW Bayer", "ImageNum")) {
+                raw.bayersensor.imageNum = keyFile->get_integer("RAW Bayer", "ImageNum") - 1;
 
                 if (pedited) {
                     pedited->raw.bayersensor.imageNum = true;
@@ -10530,8 +10530,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "RAW Bayer", "PreTwoGreen", raw.bayersensor.twogreen, pedited->raw.bayersensor.exTwoGreen);
             assignFromKeyfile(keyFile, "RAW Bayer", "LineDenoise", raw.bayersensor.linenoise, pedited->raw.bayersensor.linenoise);
 
-            if (keyFile.has_key("RAW Bayer", "LineDenoiseDirection")) {
-                raw.bayersensor.linenoiseDirection = RAWParams::BayerSensor::LineNoiseDirection(keyFile.get_integer("RAW Bayer", "LineDenoiseDirection"));
+            if (keyFile->has_key("RAW Bayer", "LineDenoiseDirection")) {
+                raw.bayersensor.linenoiseDirection = RAWParams::BayerSensor::LineNoiseDirection(keyFile->get_integer("RAW Bayer", "LineDenoiseDirection"));
 
                 if (pedited) {
                     pedited->raw.bayersensor.linenoiseDirection = true;
@@ -10551,8 +10551,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
             assignFromKeyfile(keyFile, "RAW Bayer", "DualDemosaicContrast", raw.bayersensor.dualDemosaicContrast, pedited->raw.bayersensor.dualDemosaicContrast);
 
-            if (keyFile.has_key("RAW Bayer", "PixelShiftMotionCorrectionMethod")) {
-                raw.bayersensor.pixelShiftMotionCorrectionMethod = (RAWParams::BayerSensor::PSMotionCorrectionMethod)keyFile.get_integer("RAW Bayer", "PixelShiftMotionCorrectionMethod");
+            if (keyFile->has_key("RAW Bayer", "PixelShiftMotionCorrectionMethod")) {
+                raw.bayersensor.pixelShiftMotionCorrectionMethod = (RAWParams::BayerSensor::PSMotionCorrectionMethod)keyFile->get_integer("RAW Bayer", "PixelShiftMotionCorrectionMethod");
 
                 if (pedited) {
                     pedited->raw.bayersensor.pixelShiftMotionCorrectionMethod = true;
@@ -10579,8 +10579,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "RAW Bayer", "pixelShiftNonGreenCross", raw.bayersensor.pixelShiftNonGreenCross, pedited->raw.bayersensor.pixelShiftNonGreenCross);
 
             if (ppVersion < 336) {
-                if (keyFile.has_key("RAW Bayer", "pixelShiftLmmse")) {
-                    const bool useLmmse = keyFile.get_boolean("RAW Bayer", "pixelShiftLmmse");
+                if (keyFile->has_key("RAW Bayer", "pixelShiftLmmse")) {
+                    const bool useLmmse = keyFile->get_boolean("RAW Bayer", "pixelShiftLmmse");
 
                     if (useLmmse) {
                         raw.bayersensor.pixelShiftDemosaicMethod = raw.bayersensor.getPSDemosaicMethodString(RAWParams::BayerSensor::PSDemosaicMethod::LMMSE);
@@ -10599,7 +10599,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "RAW Bayer", "PDAFLinesFilter", raw.bayersensor.pdafLinesFilter, pedited->raw.bayersensor.pdafLinesFilter);
         }
 
-        if (keyFile.has_group("RAW X-Trans")) {
+        if (keyFile->has_group("RAW X-Trans")) {
             assignFromKeyfile(keyFile, "RAW X-Trans", "Method", raw.xtranssensor.method, pedited->raw.xtranssensor.method);
             assignFromKeyfile(keyFile, "RAW X-Trans", "DualDemosaicAutoContrast", raw.xtranssensor.dualDemosaicAutoContrast, pedited->raw.xtranssensor.dualDemosaicAutoContrast);
             if (ppVersion < 345) {
@@ -10616,7 +10616,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "RAW X-Trans", "PreBlackBlue", raw.xtranssensor.blackblue, pedited->raw.xtranssensor.exBlackBlue);
         }
 
-        if (keyFile.has_group("Film Negative")) {
+        if (keyFile->has_group("Film Negative")) {
             assignFromKeyfile(keyFile, "Film Negative", "Enabled", filmNegative.enabled, pedited->filmNegative.enabled);
             assignFromKeyfile(keyFile, "Film Negative", "RedRatio", filmNegative.redRatio, pedited->filmNegative.redRatio);
             assignFromKeyfile(keyFile, "Film Negative", "GreenExponent", filmNegative.greenExp, pedited->filmNegative.greenExp);
@@ -10632,7 +10632,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                     pedited->filmNegative.colorSpace = true;
                 }
 
-            } else if (!keyFile.has_key("Film Negative", "RefInput")) {
+            } else if (!keyFile->has_key("Film Negative", "RefInput")) {
                 // Backwards compatibility with intermediate dev version (after v5.8) using film base values
                 bool r, g, b;
                 assignFromKeyfile(keyFile, "Film Negative", "RedBase", filmNegative.refInput.r, r);
@@ -10659,16 +10659,16 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 assignFromKeyfile(keyFile, "Film Negative", "ColorSpace", cs, pedited->filmNegative.colorSpace);
                 filmNegative.colorSpace = static_cast<FilmNegativeParams::ColorSpace>(cs);
 
-                if (keyFile.has_key("Film Negative", "BackCompat")) {
-                    filmNegative.backCompat = FilmNegativeParams::BackCompat(keyFile.get_integer("Film Negative", "BackCompat"));
+                if (keyFile->has_key("Film Negative", "BackCompat")) {
+                    filmNegative.backCompat = FilmNegativeParams::BackCompat(keyFile->get_integer("Film Negative", "BackCompat"));
                 }
 
             }
         }
 
-        if (keyFile.has_group("RAW Preprocess WB")) {
-            if (keyFile.has_key("RAW Preprocess WB", "Mode")) {
-                raw.preprocessWB.mode = RAWParams::PreprocessWB::Mode(keyFile.get_integer("RAW Preprocess WB", "Mode"));
+        if (keyFile->has_group("RAW Preprocess WB")) {
+            if (keyFile->has_key("RAW Preprocess WB", "Mode")) {
+                raw.preprocessWB.mode = RAWParams::PreprocessWB::Mode(keyFile->get_integer("RAW Preprocess WB", "Mode"));
 
                 if (pedited) {
                     pedited->raw.preprocessWB.mode = true;
@@ -10676,7 +10676,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
         }
 
-        if (keyFile.has_group("MetaData")) {
+        if (keyFile->has_group("MetaData")) {
             int mode = int(MetaDataParams::EDIT);
             assignFromKeyfile(keyFile, "MetaData", "Mode", mode, pedited->metadata.mode);
 
@@ -10687,11 +10687,11 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             assignFromKeyfile(keyFile, "MetaData", "ExifKeys", metadata.exifKeys, pedited->metadata.exifKeys);
         }
 
-        if (keyFile.has_group("Exif")) {
-            for (const auto& key : keyFile.get_keys("Exif")) {
+        if (keyFile->has_group("Exif")) {
+            for (const auto& key : keyFile->get_keys("Exif")) {
                 auto it = exif_keys.find(key);
                 if (it != exif_keys.end()) {
-                    metadata.exif[it->second] = keyFile.get_string("Exif", key);
+                    metadata.exif[it->second] = keyFile->get_string("Exif", key);
 
                     if (pedited) {
                         pedited->exif = true;
@@ -10712,8 +10712,8 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
          * tag content is fully replaced by the new one,
          * i.e. they don't merge
          */
-        if (keyFile.has_group("IPTC")) {
-            for (const auto& key : keyFile.get_keys("IPTC")) {
+        if (keyFile->has_group("IPTC")) {
+            for (const auto& key : keyFile->get_keys("IPTC")) {
                 // does this key already exist?
                 auto it = iptc_keys.find(key);
                 if (it == iptc_keys.end()) {
@@ -10729,7 +10729,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 }
 
                 // TODO: look out if merging Keywords and SupplementalCategories from the procparams chain would be interesting
-                for (const auto& currLoadedTagValue : keyFile.get_string_list("IPTC", key)) {
+                for (const auto& currLoadedTagValue : keyFile->get_string_list("IPTC", key)) {
                     metadata.iptc[kk].push_back(currLoadedTagValue);
                 }
 
@@ -10741,7 +10741,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
 
         return 0;
     } catch (const Glib::Error& e) {
-        printf("-->%s\n", e.what().c_str());
+        printf("-->%s\n", e.what());
         setDefaults();
         return 1;
     } catch (...) {
