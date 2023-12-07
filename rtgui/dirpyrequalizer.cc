@@ -55,7 +55,7 @@ DirPyrEqualizer::DirPyrEqualizer () : FoldableToolPanel(this, TOOL_NAME, M("TP_D
     Color::hsv2rgb01(0.3240, 0.5, 0.5, r, g, b);
     milestones.push_back( GradientMilestone(1.    , r, g, b) ); // hsv: 0.324  rad:  2.5
 
-    Gtk::Box*  cbVBox = Gtk::manage ( new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Box*  cbVBox = Gtk::manage ( new Gtk::Box(Gtk::Orientation::VERTICAL));
     cbVBox->set_border_width(4);
     cbVBox->set_spacing(2);
 

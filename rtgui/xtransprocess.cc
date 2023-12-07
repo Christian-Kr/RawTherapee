@@ -74,7 +74,7 @@ XTransProcess::XTransProcess () : FoldableToolPanel(this, TOOL_NAME, M("TP_RAW_L
     hb1->pack_end (*method, Gtk::PACK_EXPAND_WIDGET, 4);
     pack_start( *hb1, Gtk::PACK_SHRINK, 4);
 
-    dualDemosaicOptions = Gtk::manage (new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    dualDemosaicOptions = Gtk::manage (new Gtk::Box(Gtk::Orientation::VERTICAL));
 
     dualDemosaicContrast = Gtk::manage(new Adjuster (M("TP_RAW_DUALDEMOSAICCONTRAST"), 0, 100, 1, 20));
     dualDemosaicContrast->setAdjusterListener (this);

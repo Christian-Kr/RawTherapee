@@ -22,7 +22,7 @@
 
 FavoritBrowser::FavoritBrowser () : listener (NULL)
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
 
     scrollw = Gtk::manage (new Gtk::ScrolledWindow ());
     scrollw->set_policy (Gtk::POLICY_NEVER, Gtk::POLICY_AUTOMATIC);

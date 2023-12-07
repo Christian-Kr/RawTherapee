@@ -711,7 +711,7 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
       histogram_observable(nullptr), histogram_scope_type(ScopeType::NONE)
 {
 
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     epih = new EditorPanelIdleHelper;
     epih->epanel = this;
     epih->destroyed = false;
@@ -727,10 +727,10 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
     // build GUI
 
     // build left side panel
-    leftbox = new Gtk::Paned (Gtk::ORIENTATION_VERTICAL);
+    leftbox = new Gtk::Paned (Gtk::Orientation::VERTICAL);
 
     // make a subpaned to allow resizing of the histogram (if it's on the left)
-    leftsubpaned = new Gtk::Paned(Gtk::ORIENTATION_VERTICAL);
+    leftsubpaned = new Gtk::Paned(Gtk::Orientation::VERTICAL);
     leftsubpaned->set_size_request(230, 250);
 
     histogramPanel = nullptr;
@@ -757,7 +757,7 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
     leftbox->show_all();
 
     // build the middle of the screen
-    Gtk::Box* editbox = Gtk::manage (new Gtk::Box (Gtk::ORIENTATION_VERTICAL));
+    Gtk::Box* editbox = Gtk::manage (new Gtk::Box (Gtk::Orientation::VERTICAL));
 
     info = Gtk::manage (new Gtk::ToggleButton ());
     Gtk::Image* infoimg = Gtk::manage (new RTImage ("info.png"));
@@ -774,10 +774,10 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
     iBeforeLockON = new RTImage ("padlock-locked-small.png");
     iBeforeLockOFF = new RTImage ("padlock-unlocked-small.png");
 
-    Gtk::Separator* vsept = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
-    Gtk::Separator* vsepz = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
-    Gtk::Separator* vsepi = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
-    Gtk::Separator* vseph = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Separator* vsept = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
+    Gtk::Separator* vsepz = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
+    Gtk::Separator* vsepi = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
+    Gtk::Separator* vseph = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
 
     hidehp = Gtk::manage (new Gtk::ToggleButton ());
 
@@ -806,13 +806,13 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
         tbTopPanel_1->set_image (*iTopPanel_1_Hide);
     }
 
-    Gtk::Separator* vsepcl = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
-    Gtk::Separator* vsepz2 = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
-    Gtk::Separator* vsepz3 = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
-    Gtk::Separator* vsepz4 = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Separator* vsepcl = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
+    Gtk::Separator* vsepz2 = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
+    Gtk::Separator* vsepz3 = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
+    Gtk::Separator* vsepz4 = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
 
-    Gtk::Separator* vsep1 = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
-    Gtk::Separator* vsep2 = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Separator* vsep1 = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
+    Gtk::Separator* vsep2 = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
 
     // Histogram profile toggle controls
     toggleHistogramProfile = Gtk::manage (new Gtk::ToggleButton ());
@@ -822,7 +822,7 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
     toggleHistogramProfile->set_active (options.rtSettings.HistogramWorking);
     toggleHistogramProfile->set_tooltip_markup ( (M ("PREFERENCES_HISTOGRAM_TOOLTIP")));
 
-    Gtk::Separator* vsep3 = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Separator* vsep3 = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
 
     iareapanel = new ImageAreaPanel ();
     tpc->setEditProvider (iareapanel->imageArea);
@@ -839,7 +839,7 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
     toolBarPanel->pack_start (*vsept, Gtk::PACK_SHRINK, 2);
 
     if (tbTopPanel_1) {
-        Gtk::Separator* vsep = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
+        Gtk::Separator* vsep = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
         toolBarPanel->pack_end   (*tbTopPanel_1, Gtk::PACK_SHRINK, 1);
         toolBarPanel->pack_end   (*vsep, Gtk::PACK_SHRINK, 2);
     }
@@ -855,7 +855,7 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
     toolBarPanel->pack_end   (*iareapanel->imageArea->previewModePanel, Gtk::PACK_SHRINK, 0);
     toolBarPanel->pack_end   (*vsepz4, Gtk::PACK_SHRINK, 2);
 
-    afterBox = Gtk::manage (new Gtk::Box (Gtk::ORIENTATION_VERTICAL));
+    afterBox = Gtk::manage (new Gtk::Box (Gtk::Orientation::VERTICAL));
     afterBox->pack_start (*iareapanel);
 
     beforeAfterBox = Gtk::manage (new Gtk::Box (Gtk::ORIENTATION_HORIZONTAL));
@@ -869,9 +869,9 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
     editbox->pack_start (*beforeAfterBox);
 
     // build right side panel
-    vboxright = new Gtk::Paned (Gtk::ORIENTATION_VERTICAL);
+    vboxright = new Gtk::Paned (Gtk::Orientation::VERTICAL);
 
-    vsubboxright = new Gtk::Box (Gtk::ORIENTATION_VERTICAL, 0);
+    vsubboxright = new Gtk::Box (Gtk::Orientation::VERTICAL, 0);
 //    int rightsize = options.fontSize * 44;
 //    vsubboxright->set_size_request (rightsize, rightsize - 50);
     vsubboxright->set_size_request (300, 250);
@@ -993,7 +993,7 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
     colorMgmtToolBar->pack_right_in (iops);
 
     if (!simpleEditor && !options.tabbedUI) {
-        Gtk::Separator* vsep3 = Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
+        Gtk::Separator* vsep3 = Gtk::manage (new Gtk::Separator(Gtk::Orientation::VERTICAL));
         iops->attach_next_to (*vsep3, Gtk::POS_RIGHT, 1, 1);
         iops->attach_next_to (*navPrev, Gtk::POS_RIGHT, 1, 1);
         iops->attach_next_to (*navSync, Gtk::POS_RIGHT, 1, 1);
@@ -1027,7 +1027,7 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
         hpanedl->set_position (options.historyPanelWidth);
     }
 
-    Gtk::Paned *viewpaned = Gtk::manage (new Gtk::Paned (Gtk::ORIENTATION_VERTICAL));
+    Gtk::Paned *viewpaned = Gtk::manage (new Gtk::Paned (Gtk::Orientation::VERTICAL));
     fPanel = filePanel;
 
     if (filePanel) {
@@ -2558,7 +2558,7 @@ void EditorPanel::beforeAfterToggled ()
         history->blistenerLock ? tbBeforeLock->set_image (*iBeforeLockON) : tbBeforeLock->set_image (*iBeforeLockOFF);
         tbBeforeLock->set_active (history->blistenerLock);
 
-        beforeBox = Gtk::manage (new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+        beforeBox = Gtk::manage (new Gtk::Box(Gtk::Orientation::VERTICAL));
         beforeBox->pack_start (*beforeHeaderBox, Gtk::PACK_SHRINK, 2);
         beforeBox->pack_start (*beforeIarea);
 

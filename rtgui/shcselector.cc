@@ -185,7 +185,7 @@ void SHCSelector::updateBackBuffer()
             style->set_state(Gtk::STATE_FLAG_NORMAL);
         }
 
-        style->render_slider(cr, (double)leftMargin + 1. * s + ((double)w - 2. * s) * positions[i] - (double)hwslider, (double)vb * s, wslider, (double)h - (double)vb * s, Gtk::ORIENTATION_VERTICAL);
+        style->render_slider(cr, (double)leftMargin + 1. * s + ((double)w - 2. * s) * positions[i] - (double)hwslider, (double)vb * s, wslider, (double)h - (double)vb * s, Gtk::Orientation::VERTICAL);
         style->set_state(Gtk::STATE_FLAG_NORMAL);
     }
 

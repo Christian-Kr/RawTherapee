@@ -174,16 +174,16 @@ private:
 /**
  * @brief Glue box to control visibility of the MyExpender's content ; also handle the frame around it
  */
-class ExpanderBox final : public Gtk::EventBox
+class ExpanderBox final : public Gtk::Widget
 {
 private:
-    Gtk::Container *pC;
+    Gtk::Widget *pwcon;
 
 public:
-    explicit ExpanderBox( Gtk::Container *p);
+    explicit ExpanderBox( Gtk::Widget *wcon);
     ~ExpanderBox( ) override
     {
-        delete pC;
+        delete pwcon;
     }
 
     void setLevel(int level);

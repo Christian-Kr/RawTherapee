@@ -80,7 +80,7 @@ IPTCPanel::IPTCPanel():
     embeddedData(new rtengine::procparams::IPTCPairs)
 {
 
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     set_spacing(4);
 
     Gtk::Grid* iptc = Gtk::manage(new Gtk::Grid());

@@ -507,7 +507,7 @@ bool ExpanderBox::on_draw(const ::Cairo::RefPtr< Cairo::Context> &cr) {
 }
 */
 
-ExpanderBox::ExpanderBox( Gtk::Container *p): pC(p)
+ExpanderBox::ExpanderBox( Gtk::Widget *wcon): pwcon(wcon)
 {
     set_name ("ExpanderBox");
 //GTK318
@@ -531,17 +531,18 @@ void ExpanderBox::setLevel(int level)
 void ExpanderBox::show_all()
 {
     // ask childs to show themselves, but not us (remain unchanged)
-    Gtk::Container::show_all_children(true);
+    // todo: reimplement to make all children show
+    //Gtk::Container::show_all_children(true);
 }
 
 void ExpanderBox::showBox()
 {
-    Gtk::EventBox::show();
+    Gtk::Widget::show();
 }
 
 void ExpanderBox::hideBox()
 {
-    Gtk::EventBox::hide();
+    Gtk::Widget::hide();
 }
 
 void MyExpander::init()
@@ -569,7 +570,7 @@ MyExpander::MyExpander(bool useEnabled, Gtk::Widget* titleWidget) :
     child(nullptr), headerWidget(nullptr), statusImage(nullptr),
     label(nullptr), useEnabled(useEnabled)
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     set_spacing(0);
     set_name("MyExpander");
     set_can_focus(false);
@@ -625,7 +626,7 @@ MyExpander::MyExpander(bool useEnabled, Glib::ustring titleLabel) :
     child(nullptr), headerWidget(nullptr),
     label(nullptr), useEnabled(useEnabled)
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     set_spacing(0);
     set_name("MyExpander");
     set_can_focus(false);
@@ -1442,7 +1443,7 @@ MyFileChooserButton::MyFileChooserButton(const Glib::ustring &title, Gtk::FileCh
     pimpl->lbl_.set_justify(Gtk::JUSTIFY_LEFT);
     on_filename_set();
     pimpl->box_.pack_start(pimpl->lbl_, true, true);
-    pimpl->box_.pack_start(*Gtk::manage(new Gtk::Separator(Gtk::ORIENTATION_VERTICAL)), false, false, 5);
+    pimpl->box_.pack_start(*Gtk::manage(new Gtk::Separator(Gtk::Orientation::VERTICAL)), false, false, 5);
     pimpl->box_.pack_start(*Gtk::manage(make_folder_image().release()), false, false);
     pimpl->box_.show_all_children();
     add(pimpl->box_);

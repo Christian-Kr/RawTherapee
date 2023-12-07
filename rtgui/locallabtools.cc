@@ -133,7 +133,7 @@ LocallabTool::LocallabTool(Gtk::Box* content, Glib::ustring toolName, Glib::ustr
 {
     // Create expander title bar
     Gtk::Box *titVBox;
-    titVBox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    titVBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     titVBox->set_spacing(2);
 
     Gtk::Box* const titleBox = Gtk::manage(new Gtk::Box());
@@ -157,7 +157,7 @@ LocallabTool::LocallabTool(Gtk::Box* content, Glib::ustring toolName, Glib::ustr
         complexityConn = complexity->signal_changed().connect(sigc::mem_fun(*this, &LocallabTool::complexityModeChanged));
     }
 
-    Gtk::Separator* const separator = Gtk::manage(new Gtk::Separator(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Separator* const separator = Gtk::manage(new Gtk::Separator(Gtk::Orientation::VERTICAL));
     titleBox->pack_end(*separator, Gtk::PACK_SHRINK, 0);
 
     if (need100Percent) {
@@ -527,7 +527,7 @@ LocallabColor::LocallabColor():
     csThresholdcol(Gtk::manage(new ThresholdAdjuster(M("TP_LOCALLAB_CSTHRESHOLDBLUR"), 0, 9, 0, 0, 6, 5, 0, false)))
 {
     
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     float R, G, B;
 
@@ -2619,7 +2619,7 @@ LocallabExposure::LocallabExposure():
     mask2expCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_MASK2"))),
     Lmaskexpshape(static_cast<DiagonalCurveEditor*>(mask2expCurveEditorG->addCurve(CT_Diagonal, "L(L)")))
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     const LocallabParams::LocallabSpot defSpot;
 
@@ -4054,7 +4054,7 @@ LocallabShadow::LocallabShadow():
     fatanchorSH(Gtk::manage(new Adjuster(M("TP_LOCALLAB_FATANCHOR"), 1., 100., 1., 50., Gtk::manage(new RTImage("circle-black-small.png")), Gtk::manage(new RTImage("circle-white-small.png"))))),
     EvlocallabTePivot(ProcEventMapper::getInstance()->newEvent(AUTOEXP, "HISTORY_MSG_LOCALLAB_TE_PIVOT"))
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     const LocallabParams::LocallabSpot defSpot;
 
@@ -5161,7 +5161,7 @@ LocallabVibrance::LocallabVibrance():
     mask2vibCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_MASK2"))),
     Lmaskvibshape(static_cast<DiagonalCurveEditor*>(mask2vibCurveEditorG->addCurve(CT_Diagonal, "L(L)")))
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     float R, G, B;
 
@@ -6117,7 +6117,7 @@ LocallabSoft::LocallabSoft():
     laplace(Gtk::manage(new Adjuster(M("TP_LOCALLAB_LAPLACE"), 0., 100., 0.5, 25.))),
     sensisf(Gtk::manage(new Adjuster(M("TP_LOCALLAB_SENSI"), 1, 100, 1, 30)))
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     // Parameter Soft light specific widgets
     softMethod->append(M("TP_LOCALLAB_SOFTM"));
@@ -6610,7 +6610,7 @@ LocallabBlur::LocallabBlur():
     quaHBox(Gtk::manage(new Gtk::Box())),
     csThresholdblur(Gtk::manage(new ThresholdAdjuster(M("TP_LOCALLAB_CSTHRESHOLDBLUR"), 0, 9, 0, 0, 6, 5, 0, false)))
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     const LocallabParams::LocallabSpot defSpot;
 

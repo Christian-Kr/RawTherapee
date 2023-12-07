@@ -49,7 +49,7 @@ FlatCurveEditorSubGroup::FlatCurveEditorSubGroup (CurveEditorGroup* prt, Glib::u
 
     // ControlPoints curve
     CPointsCurveGrid = new Gtk::Grid ();
-    CPointsCurveGrid->set_orientation(Gtk::ORIENTATION_VERTICAL);
+    CPointsCurveGrid->set_orientation(Gtk::Orientation::VERTICAL);
     CPointsCurveGrid->get_style_context()->add_class("curve-mainbox");
 
     CPointsCurve = Gtk::manage (new MyFlatCurve ());
@@ -71,11 +71,11 @@ FlatCurveEditorSubGroup::FlatCurveEditorSubGroup (CurveEditorGroup* prt, Glib::u
         setExpandAlignProperties(CPointsbbox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
         CPointsCurveGrid->get_style_context()->add_class("bottom");
     } else if (options.curvebboxpos == 1) {
-        CPointsbbox->set_orientation(Gtk::ORIENTATION_VERTICAL);
+        CPointsbbox->set_orientation(Gtk::Orientation::VERTICAL);
         setExpandAlignProperties(CPointsbbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
         CPointsCurveGrid->get_style_context()->add_class("right");
     } else if (options.curvebboxpos == 3){
-        CPointsbbox->set_orientation(Gtk::ORIENTATION_VERTICAL);
+        CPointsbbox->set_orientation(Gtk::Orientation::VERTICAL);
         setExpandAlignProperties(CPointsbbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
         CPointsCurveGrid->get_style_context()->add_class("left");
     }

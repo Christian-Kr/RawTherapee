@@ -53,7 +53,7 @@ DiagonalCurveEditorSubGroup::DiagonalCurveEditorSubGroup (CurveEditorGroup* prt,
 
     // custom curve
     customCurveGrid = new Gtk::Grid ();
-    customCurveGrid->set_orientation(Gtk::ORIENTATION_VERTICAL);
+    customCurveGrid->set_orientation(Gtk::Orientation::VERTICAL);
     customCurveGrid->get_style_context()->add_class("curve-mainbox");
 
     customCurve = Gtk::manage (new MyDiagonalCurve ());
@@ -75,11 +75,11 @@ DiagonalCurveEditorSubGroup::DiagonalCurveEditorSubGroup (CurveEditorGroup* prt,
         setExpandAlignProperties(custombbox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
         customCurveGrid->get_style_context()->add_class("bottom");
     } else if (options.curvebboxpos == 1) {
-        custombbox->set_orientation(Gtk::ORIENTATION_VERTICAL);
+        custombbox->set_orientation(Gtk::Orientation::VERTICAL);
         setExpandAlignProperties(custombbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
         customCurveGrid->get_style_context()->add_class("right");
     } else if (options.curvebboxpos == 3){
-        custombbox->set_orientation(Gtk::ORIENTATION_VERTICAL);
+        custombbox->set_orientation(Gtk::Orientation::VERTICAL);
         setExpandAlignProperties(custombbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
         customCurveGrid->get_style_context()->add_class("left");
     }
@@ -145,7 +145,7 @@ DiagonalCurveEditorSubGroup::DiagonalCurveEditorSubGroup (CurveEditorGroup* prt,
 
     // NURBS curve
     NURBSCurveGrid = new Gtk::Grid ();
-    NURBSCurveGrid->set_orientation(Gtk::ORIENTATION_VERTICAL);
+    NURBSCurveGrid->set_orientation(Gtk::Orientation::VERTICAL);
     NURBSCurveGrid->get_style_context()->add_class("curve-mainbox");
 
     NURBSCurve = Gtk::manage (new MyDiagonalCurve ());
@@ -167,11 +167,11 @@ DiagonalCurveEditorSubGroup::DiagonalCurveEditorSubGroup (CurveEditorGroup* prt,
         setExpandAlignProperties(NURBSbbox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
         NURBSCurveGrid->get_style_context()->add_class("bottom");
     } else if (options.curvebboxpos == 1) {
-        NURBSbbox->set_orientation(Gtk::ORIENTATION_VERTICAL);
+        NURBSbbox->set_orientation(Gtk::Orientation::VERTICAL);
         setExpandAlignProperties(NURBSbbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
         NURBSCurveGrid->get_style_context()->add_class("right");
     } else if (options.curvebboxpos == 3){
-        NURBSbbox->set_orientation(Gtk::ORIENTATION_VERTICAL);
+        NURBSbbox->set_orientation(Gtk::Orientation::VERTICAL);
         setExpandAlignProperties(NURBSbbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
         NURBSCurveGrid->get_style_context()->add_class("left");
     }
@@ -237,7 +237,7 @@ DiagonalCurveEditorSubGroup::DiagonalCurveEditorSubGroup (CurveEditorGroup* prt,
 
     // parametric curve
     paramCurveGrid = new Gtk::Grid ();
-    paramCurveGrid->set_orientation(Gtk::ORIENTATION_VERTICAL);
+    paramCurveGrid->set_orientation(Gtk::Orientation::VERTICAL);
     paramCurveGrid->get_style_context()->add_class("curve-mainbox");
 
     paramCurve = Gtk::manage (new MyDiagonalCurve ());
@@ -259,11 +259,11 @@ DiagonalCurveEditorSubGroup::DiagonalCurveEditorSubGroup (CurveEditorGroup* prt,
         setExpandAlignProperties(parambbox, true, false, Gtk::ALIGN_FILL, Gtk::ALIGN_CENTER);
         paramCurveGrid->get_style_context()->add_class("bottom");
     } else if (options.curvebboxpos == 1) {
-        parambbox->set_orientation(Gtk::ORIENTATION_VERTICAL);
+        parambbox->set_orientation(Gtk::Orientation::VERTICAL);
         setExpandAlignProperties(parambbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
         paramCurveGrid->get_style_context()->add_class("right");
     } else if (options.curvebboxpos == 3){
-        parambbox->set_orientation(Gtk::ORIENTATION_VERTICAL);
+        parambbox->set_orientation(Gtk::Orientation::VERTICAL);
         setExpandAlignProperties(parambbox, false, true, Gtk::ALIGN_CENTER, Gtk::ALIGN_FILL);
         paramCurveGrid->get_style_context()->add_class("left");
     }
@@ -318,7 +318,7 @@ DiagonalCurveEditorSubGroup::DiagonalCurveEditorSubGroup (CurveEditorGroup* prt,
 
     // paramCurveSliderBox needed to set vspacing(4) between curve+shc and sliders without vspacing between each slider
     Gtk::Grid* paramCurveSliderBox = Gtk::manage (new Gtk::Grid());
-    paramCurveSliderBox->set_orientation(Gtk::ORIENTATION_VERTICAL);
+    paramCurveSliderBox->set_orientation(Gtk::Orientation::VERTICAL);
     paramCurveSliderBox->get_style_context()->add_class("curve-sliderbox");
 
     paramCurveSliderBox->attach_next_to(*evhighlights, Gtk::POS_TOP, 1, 1);

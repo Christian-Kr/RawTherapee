@@ -218,7 +218,7 @@ Wavelet::Wavelet() :
     sliHBox(Gtk::manage(new Gtk::Box())),
     //denHBox(Gtk::manage(new Gtk::Box())),
     mixHBox(Gtk::manage(new Gtk::Box())),
-    ctboxBA(Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL)))
+    ctboxBA(Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL)))
 
 {
     CurveListener::setMulti(true);
@@ -462,7 +462,7 @@ Wavelet::Wavelet() :
     wavLabels->show();
     levBox->pack_start(*wavLabels);
 
-    Gtk::Box* const contrastSHVBox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Box* const contrastSHVBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     contrastSHVBox->set_spacing(2);
 
     HSmethod->append(M("TP_WAVELET_HS1"));
@@ -902,7 +902,7 @@ Wavelet::Wavelet() :
     edgeampli->setAdjusterListener(this);
     edgBox->pack_start(*edgeampli);
 
-    Gtk::Box* const ctboxES = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Box* const ctboxES = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
 
     ctboxES->set_spacing(2);
 
@@ -1112,9 +1112,9 @@ Wavelet::Wavelet() :
     // Toning and Color Balance
     Gtk::Separator* const separatorCB = Gtk::manage(new  Gtk::Separator(Gtk::ORIENTATION_HORIZONTAL));
 
-    Gtk::Box* const chanMixerHLBox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
-    Gtk::Box* const chanMixerMidBox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
-    Gtk::Box* const chanMixerShadowsBox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Box* const chanMixerHLBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
+    Gtk::Box* const chanMixerMidBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
+    Gtk::Box* const chanMixerShadowsBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
 
     cbenab->set_active(true);
     cbenabConn = cbenab->signal_toggled().connect(sigc::mem_fun(*this, &Wavelet::cbenabToggled));
@@ -1178,7 +1178,7 @@ Wavelet::Wavelet() :
     resBox->pack_start(*neutrHBox);
 
 // Final Touchup
- //   Gtk::Box* const ctboxBA = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+ //   Gtk::Box* const ctboxBA = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
 
     ctboxBA->set_spacing(2);
 

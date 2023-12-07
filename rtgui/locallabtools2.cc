@@ -155,7 +155,7 @@ LocallabTone::LocallabTone():
     mask2tmCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_MASK2"))),
     Lmasktmshape(static_cast<DiagonalCurveEditor*>(mask2tmCurveEditorG->addCurve(CT_Diagonal, "L(L)")))
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     const LocallabParams::LocallabSpot defSpot;
 
@@ -853,7 +853,7 @@ LocallabRetinex::LocallabRetinex():
     auto m = ProcEventMapper::getInstance();
     Evlocallabdehazeblack = m->newEvent(AUTOEXP, "HISTORY_MSG_LOCAL_DEHAZE_BLACK");
    
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     const LocallabParams::LocallabSpot defSpot;
 
@@ -2010,7 +2010,7 @@ LocallabSharp::LocallabSharp():
     sharFrame(Gtk::manage(new Gtk::Frame(M("TP_LOCALLAB_SHARFRAME")))),
     showmasksharMethod(Gtk::manage(new MyComboBoxText()))
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     // Parameter Sharpening specific widgets
     sharcontrast->setAdjusterListener(this);
@@ -2468,7 +2468,7 @@ LocallabContrast::LocallabContrast():
     mask2lcCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_MASK2"))),
     Lmasklcshape(static_cast<DiagonalCurveEditor*>(mask2lcCurveEditorG->addCurve(CT_Diagonal, "L(L)")))
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     const LocallabParams::LocallabSpot defSpot;
 
@@ -2546,7 +2546,7 @@ LocallabContrast::LocallabContrast():
     origlcConn = origlc->signal_toggled().connect(sigc::mem_fun(*this, &LocallabContrast::origlcChanged));
 
     Gtk::Box *TittleVBox;
-    TittleVBox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    TittleVBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     TittleVBox->set_spacing(2);
 
     Gtk::Box* const LCTitleHBox = Gtk::manage(new Gtk::Box());
@@ -2636,7 +2636,7 @@ LocallabContrast::LocallabContrast():
     blurlcConn = blurlc->signal_toggled().connect(sigc::mem_fun(*this, &LocallabContrast::blurlcChanged));
 
     Gtk::Box *TittleVBox2;
-    TittleVBox2 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    TittleVBox2 = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     TittleVBox2->set_spacing(2);
 
     Gtk::Box* const LCTitleHBox2 = Gtk::manage(new Gtk::Box());
@@ -2845,7 +2845,7 @@ LocallabContrast::LocallabContrast():
     Gtk::Frame* const blurlevelFrame = Gtk::manage(new Gtk::Frame(M("TP_LOCALLAB_BLURLEVELFRA")));
     blurlevelFrame->set_label_align(0.025, 0.5);
     blurlevelFrame->set_label_widget(*wavblur);
-    Gtk::Box* const blurlevcontBox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Box* const blurlevcontBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     blurlevcontBox->set_spacing(2);
     blurlevcontBox->pack_start(*levelblur);
     blurlevcontBox->pack_start(*sigmabl);
@@ -2864,7 +2864,7 @@ LocallabContrast::LocallabContrast():
     Gtk::Frame* const contFrame2 = Gtk::manage(new Gtk::Frame(M("TP_LOCALLAB_CONTFRA")));
     contFrame2->set_label_align(0.025, 0.5);
     contFrame2->set_label_widget(*wavcont);
-    Gtk::Box* const contlevBox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Box* const contlevBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     contlevBox->set_spacing(2);
     contlevBox->pack_start(*sigma);
     contlevBox->pack_start(*offset);
@@ -2875,7 +2875,7 @@ LocallabContrast::LocallabContrast():
     Gtk::Frame* const compreFrame = Gtk::manage(new Gtk::Frame(M("TP_LOCALLAB_COMPREFRA")));
     compreFrame->set_label_align(0.025, 0.5);
     compreFrame->set_label_widget(*wavcompre);
-    Gtk::Box* const compreBox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Box* const compreBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     compreBox->set_spacing(2);
     compreBox->pack_start(*LocalcurveEditorwavcompre, Gtk::PACK_SHRINK, 4); // Padding is mandatory to correct behavior of curve editor
     compreBox->pack_start(*sigmadr);
@@ -2886,7 +2886,7 @@ LocallabContrast::LocallabContrast():
     Gtk::Frame* const compFrame = Gtk::manage(new Gtk::Frame(M("TP_LOCALLAB_COMPFRA")));
     compFrame->set_label_align(0.025, 0.5);
     compFrame->set_label_widget(*wavcomp);
-    Gtk::Box* const compBox = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Box* const compBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     compBox->set_spacing(2);
     compBox->pack_start(*sigmadc);
     compBox->pack_start(*deltad);
@@ -4490,7 +4490,7 @@ LocallabCBDL::LocallabCBDL():
     lumaneutralButton(Gtk::manage(new Gtk::Button(M("TP_DIRPYREQUALIZER_LUMANEUTRAL")))),
     lumacontrastPlusButton(Gtk::manage(new Gtk::Button(M("TP_DIRPYREQUALIZER_LUMACONTRAST_PLUS"))))
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     const LocallabParams::LocallabSpot defSpot;
 
@@ -5295,7 +5295,7 @@ LocallabLog::LocallabLog():
   
     
 {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     // Parameter Log encoding specific widgets
     autoconn = autocompute->signal_toggled().connect(sigc::mem_fun(*this, &LocallabLog::autocomputeToggled));
@@ -6601,7 +6601,7 @@ LocallabMask::LocallabMask():
     ang_mask(Gtk::manage(new Adjuster(M("TP_LOCALLAB_GRADANG"), -180., 180., 0.1, 0.)))
 {
     
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     const LocallabParams::LocallabSpot defSpot;
 
@@ -7550,7 +7550,7 @@ Locallabcie::Locallabcie():
    
    
     {
-    set_orientation(Gtk::ORIENTATION_VERTICAL);
+    set_orientation(Gtk::Orientation::VERTICAL);
     
     // Parameter Ciecam specific widgets
     const LocallabParams::LocallabSpot defSpot;
@@ -7663,7 +7663,7 @@ Locallabcie::Locallabcie():
 
     ToolParamBlock* const jzallBox = Gtk::manage(new ToolParamBlock());
     Gtk::Box *TittleVBoxjz;
-    TittleVBoxjz = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    TittleVBoxjz = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     TittleVBoxjz->set_spacing(2);
     Gtk::Box* const LCTitleHBoxjz = Gtk::manage(new Gtk::Box());
     Gtk::Label* const LCLabeljz = Gtk::manage(new Gtk::Label());
@@ -7970,7 +7970,7 @@ Locallabcie::Locallabcie():
     catadcie->setAdjusterListener(this);
 
     Gtk::Box *TittleVBoxcam16;
-    TittleVBoxcam16 = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    TittleVBoxcam16 = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
     TittleVBoxcam16->set_spacing(2);
     Gtk::Box* const LCTitleHBoxcam16 = Gtk::manage(new Gtk::Box());
     Gtk::Label* const LCLabelcam16 = Gtk::manage(new Gtk::Label());

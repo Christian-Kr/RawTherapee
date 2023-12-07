@@ -127,7 +127,7 @@ SaveAsDialog::SaveAsDialog (const Glib::ustring &initialDir, Gtk::Window* parent
 
 // pack everything
 // ~~~~~~~~~~~~~~~
-    Gtk::Box* vbox_bottomRight = Gtk::manage(new Gtk::Box(Gtk::ORIENTATION_VERTICAL));
+    Gtk::Box* vbox_bottomRight = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
 
     // There is no queue in simple mode, so no need to choose
     if (!simpleEditor) {
@@ -142,7 +142,7 @@ SaveAsDialog::SaveAsDialog (const Glib::ustring &initialDir, Gtk::Window* parent
 
     Gtk::Box* hbox_bottom = Gtk::manage( new Gtk::Box() );
     hbox_bottom->pack_start (*formatOpts, Gtk::PACK_EXPAND_WIDGET, 2);
-    hbox_bottom->pack_start (*Gtk::manage(new Gtk::Separator(Gtk::ORIENTATION_VERTICAL)), Gtk::PACK_SHRINK, 2);
+    hbox_bottom->pack_start (*Gtk::manage(new Gtk::Separator(Gtk::Orientation::VERTICAL)), Gtk::PACK_SHRINK, 2);
     hbox_bottom->pack_start (*vbox_bottomRight, Gtk::PACK_EXPAND_WIDGET, 2);
 
     box->pack_start (*fchooser);
