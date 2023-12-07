@@ -175,7 +175,7 @@ bool confirmOverwrite (Gtk::Window& parent, const std::string& filename)
 {
     bool safe = true;
 
-    if (Glib::file_test (filename, Glib::FILE_TEST_EXISTS)) {
+    if (Glib::file_test (filename, Glib::FileTest::EXISTS)) {
         Glib::ustring msg_ = Glib::ustring ("<b>\"") + escapeHtmlChars(Glib::path_get_basename (filename)) + "\": "
                              + M("MAIN_MSG_ALREADYEXISTS") + "</b>\n" + M("MAIN_MSG_QOVERWRITE");
         Gtk::MessageDialog msgd (parent, msg_, true, Gtk::MESSAGE_WARNING, Gtk::BUTTONS_YES_NO, true);
@@ -1459,7 +1459,7 @@ MyFileChooserButton::MyFileChooserButton(const Glib::ustring &title, Gtk::FileCh
 
 void MyFileChooserButton::on_filename_set()
 {
-    if (Glib::file_test(get_filename(), Glib::FILE_TEST_EXISTS)) {
+    if (Glib::file_test(get_filename(), Glib::FileTest::EXISTS)) {
         pimpl->lbl_.set_label(Glib::path_get_basename(get_filename()));
     } else {
         pimpl->lbl_.set_label(Glib::ustring("(") + M("GENERAL_NONE") + ")");

@@ -169,14 +169,14 @@ Cairo::RefPtr<Cairo::ImageSurface> RTScalable::loadImage(const Glib::ustring &fn
     Glib::ustring imagesCacheFolderDPI = Glib::build_filename (imagesCacheFolder, Glib::ustring::compose("%1", (int)dpi));
     auto path = Glib::build_filename(imagesCacheFolderDPI, fname);
 
-    if (Glib::file_test(path.c_str(), Glib::FILE_TEST_EXISTS)) {
+    if (Glib::file_test(path.c_str(), Glib::FileTest::EXISTS)) {
         return Cairo::ImageSurface::create_from_png(path);
     } else {
 
         // -------------------- Looking for the PNG file in install directory --------------------
 
         path = Glib::build_filename(imagesFolder, fname);
-        if (Glib::file_test(path.c_str(), Glib::FILE_TEST_EXISTS)) {
+        if (Glib::file_test(path.c_str(), Glib::FileTest::EXISTS)) {
             return Cairo::ImageSurface::create_from_png(path);
         }
     }
@@ -185,7 +185,7 @@ Cairo::RefPtr<Cairo::ImageSurface> RTScalable::loadImage(const Glib::ustring &fn
 
     // -------------------- Creating the cache folder for PNGs --------------------
 
-    if (!Glib::file_test(imagesCacheFolderDPI.c_str(), Glib::FILE_TEST_EXISTS)) {
+    if (!Glib::file_test(imagesCacheFolderDPI.c_str(), Glib::FileTest::EXISTS)) {
         auto error = g_mkdir_with_parents (imagesCacheFolderDPI.c_str(), 0777);
         if (error != 0) {
             std::cerr << "ERROR: Can't create \"" << imagesCacheFolderDPI << "\" cache folder: " << g_strerror(error)  << std::endl;

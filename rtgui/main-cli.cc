@@ -423,7 +423,7 @@ int processLineParams ( int argc, char **argv )
                         argument = argument.substr (1, argument.length() - 2);
 #endif
 
-                        if (!Glib::file_test (argument, Glib::FILE_TEST_EXISTS)) {
+                        if (!Glib::file_test (argument, Glib::FileTest::EXISTS)) {
                             std::cout << "\"" << argument << "\"  doesn't exist!" << std::endl;
                             continue;
                         }
@@ -480,7 +480,7 @@ int processLineParams ( int argc, char **argv )
 
                                     if (sideProcParams && skipIfNoSidecar) {
                                         // look for the sidecar proc params
-                                        if (!Glib::file_test (fileName + paramFileExtension, Glib::FILE_TEST_EXISTS)) {
+                                        if (!Glib::file_test (fileName + paramFileExtension, Glib::FileTest::EXISTS)) {
                                             std::cout << "\"" << fileName << "\"  has no side-car file. Image skipped." << std::endl;
                                             continue;
                                         }
@@ -698,7 +698,7 @@ int processLineParams ( int argc, char **argv )
             continue;
         }
 
-        if ( !overwriteFiles && Glib::file_test ( outputFile, Glib::FILE_TEST_EXISTS ) ) {
+        if ( !overwriteFiles && Glib::file_test ( outputFile, Glib::FileTest::EXISTS ) ) {
             std::cerr << outputFile  << " already exists: use -Y option to overwrite. This image has been skipped." << std::endl;
             continue;
         }
@@ -751,7 +751,7 @@ int processLineParams ( int argc, char **argv )
                 Glib::ustring sideProcessingParams = inputFile + paramFileExtension;
 
                 // the "load" method don't reset the procparams values anymore, so values found in the procparam file override the one of currentParams
-                if ( !Glib::file_test ( sideProcessingParams, Glib::FILE_TEST_EXISTS ) || currentParams.load ( sideProcessingParams )) {
+                if ( !Glib::file_test ( sideProcessingParams, Glib::FileTest::EXISTS ) || currentParams.load ( sideProcessingParams )) {
                     std::cerr << "Warning: sidecar file requested but not found for: " << sideProcessingParams << std::endl;
                 } else {
                     sideCarFound = true;

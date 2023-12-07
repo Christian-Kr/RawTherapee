@@ -136,14 +136,14 @@ RTWindow::RTWindow ()
                 options.theme = themeRootName + "-GTK3-20_";
             }
             // check if this version exist
-            if (!Glib::file_test(Glib::build_filename(argv0, "themes", options.theme + ".css"), Glib::FILE_TEST_EXISTS)) {
+            if (!Glib::file_test(Glib::build_filename(argv0, "themes", options.theme + ".css"), Glib::FileTest::EXISTS)) {
                 // set back old theme version if the actual one doesn't exist yet
                 options.theme = initialTheme;
             }
         }
         filename = Glib::build_filename(argv0, "themes", options.theme + ".css");
 
-        if (!match || !Glib::file_test(filename, Glib::FILE_TEST_EXISTS)) {
+        if (!match || !Glib::file_test(filename, Glib::FileTest::EXISTS)) {
             options.theme = "RawTherapee-GTK";
 
             // We're not testing GTK_MAJOR_VERSION == 3 here, since this branch requires Gtk3 only
