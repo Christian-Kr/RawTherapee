@@ -269,7 +269,7 @@ private:
         }
 
         if (!init_rt()) {
-            Gtk::MessageDialog msgd ("Fatal error!\nThe RT_SETTINGS and/or RT_PATH environment variables are set, but use a relative path. The path must be absolute!", true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true);
+            Gtk::MessageDialog msgd ("Fatal error!\nThe RT_SETTINGS and/or RT_PATH environment variables are set, but use a relative path. The path must be absolute!", true, Gtk::MessageType::ERROR, Gtk::BUTTONS_OK, true);
             add_window (msgd);
             msgd.run ();
             return false;
@@ -561,7 +561,7 @@ int main (int argc, char **argv)
             cleanup_rt();
         } else {
             Gtk::Main m (&argc, &argv);
-            Gtk::MessageDialog msgd (Glib::ustring::compose("FATAL ERROR!\n\n%1", fatalError), true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true);
+            Gtk::MessageDialog msgd (Glib::ustring::compose("FATAL ERROR!\n\n%1", fatalError), true, Gtk::MessageType::ERROR, Gtk::BUTTONS_OK, true);
             msgd.run ();
             ret = -2;
         }

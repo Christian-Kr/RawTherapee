@@ -49,7 +49,7 @@ bool ExtProgAction::execute (const std::vector<Glib::ustring>& fileNames) const
             continue;
         }
 
-        Gtk::MessageDialog (M("MAIN_MSG_IMAGEUNPROCESSED"), true, Gtk::MESSAGE_ERROR, Gtk::BUTTONS_OK, true).run ();
+        Gtk::MessageDialog (M("MAIN_MSG_IMAGEUNPROCESSED"), true, Gtk::MessageType::ERROR, Gtk::BUTTONS_OK, true).run ();
         return false;
     }
 
