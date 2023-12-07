@@ -23,7 +23,7 @@
 CursorManager mainWindowCursorManager;
 CursorManager editWindowCursorManager;
 
-void CursorManager::init (Glib::RefPtr<Gdk::Window> mainWindow)
+void CursorManager::init (Glib::RefPtr<Gdk::Surface> mainWindow)
 {
 
     display = Gdk::Display::get_default ();
@@ -77,7 +77,7 @@ void CursorManager::init (Glib::RefPtr<Gdk::Window> mainWindow)
     cWB = colPick               ? Gdk::Cursor::create(display, colPick, (int)(4.*s), (int)(21.*s))      : Gdk::Cursor::create(display, Gdk::TARGET);
     cWait = wait                ? Gdk::Cursor::create(display, wait, (int)(12.*s), (int)(12.*s))        : Gdk::Cursor::create(display, Gdk::CLOCK);
 
-    window = mainWindow;
+    surface = mainWindow;
 }
 
 void CursorManager::cleanup()
@@ -225,6 +225,6 @@ void CursorManager::setCursorOfMainWindow (Glib::RefPtr<Gdk::Window> window, Cur
 /* Set the cursor of the main window */
 void CursorManager::setCursor (CursorShape shape)
 {
-    setCursor (window, shape);
+    setCursor (surface, shape);
 }
 

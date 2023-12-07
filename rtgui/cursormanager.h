@@ -74,16 +74,16 @@ private:
     Glib::RefPtr<Gdk::Cursor> cWait;
 
     Glib::RefPtr<Gdk::Display> display;
-    Glib::RefPtr<Gdk::Window> window;
+    Glib::RefPtr<Gdk::Surface> surface;
 
     void setCursor (CursorShape shape);
-    void setCursor (Glib::RefPtr<Gdk::Window> window, CursorShape shape);
+    void setCursor (Glib::RefPtr<Gdk::Surface> surface, CursorShape shape);
 
 public:
-    void init                         (Glib::RefPtr<Gdk::Window> mainWindow);
+    void init                         (Glib::RefPtr<Gdk::Surface> mainSurface);
     void cleanup                      ();
-    static void setWidgetCursor       (Glib::RefPtr<Gdk::Window> window, CursorShape shape);
-    static void setCursorOfMainWindow (Glib::RefPtr<Gdk::Window> window, CursorShape shape);
+    static void setWidgetCursor       (Glib::RefPtr<Gdk::Surface> surface, CursorShape shape);
+    static void setCursorOfMainWindow (Glib::RefPtr<Gdk::Surface> surface, CursorShape shape);
 };
 
 extern CursorManager mainWindowCursorManager;
