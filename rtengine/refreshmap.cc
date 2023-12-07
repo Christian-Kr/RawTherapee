@@ -27,10 +27,10 @@
 
 // Aligned so the first entry starts on line 30.
 int refreshmap[rtengine::NUMOFEVENTS] = {
-    ALL,              // EvPhotoLoaded,
+    REFMAP_ALL,              // EvPhotoLoaded,
     0,              // EvProfileLoaded : obsolete,
-    ALL,              // EvProfileChanged,
-    ALL,              // EvHistoryBrowsed,
+    REFMAP_ALL,              // EvProfileChanged,
+    REFMAP_ALL,              // EvHistoryBrowsed,
     AUTOEXP,         // EvBrightness,
     AUTOEXP,         // EvContrast,
     AUTOEXP,         // EvBlack,
@@ -89,7 +89,7 @@ int refreshmap[rtengine::NUMOFEVENTS] = {
     HDR,        // EvROTDegree,
     HDR,        // EvTransAutoFill,
     HDR,        // EvDISTAmount,
-    ALL,              // EvBookmarkSelected,
+    REFMAP_ALL,              // EvBookmarkSelected,
     CROP,             // EvCrop,
     HDR,        // EvCACorr,
     ALLNORAW,         // EvHREnabled,
@@ -108,7 +108,7 @@ int refreshmap[rtengine::NUMOFEVENTS] = {
     RESIZE,           // EvResizeWidth
     RESIZE,           // EvResizeHeight
     RESIZE,           // EvResizeEnabled
-    ALL,              // EvProfileChangeNotification
+    REFMAP_ALL,              // EvProfileChangeNotification
     0,          // EvSHHighQuality : obsolete
     HDR,        // EvPerspCorr
     DARKFRAME,        // EvLCPFile

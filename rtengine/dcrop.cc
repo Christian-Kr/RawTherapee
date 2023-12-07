@@ -173,7 +173,7 @@ void Crop::update(int todo)
 
     // it something has been reallocated, all processing steps have to be performed
     if (needsinitupdate || (todo & M_HIGHQUAL)) {
-        todo = ALL;
+        todo = REFMAP_ALL;
     }
 
     // Tells to the ImProcFunctions' tool what is the preview scale, which may lead to some simplifications
@@ -2031,7 +2031,7 @@ void Crop::fullUpdate()
 
     while (newUpdatePending) {
         newUpdatePending = false;
-        update(ALL);
+        update(REFMAP_ALL);
     }
 
     updating = false;  // end of crop update
