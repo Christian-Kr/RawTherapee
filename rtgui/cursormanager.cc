@@ -57,25 +57,25 @@ void CursorManager::init (Glib::RefPtr<Gdk::Surface> mainWindow)
 
     double s = RTScalable::getTweakedDPI() / RTScalable::baseDPI;  // RTScalable::getDPI() might be preferable, however it imply a lot of work to support this option
 
-    cAdd = add                  ? Gdk::Cursor::create(display, add, (int)(8.*s), (int)(8.*s))           : Gdk::Cursor::create(display, Gdk::PLUS);
-    cAddPicker = colPickAdd     ? Gdk::Cursor::create(display, colPickAdd, (int)(4.*s), (int)(21.*s))   : Gdk::Cursor::create(display, Gdk::PLUS);
-    cCropDraw = cropDraw        ? Gdk::Cursor::create(display, cropDraw, (int)(3.*s), (int)(3.*s))      : Gdk::Cursor::create(display, Gdk::DIAMOND_CROSS);
-    cCrosshair = crosshair      ? Gdk::Cursor::create(display, crosshair, (int)(12.*s), (int)(12.*s))   : Gdk::Cursor::create(display, Gdk::CROSSHAIR);
-    cEmpty = empty              ? Gdk::Cursor::create(display, empty, 12, 12) /* PNG: do not scale */   : Gdk::Cursor::create(display, Gdk::BLANK_CURSOR);
-    cHandClosed = handClosed    ? Gdk::Cursor::create(display, handClosed, (int)(12.*s), (int)(12.*s))  : Gdk::Cursor::create(display, Gdk::HAND1);
-    cHandOpen = handOpen        ? Gdk::Cursor::create(display, handOpen, (int)(12.*s), (int)(12.*s))    : Gdk::Cursor::create(display, Gdk::HAND2);
-    cMoveBL = moveBL            ? Gdk::Cursor::create(display, moveBL, (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create(display, Gdk::BOTTOM_LEFT_CORNER);
-    cMoveBR = moveBR            ? Gdk::Cursor::create(display, moveBR, (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create(display, Gdk::BOTTOM_RIGHT_CORNER);
-    cMoveL = moveL              ? Gdk::Cursor::create(display, moveL, (int)(12.*s), (int)(12.*s))       : Gdk::Cursor::create(display, Gdk::SB_LEFT_ARROW);
-    cMoveR = moveR              ? Gdk::Cursor::create(display, moveR, (int)(12.*s), (int)(12.*s))       : Gdk::Cursor::create(display, Gdk::SB_RIGHT_ARROW);
-    cMoveTL = moveTL            ? Gdk::Cursor::create(display, moveTL, (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create(display, Gdk::TOP_LEFT_CORNER);
-    cMoveTR = moveTR            ? Gdk::Cursor::create(display, moveTR, (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create(display, Gdk::TOP_RIGHT_CORNER);
-    cMoveX = moveX              ? Gdk::Cursor::create(display, moveX, (int)(12.*s), (int)(12.*s))       : Gdk::Cursor::create(display, Gdk::SB_H_DOUBLE_ARROW);
-    cMoveXY = moveXY            ? Gdk::Cursor::create(display, moveXY, (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create(display, Gdk::FLEUR);
-    cMoveY = moveY              ? Gdk::Cursor::create(display, moveY, (int)(12.*s), (int)(12.*s))       : Gdk::Cursor::create(display, Gdk::SB_V_DOUBLE_ARROW);
-    cRotate = rotate            ? Gdk::Cursor::create(display, rotate, (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create(display, Gdk::EXCHANGE);
-    cWB = colPick               ? Gdk::Cursor::create(display, colPick, (int)(4.*s), (int)(21.*s))      : Gdk::Cursor::create(display, Gdk::TARGET);
-    cWait = wait                ? Gdk::Cursor::create(display, wait, (int)(12.*s), (int)(12.*s))        : Gdk::Cursor::create(display, Gdk::CLOCK);
+    cAdd = add                  ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(add), (int)(8.*s), (int)(8.*s))           : Gdk::Cursor::create("copy");
+    cAddPicker = colPickAdd     ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(colPickAdd), (int)(4.*s), (int)(21.*s))   : Gdk::Cursor::create("copy");
+    cCropDraw = cropDraw        ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(cropDraw), (int)(3.*s), (int)(3.*s))      : Gdk::Cursor::create("all-cross");
+    cCrosshair = crosshair      ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(crosshair), (int)(12.*s), (int)(12.*s))   : Gdk::Cursor::create("crosshair");
+    cEmpty = empty              ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(empty), 12, 12) /* PNG: do not scale */   : Gdk::Cursor::create("none");
+    cHandClosed = handClosed    ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(handClosed), (int)(12.*s), (int)(12.*s))  : Gdk::Cursor::create("pointer");
+    cHandOpen = handOpen        ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(handOpen), (int)(12.*s), (int)(12.*s))    : Gdk::Cursor::create("pointer");
+    cMoveBL = moveBL            ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(moveBL), (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create("sw-resize");
+    cMoveBR = moveBR            ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(moveBR), (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create("se-resize");
+    cMoveL = moveL              ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(moveL), (int)(12.*s), (int)(12.*s))       : Gdk::Cursor::create("w-resize");
+    cMoveR = moveR              ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(moveR), (int)(12.*s), (int)(12.*s))       : Gdk::Cursor::create("e-resize");
+    cMoveTL = moveTL            ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(moveTL), (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create("nw-resize");
+    cMoveTR = moveTR            ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(moveTR), (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create("ne-resize");
+    cMoveX = moveX              ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(moveX), (int)(12.*s), (int)(12.*s))       : Gdk::Cursor::create("col-resize");
+    cMoveXY = moveXY            ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(moveXY), (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create("move");
+    cMoveY = moveY              ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(moveY), (int)(12.*s), (int)(12.*s))       : Gdk::Cursor::create("row-size");
+    cRotate = rotate            ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(rotate), (int)(12.*s), (int)(12.*s))      : Gdk::Cursor::create("default");
+    cWB = colPick               ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(colPick), (int)(4.*s), (int)(21.*s))      : Gdk::Cursor::create("default");
+    cWait = wait                ? Gdk::Cursor::create(Gdk::Texture::create_for_pixbuf(wait), (int)(12.*s), (int)(12.*s))        : Gdk::Cursor::create("progress");
 
     surface = mainWindow;
 }
@@ -103,99 +103,99 @@ void CursorManager::cleanup()
     cWait.reset();
 }
 
-/* Set the cursor of the given window */
-void CursorManager::setCursor (Glib::RefPtr<Gdk::Window> window, CursorShape shape)
+/* Set the cursor of the given surface */
+void CursorManager::setCursor (Glib::RefPtr<Gdk::Surface> surface, CursorShape shape)
 {
     switch (shape)
     {
         case CursorShape::CSAddColPicker:
-            window->set_cursor(cAddPicker);
+            surface->set_cursor(cAddPicker);
             break;
         case CursorShape::CSArrow:
-            window->set_cursor(); // set_cursor without any arguments to select system default
+            surface->set_cursor(); // set_cursor without any arguments to select system default
             break;
         case CursorShape::CSCropSelect:
-            window->set_cursor(cCropDraw);
+            surface->set_cursor(cCropDraw);
             break;
         case CursorShape::CSCrosshair:
-            window->set_cursor(cCrosshair);
+            surface->set_cursor(cCrosshair);
             break;
         case CursorShape::CSEmpty:
-            window->set_cursor(cEmpty);
+            surface->set_cursor(cEmpty);
             break;
         case CursorShape::CSHandClosed:
-            window->set_cursor(cHandClosed);
+            surface->set_cursor(cHandClosed);
             break;
         case CursorShape::CSHandOpen:
-            window->set_cursor(cHandOpen);
+            surface->set_cursor(cHandOpen);
             break;
         case CursorShape::CSMove:
-            window->set_cursor(cHandClosed);
+            surface->set_cursor(cHandClosed);
             break;
         case CursorShape::CSMove1DH:
-            window->set_cursor(cMoveX);
+            surface->set_cursor(cMoveX);
             break;
         case CursorShape::CSMove1DV:
-            window->set_cursor(cMoveY);
+            surface->set_cursor(cMoveY);
             break;
         case CursorShape::CSMove2D:
-            window->set_cursor(cMoveXY);
+            surface->set_cursor(cMoveXY);
             break;
         case CursorShape::CSMoveLeft:
-            window->set_cursor(cMoveL);
+            surface->set_cursor(cMoveL);
             break;
         case CursorShape::CSMoveRight:
-            window->set_cursor(cMoveR);
+            surface->set_cursor(cMoveR);
             break;
         case CursorShape::CSMoveRotate:
-            window->set_cursor(cRotate);
+            surface->set_cursor(cRotate);
             break;
         case CursorShape::CSPlus:
-            window->set_cursor(cAdd);
+            surface->set_cursor(cAdd);
             break;
         case CursorShape::CSResizeBottomLeft:
-            window->set_cursor(cMoveBL);
+            surface->set_cursor(cMoveBL);
             break;
         case CursorShape::CSResizeBottomRight:
-            window->set_cursor(cMoveBR);
+            surface->set_cursor(cMoveBR);
             break;
         case CursorShape::CSResizeDiagonal:
-            window->set_cursor(cMoveXY);
+            surface->set_cursor(cMoveXY);
             break;
         case CursorShape::CSResizeHeight:
-            window->set_cursor(cMoveY);
+            surface->set_cursor(cMoveY);
             break;
         case CursorShape::CSResizeTopLeft:
-            window->set_cursor(cMoveTL);
+            surface->set_cursor(cMoveTL);
             break;
         case CursorShape::CSResizeTopRight:
-            window->set_cursor(cMoveTR);
+            surface->set_cursor(cMoveTR);
             break;
         case CursorShape::CSResizeWidth:
-            window->set_cursor(cMoveX);
+            surface->set_cursor(cMoveX);
             break;
         case CursorShape::CSSpotWB:
-            window->set_cursor(cWB);
+            surface->set_cursor(cWB);
             break;
         case CursorShape::CSStraighten:
-            window->set_cursor(cRotate);
+            surface->set_cursor(cRotate);
             break;
         case CursorShape::CSUndefined:
             break;
         case CursorShape::CSWait:
-            window->set_cursor(cWait);
+            surface->set_cursor(cWait);
             break;
         default:
-            window->set_cursor(cCrosshair);
+            surface->set_cursor(cCrosshair);
     }
 }
 
-void CursorManager::setWidgetCursor (Glib::RefPtr<Gdk::Window> window, CursorShape shape)
+void CursorManager::setWidgetCursor (Glib::RefPtr<Gdk::Surface> surface, CursorShape shape)
 {
-    if (window->get_display() == mainWindowCursorManager.display) {
-        mainWindowCursorManager.setCursor(window, shape);
-    } else if (window->get_display() == editWindowCursorManager.display) {
-        editWindowCursorManager.setCursor(window, shape);
+    if (surface->get_display() == mainWindowCursorManager.display) {
+        mainWindowCursorManager.setCursor(surface, shape);
+    } else if (surface->get_display() == editWindowCursorManager.display) {
+        editWindowCursorManager.setCursor(surface, shape);
     }
 
 #ifndef NDEBUG
@@ -206,11 +206,11 @@ void CursorManager::setWidgetCursor (Glib::RefPtr<Gdk::Window> window, CursorSha
 #endif
 }
 
-void CursorManager::setCursorOfMainWindow (Glib::RefPtr<Gdk::Window> window, CursorShape shape)
+void CursorManager::setCursorOfMainWindow (Glib::RefPtr<Gdk::Surface> surface, CursorShape shape)
 {
-    if (window->get_display() == mainWindowCursorManager.display) {
+    if (surface->get_display() == mainWindowCursorManager.display) {
         mainWindowCursorManager.setCursor(shape);
-    } else if (window->get_display() == editWindowCursorManager.display) {
+    } else if (surface->get_display() == editWindowCursorManager.display) {
         editWindowCursorManager.setCursor(shape);
     }
 
