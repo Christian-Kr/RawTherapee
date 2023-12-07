@@ -48,7 +48,17 @@ struct CropParams;
 class RTImage;
 
 Glib::ustring escapeHtmlChars(const Glib::ustring &src);
-bool removeIfThere (Gtk::Container* cont, Gtk::Widget* w, bool increference = true);
+
+/**
+ * Remove a widget from a given container widget.
+ * @note Before gtk4 the container was a Gtk::Container.
+ * @param wcont the container widget to remove the given widget from
+ * @param w the widget to remove
+ * @param increference increment the reference of the widget before remove
+ * @return true if removed, else false
+ */
+bool removeIfThere (Gtk::Widget* wcont, Gtk::Widget* w, bool increference = true);
+
 bool confirmOverwrite (Gtk::Window& parent, const std::string& filename);
 void writeFailed (Gtk::Window& parent, const std::string& filename);
 void drawCrop (Cairo::RefPtr<Cairo::Context> cr, int imx, int imy, int imw, int imh, int startx, int starty, double scale, const rtengine::procparams::CropParams& cparams, bool drawGuide = true, bool useBgColor = true, bool fullImageVisible = true);

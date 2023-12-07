@@ -143,24 +143,32 @@ Gtk::Border getPadding(const Glib::RefPtr<Gtk::StyleContext> style)
     return padding;
 }
 
-bool removeIfThere (Gtk::Container* cont, Gtk::Widget* w, bool increference)
+bool removeIfThere (Gtk::Widget* wcont, Gtk::Widget* w, bool increference)
 {
+    auto child = wcont->get_first_child();
 
-    Glib::ListHandle<Gtk::Widget*> list = cont->get_children ();
-    Glib::ListHandle<Gtk::Widget*>::iterator i = list.begin ();
-
-    for (; i != list.end() && *i != w; ++i);
-
-    if (i != list.end()) {
-        if (increference) {
-            w->reference ();
-        }
-
-        cont->remove (*w);
-        return true;
-    } else {
+    if (child == nullptr) {
         return false;
     }
+
+    while (child != nullptr) {
+        if (child == w) {
+            if (increference) {
+                w->reference();
+            }
+
+            w->unparent();
+            return true;
+        }
+
+        if (child == wcont->get_last_child()) {
+            return false;
+        } else {
+            child = child->get_next_sibling();
+        }
+    }
+
+    return false;
 }
 
 bool confirmOverwrite (Gtk::Window& parent, const std::string& filename)
