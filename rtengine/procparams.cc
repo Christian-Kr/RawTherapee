@@ -6186,17 +6186,17 @@ int ProcParams::save(const Glib::ustring& fname, const Glib::ustring& fname2, bo
         saveToKeyfile(!pedited || pedited->chmixer.enabled, "Channel Mixer", "Enabled", chmixer.enabled, keyFile);
 
         if (!pedited || pedited->chmixer.red[0] || pedited->chmixer.red[1] || pedited->chmixer.red[2]) {
-            Glib::ArrayHandle<int> rmix(chmixer.red, 3, Glib::OWNERSHIP_NONE);
+            std::vector<int> rmix(std::begin(chmixer.red), std::end(chmixer.red));
             keyFile->set_integer_list("Channel Mixer", "Red", rmix);
         }
 
         if (!pedited || pedited->chmixer.green[0] || pedited->chmixer.green[1] || pedited->chmixer.green[2]) {
-            Glib::ArrayHandle<int> gmix(chmixer.green, 3, Glib::OWNERSHIP_NONE);
+            std::vector<int> gmix(std::begin(chmixer.green), std::end(chmixer.green));
             keyFile->set_integer_list("Channel Mixer", "Green", gmix);
         }
 
         if (!pedited || pedited->chmixer.blue[0] || pedited->chmixer.blue[1] || pedited->chmixer.blue[2]) {
-            Glib::ArrayHandle<int> bmix(chmixer.blue, 3, Glib::OWNERSHIP_NONE);
+            std::vector<int> bmix(std::begin(chmixer.blue), std::end(chmixer.blue));
             keyFile->set_integer_list("Channel Mixer", "Blue", bmix);
         }
 
@@ -7821,7 +7821,7 @@ int ProcParams::save(const Glib::ustring& fname, const Glib::ustring& fname2, bo
             for (auto &p : metadata.iptc) {
                 auto it = m.find(p.first);
                 if (it != m.end()) {
-                    Glib::ArrayHandle<Glib::ustring> values = p.second;
+                    std::vector<Glib::ustring> values = p.second;
                     keyFile->set_string_list("IPTC", it->second, values);
                 }
             }
@@ -9595,7 +9595,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
                 ss << "Spot" << (i++ + 1);
 
                 if (keyFile->has_key ("Spot removal", ss.str())) {
-                    Glib::ArrayHandle<double> entry = keyFile->get_double_list ("Spot removal", ss.str());
+                    std::vector<double> entry = keyFile->get_double_list ("Spot removal", ss.str());
                     const double epsilon = 0.001;  // to circumvent rounding of integer saved as double
                     SpotEntry se;
 
