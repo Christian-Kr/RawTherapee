@@ -1284,7 +1284,7 @@ void FileCatalog::renameRequested(const std::vector<FileBrowserEntry*>& tbe)
                 /* check if filename already exists*/
                 if (Glib::file_test (nfname, Glib::FileTest::EXISTS)) {
                     Glib::ustring msg_ = Glib::ustring("<b>") + escapeHtmlChars(nfname) + ": " + M("MAIN_MSG_ALREADYEXISTS") + "</b>";
-                    Gtk::MessageDialog msgd (msg_, true, Gtk::MessageType::ERROR, Gtk::BUTTONS_OK, true);
+                    Gtk::MessageDialog msgd (msg_, true, Gtk::MessageType::ERROR, Gtk::ButtonsType::OK, true);
                     msgd.run ();
                 } else {
                     success = true;

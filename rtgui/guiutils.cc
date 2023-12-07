@@ -188,7 +188,7 @@ bool confirmOverwrite (Gtk::Window& parent, const std::string& filename)
 void writeFailed (Gtk::Window& parent, const std::string& filename)
 {
     Glib::ustring msg_ = Glib::ustring::compose(M("MAIN_MSG_WRITEFAILED"), escapeHtmlChars(filename));
-    Gtk::MessageDialog msgd (parent, msg_, true, Gtk::MessageType::ERROR, Gtk::BUTTONS_OK, true);
+    Gtk::MessageDialog msgd (parent, msg_, true, Gtk::MessageType::ERROR, Gtk::ButtonsType::OK, true);
     msgd.run ();
 }
 
