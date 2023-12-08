@@ -234,7 +234,7 @@ private:
     bool inconsistent;
 
     // there is no need for an event box now, gtk label should be enough
-    Gtk::Widget *titleWidget;
+    Gtk::Box *titleWidget;
 
     Gtk::Box *headerHBox;
 
@@ -250,40 +250,57 @@ private:
 
     /**
      * Triggered when open/close-button pressed.
-     * @param event
-     * @return
+     *
+     * @param n_press Number of clicks.
+     * @param x The x position.
+     * @param y The y position.
      */
-    bool on_toggle(Gdk::EventButton* event);
+    void on_toggle(int n_press, double x, double y);
 
     /**
      * Triggered when enabled/disabled changed.
      *
      * This will emit a toggle event to the connected objects.
      *
-     * @param event
-     * @return
+     * @param n_press Number of clicks.
+     * @param x The x position.
+     * @param y The y position.
      */
     void on_enabled_change(int n_press, double x, double y);
 
     /**
-     * Triggered when the title gets entered or leaved.
+     * Triggered when the title gets leaved.
+     *
+     * This signal is used to handle the colored background of the whole title.
+     */
+    void on_leave_title();
+
+    /**
+     * Triggered when the title gets entered.
      *
      * This signal is used to handle the colored background of the whole title.
      *
-     * @param event
-     * @return
+     * @param x The x position.
+     * @param y The y position.
      */
-    bool on_enter_leave_title (GdkEventCrossing* event);
+    void on_enter_title(double x, double y);
 
     /**
-     * Triggered when the enable button will be entered or leaved.
+     * Triggered when the enable button will be entered.
      *
-     * This signal is used to handle the coored background of the enabled button.
+     * This signal is used to handle the colored background of the enabled button.
      *
-     * @param event
-     * @return
+     * @param x The x position.
+     * @param y The y position.
      */
-    bool on_enter_leave_enable (GdkEventCrossing* event);
+    void on_enter_enable(double x, double y);
+
+    /**
+     * Triggered when the enable button will be leaved.
+     *
+     * This signal is used to handle the colored background of the enabled button.
+     */
+    void on_leave_enable();
 
     /**
      * Update the whole style of the box.
@@ -293,12 +310,12 @@ private:
     void updateStyle();
 
 protected:
-    // box to display below the expander's title
-    Gtk::Box* child;
+    // widget to display below the expander's title
+    Gtk::Widget* child;
 
     // widget to display in the header, next to the arrow image;
     // can be NULL if the "string" version of the ctor has been used
-    Gtk::Widget* headerWidget;
+    Gtk::Box* headerWidget;
 
     // image to display the opened/closed status (if useEnabled is false) of the enabled/disabled
     // status (if useEnabled is true)
@@ -331,7 +348,7 @@ public:
      * @param titleWidget A widget to display in the header. Warning: You won't be able to switch
      *        to a string label.
      */
-    RTExpander(bool useEnabled, Gtk::Widget* titleWidget);
+    RTExpander(bool useEnabled, Gtk::Box* titleWidget);
 
     /**
      * Initialize the class by loading the images.
@@ -452,7 +469,7 @@ public:
      * @param widget The widget to be added.
      * @param setChild Whether the widget is a child or not.
      */
-    void add(Gtk::Widget& widget, bool setChild = true);
+    void add(Gtk::Widget &widget, bool setChild = true);
 
     /**
      * Show or hide the vertical scrollbars.

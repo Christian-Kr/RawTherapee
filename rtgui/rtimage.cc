@@ -42,7 +42,10 @@ struct GIconKey {
 
     bool operator==(const GIconKey &other) const
     {
-        bool icons_match = (icon.get() == nullptr && other.icon.get() == nullptr) || (icon.get() != nullptr && icon->equal(Glib::RefPtr<Gio::Icon>::cast_const(other.icon)));
+        bool icons_match =
+                (icon.get() == nullptr && other.icon.get() == nullptr) ||
+                (icon.get() != nullptr && icon->equal(
+                        Glib::RefPtr<Gio::Icon>::cast_const(other.icon)));
         return icons_match && icon_size == other.icon_size;
     }
 };
@@ -66,12 +69,14 @@ int RTImage::scaleBack = 0;
 
 RTImage::RTImage () {}
 
-RTImage::RTImage (RTImage &other) : surface(other.surface), pixbuf(other.pixbuf)
+RTImage::RTImage (RTImage &other)
+    : surface(other.surface)
+    , pixbuf(other.pixbuf)
 {
     if (pixbuf) {
         set(pixbuf);
     } else if (surface) {
-        set(surface);
+        set(Gdk::Pixbuf::fromsurface);
     } else if (other.gIcon) {
         changeImage(other.gIcon, other.gIconSize);
     }
@@ -108,7 +113,7 @@ RTImage::RTImage (Glib::RefPtr<RTImage> &other)
 {
     if (other) {
         if (other->get_surface()) {
-            surface = other->get_surface();
+            surface = other->get_surface()->;
             set(surface);
         } else if (other->pixbuf) {
             pixbuf = other->get_pixbuf();

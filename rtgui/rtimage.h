@@ -24,6 +24,11 @@
 
 /**
  * @brief A derived class of Gtk::Image in order to handle theme-related icon sets.
+ *
+ * TODO: I don't get, why a surface and a pixbuf will be saved.
+ *
+ * The object will be created with a cairo surface, unless no constructor with pixbuf called. Then
+ * the pixbuf version will be created and updated.
  */
 class RTImage final : public Gtk::Image, public RTScalable
 {
