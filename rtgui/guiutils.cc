@@ -1043,7 +1043,7 @@ void MyScrolledWindow::get_preferred_height_for_width_vfunc (int width, int &min
  */
 MyScrolledToolbar::MyScrolledToolbar ()
 {
-    set_policy (Gtk::POLICY_EXTERNAL, Gtk::POLICY_NEVER);
+    set_policy (Gtk::PolicyType::EXTERNAL, Gtk::PolicyType::NEVER);
     get_style_context()->add_class("scrollableToolbar");
 
     // Works fine with Gtk 3.22, but a custom made get_preferred_height had to be created as a workaround
@@ -1112,8 +1112,8 @@ MyComboBoxText::MyComboBoxText (bool has_entry) : Gtk::ComboBoxText(has_entry)
 {
     minimumWidth = naturalWidth = 70;
     Gtk::CellRendererText* cellRenderer = dynamic_cast<Gtk::CellRendererText*>(get_first_cell());
-    cellRenderer->property_ellipsize() = Pango::ELLIPSIZE_MIDDLE;
-    add_events(Gdk::SCROLL_MASK|Gdk::SMOOTH_SCROLL_MASK);
+    cellRenderer->property_ellipsize() = Pango::EllipsizeMode::MIDDLE;
+    add_events(Gdk::ScrollDirection::SMOOTH);
 }
 
 bool MyComboBoxText::on_scroll_event (GdkEventScroll* event)
@@ -1214,8 +1214,8 @@ MySpinButton::MySpinButton ()
     set_inner_border(border);
     set_numeric(true);
     set_wrap(false);
-    set_alignment(Gtk::ALIGN_END);
-    set_update_policy(Gtk::SpinButtonUpdatePolicy::UPDATE_IF_VALID); // Avoid updating text if input is not a numeric
+    set_alignment(Gtk::Align::END);
+    set_update_policy(Gtk::SpinButton::UpdatePolicy::IF_VALID); // Avoid updating text if input is not a numeric
 }
 
 void MySpinButton::updateSize()
@@ -1238,7 +1238,7 @@ void MySpinButton::updateSize()
     }
 
     maxLen = digits + digits2 + (vMin < 0 ? 1 : 0) + (digits > 0 ? 1 : 0);
-    set_max_length(maxLen);
+    set_range(0, maxLen);
     set_width_chars(maxLen);
     set_max_width_chars(maxLen);
 }
