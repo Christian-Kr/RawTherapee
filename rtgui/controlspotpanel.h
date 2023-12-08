@@ -424,10 +424,10 @@ private:
     //Gtk::CheckButton* const savrest_;
     //sigc::connection savrestConn_;
 
-    MyExpander* const expTransGrad_;
-    MyExpander* const expShapeDetect_;
-    MyExpander* const expSpecCases_;
-    MyExpander* const expMaskMerge_;
+    RTExpander* const expTransGrad_;
+    RTExpander* const expShapeDetect_;
+    RTExpander* const expSpecCases_;
+    RTExpander* const expMaskMerge_;
 
     Gtk::ToggleButton* const preview_;
     sigc::connection previewConn_;

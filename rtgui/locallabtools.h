@@ -63,7 +63,7 @@ protected:
     LocallabToolListener* locToolListener;
 
     // LocallabTool generic widgets
-    MyExpander* exp;
+    RTExpander* exp;
     MyComboBoxText* const complexity;
 
     sigc::connection enaExpConn, complexityConn;
@@ -78,7 +78,7 @@ public:
     virtual ~LocallabTool();
 
     // Getter for Locallab tool expander
-    MyExpander* getExpander() override
+    RTExpander* getExpander() override
     {
         return exp;
     }
@@ -193,7 +193,7 @@ private:
     Adjuster* const structcol;
     Adjuster* const blurcolde;
     Adjuster* const softradiuscol;
-    MyExpander* const exprecov;
+    RTExpander* const exprecov;
     Gtk::Label* const maskusablec;
     Gtk::Label* const maskunusablec;
     Adjuster* const recothresc;
@@ -201,12 +201,12 @@ private:
     Adjuster* const higthresc;
     Adjuster* const decayc;
     Gtk::CheckButton* const invers;
-    MyExpander* const expgradcol;
+    RTExpander* const expgradcol;
     Adjuster* const strcol;
     Adjuster* const strcolab;
     Adjuster* const strcolh;
     Adjuster* const angcol;
-    MyExpander* const expcurvcol;
+    RTExpander* const expcurvcol;
     Gtk::Label* const labqualcurv;
     MyComboBoxText* const qualitycurveMethod;
     CurveEditorGroup* const llCurveEditorG;
@@ -225,7 +225,7 @@ private:
     MyComboBoxText* const toneMethod;
     DiagonalCurveEditor* const rgbshape;
     Gtk::CheckButton* const special;
-    MyExpander* const expmaskcol1;
+    RTExpander* const expmaskcol1;
     MyComboBoxText* const merMethod;
     ToolParamBlock* const mask7;
     MyComboBoxText* const mergecolMethod;
@@ -235,7 +235,7 @@ private:
     Gtk::Frame* const gridmerFrame;
     LabGrid* const labgridmerg;
     Adjuster* const merlucol;
-    MyExpander* const expmaskcol;
+    RTExpander* const expmaskcol;
     Gtk::Frame* const mergecolFrame ;
     MyComboBoxText* const showmaskcolMethod;
     MyComboBoxText* const showmaskcolMethodinv;
@@ -333,7 +333,7 @@ private:
     // Exposure specific widgets
     MyComboBoxText* const expMethod;
 //    Gtk::Frame* const pdeFrame;
-    MyExpander* const exppde;
+    RTExpander* const exppde;
     Adjuster* const laplacexp;
     Adjuster* const reparexp;
     Adjuster* const linear;
@@ -342,7 +342,7 @@ private:
     Gtk::Label* const labelexpmethod;
     MyComboBoxText* const exnoiseMethod;
 //    Gtk::Frame* const fatFrame;
-    MyExpander* const expfat;
+    RTExpander* const expfat;
     Adjuster* const fatamount;
     Adjuster* const fatdetail;
     Gtk::CheckButton* const norm;
@@ -352,7 +352,7 @@ private:
     Adjuster* const sensiex;
     Adjuster* const structexp;
     Adjuster* const blurexpde;
-    MyExpander* const exptoolexp;
+    RTExpander* const exptoolexp;
     Adjuster* const expcomp;
     Adjuster* const black;
     Adjuster* const hlcompr;
@@ -362,7 +362,7 @@ private:
     Adjuster* const expchroma;
     CurveEditorGroup* const curveEditorG;
     DiagonalCurveEditor* shapeexpos;
-    MyExpander* const exprecove;
+    RTExpander* const exprecove;
     Gtk::Label* const maskusablee;
     Gtk::Label* const maskunusablee;
     Adjuster* const recothrese;
@@ -370,12 +370,12 @@ private:
     Adjuster* const higthrese;
     Adjuster* const decaye;
     
-    MyExpander* const expgradexp;
+    RTExpander* const expgradexp;
     Adjuster* const strexp;
     Adjuster* const angexp;
     Adjuster* const softradiusexp;
     Gtk::CheckButton* const inversex;
-    MyExpander* const expmaskexp;
+    RTExpander* const expmaskexp;
     MyComboBoxText* const showmaskexpMethod;
     MyComboBoxText* const showmaskexpMethodinv;
     Gtk::CheckButton* const enaExpMask;
@@ -459,7 +459,7 @@ private:
     Adjuster* const sh_radius;
     Adjuster* const sensihs;
     Adjuster* const blurSHde;
-    MyExpander* const exprecovs;
+    RTExpander* const exprecovs;
     Gtk::Label* const maskusables;
     Gtk::Label* const maskunusables;
     Adjuster* const recothress;
@@ -469,11 +469,11 @@ private:
     Gtk::Frame* const gamFrame;
     Adjuster* const gamSH;
     Adjuster* const sloSH;
-    MyExpander* const expgradsh;
+    RTExpander* const expgradsh;
     Adjuster* const strSH;
     Adjuster* const angSH;
     Gtk::CheckButton* const inverssh;
-    MyExpander* const expmasksh;
+    RTExpander* const expmasksh;
     MyComboBoxText* const showmaskSHMethod;
     MyComboBoxText* const showmaskSHMethodinv;
     Gtk::CheckButton* const enaSHMask;
@@ -554,19 +554,19 @@ private:
     Adjuster* const sensiv;
     CurveEditorGroup* const curveEditorGG;
     DiagonalCurveEditor* const skinTonesCurve;
-    MyExpander* const exprecovv;
+    RTExpander* const exprecovv;
     Gtk::Label* const maskusablev;
     Gtk::Label* const maskunusablev;
     Adjuster* const recothresv;
     Adjuster* const lowthresv;
     Adjuster* const higthresv;
     Adjuster* const decayv;
-    MyExpander* const expgradvib;
+    RTExpander* const expgradvib;
     Adjuster* const strvib;
     Adjuster* const strvibab;
     Adjuster* const strvibh;
     Adjuster* const angvib;
-    MyExpander* const expmaskvib;
+    RTExpander* const expmaskvib;
     MyComboBoxText* const showmaskvibMethod;
     Gtk::CheckButton* const enavibMask;
     CurveEditorGroup* const maskvibCurveEditorG;
@@ -683,7 +683,7 @@ class LocallabBlur:
 {
 private:
     // Blur & Noise specific widgets
-    MyExpander* const expblnoise;
+    RTExpander* const expblnoise;
     MyComboBoxText* const blMethod;
     Gtk::CheckButton* const fftwbl;
     Adjuster* const radius;
@@ -699,7 +699,7 @@ private:
     Adjuster* const guidbl;
     Adjuster* const strbl;
     Adjuster* const epsbl;
-    MyExpander* const expdenoise2;
+    RTExpander* const expdenoise2;
     Adjuster* const recothres;
     Adjuster* const lowthres;
     Adjuster* const higthres;
@@ -708,11 +708,11 @@ private:
     Gtk::CheckButton* const invbl;
     MyComboBoxText* const chroMethod;
     Gtk::CheckButton* const activlum;
-    MyExpander* const expdenoise;
+    RTExpander* const expdenoise;
     MyComboBoxText* const quamethod;
-    MyExpander* const expdenoisenl;
-    MyExpander* const expdenoiselum;
-    MyExpander* const expdenoisech;
+    RTExpander* const expdenoisenl;
+    RTExpander* const expdenoiselum;
+    RTExpander* const expdenoisech;
     CurveEditorGroup* const LocalcurveEditorwavden;
     FlatCurveEditor* const wavshapeden;
     Gtk::Label* const lCLabels;
@@ -721,7 +721,7 @@ private:
     Gtk::Label* const chroLabels;
     Gtk::Label* const chro46Labels;
     
-    MyExpander* const expdenoise1;
+    RTExpander* const expdenoise1;
     Gtk::Label* const maskusable;
     Gtk::Label* const maskunusable;
     Gtk::Label* const maskusable2;
@@ -748,7 +748,7 @@ private:
     Gtk::Frame* const detailFrame;
     Adjuster* const detailthr;
     Adjuster* const adjblur;
-    MyExpander* const expdenoise3;
+    RTExpander* const expdenoise3;
     Adjuster* const recothresd;
     Adjuster* const lowthresd;
     Adjuster* const midthresd;
@@ -768,7 +768,7 @@ private:
     Adjuster* const sensiden;
     Adjuster* const reparden;
     Gtk::Button* neutral;
-    MyExpander* const expmaskbl;
+    RTExpander* const expmaskbl;
     MyComboBoxText* const showmaskblMethod;
     MyComboBoxText* const showmaskblMethodtyp;
     Gtk::CheckButton* const enablMask;
@@ -870,14 +870,14 @@ private:
     Adjuster* const rewei;
     Adjuster* const softradiustm;
     Adjuster* const sensitm;
-    MyExpander* const exprecovt;
+    RTExpander* const exprecovt;
     Gtk::Label* const maskusablet;
     Gtk::Label* const maskunusablet;
     Adjuster* const recothrest;
     Adjuster* const lowthrest;
     Adjuster* const higthrest;
     Adjuster* const decayt;
-    MyExpander* const expmasktm;
+    RTExpander* const expmasktm;
     MyComboBoxText* const showmasktmMethod;
     Gtk::CheckButton* const enatmMask;
     Gtk::CheckButton* const enatmMaskaft;
@@ -954,7 +954,7 @@ private:
     Adjuster* const scalereti;
     Adjuster* const limd;
     Adjuster* const offs;
-    MyExpander* const expretitools;
+    RTExpander* const expretitools;
     Adjuster* const chrrt;
     Adjuster* const darkness;
     Adjuster* const lightnessreti;
@@ -967,14 +967,14 @@ private:
     Gtk::Label* const transLabels2;
     CurveEditorGroup* const LocalcurveEditorgainT;
     FlatCurveEditor* const cTgainshape;
-    MyExpander* const exprecovr;
+    RTExpander* const exprecovr;
     Gtk::Label* const maskusabler;
     Gtk::Label* const maskunusabler;
     Adjuster* const recothresr;
     Adjuster* const lowthresr;
     Adjuster* const higthresr;
     Adjuster* const decayr;
-    MyExpander* const expmaskreti;
+    RTExpander* const expmaskreti;
     MyComboBoxText* const showmaskretiMethod;
     Gtk::CheckButton* const enaretiMask;
     Gtk::CheckButton* const enaretiMasktmap;
@@ -1104,7 +1104,7 @@ private:
     FlatCurveEditor* const wavshape;
     ThresholdAdjuster* const csThreshold;
     Adjuster* const levelwav;
-    MyExpander* const expresidpyr;
+    RTExpander* const expresidpyr;
     Adjuster* const residcont;
     Adjuster* const residchro;
     Adjuster* const residsha;
@@ -1121,7 +1121,7 @@ private:
     Adjuster* const claricres;
     Adjuster* const clarisoft;
     Gtk::CheckButton* const origlc;
-    MyExpander* const expcontrastpyr;
+    RTExpander* const expcontrastpyr;
     Gtk::CheckButton* const wavgradl;
     Adjuster* const sigmalc2;
     Adjuster* const strwav;
@@ -1150,7 +1150,7 @@ private:
     FlatCurveEditor* const wavshapelev;
     Adjuster* const residblur;
     Gtk::CheckButton* const blurlc;
-    MyExpander* const expcontrastpyr2;
+    RTExpander* const expcontrastpyr2;
     Gtk::CheckButton* const wavcont;
     Adjuster* const sigma;
     Adjuster* const offset;
@@ -1170,14 +1170,14 @@ private:
     FlatCurveEditor* const wavshapecomp;
     //Adjuster* const fatres;
     Gtk::CheckButton* const fftwlc;
-    MyExpander* const exprecovw;
+    RTExpander* const exprecovw;
     Gtk::Label* const maskusablew;
     Gtk::Label* const maskunusablew;
     Adjuster* const recothresw;
     Adjuster* const lowthresw;
     Adjuster* const higthresw;
     Adjuster* const decayw;
-    MyExpander* const expmasklc;
+    RTExpander* const expmasklc;
     MyComboBoxText* const showmasklcMethod;
     Gtk::CheckButton* const enalcMask;
     CurveEditorGroup* const masklcCurveEditorG;
@@ -1260,14 +1260,14 @@ private:
     Adjuster* const contresid;
     Adjuster* const softradiuscb;
     Adjuster* const sensicb;
-    MyExpander* const exprecovcb;
+    RTExpander* const exprecovcb;
     Gtk::Label* const maskusablecb;
     Gtk::Label* const maskunusablecb;
     Adjuster* const recothrescb;
     Adjuster* const lowthrescb;
     Adjuster* const higthrescb;
     Adjuster* const decaycb;
-    MyExpander* const expmaskcb;
+    RTExpander* const expmaskcb;
     MyComboBoxText* const showmaskcbMethod;
     Gtk::CheckButton* const enacbMask;
     CurveEditorGroup* const maskcbCurveEditorG;
@@ -1358,7 +1358,7 @@ private:
     Adjuster* const colorfl;
     Adjuster* const saturl;
     Adjuster* const chroml;
-    MyExpander* const expL;
+    RTExpander* const expL;
     //CurveEditorGroup* const CurveEditorL;
     //DiagonalCurveEditor* const LshapeL;
     Adjuster* const targabs;
@@ -1366,7 +1366,7 @@ private:
     Gtk::Box* const surrHBox;
     
     Adjuster* const baselog;
-    MyExpander* const exprecovl;
+    RTExpander* const exprecovl;
     Gtk::Label* const maskusablel;
     Gtk::Label* const maskunusablel;
     Adjuster* const recothresl;
@@ -1378,7 +1378,7 @@ private:
     Gtk::Frame* const gradlogFrame;
     Adjuster* const strlog;
     Adjuster* const anglog;
-    MyExpander* const expmaskL;
+    RTExpander* const expmaskL;
     MyComboBoxText* const showmaskLMethod;
     Gtk::CheckButton* const enaLMask;
     CurveEditorGroup* const maskCurveEditorL;
@@ -1562,7 +1562,7 @@ private:
     Adjuster* const pqremap;
     Adjuster* const pqremapcam16;
     Gtk::CheckButton* const forcejz;
-    MyExpander* const expjz;
+    RTExpander* const expjz;
     Gtk::Frame* const jzshFrame;
     Adjuster* const hljzcie;
     Adjuster* const hlthjzcie;
@@ -1570,7 +1570,7 @@ private:
     Adjuster* const shthjzcie;
     Adjuster* const radjzcie;
     
-    MyExpander* const expwavjz;
+    RTExpander* const expwavjz;
     
     Gtk::Frame* const contFramejz;
     Adjuster* const sigmalcjz;
@@ -1582,7 +1582,7 @@ private:
     Adjuster* const claricresjz;
     Adjuster* const clarisoftjz;
     
-    MyExpander* const expcam16;
+    RTExpander* const expcam16;
     
     Adjuster* const lightqcie;
     Adjuster* const contlcie;
@@ -1653,7 +1653,7 @@ private:
     Adjuster* const saturzcam;
     Adjuster* const chromzcam;
 */
-    MyExpander* const expLcie;
+    RTExpander* const expLcie;
     Gtk::Frame* const cie2Frame;
     Adjuster* const targetGraycie;
     Adjuster* const targabscie;
@@ -1662,7 +1662,7 @@ private:
     MyComboBoxText*  const surroundcie;
     Gtk::Box* const surrHBoxcie;
 
-    MyExpander* const exprecovcie;
+    RTExpander* const exprecovcie;
     Gtk::Label* const maskusablecie;
     Gtk::Label* const maskunusablecie;
     Adjuster* const recothrescie;
@@ -1670,7 +1670,7 @@ private:
     Adjuster* const higthrescie;
     Adjuster* const decaycie;
 
-    MyExpander* const expmaskcie;
+    RTExpander* const expmaskcie;
     MyComboBoxText* const showmaskcieMethod;
     Gtk::CheckButton* const enacieMask;
     CurveEditorGroup* const maskcieCurveEditorG;

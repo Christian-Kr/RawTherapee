@@ -102,49 +102,6 @@ struct ScopedEnumHash {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
-/**
- * @brief Lock GTK for critical section.
- *
- * Will unlock on destruction. To use:
- *
- *   <code>
- *     {
- *       GThreadLock lock;
- *       // critical code
- *     }
- *   </code>
- */
-class GThreadLock final
-{
-public:
-    GThreadLock()
-    {
-        gdk_threads_enter();
-    }
-    ~GThreadLock()
-    {
-        gdk_threads_leave();
-    }
-};
-
-/**
- * @brief Unlock GTK critical section.
- *
- * Will relock on destruction.
- */
-class GThreadUnLock final
-{
-public:
-    GThreadUnLock()
-    {
-        gdk_threads_leave();
-    }
-    ~GThreadUnLock()
-    {
-        gdk_threads_enter();
-    }
-};
-
 #pragma GCC diagnostic pop
 
 class ConnectionBlocker final
@@ -172,144 +129,336 @@ private:
 };
 
 /**
- * @brief Glue box to control visibility of the MyExpender's content ; also handle the frame around it
+ * Glue box to control visibility of the RTExpander's content; also handles the frame
  */
-class ExpanderBox final : public Gtk::Widget
+class RTExpanderBox final : public Gtk::Widget
 {
+
 private:
     Gtk::Widget *pwcon;
 
 public:
-    explicit ExpanderBox( Gtk::Widget *wcon);
-    ~ExpanderBox( ) override
-    {
-        delete pwcon;
-    }
+    /**
+     * Constructor
+     *
+     * @param wcon Widget to be expanded.
+     */
+    explicit RTExpanderBox(Gtk::Widget *wcon);
 
+    /**
+     * Destructor
+     */
+    ~RTExpanderBox() override;
+
+    /**
+     * Set the level of the box.
+     *
+     * This is just for look and feel.
+     *
+     * @param level Should be or equal 1 und 3.
+     */
     void setLevel(int level);
 
+    /**
+     * Override show from widget to do nothing.
+     */
     void show() {}
+
+    /**
+     * Tell every child that it should be shown.
+     */
     void show_all();
+
+    /**
+     * Override hide from widget to do nothing.
+     */
     void hide() {}
+
+    /**
+     * Override visible state of the widget to do nothing.
+     * @param isVisible
+     */
     void set_visible(bool isVisible = true) {}
 
+    /**
+     * Show the box itself.
+     */
     void showBox();
-    void hideBox();
 
-//  bool on_draw(const ::Cairo::RefPtr< Cairo::Context> &cr);
+    /**
+     * Hide the box itself.
+     */
+    void hideBox();
 };
 
 /**
- * @brief A custom Expander class, that can handle widgets in the title bar
+ * A custom Expander class, that can handle widgets in the title bar.
  *
- * Custom made expander for responsive widgets in the header. It also handle a "enabled/disabled" property that display
- * a different arrow depending on this boolean value.
+ * Custom made expander for responsive widgets in the header. It also handle a "enabled/disabled"
+ * property that display a different arrow depending on this boolean value.
  *
- * Warning: once you've instantiated this class with a text label or a widget label, you won't be able to revert to the other solution.
+ * Warning: once you've instantiated this class with a text label or a widget label, you won't be
+ * able to revert to the other solution.
  */
-class MyExpander final : public Gtk::Box
+class RTExpander final : public Gtk::Box
 {
+
 public:
-    typedef sigc::signal<void> type_signal_enabled_toggled;
+    typedef sigc::signal<void()> type_signal_enabled_toggled;
+
 private:
     type_signal_enabled_toggled message;
-    static Glib::RefPtr<RTImage> inconsistentImage; /// "inconsistent" image, displayed when useEnabled is true ; in this case, nothing will tell that an expander is opened/closed
-    static Glib::RefPtr<RTImage> enabledImage;      ///      "enabled" image, displayed when useEnabled is true ; in this case, nothing will tell that an expander is opened/closed
-    static Glib::RefPtr<RTImage> disabledImage;     ///     "disabled" image, displayed when useEnabled is true ; in this case, nothing will tell that an expander is opened/closed
-    static Glib::RefPtr<RTImage> openedImage;       ///       "opened" image, displayed when useEnabled is false
-    static Glib::RefPtr<RTImage> closedImage;       ///       "closed" image, displayed when useEnabled is false
-    bool enabled;               /// Enabled feature (default to true)
-    bool inconsistent;          /// True if the enabled button is inconsistent
-    Gtk::EventBox *titleEvBox;  /// EventBox of the title, to get a connector from it
+
+    // "inconsistent" image, displayed when useEnabled is true;
+    // in this case, nothing will tell that an expander is opened/closed
+    static Glib::RefPtr<RTImage> inconsistentImage;
+
+    // "enabled" image, displayed when useEnabled is true;
+    // in this case, nothing will tell that an expander is opened/closed
+    static Glib::RefPtr<RTImage> enabledImage;
+
+    // "disabled" image, displayed when useEnabled is true;
+    // in this case, nothing will tell that an expander is opened/closed
+    static Glib::RefPtr<RTImage> disabledImage;
+
+    // "opened" image, displayed when useEnabled is false
+    static Glib::RefPtr<RTImage> openedImage;
+
+    /// "closed" image, displayed when useEnabled is false
+    static Glib::RefPtr<RTImage> closedImage;
+
+    // enabled feature (default to true)
+    bool enabled;
+
+    // true if the enabled button is inconsistent
+    bool inconsistent;
+
+    // there is no need for an event box now, gtk label should be enough
+    Gtk::Widget *titleWidget;
+
     Gtk::Box *headerHBox;
-    bool flushEvent;            /// Flag to control the weird event mechanism of Gtk (please prove me wrong!)
-    ExpanderBox* expBox;        /// Frame that includes the child and control its visibility
-    Gtk::EventBox *imageEvBox;  /// Enable/Disable or Open/Close arrow event box
 
-    using Gtk::Container::add;
+    // frame that includes the child and control its visibility
+    RTExpanderBox* expBox;
 
-    /// Triggered on opened/closed event
-    bool on_toggle(GdkEventButton* event);
-    /// Triggered on enabled/disabled change -> will emit a toggle event to the connected objects
-    bool on_enabled_change(GdkEventButton* event);
-    /// Used to handle the colored background for the whole Title
+    // enable/disable or open/close arrow; there is no need for an event box anymore
+    Gtk::Widget *imageWidget;
+
+    // flag to control the weird event mechanism of Gtk (please prove me wrong!) -> I don't know
+    // what's the deal here
+    bool flushEvent;
+
+    /**
+     * Triggered when open/close-button pressed.
+     * @param event
+     * @return
+     */
+    bool on_toggle(Gdk::EventButton* event);
+
+    /**
+     * Triggered when enabled/disabled changed.
+     *
+     * This will emit a toggle event to the connected objects.
+     *
+     * @param event
+     * @return
+     */
+    void on_enabled_change(int n_press, double x, double y);
+
+    /**
+     * Triggered when the title gets entered or leaved.
+     *
+     * This signal is used to handle the colored background of the whole title.
+     *
+     * @param event
+     * @return
+     */
     bool on_enter_leave_title (GdkEventCrossing* event);
-    /// Used to handle the colored background for the Enable button
+
+    /**
+     * Triggered when the enable button will be entered or leaved.
+     *
+     * This signal is used to handle the coored background of the enabled button.
+     *
+     * @param event
+     * @return
+     */
     bool on_enter_leave_enable (GdkEventCrossing* event);
 
+    /**
+     * Update the whole style of the box.
+     *
+     * This method will only be called in the constructors. Might be removed in future.
+     */
     void updateStyle();
 
 protected:
-    Gtk::Container* child;      /// Gtk::Contained to display below the expander's title
-    Gtk::Widget* headerWidget;  /// Widget to display in the header, next to the arrow image ; can be NULL if the "string" version of the ctor has been used
-    RTImage* statusImage;       /// Image to display the opened/closed status (if useEnabled is false) of the enabled/disabled status (if useEnabled is true)
-    Gtk::Label* label;          /// Text to display in the header, next to the arrow image ; can be NULL if the "widget" version of the ctor has been used
-    bool useEnabled;            /// Set whether to handle an enabled/disabled feature and display the appropriate images
+    // box to display below the expander's title
+    Gtk::Box* child;
+
+    // widget to display in the header, next to the arrow image;
+    // can be NULL if the "string" version of the ctor has been used
+    Gtk::Widget* headerWidget;
+
+    // image to display the opened/closed status (if useEnabled is false) of the enabled/disabled
+    // status (if useEnabled is true)
+    RTImage* statusImage;
+
+    // text to display in the header, next to the arrow image;
+    // can be NULL if the "widget" version of the ctor has been used
+    Gtk::Label* label;
+
+    // set whether to handle an enabled/disabled feature and display the appropriate images
+    bool useEnabled;
 
 public:
 
-    /** @brief Create a custom expander with a simple header made of a label.
-     * @param useEnabled Set whether to handle an enabled/disabled toggle button and display the appropriate image
-     * @param titleLabel A string to display in the header. Warning: you won't be able to switch to a widget label.
+    /**
+     * Create a custom expander with a simple header made of a label.
+     *
+     * @param useEnabled Set whether to handle an enabled/disabled toggle button and display the
+     *        appropriate image.
+     * @param titleLabel Set string to display in the header. Warning: You won't be able to switch
+     *        to a widget label later.
      */
-    MyExpander(bool useEnabled, Glib::ustring titleLabel);
+    RTExpander(bool useEnabled, Glib::ustring titleLabel);
 
-    /** Create a custom expander with a custom - and responsive - widget
-     * @param useEnabled Set whether to handle an enabled/disabled toggle button and display the appropriate image
-     * @param titleWidget A widget to display in the header. Warning: you won't be able to switch to a string label.
+    /**
+     * Create a custom expander with a custom - and responsive - widget
+     *
+     * @param useEnabled Set whether to handle an enabled/disabled toggle button and display the
+     *        appropriate image.
+     * @param titleWidget A widget to display in the header. Warning: You won't be able to switch
+     *        to a string label.
      */
-    MyExpander(bool useEnabled, Gtk::Widget* titleWidget);
+    RTExpander(bool useEnabled, Gtk::Widget* titleWidget);
 
-    /// Initialize the class by loading the images
+    /**
+     * Initialize the class by loading the images.
+     */
     static void init();
+
+    /**
+     * Delete all the images, that have been created with initialization.
+     */
     static void cleanup();
 
     Glib::SignalProxy1< bool, GdkEventButton* > signal_button_release_event()
     {
-        return titleEvBox->signal_button_release_event();
+        return titleWidget->signal_button_release_event();
     };
     type_signal_enabled_toggled signal_enabled_toggled();
 
-    /// Set the nesting level of the Expander to adapt its style accordingly
+    /**
+     * Set the nesting level of the Expander to adapt its style accordingly.
+     *
+     * @param level Any integer number. It will only be distinguished between <= 1, ==2 and >=3.
+     */
     void setLevel(int level);
 
-    /// Set a new label string. If it has been instantiated with a Gtk::Widget, this method will do nothing
+    /**
+     * Set a new label string.
+     *
+     * @note If it has been instantiated with a Gtk::Widget, this method will do nothing.
+     * @param newLabel
+     */
     void setLabel (Glib::ustring newLabel);
-    /// Set a new label string. If it has been instantiated with a Gtk::Widget, this method will do nothing
+
+    /**
+     * Set a new label string.
+     *
+     * @note If it has been instantiated with a Gtk::Widget, this method will do nothing.
+     * @param newWidget
+     */
     void setLabel (Gtk::Widget *newWidget);
 
-    /// Get whether the enabled option is set (to true or false) or unset (i.e. undefined)
+    /**
+     * Get whether the enabled option is set (to true or false) or unset (i.e. undefined).
+     *
+     * @return True if inconsistent, else false.
+     */
     bool get_inconsistent();
-    /// Set whether the enabled option is set (to true or false) or unset (i.e. undefined)
+
+    /**
+     * Set whether the enabled option is set (to true or false) or unset (i.e. undefined).
+     *
+     * @param isInconsistent True if enabled is set, else false.
+     */
     void set_inconsistent(bool isInconsistent);
 
-    /// Get whether the enabled button is used or not
+    /**
+     * Get whether the enabled button is used or not.
+     *
+     * @return True if enabled is used, else false.
+     */
     bool getUseEnabled();
-    /// Get whether the enabled button is on or off
+
+    /**
+     * Get whether the enabled button is on or off.
+     *
+     * @return True if the enabled button is on, else false.
+     */
     bool getEnabled();
-    /// If not inconsistent, set the enabled button to true or false and emit the message if the state is different
-    /// If inconsistent, set the internal value to true or false, but do not update the image and do not emit the message
+
+    ///
+    ///
+    /**
+     * If not inconsistent, set the enabled button to true or false.
+     *
+     * @note Emit the message if the state is different. If inconsistent, set the internal value
+     *       to true or false, but do not update the image and do not emit the message.
+     * @param isEnabled
+     */
     void setEnabled(bool isEnabled);
-    /// Adds a Tooltip to the Enabled button, if it exist ; do nothing otherwise
+
+    /**
+     * Adds a Tooltip to the Enabled button.
+     *
+     * @note If the button does not exist, nothing will happend here.
+     * @param tooltipMarkup The tooltip information to show on the button.
+     */
     void setEnabledTooltipMarkup(Glib::ustring tooltipMarkup);
     void setEnabledTooltipText(Glib::ustring tooltipText);
 
-    /// Get the header widget. It'll send back the Gtk::Label* if it has been instantiated with a simple text
+    /**
+     * Get the header widget.
+     *
+     * @return Return a Gtk::Label* if it has been instantiated with a simple text.
+     */
     Gtk::Widget* getLabelWidget() const
     {
         return headerWidget ? headerWidget : label;
     }
 
-    /// Set the collapsed/expanded state of the expander
+    /**
+     * Set the collapsed/expanded state of the expander.
+     *
+     * @param expanded State of expanded.
+     */
     void set_expanded( bool expanded );
 
-    /// Get the collapsed/expanded state of the expander
+    /**
+     * Get the collapsed/expanded state of the expander.
+     *
+     * @return True if expanded, else false.
+     */
     bool get_expanded();
 
-    /// Add a Gtk::Container for the content of the expander
-    /// Warning: do not manually Show/Hide the widget, because this parameter is handled by the click on the Expander's title
-    void add  (Gtk::Container& widget, bool setChild = true);
+    /**
+     * Add a Gtk::Widget for the content of the expander.
+     *
+     * @note Do not manually Show/Hide the widget, because this parameter is handled by the
+     *       click on the Expander's title.
+     * @param widget The widget to be added.
+     * @param setChild Whether the widget is a child or not.
+     */
+    void add(Gtk::Widget& widget, bool setChild = true);
 
+    /**
+     * Show or hide the vertical scrollbars.
+     *
+     * @param hide True if they should be hidden, else false.
+     */
     void updateVScrollbars(bool hide);
 };
 

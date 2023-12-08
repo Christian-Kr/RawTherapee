@@ -240,7 +240,7 @@ RTWindow::RTWindow ()
     RTSurface::init();
     RTImage::init();
     WhiteBalance::init();
-    MyExpander::init();
+    RTExpander::init();
     FileBrowserEntry::init();
 
 #ifndef _WIN32
@@ -861,7 +861,7 @@ bool RTWindow::on_delete_event (GdkEventAny* event)
     WhiteBalance::cleanup();
     ProfilePanel::cleanup();
     ClutComboBox::cleanup();
-    MyExpander::cleanup();
+    RTExpander::cleanup();
     mainWindowCursorManager.cleanup();
     editWindowCursorManager.cleanup();
     BatchQueueEntry::savedAsIcon.reset();

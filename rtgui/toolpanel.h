@@ -95,7 +95,7 @@ public:
     {
         return nullptr;
     }
-    virtual MyExpander*    getExpander     ()
+    virtual RTExpander*    getExpander     ()
     {
         return nullptr;
     }
@@ -168,7 +168,7 @@ class FoldableToolPanel :
 
 protected:
     Gtk::Box* parentContainer;
-    MyExpander* exp;
+    RTExpander* exp;
     ToolParamBlock *subToolsContainer;
     bool lastEnabled;
     sigc::connection enaConn;
@@ -179,7 +179,7 @@ public:
 
     FoldableToolPanel(Gtk::Box* content, Glib::ustring toolName, Glib::ustring UILabel, bool need11 = false, bool useEnabled = false);
 
-    MyExpander* getExpander() final
+    RTExpander* getExpander() final
     {
         return exp;
     }
@@ -245,9 +245,9 @@ public:
     void setLevel (int level);
 
     // Functions that want to receive an enabled/disabled event from this class
-    // will have to receive it from MyExpander directly, we do not create
+    // will have to receive it from RTExpander directly, we do not create
     // a relaying event
-    MyExpander::type_signal_enabled_toggled signal_enabled_toggled()
+    RTExpander::type_signal_enabled_toggled signal_enabled_toggled()
     {
         return exp->signal_enabled_toggled();
     }

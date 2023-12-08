@@ -124,7 +124,7 @@ private:
 
     LabGrid *labgrid;
 
-    void foldAllButMe(GdkEventButton* event, MyExpander *expander);
+    void foldAllButMe(GdkEventButton* event, RTExpander *expander);
     void setListener(ToolPanelListener *tpl) override;
 
     void colorForValue(double valX, double valY, enum ColorCaller::ElemType elemType, int callerId, ColorCaller* caller) override;
@@ -189,7 +189,7 @@ private:
     void cbenabUpdateUI();
     void lipstUpdateUI();
 
-    void enableToggled(MyExpander* expander);
+    void enableToggled(RTExpander* expander);
 
     CurveEditorGroup* const curveEditorG;
     //CurveEditorGroup* const curveEditorC;
@@ -377,17 +377,17 @@ private:
     Gtk::Label* const labmC;
     Gtk::Label* const labmNP;
     Gtk::Label* const usharpLabel;
-    MyExpander* const expchroma;
-    MyExpander* const expcontrast;
-    MyExpander* const expedge;
-    MyExpander* const expfinal;
-    MyExpander* const expgamut;
-    MyExpander* const expnoise;
-    MyExpander* const expresid;
-    MyExpander* const expsettings;
-    MyExpander* const exptoning;
-    MyExpander* const expclari;
-    MyExpander* const expbl;
+    RTExpander* const expchroma;
+    RTExpander* const expcontrast;
+    RTExpander* const expedge;
+    RTExpander* const expfinal;
+    RTExpander* const expgamut;
+    RTExpander* const expnoise;
+    RTExpander* const expresid;
+    RTExpander* const expsettings;
+    RTExpander* const exptoning;
+    RTExpander* const expclari;
+    RTExpander* const expbl;
 
     Gtk::Box* const neutrHBox;
     Gtk::Box* const usharpHBox;

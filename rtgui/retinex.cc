@@ -216,7 +216,7 @@ Retinex::Retinex () : FoldableToolPanel (this, TOOL_NAME, M ("TP_RETINEX_LABEL")
 
 
 
-    expsettings = Gtk::manage(new MyExpander(false, M ("TP_RETINEX_SETTINGS")));
+    expsettings = Gtk::manage(new RTExpander(false, M ("TP_RETINEX_SETTINGS")));
     setExpandAlignProperties (expsettings, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
     expsettings->signal_button_release_event().connect_notify ( sigc::bind ( sigc::mem_fun (this, &Retinex::foldAllButMe), expsettings) );
 
@@ -616,7 +616,7 @@ void Retinex::neutral_pressed ()
     mapshape->reset();
 }
 
-void Retinex::foldAllButMe (GdkEventButton* event, MyExpander *expander)
+void Retinex::foldAllButMe (GdkEventButton* event, RTExpander *expander)
 {
     if (event->button == 3) {
         expsettings->set_expanded (expsettings == expander);

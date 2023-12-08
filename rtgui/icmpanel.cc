@@ -205,7 +205,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
 
     //-----------------gamma TRC working
 //    Gtk::Frame *trcFrame = Gtk::manage(new Gtk::Frame(M("TP_ICM_TRCFRAME")));
-    trcExp = Gtk::manage(new MyExpander(false, M("TP_ICM_TRCFRAME")));
+    trcExp = Gtk::manage(new RTExpander(false, M("TP_ICM_TRCFRAME")));
     setExpandAlignProperties(trcExp, true, false, Gtk::Align::FILL, Gtk::ALIGN_START);
 //    trcFrame->set_label_align(0.025, 0.5);
     Gtk::Box *trcProfVBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
@@ -499,7 +499,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
     show_all();
 }
 
-void ICMPanel::foldAllButMe (GdkEventButton* event, MyExpander *expander)
+void ICMPanel::foldAllButMe (GdkEventButton* event, RTExpander *expander)
 {
     if (event->button == 3) {
         trcExp->set_expanded (trcExp == expander);

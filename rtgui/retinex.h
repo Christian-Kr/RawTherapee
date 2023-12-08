@@ -54,7 +54,7 @@ protected:
     Adjuster* s_tonalwidth;
     Adjuster* radius;
 
-    MyExpander* expsettings;
+    RTExpander* expsettings;
 
     Gtk::Label* labmdh;
     Gtk::Grid* dhgrid;
@@ -154,7 +154,7 @@ public:
     void colorForValue(double valX, double valY, enum ColorCaller::ElemType elemType, int callerId, ColorCaller* caller) override;
 
 private:
-    void foldAllButMe(GdkEventButton* event, MyExpander *expander);
+    void foldAllButMe(GdkEventButton* event, RTExpander *expander);
     void convertParamToNormal();
     void updateGUIToMode(int mode);
     void complexmethodChanged();

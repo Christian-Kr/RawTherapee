@@ -200,17 +200,17 @@ Wavelet::Wavelet() :
     labmC(Gtk::manage(new Gtk::Label(M("TP_WAVELET_CTYPE") + ":"))),
     labmNP(Gtk::manage(new Gtk::Label(M("TP_WAVELET_NPTYPE") + ":"))),
     usharpLabel(Gtk::manage(new Gtk::Label(M("TP_WAVELET_USHARP") + ":"))),
-    expchroma(Gtk::manage(new MyExpander(true, M("TP_WAVELET_LEVCH")))),
-    expcontrast(Gtk::manage(new MyExpander(true, M("TP_WAVELET_LEVF")))),
-    expedge(Gtk::manage(new MyExpander(true, M("TP_WAVELET_EDGE")))),
-    expfinal(Gtk::manage(new MyExpander(true, M("TP_WAVELET_FINAL")))),
-    expgamut(Gtk::manage(new MyExpander(false, M("TP_WAVELET_CONTR")))),
-    expnoise(Gtk::manage(new MyExpander(true, M("TP_WAVELET_NOISE")))),
-    expresid(Gtk::manage(new MyExpander(true, M("TP_WAVELET_RESID")))),
-    expsettings(Gtk::manage(new MyExpander(false, M("TP_WAVELET_SETTINGS")))),
-    exptoning(Gtk::manage(new MyExpander(true, M("TP_WAVELET_TON")))),
-    expclari(Gtk::manage(new MyExpander(true, M("TP_WAVELET_CLARI")))),
-    expbl(Gtk::manage(new MyExpander(true, M("TP_WAVELET_BL")))),
+    expchroma(Gtk::manage(new RTExpander(true, M("TP_WAVELET_LEVCH")))),
+    expcontrast(Gtk::manage(new RTExpander(true, M("TP_WAVELET_LEVF")))),
+    expedge(Gtk::manage(new RTExpander(true, M("TP_WAVELET_EDGE")))),
+    expfinal(Gtk::manage(new RTExpander(true, M("TP_WAVELET_FINAL")))),
+    expgamut(Gtk::manage(new RTExpander(false, M("TP_WAVELET_CONTR")))),
+    expnoise(Gtk::manage(new RTExpander(true, M("TP_WAVELET_NOISE")))),
+    expresid(Gtk::manage(new RTExpander(true, M("TP_WAVELET_RESID")))),
+    expsettings(Gtk::manage(new RTExpander(false, M("TP_WAVELET_SETTINGS")))),
+    exptoning(Gtk::manage(new RTExpander(true, M("TP_WAVELET_TON")))),
+    expclari(Gtk::manage(new RTExpander(true, M("TP_WAVELET_CLARI")))),
+    expbl(Gtk::manage(new RTExpander(true, M("TP_WAVELET_BL")))),
     neutrHBox(Gtk::manage(new Gtk::Box())),
     usharpHBox(Gtk::manage(new Gtk::Box())),
     ctboxch(Gtk::manage(new Gtk::Box())),
@@ -4368,7 +4368,7 @@ void Wavelet::contrastMinusPressed()
     }
 }
 
-void Wavelet::foldAllButMe(GdkEventButton* event, MyExpander *expander)
+void Wavelet::foldAllButMe(GdkEventButton* event, RTExpander *expander)
 {
     if (event->button == 3) {
         expsettings->set_expanded(expsettings == expander);
@@ -4385,7 +4385,7 @@ void Wavelet::foldAllButMe(GdkEventButton* event, MyExpander *expander)
     }
 }
 
-void Wavelet::enableToggled(MyExpander *expander)
+void Wavelet::enableToggled(RTExpander *expander)
 {
     if (listener) {
         rtengine::ProcEvent event = NUMOFEVENTS;

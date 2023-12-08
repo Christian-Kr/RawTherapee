@@ -71,9 +71,9 @@ FoldableToolPanel::FoldableToolPanel(Gtk::Box* content, Glib::ustring toolName, 
         image->set_tooltip_text(M("TP_GENERAL_11SCALE_TOOLTIP"));
         titleHBox->pack_end(*image, Gtk::PACK_SHRINK, 0);
 
-        exp = Gtk::manage (new MyExpander (useEnabled, titleHBox));
+        exp = Gtk::manage (new RTExpander (useEnabled, titleHBox));
     } else {
-        exp = Gtk::manage (new MyExpander (useEnabled, UILabel));
+        exp = Gtk::manage (new RTExpander (useEnabled, UILabel));
     }
 
     exp->signal_button_release_event().connect_notify( sigc::mem_fun(this, &FoldableToolPanel::foldThemAll) );

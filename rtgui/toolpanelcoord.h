@@ -211,7 +211,7 @@ protected:
     Gtk::ScrolledWindow* advancedPanelSW;
     Gtk::ScrolledWindow* locallabPanelSW;
 
-    std::vector<MyExpander*> expList;
+    std::vector<RTExpander*> expList;
 
     bool hasChanged;
     bool batch;

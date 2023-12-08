@@ -19,7 +19,7 @@
  */
 #pragma once
 
-#include <gtkmm/image.h>
+#include <gtkmm/picture.h>
 #include "rtscalable.h"
 
 /**

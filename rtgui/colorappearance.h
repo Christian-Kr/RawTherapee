@@ -114,7 +114,7 @@ private:
     rtengine::ProcEvent EvCATcat;
     bool bgTTipQuery (int x, int y, bool keyboard_tooltip, const Glib::RefPtr<Gtk::Tooltip>& tooltip);
     bool srTTipQuery (int x, int y, bool keyboard_tooltip, const Glib::RefPtr<Gtk::Tooltip>& tooltip);
-    void foldAllButMe (GdkEventButton* event, MyExpander *expander);
+    void foldAllButMe (GdkEventButton* event, RTExpander *expander);
 
     Glib::RefPtr<Gtk::Tooltip> bgTTips;
     Glib::RefPtr<Gtk::Tooltip> srTTips;
@@ -142,7 +142,7 @@ private:
     Adjuster* tempsc;
     Adjuster* greensc;
 
-    MyExpander* expadjust;
+    RTExpander* expadjust;
 
     MyComboBoxText* toneCurveMode;
     MyComboBoxText* toneCurveMode2;
