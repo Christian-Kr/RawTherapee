@@ -248,6 +248,8 @@ private:
     // what's the deal here
     bool flushEvent;
 
+    type_signal_enabled_toggled signal_enabled_toggled() const;
+
     /**
      * Triggered when open/close-button pressed.
      *
@@ -411,8 +413,6 @@ public:
      */
     bool getEnabled();
 
-    ///
-    ///
     /**
      * If not inconsistent, set the enabled button to true or false.
      *
@@ -438,7 +438,11 @@ public:
      */
     Gtk::Widget* getLabelWidget() const
     {
-        return headerWidget ? headerWidget : label;
+        if (headerWidget) {
+            return headerWidget;
+        } else {
+            return label;
+        }
     }
 
     /**

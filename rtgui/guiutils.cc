@@ -947,7 +947,7 @@ void RTExpander::on_toggle(int n_press, double x, double y)
 }
 
 // used to connect a function to the enabled_toggled signal
-RTExpander::type_signal_enabled_toggled RTExpander::signal_enabled_toggled()
+RTExpander::type_signal_enabled_toggled RTExpander::signal_enabled_toggled() const
 {
     return message;
 }
