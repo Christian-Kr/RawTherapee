@@ -100,13 +100,13 @@ Adjuster::Adjuster(
     reset->get_style_context()->add_class(GTK_STYLE_CLASS_FLAT);
     reset->set_can_focus(false);
 
-    spin = Gtk::manage(new MySpinButton());
+    spin = Gtk::manage(new Gtk::SpinButton());
 
     setExpandAlignProperties(spin, false, false, Gtk::ALIGN_CENTER, Gtk::ALIGN_CENTER);
     spin->set_input_purpose(Gtk::INPUT_PURPOSE_DIGITS);
 
     reset->set_size_request(-1, spin->get_height() > MIN_RESET_BUTTON_HEIGHT ? spin->get_height() : MIN_RESET_BUTTON_HEIGHT);
-    slider = Gtk::manage(new MyHScale());
+    slider = Gtk::manage(new Gtk::Scale());
     setExpandAlignProperties(slider, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     slider->set_draw_value(false);
     //slider->set_has_origin(false);  // ------------------ This will remove the colored part on the left of the slider's knob

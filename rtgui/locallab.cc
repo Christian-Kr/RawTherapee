@@ -34,7 +34,7 @@ const Glib::ustring Locallab::TOOL_NAME = "locallab";
 /* ==== LocallabToolList ==== */
 LocallabToolList::LocallabToolList():
     // Tool list GUI elements
-    list(Gtk::manage(new MyComboBox())),
+    list(Gtk::manage(new Gtk::ComboBox())),
     listTreeModel(Gtk::ListStore::create(toolRow)),
 
     // Tool list listener

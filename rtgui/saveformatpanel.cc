@@ -51,7 +51,7 @@ SaveFormatPanel::SaveFormatPanel () : listener (nullptr)
     setExpandAlignProperties(hb1, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     Gtk::Label* flab = Gtk::manage (new Gtk::Label (M("SAVEDLG_FILEFORMAT") + ":"));
     setExpandAlignProperties(flab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
-    format = Gtk::manage (new MyComboBoxText ());
+    format = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties(format, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     format->signal_changed ().connect (sigc::mem_fun (*this, &SaveFormatPanel::formatChanged));
 
@@ -78,7 +78,7 @@ SaveFormatPanel::SaveFormatPanel () : listener (nullptr)
     jpegSubSampLabel = Gtk::manage (new Gtk::Label (M("SAVEDLG_SUBSAMP") + Glib::ustring(":")) );
     setExpandAlignProperties(jpegSubSampLabel, true, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
-    jpegSubSamp = Gtk::manage (new MyComboBoxText ());
+    jpegSubSamp = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties(jpegSubSamp, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     jpegSubSamp->append (M("SAVEDLG_SUBSAMP_1"));
     jpegSubSamp->append (M("SAVEDLG_SUBSAMP_2"));

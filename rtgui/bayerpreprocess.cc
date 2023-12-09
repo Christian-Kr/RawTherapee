@@ -52,7 +52,7 @@ BayerPreProcess::BayerPreProcess() : FoldableToolPanel(this, TOOL_NAME, M("TP_PR
 
     Gtk::Box *hb = Gtk::manage(new Gtk::Box());
     hb->pack_start(*Gtk::manage(new Gtk::Label(M("TP_PREPROCESS_LINEDENOISE_DIRECTION") + ": ")), Gtk::PACK_SHRINK, 0);
-    lineDenoiseDirection = Gtk::manage(new MyComboBoxText());
+    lineDenoiseDirection = Gtk::manage(new Gtk::ComboBoxText());
     lineDenoiseDirection->append(M("TP_PREPROCESS_LINEDENOISE_DIRECTION_HORIZONTAL"));
     lineDenoiseDirection->append(M("TP_PREPROCESS_LINEDENOISE_DIRECTION_VERTICAL"));
     lineDenoiseDirection->append(M("TP_PREPROCESS_LINEDENOISE_DIRECTION_BOTH"));

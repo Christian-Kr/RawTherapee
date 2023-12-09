@@ -61,7 +61,7 @@ FlatField::FlatField () : FoldableToolPanel(this, TOOL_NAME, M("TP_FLATFIELD_LAB
 
     Gtk::Box* hbffbt = Gtk::manage (new Gtk::Box ());
     hbffbt->pack_start (*Gtk::manage (new Gtk::Label ( M("TP_FLATFIELD_BLURTYPE") + ":")), Gtk::PACK_SHRINK);
-    flatFieldBlurType = Gtk::manage (new MyComboBoxText ());
+    flatFieldBlurType = Gtk::manage (new Gtk::ComboBoxText ());
     flatFieldBlurType->append(M("TP_FLATFIELD_BT_AREA"));
     flatFieldBlurType->append(M("TP_FLATFIELD_BT_VERTICAL"));
     flatFieldBlurType->append(M("TP_FLATFIELD_BT_HORIZONTAL"));

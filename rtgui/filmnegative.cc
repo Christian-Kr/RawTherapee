@@ -205,7 +205,7 @@ FilmNegative::FilmNegative() :
     paramsUpgraded(false),
     refLuminance({{0.f, 0.f, 0.f}, 0.f}),
     fnp(nullptr),
-    colorSpace(Gtk::manage(new MyComboBoxText())),
+    colorSpace(Gtk::manage(new Gtk::ComboBoxText())),
     greenExp(createExponentAdjuster(this, M("TP_FILMNEGATIVE_GREEN"), 0.3, 4, 0.01, 1.5)),  // master exponent (green channel)
     redRatio(createExponentAdjuster(this, M("TP_FILMNEGATIVE_RED"), 0.3, 5, 0.01, (2.04 / 1.5))), // ratio of red exponent to master exponent
     blueRatio(createExponentAdjuster(this, M("TP_FILMNEGATIVE_BLUE"), 0.3, 5, 0.01, (1.29 / 1.5))), // ratio of blue exponent to master exponent

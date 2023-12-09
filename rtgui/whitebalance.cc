@@ -160,7 +160,7 @@ WhiteBalance::WhiteBalance () : FoldableToolPanel(this, TOOL_NAME, M("TP_WBALANC
     // Create the Tree model
     refTreeModel = Gtk::TreeStore::create(methodColumns);
     // Create the Combobox
-    method = Gtk::manage (new MyComboBox ());
+    method = Gtk::manage (new Gtk::ComboBox ());
     setExpandAlignProperties(method, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     // Assign the model to the Combobox
     method->set_model(refTreeModel);
@@ -291,7 +291,7 @@ WhiteBalance::WhiteBalance () : FoldableToolPanel(this, TOOL_NAME, M("TP_WBALANC
     wbsizehelper->set_name("WB-Size-Helper");
     setExpandAlignProperties(wbsizehelper, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
-    spotsize = Gtk::manage (new MyComboBoxText ());
+    spotsize = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties(spotsize, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     spotsize->append ("2");
 
@@ -388,7 +388,7 @@ WhiteBalance::WhiteBalance () : FoldableToolPanel(this, TOOL_NAME, M("TP_WBALANC
 
 
 
-    itcwb_prim = Gtk::manage (new MyComboBoxText ());
+    itcwb_prim = Gtk::manage (new Gtk::ComboBoxText ());
     itcwb_prim->append(M("TP_WBALANCE_ITCWB_PRIM_SRGB"));
     itcwb_prim->append(M("TP_WBALANCE_ITCWB_PRIM_BETA"));
     itcwb_prim->append(M("TP_WBALANCE_ITCWB_PRIM_XYZCAM"));

@@ -41,7 +41,7 @@ ColorToning::ColorToning () : FoldableToolPanel(this, TOOL_NAME, M("TP_COLORTONI
 
     //---------------method
 
-    method = Gtk::manage (new MyComboBoxText ());
+    method = Gtk::manage (new Gtk::ComboBoxText ());
     method->append (M("TP_COLORTONING_LAB"));
     method->append (M("TP_COLORTONING_RGBSLIDERS"));
     method->append (M("TP_COLORTONING_RGBCURVES"));
@@ -99,7 +99,7 @@ ColorToning::ColorToning () : FoldableToolPanel(this, TOOL_NAME, M("TP_COLORTONI
 
     //----------------------red green  blue yellow colours
 
-    twocolor = Gtk::manage (new MyComboBoxText ());
+    twocolor = Gtk::manage (new Gtk::ComboBoxText ());
     twocolor->append (M("TP_COLORTONING_TWOSTD"));
     twocolor->append (M("TP_COLORTONING_TWOALL"));
     twocolor->append (M("TP_COLORTONING_TWOBY"));
@@ -436,7 +436,7 @@ ColorToning::ColorToning () : FoldableToolPanel(this, TOOL_NAME, M("TP_COLORTONI
     labRegionBox->pack_start(*labRegionPower);
 
     hb = Gtk::manage(new Gtk::Box());
-    labRegionChannel = Gtk::manage(new MyComboBoxText());
+    labRegionChannel = Gtk::manage(new Gtk::ComboBoxText());
     labRegionChannel->append(M("TP_COLORTONING_LABREGION_CHANNEL_ALL"));
     labRegionChannel->append(M("TP_COLORTONING_LABREGION_CHANNEL_R"));
     labRegionChannel->append(M("TP_COLORTONING_LABREGION_CHANNEL_G"));

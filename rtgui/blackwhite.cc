@@ -51,7 +51,7 @@ BlackWhite::BlackWhite (): FoldableToolPanel(this, TOOL_NAME, M("TP_BWMIX_LABEL"
     Gtk::Label* metLabel = Gtk::manage (new Gtk::Label (M("TP_BWMIX_MET") + ":"));
     metHBox->pack_start (*metLabel, Gtk::PACK_SHRINK);
    
-	method = Gtk::manage (new MyComboBoxText ());
+	method = Gtk::manage (new Gtk::ComboBoxText ());
     method->append (M("TP_BWMIX_MET_DESAT"));
     method->append (M("TP_BWMIX_MET_LUMEQUAL"));
     method->append (M("TP_BWMIX_MET_CHANMIX"));
@@ -121,7 +121,7 @@ BlackWhite::BlackWhite (): FoldableToolPanel(this, TOOL_NAME, M("TP_BWMIX_LABEL"
     Gtk::Label *settingLabel = Gtk::manage (new Gtk::Label (M("TP_BWMIX_SETTING") + ":"));
 
     settingHBox->pack_start (*settingLabel, Gtk::PACK_SHRINK);
-    setting = Gtk::manage (new MyComboBoxText ());
+    setting = Gtk::manage (new Gtk::ComboBoxText ());
     setting->append (M("TP_BWMIX_SET_NORMCONTAST"));
     setting->append (M("TP_BWMIX_SET_HIGHCONTAST"));
     setting->append (M("TP_BWMIX_SET_LUMINANCE"));
@@ -171,7 +171,7 @@ BlackWhite::BlackWhite (): FoldableToolPanel(this, TOOL_NAME, M("TP_BWMIX_LABEL"
     filterHBox->set_tooltip_markup (M("TP_BWMIX_FILTER_TOOLTIP"));
     Gtk::Label *filterLabel = Gtk::manage (new Gtk::Label (M("TP_BWMIX_FILTER") + ":"));
     filterHBox->pack_start (*filterLabel, Gtk::PACK_SHRINK);
-    filter = Gtk::manage (new MyComboBoxText ());
+    filter = Gtk::manage (new Gtk::ComboBoxText ());
     filter->append (M("TP_BWMIX_FILTER_NONE"));
     filter->append (M("TP_BWMIX_FILTER_RED"));
     filter->append (M("TP_BWMIX_FILTER_REDYELLOW"));
@@ -235,7 +235,7 @@ BlackWhite::BlackWhite (): FoldableToolPanel(this, TOOL_NAME, M("TP_BWMIX_LABEL"
     alLabel = Gtk::manage (new Gtk::Label (M("TP_BWMIX_ALGO") + ":"));
     algoHBox->pack_start (*alLabel, Gtk::PACK_SHRINK);
 
-    algo = Gtk::manage (new MyComboBoxText ());
+    algo = Gtk::manage (new Gtk::ComboBoxText ());
     algo->append (M("TP_BWMIX_ALGO_LI"));
     algo->append (M("TP_BWMIX_ALGO_SP"));
     algo->set_active (1);
@@ -319,7 +319,7 @@ BlackWhite::BlackWhite (): FoldableToolPanel(this, TOOL_NAME, M("TP_BWMIX_LABEL"
     bottomMilestonesbw.push_back( GradientMilestone(0., 0., 0., 0.) );
     bottomMilestonesbw.push_back( GradientMilestone(1., 1., 1., 1.) );
 
-    beforeCurveMode = Gtk::manage (new MyComboBoxText ());
+    beforeCurveMode = Gtk::manage (new Gtk::ComboBoxText ());
     beforeCurveMode->append (M("TP_BWMIX_TCMODE_STANDARD"));
     beforeCurveMode->append (M("TP_BWMIX_TCMODE_WEIGHTEDSTD"));
     beforeCurveMode->append (M("TP_BWMIX_TCMODE_FILMLIKE"));
@@ -344,7 +344,7 @@ BlackWhite::BlackWhite (): FoldableToolPanel(this, TOOL_NAME, M("TP_BWMIX_LABEL"
 
     //----------- Curve 2 ------------------------------
     /*
-        afterCurveMode = Gtk::manage (new MyComboBoxText ());
+        afterCurveMode = Gtk::manage (new Gtk::ComboBoxText ());
         afterCurveMode->append (M("TP_BWMIX_TCMODE_STANDARD"));
         //  afterCurveMode->append (M("TP_BWMIX_TCMODE_WEIGHTEDSTD"));
         afterCurveMode->set_active (0);

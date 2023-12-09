@@ -139,7 +139,7 @@ PerspCorrection::PerspCorrection () : FoldableToolPanel(this, TOOL_NAME, M("TP_P
 
     Gtk::Box* method_hbox = Gtk::manage (new Gtk::Box());
     Gtk::Label* method_label = Gtk::manage (new Gtk::Label (M("TP_PERSPECTIVE_METHOD") + ": "));
-    method = Gtk::manage (new MyComboBoxText ());
+    method = Gtk::manage (new Gtk::ComboBoxText ());
     method->append (M("TP_PERSPECTIVE_METHOD_SIMPLE"));
     method->append (M("TP_PERSPECTIVE_METHOD_CAMERA_BASED"));
     method_hbox->pack_start(*method_label, Gtk::PACK_SHRINK);

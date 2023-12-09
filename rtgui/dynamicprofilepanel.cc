@@ -44,7 +44,7 @@ DynamicProfilePanel::EditDialog::EditDialog (const Glib::ustring &title, Gtk::Wi
     add_optional (M ("EXIFFILTER_LENS"), has_lens_, lens_);
     add_optional (M ("EXIFFILTER_PATH"), has_path_, path_);
     
-    imagetype_ = Gtk::manage (new MyComboBoxText());
+    imagetype_ = Gtk::manage (new Gtk::ComboBoxText());
     imagetype_->append(Glib::ustring("(") + M("DYNPROFILEEDITOR_IMGTYPE_ANY") + ")");
     imagetype_->append(M("DYNPROFILEEDITOR_IMGTYPE_STD"));
     imagetype_->append(M("DYNPROFILEEDITOR_IMGTYPE_HDR"));

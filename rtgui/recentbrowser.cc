@@ -26,7 +26,7 @@ RecentBrowser::RecentBrowser ()
 {
     set_orientation(Gtk::Orientation::VERTICAL);
     
-    recentDirs = Gtk::manage (new MyComboBoxText ());
+    recentDirs = Gtk::manage (new Gtk::ComboBoxText ());
 
     Gtk::Frame* frame = Gtk::manage (new Gtk::Frame (M("MAIN_FRAME_RECENT")));
     frame->set_label_align(0.025, 0.5);

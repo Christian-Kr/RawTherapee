@@ -75,7 +75,7 @@ LCurve::LCurve() : FoldableToolPanel(this, TOOL_NAME, M("TP_LABCURVE_LABEL"), fa
     Gtk::Label* metLabel = Gtk::manage(new Gtk::Label(M("TP_LOCALLAB_AVOID") + ":"));
     metHBox->pack_start(*metLabel, Gtk::PACK_SHRINK);
 
-    gamutmunselmethod =  Gtk::manage(new MyComboBoxText());
+    gamutmunselmethod =  Gtk::manage(new Gtk::ComboBoxText());
     gamutmunselmethod->append(M("TP_LOCALLAB_GAMUTNON"));
     gamutmunselmethod->append(M("TP_LOCALLAB_GAMUTLABRELA"));
     gamutmunselmethod->append(M("TP_LOCALLAB_GAMUTXYZABSO"));

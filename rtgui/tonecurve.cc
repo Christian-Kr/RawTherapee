@@ -67,7 +67,7 @@ ToneCurve::ToneCurve() : FoldableToolPanel(this, TOOL_NAME, M("TP_EXPOSURE_LABEL
     lclip = Gtk::manage(new Gtk::Label(M("TP_EXPOSURE_CLIP")));
     lclip->set_tooltip_text(M("TP_EXPOSURE_CLIP_TOOLTIP"));
 
-    sclip = Gtk::manage(new MySpinButton());
+    sclip = Gtk::manage(new Gtk::SpinButton());
     sclip->set_range(0.0, 0.99);
     sclip->set_increments(0.01, 0.10);
     sclip->set_value(0.02);
@@ -95,7 +95,7 @@ ToneCurve::ToneCurve() : FoldableToolPanel(this, TOOL_NAME, M("TP_EXPOSURE_LABEL
     hrenabled->set_active (false);
     hrenabled->set_tooltip_markup (M("TP_HLREC_ENA_TOOLTIP"));
 
-    method = Gtk::manage (new MyComboBoxText ());
+    method = Gtk::manage (new Gtk::ComboBoxText ());
     method->append (M("TP_HLREC_LUMINANCE"));
     method->append (M("TP_HLREC_CIELAB"));
     method->append (M("TP_HLREC_BLEND"));
@@ -168,7 +168,7 @@ ToneCurve::ToneCurve() : FoldableToolPanel(this, TOOL_NAME, M("TP_EXPOSURE_LABEL
     histmatchconn = histmatching->signal_toggled().connect(sigc::mem_fun(*this, &ToneCurve::histmatchingToggled));
     pack_start(*histmatching, true, true, 2);
 
-    toneCurveMode = Gtk::manage(new MyComboBoxText());
+    toneCurveMode = Gtk::manage(new Gtk::ComboBoxText());
     toneCurveMode->append(M("TP_EXPOSURE_TCMODE_STANDARD"));
     toneCurveMode->append(M("TP_EXPOSURE_TCMODE_WEIGHTEDSTD"));
     toneCurveMode->append(M("TP_EXPOSURE_TCMODE_FILMLIKE"));
@@ -195,7 +195,7 @@ ToneCurve::ToneCurve() : FoldableToolPanel(this, TOOL_NAME, M("TP_EXPOSURE_LABEL
 
 //----------- Curve 2 ------------------------------
 
-    toneCurveMode2 = Gtk::manage(new MyComboBoxText());
+    toneCurveMode2 = Gtk::manage(new Gtk::ComboBoxText());
     toneCurveMode2->append(M("TP_EXPOSURE_TCMODE_STANDARD"));
     toneCurveMode2->append(M("TP_EXPOSURE_TCMODE_WEIGHTEDSTD"));
     toneCurveMode2->append(M("TP_EXPOSURE_TCMODE_FILMLIKE"));

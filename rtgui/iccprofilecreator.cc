@@ -66,7 +66,7 @@ ICCProfileCreator::ICCProfileCreator(RTWindow *rtwindow)
     setExpandAlignProperties(prilab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     mainGrid->attach(*prilab, 0, 0, 1, 1);
 
-    primaries = Gtk::manage(new MyComboBoxText());
+    primaries = Gtk::manage(new Gtk::ComboBoxText());
     setExpandAlignProperties(primaries, false, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     primaries->append(M("ICCPROFCREATOR_CUSTOM"));
     primaries->append(M("ICCPROFCREATOR_PRIM_ACESP0"));
@@ -132,7 +132,7 @@ ICCProfileCreator::ICCProfileCreator(RTWindow *rtwindow)
     setExpandAlignProperties(galab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     mainGrid->attach(*galab, 0, 2, 1, 1);
 
-    trcPresets = Gtk::manage(new MyComboBoxText());
+    trcPresets = Gtk::manage(new Gtk::ComboBoxText());
     setExpandAlignProperties(trcPresets, true, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     std::vector<Glib::ustring> outputTRCPresets;
     outputTRCPresets.push_back(M("ICCPROFCREATOR_CUSTOM"));
@@ -170,7 +170,7 @@ ICCProfileCreator::ICCProfileCreator(RTWindow *rtwindow)
     Gtk::Label* illlab = Gtk::manage(new Gtk::Label(M("ICCPROFCREATOR_ILL")));
     setExpandAlignProperties(illlab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     mainGrid->attach(*illlab, 0, 5, 1, 1); //slope
-    cIlluminant = Gtk::manage(new MyComboBoxText());
+    cIlluminant = Gtk::manage(new Gtk::ComboBoxText());
     setExpandAlignProperties(cIlluminant, true, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     cIlluminant->append(M("ICCPROFCREATOR_ILL_DEF"));
     cIlluminant->append(M("ICCPROFCREATOR_ILL_41"));
@@ -189,7 +189,7 @@ ICCProfileCreator::ICCProfileCreator(RTWindow *rtwindow)
     Gtk::Label* proflab = Gtk::manage(new Gtk::Label(M("ICCPROFCREATOR_ICCVERSION")));
     setExpandAlignProperties(proflab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     mainGrid->attach(*proflab, 0, 6, 1, 1);
-    iccVersion = Gtk::manage(new MyComboBoxText());
+    iccVersion = Gtk::manage(new Gtk::ComboBoxText());
     setExpandAlignProperties(iccVersion, true, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     iccVersion->append(M("ICCPROFCREATOR_PROF_V4"));
     iccVersion->append(M("ICCPROFCREATOR_PROF_V2"));

@@ -69,7 +69,7 @@ ExportPanel::ExportPanel () : listener (nullptr)
 
     Gtk::Box* hb_raw_bayer_method = Gtk::manage (new Gtk::Box ());
     hb_raw_bayer_method->pack_start (*Gtk::manage (new Gtk::Label ( M ("EXPORT_RAW_DMETHOD") + ": ")), Gtk::PACK_SHRINK, 4);
-    raw_bayer_method = Gtk::manage (new MyComboBoxText ());
+    raw_bayer_method = Gtk::manage (new Gtk::ComboBoxText ());
 
     for (const auto method_string : RAWParams::BayerSensor::getMethodStrings()) {
         raw_bayer_method->append(method_string);
@@ -93,7 +93,7 @@ ExportPanel::ExportPanel () : listener (nullptr)
 
     Gtk::Box* hb_raw_xtrans_method = Gtk::manage (new Gtk::Box ());
     hb_raw_xtrans_method->pack_start (*Gtk::manage (new Gtk::Label ( M ("EXPORT_RAW_DMETHOD") + ": ")), Gtk::PACK_SHRINK, 4);
-    raw_xtrans_method = Gtk::manage (new MyComboBoxText ());
+    raw_xtrans_method = Gtk::manage (new Gtk::ComboBoxText ());
 
     for (const auto method_string : RAWParams::XTransSensor::getMethodStrings()) {
         raw_xtrans_method->append(method_string);
@@ -159,8 +159,8 @@ ExportPanel::ExportPanel () : listener (nullptr)
 
     Gtk::Box* wbox = Gtk::manage (new Gtk::Box ());
     Gtk::Box* hbox = Gtk::manage (new Gtk::Box ());
-    MaxWidth = Gtk::manage (new MySpinButton ());
-    MaxHeight = Gtk::manage (new MySpinButton ());
+    MaxWidth = Gtk::manage (new Gtk::SpinButton ());
+    MaxHeight = Gtk::manage (new Gtk::SpinButton ());
     wbox->pack_start (*Gtk::manage (new Gtk::Label (M ("EXPORT_MAXWIDTH"))), Gtk::PACK_SHRINK, 4);
     wbox->pack_start (*MaxWidth);
     hbox->pack_start (*Gtk::manage (new Gtk::Label (M ("EXPORT_MAXHEIGHT"))), Gtk::PACK_SHRINK, 4);

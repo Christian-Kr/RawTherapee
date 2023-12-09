@@ -34,7 +34,7 @@ const Glib::ustring PreprocessWB::TOOL_NAME = "preprocesswb";
 PreprocessWB::PreprocessWB() :
     FoldableToolPanel(this, TOOL_NAME, M("TP_PREPROCWB_LABEL")),
     evPreprocessWBMode(ProcEventMapper::getInstance()->newEvent(FIRST, "HISTORY_MSG_PREPROCWB_MODE")),
-    mode(Gtk::manage(new MyComboBoxText()))
+    mode(Gtk::manage(new Gtk::ComboBoxText()))
 {
     Gtk::Box *hb = Gtk::manage(new Gtk::Box());
     hb->pack_start(*Gtk::manage(new Gtk::Label(M("TP_PREPROCWB_MODE") + ": ")), Gtk::PACK_SHRINK, 0);

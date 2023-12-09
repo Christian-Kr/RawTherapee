@@ -37,7 +37,7 @@ Retinex::Retinex () : FoldableToolPanel (this, TOOL_NAME, M ("TP_RETINEX_LABEL")
 
     // MAIN Expander ==================================================================
 
-    complexmethod = Gtk::manage (new MyComboBoxText ());
+    complexmethod = Gtk::manage (new Gtk::ComboBoxText ());
 
     complexmethod->append(M("TP_WAVELET_COMPNORMAL"));
     complexmethod->append(M("TP_WAVELET_COMPEXPERT"));
@@ -60,7 +60,7 @@ Retinex::Retinex () : FoldableToolPanel (this, TOOL_NAME, M ("TP_RETINEX_LABEL")
     setExpandAlignProperties (labmdh, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     dhgrid->attach (*labmdh, 0, 0, 1, 1);
 
-    retinexMethod = Gtk::manage (new MyComboBoxText ());
+    retinexMethod = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties (retinexMethod, true, true, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     retinexMethod->append (M ("TP_RETINEX_LOW"));
     retinexMethod->append (M ("TP_RETINEX_UNIFORM"));
@@ -72,7 +72,7 @@ Retinex::Retinex () : FoldableToolPanel (this, TOOL_NAME, M ("TP_RETINEX_LABEL")
     retinexMethod->set_tooltip_markup (M ("TP_RETINEX_METHOD_TOOLTIP"));
     dhgrid->attach (*retinexMethod, 1, 0, 1, 1);
 
-    retinexcolorspace = Gtk::manage (new MyComboBoxText ());
+    retinexcolorspace = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties (retinexcolorspace, true, true, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     retinexcolorspace->append (M ("TP_RETINEX_LABSPACE"));
     retinexcolorspace->append (M ("TP_RETINEX_HSLSPACE_LOG"));
@@ -111,7 +111,7 @@ Retinex::Retinex () : FoldableToolPanel (this, TOOL_NAME, M ("TP_RETINEX_LABEL")
     setExpandAlignProperties (labview, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     viewgrid->attach (*labview, 0, 0, 1, 1);
 
-    viewMethod = Gtk::manage (new MyComboBoxText ());
+    viewMethod = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties (viewMethod, true, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     viewMethod->append (M ("TP_RETINEX_VIEW_NONE"));
     viewMethod->append (M ("TP_RETINEX_VIEW_UNSHARP"));
@@ -148,7 +148,7 @@ Retinex::Retinex () : FoldableToolPanel (this, TOOL_NAME, M ("TP_RETINEX_LABEL")
     setExpandAlignProperties (labmap, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     mapgrid->attach (*labmap, 0, 0, 1, 1);
 
-    mapMethod = Gtk::manage (new MyComboBoxText ());
+    mapMethod = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties (mapMethod, true, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     mapMethod->append (M ("TP_RETINEX_MAP_NONE"));
     mapMethod->append (M ("TP_RETINEX_MAP_GAUS"));
@@ -315,7 +315,7 @@ Retinex::Retinex () : FoldableToolPanel (this, TOOL_NAME, M ("TP_RETINEX_LABEL")
     setExpandAlignProperties (labgam, false, false, Gtk::ALIGN_START, Gtk::ALIGN_BASELINE);
     gamgrid->attach (*labgam, 0, 0, 1, 1);
 
-    gammaretinex = Gtk::manage (new MyComboBoxText ());
+    gammaretinex = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties (gammaretinex, true, false, Gtk::Align::FILL, Gtk::ALIGN_BASELINE);
     gammaretinex->append (M ("TP_RETINEX_GAMMA_NONE"));
     gammaretinex->append (M ("TP_RETINEX_GAMMA_LOW"));

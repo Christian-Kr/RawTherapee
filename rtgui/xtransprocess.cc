@@ -38,7 +38,7 @@ XTransProcess::XTransProcess () : FoldableToolPanel(this, TOOL_NAME, M("TP_RAW_L
 
     Gtk::Box* hb1 = Gtk::manage (new Gtk::Box ());
     hb1->pack_start (*Gtk::manage (new Gtk::Label ( M("TP_RAW_DMETHOD") + ": ")), Gtk::PACK_SHRINK, 4);
-    method = Gtk::manage (new MyComboBoxText ());
+    method = Gtk::manage (new Gtk::ComboBoxText ());
 
     for (const auto method_string : RAWParams::XTransSensor::getMethodStrings()) {
         const std::string langKey =

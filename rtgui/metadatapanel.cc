@@ -32,7 +32,7 @@ MetaDataPanel::MetaDataPanel() : EvMetaDataMode(ProcEventMapper::getInstance()->
 
     Gtk::Box *box = Gtk::manage(new Gtk::Box());
     box->pack_start(*Gtk::manage(new Gtk::Label(M("TP_METADATA_MODE") + ": ")), Gtk::PACK_SHRINK, 4);
-    metadataMode = Gtk::manage(new MyComboBoxText());
+    metadataMode = Gtk::manage(new Gtk::ComboBoxText());
     metadataMode->append(M("TP_METADATA_TUNNEL"));
     metadataMode->append(M("TP_METADATA_EDIT"));
     metadataMode->append(M("TP_METADATA_STRIP"));

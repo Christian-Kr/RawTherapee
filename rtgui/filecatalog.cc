@@ -136,7 +136,7 @@ FileCatalog::FileCatalog (CoarsePanel* cp, ToolBar* tb, FilePanel* filepanel) :
 
     // if NOT a single row toolbar
     if (!options.FileBrowserToolbarSingleRow) {
-        hbToolBar1STB = Gtk::manage(new MyScrolledToolbar());
+        hbToolBar1STB = Gtk::manage(new Gtk::ScrolledWindow());
         hbToolBar1STB->set_name("FileBrowserQueryToolbar");
         hbToolBar1STB->add(*hbToolBar1);
         pack_start (*hbToolBar1STB, Gtk::PACK_SHRINK, 0);
@@ -145,7 +145,7 @@ FileCatalog::FileCatalog (CoarsePanel* cp, ToolBar* tb, FilePanel* filepanel) :
     // setup button bar
     buttonBar = Gtk::manage( new Gtk::Box () );
     buttonBar->set_name ("ToolBarPanelFileBrowser");
-    MyScrolledToolbar *stb = Gtk::manage(new MyScrolledToolbar());
+    MyScrolledToolbar *stb = Gtk::manage(new Gtk::ScrolledWindow());
     stb->set_name("FileBrowserIconToolbar");
     stb->add(*buttonBar);
     pack_start (*stb, Gtk::PACK_SHRINK);
@@ -1972,7 +1972,7 @@ void FileCatalog::updateFBQueryTB (bool singleRow)
     } else {
         if (!hbToolBar1STB) {
             removeIfThere(buttonBar, hbToolBar1, false);
-            hbToolBar1STB = Gtk::manage(new MyScrolledToolbar());
+            hbToolBar1STB = Gtk::manage(new Gtk::ScrolledWindow());
             hbToolBar1STB->set_name("FileBrowserQueryToolbar");
             hbToolBar1STB->add(*hbToolBar1);
             hbToolBar1STB->show();

@@ -46,7 +46,7 @@ RenameDialog::RenameDialog (Gtk::Window* parent)
 // Issue 316
 //    Gtk::Box* tbox = Gtk::manage (new Gtk::Box());
 //    useTmpl = Gtk::manage (new Gtk::CheckButton (M("FILEBROWSER_USETEMPLATE")));
-//    templates = Gtk::manage (new MyComboBox ());
+//    templates = Gtk::manage (new Gtk::ComboBox ());
 //    templateModel = Gtk::ListStore::create (templateColumns);
 //    templates->set_model (templateModel);
 //    templates->pack_start (templateColumns.tmplName);

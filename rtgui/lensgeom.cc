@@ -37,7 +37,7 @@ LensGeometry::LensGeometry () : FoldableToolPanel(this, TOOL_NAME, M("TP_LENSGEO
 
     Gtk::Box* hb1 = Gtk::manage (new Gtk::Box ());
     hb1->pack_start (*Gtk::manage (new Gtk::Label ( M("TP_RAW_DMETHOD") + ": ")), Gtk::PACK_SHRINK, 4);
-    method = Gtk::manage (new MyComboBoxText ());
+    method = Gtk::manage (new Gtk::ComboBoxText ());
     method->append(M("TP_LENSGEOM_LOG"));
     method->append(M("TP_LENSGEOM_LIN"));
     method->set_active(0);

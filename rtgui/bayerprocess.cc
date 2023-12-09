@@ -44,7 +44,7 @@ BayerProcess::BayerProcess () :
 
     Gtk::Box* hb1 = Gtk::manage (new Gtk::Box ());
     hb1->pack_start (*Gtk::manage (new Gtk::Label ( M("TP_RAW_DMETHOD") + ": ")), Gtk::PACK_SHRINK, 4);
-    method = Gtk::manage (new MyComboBoxText ());
+    method = Gtk::manage (new Gtk::ComboBoxText ());
 
     for(const auto method_string : procparams::RAWParams::BayerSensor::getMethodStrings()) {
         method->append(M("TP_RAW_" + Glib::ustring(method_string).uppercase()));
@@ -80,7 +80,7 @@ BayerProcess::BayerProcess () :
 
     imageNumberBox = Gtk::manage (new Gtk::Box ());
     imageNumberBox->pack_start (*Gtk::manage (new Gtk::Label ( M("TP_RAW_IMAGENUM") + ": ")), Gtk::PACK_SHRINK, 4);
-    imageNumber = Gtk::manage (new MyComboBoxText ());
+    imageNumber = Gtk::manage (new Gtk::ComboBoxText ());
     imageNumber->append("1");
     imageNumber->append("2");
     imageNumber->append("3");
@@ -145,7 +145,7 @@ BayerProcess::BayerProcess () :
 
     Gtk::Box* hb3 = Gtk::manage (new Gtk::Box ());
     hb3->pack_start (*Gtk::manage (new Gtk::Label ( M("TP_RAW_PIXELSHIFTMOTIONMETHOD") + ": ")), Gtk::PACK_SHRINK, 4);
-    pixelShiftMotionMethod = Gtk::manage (new MyComboBoxText ());
+    pixelShiftMotionMethod = Gtk::manage (new Gtk::ComboBoxText ());
     pixelShiftMotionMethod->append(M("TP_RAW_PIXELSHIFTMM_OFF"));
     pixelShiftMotionMethod->append(M("TP_RAW_PIXELSHIFTMM_AUTO"));
     pixelShiftMotionMethod->append(M("TP_RAW_PIXELSHIFTMM_CUSTOM"));
@@ -170,7 +170,7 @@ BayerProcess::BayerProcess () :
 
     Gtk::Box* hb4 = Gtk::manage (new Gtk::Box ());
     hb4->pack_start (*Gtk::manage (new Gtk::Label ( M("TP_RAW_PIXELSHIFTDMETHOD") + ": ")), Gtk::PACK_SHRINK, 4);
-    pixelShiftDemosaicMethod = Gtk::manage (new MyComboBoxText ());
+    pixelShiftDemosaicMethod = Gtk::manage (new Gtk::ComboBoxText ());
     for(const auto method_string : procparams::RAWParams::BayerSensor::getPSDemosaicMethodStrings()) {
         pixelShiftDemosaicMethod->append(M("TP_RAW_" + Glib::ustring(method_string).uppercase()));
     }

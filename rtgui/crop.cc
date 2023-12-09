@@ -148,28 +148,28 @@ Crop::Crop():
     Gtk::Label* xlab = Gtk::manage (new Gtk::Label (M("TP_CROP_X") + ":"));
     setExpandAlignProperties(xlab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
-    x = Gtk::manage (new MySpinButton ());
+    x = Gtk::manage (new Gtk::SpinButton ());
     setExpandAlignProperties(x, true, false, Gtk::ALIGN_END, Gtk::ALIGN_CENTER);
     x->set_width_chars(6);
 
     Gtk::Label* ylab = Gtk::manage (new Gtk::Label (M("TP_CROP_Y") + ":"));
     setExpandAlignProperties(ylab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
-    y = Gtk::manage (new MySpinButton ());
+    y = Gtk::manage (new Gtk::SpinButton ());
     setExpandAlignProperties(y, true, false, Gtk::ALIGN_END, Gtk::ALIGN_CENTER);
     y->set_width_chars(6);
 
     Gtk::Label* wlab = Gtk::manage (new Gtk::Label (M("TP_CROP_W") + ":"));
     setExpandAlignProperties(wlab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
-    w = Gtk::manage (new MySpinButton ());
+    w = Gtk::manage (new Gtk::SpinButton ());
     setExpandAlignProperties(w, true, false, Gtk::ALIGN_END, Gtk::ALIGN_CENTER);
     w->set_width_chars(6);
 
     Gtk::Label* hlab = Gtk::manage (new Gtk::Label (M("TP_CROP_H") + ":"));
     setExpandAlignProperties(hlab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
-    h = Gtk::manage (new MySpinButton ());
+    h = Gtk::manage (new Gtk::SpinButton ());
     setExpandAlignProperties(h, true, false, Gtk::ALIGN_END, Gtk::ALIGN_CENTER);
     h->set_width_chars(6);
 
@@ -211,10 +211,10 @@ Crop::Crop():
     ratiogrid->get_style_context()->add_class("grid-spacing");
     setExpandAlignProperties(ratiogrid, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
-    ratio = Gtk::manage (new MyComboBoxText ());
+    ratio = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties(ratio, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
-    orientation = Gtk::manage (new MyComboBoxText ());
+    orientation = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties(orientation, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     customRatioLabel = Gtk::manage(new Gtk::Label(""));
@@ -229,7 +229,7 @@ Crop::Crop():
     Gtk::Label* guidelab = Gtk::manage (new Gtk::Label (M("TP_CROP_GUIDETYPE")));
     setExpandAlignProperties(guidelab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
-    guide = Gtk::manage (new MyComboBoxText ());
+    guide = Gtk::manage (new Gtk::ComboBoxText ());
     setExpandAlignProperties(guide, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
 
     settingsgrid->attach (*fixr, 0, 0, 1, 1);
@@ -255,7 +255,7 @@ Crop::Crop():
     Gtk::Label* ppilab = Gtk::manage (new Gtk::Label (M("TP_CROP_PPI") + ":"));
     setExpandAlignProperties(ppilab, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
 
-    ppi = Gtk::manage (new MySpinButton ());
+    ppi = Gtk::manage (new Gtk::SpinButton ());
     setExpandAlignProperties(ppi, true, false, Gtk::ALIGN_END, Gtk::ALIGN_CENTER);
     ppi->set_width_chars(6);
 

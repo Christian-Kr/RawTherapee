@@ -493,82 +493,82 @@ public:
 //    MyScrolledWindow();
 //};
 
-/**
- * @brief subclass of Gtk::ScrolledWindow in order to handle the large toolbars (wider than available space)
- */
-class MyScrolledToolbar final : public Gtk::ScrolledWindow
-{
+///**
+// * @brief subclass of Gtk::ScrolledWindow in order to handle the large toolbars (wider than available space)
+// */
+//class MyScrolledToolbar final : public Gtk::ScrolledWindow
+//{
+//
+//    bool on_scroll_event (GdkEventScroll* event) override;
+//    void get_preferred_height_vfunc (int& minimum_height, int& natural_height) const override;
+//
+//public:
+//    MyScrolledToolbar();
+//};
 
-    bool on_scroll_event (GdkEventScroll* event) override;
-    void get_preferred_height_vfunc (int& minimum_height, int& natural_height) const override;
+///**
+// * @brief subclass of Gtk::ComboBox in order to handle the scrollwheel
+// */
+//class MyComboBox : public Gtk::ComboBox
+//{
+//    int naturalWidth, minimumWidth;
+//
+//    bool on_scroll_event (GdkEventScroll* event) override;
+//    void get_preferred_width_vfunc (int &minimum_width, int &natural_width) const override;
+//    void get_preferred_width_for_height_vfunc (int height, int &minimum_width, int &natural_width) const override;
+//
+//public:
+//    MyComboBox ();
+//
+//    void setPreferredWidth (int minimum_width, int natural_width);
+//};
+//
+///**
+// * @brief subclass of Gtk::ComboBoxText in order to handle the scrollwheel
+// */
+//class MyComboBoxText final : public Gtk::ComboBoxText
+//{
+//    int naturalWidth, minimumWidth;
+//    sigc::connection myConnection;
+//
+//    bool on_scroll_event (GdkEventScroll* event) override;
+//    void get_preferred_width_vfunc (int &minimum_width, int &natural_width) const override;
+//    void get_preferred_width_for_height_vfunc (int height, int &minimum_width, int &natural_width) const override;
+//
+//public:
+//    explicit MyComboBoxText (bool has_entry = false);
+//
+//    void setPreferredWidth (int minimum_width, int natural_width);
+//    void connect(const sigc::connection &connection) { myConnection = connection; }
+//    void block(bool blocked) { myConnection.block(blocked); }
+//};
 
-public:
-    MyScrolledToolbar();
-};
-
-/**
- * @brief subclass of Gtk::ComboBox in order to handle the scrollwheel
- */
-class MyComboBox : public Gtk::ComboBox
-{
-    int naturalWidth, minimumWidth;
-
-    bool on_scroll_event (GdkEventScroll* event) override;
-    void get_preferred_width_vfunc (int &minimum_width, int &natural_width) const override;
-    void get_preferred_width_for_height_vfunc (int height, int &minimum_width, int &natural_width) const override;
-
-public:
-    MyComboBox ();
-
-    void setPreferredWidth (int minimum_width, int natural_width);
-};
-
-/**
- * @brief subclass of Gtk::ComboBoxText in order to handle the scrollwheel
- */
-class MyComboBoxText final : public Gtk::ComboBoxText
-{
-    int naturalWidth, minimumWidth;
-    sigc::connection myConnection;
-
-    bool on_scroll_event (GdkEventScroll* event) override;
-    void get_preferred_width_vfunc (int &minimum_width, int &natural_width) const override;
-    void get_preferred_width_for_height_vfunc (int height, int &minimum_width, int &natural_width) const override;
-
-public:
-    explicit MyComboBoxText (bool has_entry = false);
-
-    void setPreferredWidth (int minimum_width, int natural_width);
-    void connect(const sigc::connection &connection) { myConnection = connection; }
-    void block(bool blocked) { myConnection.block(blocked); }
-};
-
-/**
- * @brief subclass of Gtk::SpinButton in order to handle the scrollwheel
- */
-class MySpinButton final : public Gtk::SpinButton
-{
-
-protected:
-    bool on_scroll_event (GdkEventScroll* event) override;
-    bool on_key_press_event (GdkEventKey* event) override;
-
-public:
-    MySpinButton ();
-    void updateSize();
-};
-
-/**
- * @brief subclass of Gtk::Scale in order to handle the scrollwheel
- */
-class MyHScale final : public Gtk::Scale
-{
-
-protected:
-    bool on_scroll_event (GdkEventScroll* event) override;
-    bool on_key_press_event (GdkEventKey* event) override;
-
-};
+///**
+// * @brief subclass of Gtk::SpinButton in order to handle the scrollwheel
+// */
+//class MySpinButton final : public Gtk::SpinButton
+//{
+//
+//protected:
+//    bool on_scroll_event (GdkEventScroll* event) override;
+//    bool on_key_press_event (GdkEventKey* event) override;
+//
+//public:
+//    MySpinButton ();
+//    void updateSize();
+//};
+//
+///**
+// * @brief subclass of Gtk::Scale in order to handle the scrollwheel
+// */
+//class MyHScale final : public Gtk::Scale
+//{
+//
+//protected:
+//    bool on_scroll_event (GdkEventScroll* event) override;
+//    bool on_key_press_event (GdkEventKey* event) override;
+//
+//};
 
 class MyFileChooserWidget
 {
@@ -598,7 +598,7 @@ public:
     void set_show_hidden(bool yes);
 
 protected:
-    explicit MyFileChooserWidget(const Glib::ustring &title, Gtk::FileChooserAction action=Gtk::FILE_CHOOSER_ACTION_OPEN);
+    explicit MyFileChooserWidget(const Glib::ustring &title, Gtk::FileChooser::Action action=Gtk::FileChooser::Action::OPEN);
 
     static std::unique_ptr<Gtk::Image> make_folder_image();
 
@@ -821,14 +821,14 @@ protected:
 
 public:
     BackBuffer();
-    BackBuffer(int w, int h, Cairo::Format format = Cairo::FORMAT_RGB24);
+    BackBuffer(int w, int h, Cairo::ImageSurface::Format format = Cairo::ImageSurface::Format::RGB24);
 
     // set the destination drawing rectangle; return true if the dimensions are different
     // Note: newW & newH must be > 0
-    bool setDrawRectangle(Glib::RefPtr<Gdk::Window> window, Gdk::Rectangle &rectangle, bool updateBackBufferSize = true);
-    bool setDrawRectangle(Glib::RefPtr<Gdk::Window> window, int newX, int newY, int newW, int newH, bool updateBackBufferSize = true);
-    bool setDrawRectangle(Cairo::Format format, Gdk::Rectangle &rectangle, bool updateBackBufferSize = true);
-    bool setDrawRectangle(Cairo::Format format, int newX, int newY, int newW, int newH, bool updateBackBufferSize = true);
+    bool setDrawRectangle(Glib::RefPtr<Gtk::Window> window, Gdk::Rectangle &rectangle, bool updateBackBufferSize = true);
+    bool setDrawRectangle(Glib::RefPtr<Gtk::Window> window, int newX, int newY, int newW, int newH, bool updateBackBufferSize = true);
+    bool setDrawRectangle(Cairo::ImageSurface::Format format, Gdk::Rectangle &rectangle, bool updateBackBufferSize = true);
+    bool setDrawRectangle(Cairo::ImageSurface::Format format, int newX, int newY, int newW, int newH, bool updateBackBufferSize = true);
     // set the destination drawing location, do not modify other parameters like size and offset. Use setDrawRectangle to set all parameters at the same time
     void setDestPosition(int x, int y);
     void setSrcOffset(int x, int y);
@@ -837,7 +837,7 @@ public:
     void getSrcOffset(rtengine::Coord &offset);
 
     void copyRGBCharData(const unsigned char *srcData, int srcX, int srcY, int srcW, int srcH, int srcRowStride, int dstX, int dstY);
-    void copySurface(Glib::RefPtr<Gdk::Window> window, Gdk::Rectangle *rectangle = nullptr);
+    void copySurface(Glib::RefPtr<Gtk::Window> window, Gdk::Rectangle *rectangle = nullptr);
     void copySurface(BackBuffer *destBackBuffer, Gdk::Rectangle *rectangle = nullptr);
     void copySurface(Cairo::RefPtr<Cairo::ImageSurface> destSurface, Gdk::Rectangle *rectangle = nullptr);
     void copySurface(Cairo::RefPtr<Cairo::Context> crDest, Gdk::Rectangle *destRectangle = nullptr);
@@ -870,7 +870,7 @@ public:
     void deleteSurface()
     {
         if (surface) {
-            surface.clear();
+            surface.reset();
         }
 
         dirty = true;
@@ -898,7 +898,7 @@ class SpotPicker : public Gtk::Grid
     private:
         int _spotHalfWidth;
         Gtk::Label _spotLabel;
-        MyComboBoxText _spotSizeSetter;
+        Gtk::ComboBoxText _spotSizeSetter;
         Gtk::ToggleButton _spotButton;
     public:
         SpotPicker(int const defaultValue, Glib::ustring const &buttonKey, Glib::ustring const &buttonTooltip, Glib::ustring const &labelKey);
@@ -922,14 +922,14 @@ class SpotPicker : public Gtk::Grid
         {
             _spotButton.signal_toggled().connect(sigc::mem_fun(returnv, function));
         }
-        bool remove_if_there(Gtk::Container* cont, bool increference = true)
+        bool remove_if_there(Gtk::Box* cont, bool increference = true)
         {
             return removeIfThere(cont, &_spotButton, increference);
         }
 
     protected:
         Gtk::Label labelSetup(Glib::ustring const &key) const;
-        MyComboBoxText selecterSetup() const;
+        Gtk::ComboBoxText selecterSetup() const;
         Gtk::ToggleButton spotButtonTemplate(Glib::ustring const &key, const Glib::ustring &tooltip) const;
         void spotSizeChanged();
 };
@@ -949,5 +949,5 @@ inline void setActiveTextOrIndex(Gtk::ComboBoxText &comboBox, const Glib::ustrin
 
 inline Gtk::Window& getToplevelWindow (Gtk::Widget* widget)
 {
-    return *static_cast<Gtk::Window*> (widget->get_toplevel ());
+    return *static_cast<Gtk::Window*> (widget->get_toplevel());
 }

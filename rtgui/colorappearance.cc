@@ -236,7 +236,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
     genVBox = Gtk::manage ( new Gtk::Box(Gtk::Orientation::VERTICAL));
     genVBox->set_spacing (2);
     
-    complexmethod = Gtk::manage (new MyComboBoxText ());
+    complexmethod = Gtk::manage (new Gtk::ComboBoxText ());
     complexmethod->append(M("TP_WAVELET_COMPNORMAL"));
     complexmethod->append(M("TP_WAVELET_COMPEXPERT"));
     complexmethodconn = complexmethod->signal_changed().connect(sigc::mem_fun(*this, &ColorAppearance::complexmethodChanged));
@@ -247,7 +247,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
     complexHBox->pack_start(*complexmethod);
     genVBox->pack_start (*complexHBox, Gtk::PACK_SHRINK);
     
-    modelmethod = Gtk::manage (new MyComboBoxText ());
+    modelmethod = Gtk::manage (new Gtk::ComboBoxText ());
     modelmethod->append(M("TP_COLORAPP_MOD02"));
     modelmethod->append(M("TP_COLORAPP_MOD16"));
     modelmethodconn = modelmethod->signal_changed().connect(sigc::mem_fun(*this, &ColorAppearance::modelmethodChanged));
@@ -258,7 +258,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
     modelHBox->pack_start(*modelmethod);
     genVBox->pack_start (*modelHBox, Gtk::PACK_SHRINK);
 
-    catmethod = Gtk::manage (new MyComboBoxText ());
+    catmethod = Gtk::manage (new Gtk::ComboBoxText ());
     catmethod->append(M("TP_COLORAPP_CATCLASSIC"));
     catmethod->append(M("TP_COLORAPP_CATSYMGEN"));
     catmethod->append(M("TP_COLORAPP_CATSYMSPE"));
@@ -307,7 +307,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
     surrHBox1->set_tooltip_markup (M ("TP_COLORAPP_SURSOURCE_TOOLTIP"));
     Gtk::Label* surrLabel1 = Gtk::manage (new Gtk::Label (M ("TP_COLORAPP_SURROUNDSRC") + ":"));
     surrHBox1->pack_start (*surrLabel1, Gtk::PACK_SHRINK);
-    surrsrc = Gtk::manage (new MyComboBoxText ());
+    surrsrc = Gtk::manage (new Gtk::ComboBoxText ());
     surrsrc->append (M ("TP_COLORAPP_SURROUND_AVER"));
     surrsrc->append (M ("TP_COLORAPP_SURROUND_DIM"));
     surrsrc->append (M ("TP_COLORAPP_SURROUND_DARK"));
@@ -326,7 +326,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
     wbmHBox->set_tooltip_markup (M ("TP_COLORAPP_MODEL_TOOLTIP"));
     Gtk::Label* wbmLab = Gtk::manage (new Gtk::Label (M ("TP_COLORAPP_MODEL") + ":"));
     wbmHBox->pack_start (*wbmLab, Gtk::PACK_SHRINK);
-    wbmodel = Gtk::manage (new MyComboBoxText ());
+    wbmodel = Gtk::manage (new Gtk::ComboBoxText ());
     wbmodel->append (M ("TP_COLORAPP_WBRT"));
     wbmodel->append (M ("TP_COLORAPP_WBCAM"));
     wbmodel->append (M ("TP_COLORAPP_FREE"));
@@ -341,7 +341,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
     illumHBox->set_tooltip_markup (M ("TP_COLORAPP_ILLUM_TOOLTIP"));
     Gtk::Label* illumLab = Gtk::manage (new Gtk::Label (M ("TP_COLORAPP_ILLUM") + ":"));
     illumHBox->pack_start (*illumLab, Gtk::PACK_SHRINK);
-    illum = Gtk::manage (new MyComboBoxText ());
+    illum = Gtk::manage (new Gtk::ComboBoxText ());
     illum->append (M ("TP_COLORAPP_ILA"));
     illum->append (M ("TP_COLORAPP_IL41"));
     illum->append (M ("TP_COLORAPP_IL50"));
@@ -422,7 +422,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
     alHBox->set_tooltip_markup (M ("TP_COLORAPP_ALGO_TOOLTIP"));
     Gtk::Label* alLabel = Gtk::manage (new Gtk::Label (M ("TP_COLORAPP_ALGO") + ":"));
     alHBox->pack_start (*alLabel, Gtk::PACK_SHRINK);
-    algo = Gtk::manage (new MyComboBoxText ());
+    algo = Gtk::manage (new Gtk::ComboBoxText ());
     algo->append (M ("TP_COLORAPP_ALGO_JC"));
     algo->append (M ("TP_COLORAPP_ALGO_JS"));
     algo->append (M ("TP_COLORAPP_ALGO_QM"));
@@ -520,7 +520,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
     */
     p2VBox->pack_start (*Gtk::manage (new Gtk::Separator(Gtk::ORIENTATION_HORIZONTAL)), Gtk::PACK_EXPAND_WIDGET, 4);
 
-    toneCurveMode = Gtk::manage (new MyComboBoxText ());
+    toneCurveMode = Gtk::manage (new Gtk::ComboBoxText ());
     toneCurveMode->append (M ("TP_COLORAPP_TCMODE_LIGHTNESS"));
     toneCurveMode->append (M ("TP_COLORAPP_TCMODE_BRIGHTNESS"));
     toneCurveMode->set_active (0);
@@ -537,7 +537,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
 
     tcmodeconn = toneCurveMode->signal_changed().connect ( sigc::mem_fun (*this, &ColorAppearance::curveMode1Changed), true );
 
-    toneCurveMode2 = Gtk::manage (new MyComboBoxText ());
+    toneCurveMode2 = Gtk::manage (new Gtk::ComboBoxText ());
     toneCurveMode2->append (M ("TP_COLORAPP_TCMODE_LIGHTNESS"));
     toneCurveMode2->append (M ("TP_COLORAPP_TCMODE_BRIGHTNESS"));
     toneCurveMode2->set_active (0);
@@ -551,7 +551,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
 
     tcmode2conn = toneCurveMode2->signal_changed().connect ( sigc::mem_fun (*this, &ColorAppearance::curveMode2Changed), true );
 
-    toneCurveMode3 = Gtk::manage (new MyComboBoxText ());
+    toneCurveMode3 = Gtk::manage (new Gtk::ComboBoxText ());
     toneCurveMode3->append (M ("TP_COLORAPP_TCMODE_CHROMA"));
     toneCurveMode3->append (M ("TP_COLORAPP_TCMODE_SATUR"));
     toneCurveMode3->append (M ("TP_COLORAPP_TCMODE_COLORF"));
@@ -706,7 +706,7 @@ ColorAppearance::ColorAppearance () : FoldableToolPanel (this, TOOL_NAME, M ("TP
     surrHBox->set_tooltip_markup (M ("TP_COLORAPP_SURROUND_TOOLTIP"));
     Gtk::Label* surrLabel = Gtk::manage (new Gtk::Label (M ("TP_COLORAPP_SURROUND") + ":"));
     surrHBox->pack_start (*surrLabel, Gtk::PACK_SHRINK);
-    surround = Gtk::manage (new MyComboBoxText ());
+    surround = Gtk::manage (new Gtk::ComboBoxText ());
     surround->append (M ("TP_COLORAPP_SURROUND_AVER"));
     surround->append (M ("TP_COLORAPP_SURROUND_DIM"));
     surround->append (M ("TP_COLORAPP_SURROUND_DARK"));

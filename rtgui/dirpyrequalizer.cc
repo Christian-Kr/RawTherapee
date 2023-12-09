@@ -63,7 +63,7 @@ DirPyrEqualizer::DirPyrEqualizer () : FoldableToolPanel(this, TOOL_NAME, M("TP_D
     labmcd = Gtk::manage (new Gtk::Label (M("TP_CBDL_METHOD") + ":"));
     cdbox->pack_start (*labmcd, Gtk::PACK_SHRINK, 1);
 
-    cbdlMethod = Gtk::manage (new MyComboBoxText ());
+    cbdlMethod = Gtk::manage (new Gtk::ComboBoxText ());
     cbdlMethod->append (M("TP_CBDL_BEF"));
     cbdlMethod->append (M("TP_CBDL_AFT"));
     cbdlMethod->set_active(0);
@@ -127,7 +127,7 @@ DirPyrEqualizer::DirPyrEqualizer () : FoldableToolPanel(this, TOOL_NAME, M("TP_D
 //    alLabel = Gtk::manage (new Gtk::Label (M("TP_DIRPYREQUALIZER_ALGO")+":"));
 //  algoHBox->pack_start (*alLabel, Gtk::PACK_SHRINK);
     /*
-        algo = Gtk::manage (new MyComboBoxText ());
+        algo = Gtk::manage (new Gtk::ComboBoxText ());
         algo->append (M("TP_DIRPYREQUALIZER_ALGO_FI"));
         algo->append (M("TP_DIRPYREQUALIZER_ALGO_LA"));
         algo->set_active (1);

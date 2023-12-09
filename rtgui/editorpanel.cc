@@ -862,7 +862,7 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
     beforeAfterBox->set_name ("BeforeAfterContainer");
     beforeAfterBox->pack_start (*afterBox);
 
-    MyScrolledToolbar *stb1 = Gtk::manage(new MyScrolledToolbar());
+    MyScrolledToolbar *stb1 = Gtk::manage(new Gtk::ScrolledWindow());
     stb1->set_name("EditorToolbarTop");
     stb1->add(*toolBarPanel);
     editbox->pack_start (*stb1, Gtk::PACK_SHRINK, 2);
@@ -1006,7 +1006,7 @@ EditorPanel::EditorPanel (FilePanel* filePanel)
     iops->attach_next_to (*tbShowHideSidePanels, Gtk::POS_RIGHT, 1, 1);
     iops->attach_next_to (*tbRightPanel_1, Gtk::POS_RIGHT, 1, 1);
 
-    MyScrolledToolbar *stb2 = Gtk::manage(new MyScrolledToolbar());
+    MyScrolledToolbar *stb2 = Gtk::manage(new Gtk::ScrolledWindow());
     stb2->set_name("EditorToolbarBottom");
     stb2->add(*iops);
 

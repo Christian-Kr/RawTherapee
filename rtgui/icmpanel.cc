@@ -130,7 +130,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
     setExpandAlignProperties(dcpIllLabel, false, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
     dcpIllLabel->set_tooltip_text(M("TP_ICM_DCPILLUMINANT_TOOLTIP"));
     dcpIllLabel->show();
-    dcpIll = Gtk::manage(new MyComboBoxText());
+    dcpIll = Gtk::manage(new Gtk::ComboBoxText());
     setExpandAlignProperties(dcpIll, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     dcpIll->set_tooltip_text(M("TP_ICM_DCPILLUMINANT_TOOLTIP"));
     dcpIll->append(M("TP_ICM_DCPILLUMINANT_INTERPOLATED"));
@@ -190,7 +190,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
 
     Gtk::Box* wProfVBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
 
-    wProfNames = Gtk::manage(new MyComboBoxText());
+    wProfNames = Gtk::manage(new Gtk::ComboBoxText());
     wProfVBox->pack_start(*wProfNames, Gtk::PACK_SHRINK);
 
     std::vector<Glib::ustring> wpnames = rtengine::ICCStore::getInstance()->getWorkingProfiles();
@@ -214,7 +214,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
 
     wTRCBox = Gtk::manage(new Gtk::Box());
 
-    wTRC = Gtk::manage(new MyComboBoxText());
+    wTRC = Gtk::manage(new Gtk::ComboBoxText());
     wTRCBox->pack_start(*wTRC, Gtk::PACK_EXPAND_WIDGET);
     trcProfVBox->pack_start(*wTRCBox, Gtk::PACK_EXPAND_WIDGET);
     wTRC->append(M("TP_ICM_WORKING_TRC_NONE"));
@@ -243,7 +243,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
     willulab = Gtk::manage(new Gtk::Label(M("TP_ICM_WORKING_ILLU") + ":"));
 
     willuBox->pack_start(*willulab, Gtk::PACK_SHRINK);
-    will = Gtk::manage(new MyComboBoxText());
+    will = Gtk::manage(new Gtk::ComboBoxText());
     willuBox->pack_start(*will, Gtk::PACK_EXPAND_WIDGET);
     trcProfVBox->pack_start(*willuBox, Gtk::PACK_EXPAND_WIDGET);
     will->append(M("TP_ICM_WORKING_ILLU_NONE"));
@@ -265,7 +265,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
     wprimlab = Gtk::manage(new Gtk::Label(M("TP_ICM_WORKING_PRIM") + ":"));
 
     wprimBox->pack_start(*wprimlab, Gtk::PACK_SHRINK);
-    wprim = Gtk::manage(new MyComboBoxText());
+    wprim = Gtk::manage(new Gtk::ComboBoxText());
     wprimBox->pack_start(*wprim, Gtk::PACK_EXPAND_WIDGET);
     fbw = Gtk::manage(new Gtk::CheckButton((M("TP_ICM_FBW"))));
     fbw->set_active(true);
@@ -403,7 +403,7 @@ ICMPanel::ICMPanel() : FoldableToolPanel(this, TOOL_NAME, M("TP_ICM_LABEL")), iu
 
     Gtk::Box* oProfVBox = Gtk::manage(new Gtk::Box(Gtk::Orientation::VERTICAL));
 
-    oProfNames = Gtk::manage(new MyComboBoxText());
+    oProfNames = Gtk::manage(new Gtk::ComboBoxText());
     oProfVBox->pack_start(*oProfNames, Gtk::PACK_SHRINK);
 
     oProfNames->append(M("TP_ICM_NOICM"));

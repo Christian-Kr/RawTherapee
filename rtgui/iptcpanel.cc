@@ -158,7 +158,7 @@ IPTCPanel::IPTCPanel():
     scrolledWindowkw->set_min_content_height(100);
     scrolledWindowkw->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_ALWAYS);
     scrolledWindowkw->add(*keywords);
-    keyword  = Gtk::manage(new MyComboBoxText(true));
+    keyword  = Gtk::manage(new Gtk::ComboBoxText(true));
     setExpandAlignProperties(keyword, true, true, Gtk::Align::FILL, Gtk::Align::FILL);
     keyword->set_size_request(75);
     keywords->set_tooltip_text(M("IPTCPANEL_KEYWORDSHINT"));
@@ -191,7 +191,7 @@ IPTCPanel::IPTCPanel():
 
     Gtk::Label* catl = Gtk::manage(new Gtk::Label(M("IPTCPANEL_CATEGORY") + ":"));
     setExpandAlignProperties(catl, true, false, Gtk::ALIGN_START, Gtk::ALIGN_CENTER);
-    category = Gtk::manage(new MyComboBoxText(true));
+    category = Gtk::manage(new Gtk::ComboBoxText(true));
     category->set_size_request(75);
     setExpandAlignProperties(category, true, false, Gtk::Align::FILL, Gtk::ALIGN_CENTER);
     catl->set_tooltip_text(M("IPTCPANEL_CATEGORYHINT"));
@@ -207,7 +207,7 @@ IPTCPanel::IPTCPanel():
     scrolledWindowsc->set_min_content_height(100);
     scrolledWindowsc->set_policy(Gtk::POLICY_AUTOMATIC, Gtk::POLICY_ALWAYS);
     scrolledWindowsc->add(*suppCategories);
-    suppCategory  = Gtk::manage(new MyComboBoxText(true));
+    suppCategory  = Gtk::manage(new Gtk::ComboBoxText(true));
     suppCategory->set_size_request(75);
     setExpandAlignProperties(suppCategory, true, true, Gtk::Align::FILL, Gtk::Align::FILL);
     scl->set_tooltip_text(M("IPTCPANEL_SUPPCATEGORIESHINT"));

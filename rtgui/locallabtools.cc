@@ -129,7 +129,7 @@ LocallabTool::LocallabTool(Gtk::Box* content, Glib::ustring toolName, Glib::ustr
     locToolListener(nullptr),
 
     // LocallabTool generic widgets
-    complexity(Gtk::manage(new MyComboBoxText()))
+    complexity(Gtk::manage(new Gtk::ComboBoxText()))
 {
     // Create expander title bar
     Gtk::Box *titVBox;
@@ -443,7 +443,7 @@ LocallabColor::LocallabColor():
     curvactiv(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_CURV")))),
     gridFrame(Gtk::manage(new Gtk::Frame(M("TP_LOCALLAB_LABGRID")))),
     labgrid(Gtk::manage(new LabGrid(EvLocallabLabGridValue, M("TP_LOCALLAB_LABGRID_VALUES"), true, false))),
-    gridMethod(Gtk::manage(new MyComboBoxText())),
+    gridMethod(Gtk::manage(new Gtk::ComboBoxText())),
     strengthgrid(Gtk::manage(new Adjuster(M("TP_LOCALLAB_STRGRID"), 0, 100, 1, 30))),
     sensi(Gtk::manage(new Adjuster(M("TP_LOCALLAB_SENSI"), 0, 100, 1, 15))),
     structcol(Gtk::manage(new Adjuster(M("TP_LOCALLAB_STRUCCOL1"), 0, 100, 1, 0))),
@@ -464,7 +464,7 @@ LocallabColor::LocallabColor():
     angcol(Gtk::manage(new Adjuster(M("TP_LOCALLAB_GRADANG"), -180, 180, 0.1, 0.))),
     expcurvcol(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_EXPCURV")))),
     labqualcurv(Gtk::manage(new Gtk::Label(M("TP_LOCALLAB_QUALCURV_METHOD") + ":"))),
-    qualitycurveMethod(Gtk::manage(new MyComboBoxText())),
+    qualitycurveMethod(Gtk::manage(new Gtk::ComboBoxText())),
     llCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_LUM"))),
     llshape(static_cast<DiagonalCurveEditor*>(llCurveEditorG->addCurve(CT_Diagonal, "L(L)"))),
     ccshape(static_cast<DiagonalCurveEditor*>(llCurveEditorG->addCurve(CT_Diagonal, "C(C)"))),
@@ -478,13 +478,13 @@ LocallabColor::LocallabColor():
     H2CurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_HLH"))),
     HHshape(static_cast<FlatCurveEditor*>(H2CurveEditorG->addCurve(CT_Flat, "h(h)", nullptr, false, true))),
     rgbCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_RGB"))),
-    toneMethod(Gtk::manage(new MyComboBoxText())),
+    toneMethod(Gtk::manage(new Gtk::ComboBoxText())),
     rgbshape(static_cast<DiagonalCurveEditor*>(rgbCurveEditorG->addCurve(CT_Diagonal, "", toneMethod))),
     special(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_SPECIAL")))),
     expmaskcol1(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_SHOWC1")))),
-    merMethod(Gtk::manage(new MyComboBoxText())),
+    merMethod(Gtk::manage(new Gtk::ComboBoxText())),
     mask7(Gtk::manage(new ToolParamBlock())),
-    mergecolMethod(Gtk::manage(new MyComboBoxText())),
+    mergecolMethod(Gtk::manage(new Gtk::ComboBoxText())),
     mercol(Gtk::manage(new Adjuster(M("TP_LOCALLAB_MERDCOL"), 0.0, 100.0, 0.5, 18.))),
     opacol(Gtk::manage(new Adjuster(M("TP_LOCALLAB_OPACOL"), 0.0, 100.0, 0.5, 60.))),
     conthrcol(Gtk::manage(new Adjuster(M("TP_LOCALLAB_CONTTHR"), 0.0, 100.0, 0.5, 0.))),
@@ -493,8 +493,8 @@ LocallabColor::LocallabColor():
     merlucol(Gtk::manage(new Adjuster(M("TP_LOCALLAB_MERLUCOL"), 0.0, 100.0, 0.5, 32., Gtk::manage(new RTImage("circle-black-small.png")), Gtk::manage(new RTImage("circle-white-small.png"))))),
     expmaskcol(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_SHOWC")))),
     mergecolFrame(Gtk::manage(new Gtk::Frame(M("TP_LOCALLAB_MERGECOLFRA")))),
-    showmaskcolMethod(Gtk::manage(new MyComboBoxText())),
-    showmaskcolMethodinv(Gtk::manage(new MyComboBoxText())),
+    showmaskcolMethod(Gtk::manage(new Gtk::ComboBoxText())),
+    showmaskcolMethodinv(Gtk::manage(new Gtk::ComboBoxText())),
     enaColorMask(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_ENABLE_MASK")))),
 //    maskCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_MASKCOL"))),
     maskCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir,"", 1)),
@@ -2554,7 +2554,7 @@ LocallabExposure::LocallabExposure():
     LocallabTool(this, M("TP_LOCALLAB_EXP_TOOLNAME"), M("TP_LOCALLAB_EXPOSE"), false),
 
     // Exposure specific widgets
-    expMethod(Gtk::manage(new MyComboBoxText())),
+    expMethod(Gtk::manage(new Gtk::ComboBoxText())),
 //    pdeFrame(Gtk::manage(new Gtk::Frame(M("TP_LOCALLAB_PDEFRA")))),
     exppde(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_PDEFRA")))),
     laplacexp(Gtk::manage(new Adjuster(M("TP_LOCALLAB_LAPLACEXP"), 0.0, 100.0, 0.1, 0.))),
@@ -2563,7 +2563,7 @@ LocallabExposure::LocallabExposure():
     balanexp(Gtk::manage(new Adjuster(M("TP_LOCALLAB_BALANEXP"), 0.5, 1.5, 0.01, 1.0))),
     gamm(Gtk::manage(new Adjuster(M("TP_LOCALLAB_GAMM"), 0.2, 1.3, 0.01, 0.4))),
     labelexpmethod(Gtk::manage(new Gtk::Label(M("TP_LOCALLAB_NOISEMETH") + ":"))),
-    exnoiseMethod(Gtk::manage(new MyComboBoxText())),
+    exnoiseMethod(Gtk::manage(new Gtk::ComboBoxText())),
 //    fatFrame(Gtk::manage(new Gtk::Frame(M("TP_LOCALLAB_FATFRA")))),
     expfat(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_FATFRA")))),
     fatamount(Gtk::manage(new Adjuster(M("TP_LOCALLAB_FATAMOUNT"), 1., 100., 1., 1.))),
@@ -2598,8 +2598,8 @@ LocallabExposure::LocallabExposure():
     softradiusexp(Gtk::manage(new Adjuster(M("TP_LOCALLAB_SOFTRADIUSCOL"), 0.0, 100.0, 0.5, 0.))),
     inversex(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_INVERS")))),
     expmaskexp(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_SHOWE")))),
-    showmaskexpMethod(Gtk::manage(new MyComboBoxText())),
-    showmaskexpMethodinv(Gtk::manage(new MyComboBoxText())),
+    showmaskexpMethod(Gtk::manage(new Gtk::ComboBoxText())),
+    showmaskexpMethodinv(Gtk::manage(new Gtk::ComboBoxText())),
     enaExpMask(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_ENABLE_MASK")))),
     enaExpMaskaft(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_ENABLE_MASKAFT")))),
  //   maskexpCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_MASK"))),
@@ -3988,7 +3988,7 @@ LocallabShadow::LocallabShadow():
     LocallabTool(this, M("TP_LOCALLAB_SH_TOOLNAME"), M("TP_LOCALLAB_SHADHIGH"), false),
 
     // Shadow highlight specific widgets
-    shMethod(Gtk::manage(new MyComboBoxText())),
+    shMethod(Gtk::manage(new Gtk::ComboBoxText())),
     reparsh(Gtk::manage(new Adjuster(M("TP_LOCALLAB_LOGREPART"), 1.0, 100.0, 1., 100.0))),
     multipliersh([]() -> std::array<Adjuster *, 5>
     {
@@ -4033,8 +4033,8 @@ LocallabShadow::LocallabShadow():
     angSH(Gtk::manage(new Adjuster(M("TP_LOCALLAB_GRADANG"), -180, 180, 0.1, 0.))),
     inverssh(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_INVERS")))),
     expmasksh(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_SHOWS")))),
-    showmaskSHMethod(Gtk::manage(new MyComboBoxText())),
-    showmaskSHMethodinv(Gtk::manage(new MyComboBoxText())),
+    showmaskSHMethod(Gtk::manage(new Gtk::ComboBoxText())),
+    showmaskSHMethodinv(Gtk::manage(new Gtk::ComboBoxText())),
     enaSHMask(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_ENABLE_MASK")))),
 //    maskSHCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_MASK"))),
     maskSHCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, "", 1)),
@@ -5145,7 +5145,7 @@ LocallabVibrance::LocallabVibrance():
     strvibh(Gtk::manage(new Adjuster(M("TP_LOCALLAB_GRADSTRHUE2"), -6., 6., 0.05, 0.))),
     angvib(Gtk::manage(new Adjuster(M("TP_LOCALLAB_GRADANG"), -180, 180, 0.1, 0.))),
     expmaskvib(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_SHOWVI")))),
-    showmaskvibMethod(Gtk::manage(new MyComboBoxText())),
+    showmaskvibMethod(Gtk::manage(new Gtk::ComboBoxText())),
     enavibMask(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_ENABLE_MASK")))),
  //   maskvibCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_MASK"))),
     maskvibCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, "", 1)),
@@ -6110,9 +6110,9 @@ LocallabSoft::LocallabSoft():
     LocallabTool(this, M("TP_LOCALLAB_SOFT_TOOLNAME"), M("TP_LOCALLAB_SOFT"), false),
 
     // Soft light specific widgets
-    softMethod(Gtk::manage(new MyComboBoxText())),
+    softMethod(Gtk::manage(new Gtk::ComboBoxText())),
     ctboxsoftmethod(Gtk::manage(new Gtk::Box())),
-    showmasksoftMethod(Gtk::manage(new MyComboBoxText())),
+    showmasksoftMethod(Gtk::manage(new Gtk::ComboBoxText())),
     streng(Gtk::manage(new Adjuster(M("TP_LOCALLAB_STRENG"), 1, 100, 1, 1))),
     laplace(Gtk::manage(new Adjuster(M("TP_LOCALLAB_LAPLACE"), 0., 100., 0.5, 25.))),
     sensisf(Gtk::manage(new Adjuster(M("TP_LOCALLAB_SENSI"), 1, 100, 1, 30)))
@@ -6500,7 +6500,7 @@ LocallabBlur::LocallabBlur():
 
     // Blur, Noise & Denoise specific widgets
     expblnoise(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_BLNOI_EXP")))),
-    blMethod(Gtk::manage(new MyComboBoxText())),
+    blMethod(Gtk::manage(new Gtk::ComboBoxText())),
     fftwbl(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_FFTWBLUR")))),
     radius(Gtk::manage(new Adjuster(M("TP_LOCALLAB_RADIUS"), MINRAD, MAXRAD, 0.1, 1.5, nullptr, nullptr, &blurSlider2radius, &blurRadius2Slider))),
     strength(Gtk::manage(new Adjuster(M("TP_LOCALLAB_STRENGTH"), 0, 100, 1, 0))),
@@ -6510,7 +6510,7 @@ LocallabBlur::LocallabBlur():
     strengr(Gtk::manage(new Adjuster(M("TP_LOCALLAB_STRENGR"), 0, 100, 1, 0))),
     scalegr(Gtk::manage(new Adjuster(M("TP_LOCALLAB_SCALEGR"), 0, 100, 1, 100))),
     divgr(Gtk::manage(new Adjuster(M("TP_LOCALLAB_DIVGR"), 0.2, 3., 0.1, 1.))),
-    medMethod(Gtk::manage(new MyComboBoxText())),
+    medMethod(Gtk::manage(new Gtk::ComboBoxText())),
     itera(Gtk::manage(new Adjuster(M("TP_DIRPYRDENOISE_MEDIAN_PASSES"), 1, 4, 1, 1))),
     guidbl(Gtk::manage(new Adjuster(M("TP_LOCALLAB_GUIDBL"), 0, 1000, 1, 0))),
     strbl(Gtk::manage(new Adjuster(M("TP_LOCALLAB_STRBL"), 0, 100, 1, 50))),
@@ -6520,12 +6520,12 @@ LocallabBlur::LocallabBlur():
     lowthres(Gtk::manage(new Adjuster(M("TP_LOCALLAB_MASKLCTHRLOW2"), 1., 80., 0.5, 12.))),
     higthres(Gtk::manage(new Adjuster(M("TP_LOCALLAB_MASKLCTHR2"), 20., 99., 0.5, 85.))),
     sensibn(Gtk::manage(new Adjuster(M("TP_LOCALLAB_SENSI"), 0, 100, 1, 40))),
-    blurMethod(Gtk::manage(new MyComboBoxText())),
+    blurMethod(Gtk::manage(new Gtk::ComboBoxText())),
     invbl(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_INVBL")))),
-    chroMethod(Gtk::manage(new MyComboBoxText())),
+    chroMethod(Gtk::manage(new Gtk::ComboBoxText())),
     activlum(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_ACTIV")))),
     expdenoise(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_DENOI_EXP")))),
-    quamethod(Gtk::manage(new MyComboBoxText())),
+    quamethod(Gtk::manage(new Gtk::ComboBoxText())),
     expdenoisenl(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_NLFRA")))),
     expdenoiselum(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_DENOIWAVLUM")))),
     expdenoisech(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_DENOIWAVCH")))),
@@ -6583,8 +6583,8 @@ LocallabBlur::LocallabBlur():
     reparden(Gtk::manage(new Adjuster(M("TP_LOCALLAB_LOGREPART"), 1.0, 100.0, 1., 100.0))),
     neutral(Gtk::manage (new Gtk::Button (M ("TP_RETINEX_NEUTRAL")))),
     expmaskbl(Gtk::manage(new RTExpander(false, M("TP_LOCALLAB_SHOWPLUS")))),
-    showmaskblMethod(Gtk::manage(new MyComboBoxText())),
-    showmaskblMethodtyp(Gtk::manage(new MyComboBoxText())),
+    showmaskblMethod(Gtk::manage(new Gtk::ComboBoxText())),
+    showmaskblMethodtyp(Gtk::manage(new Gtk::ComboBoxText())),
     enablMask(Gtk::manage(new Gtk::CheckButton(M("TP_LOCALLAB_ENABLE_MASK")))),
 //    maskblCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, M("TP_LOCALLAB_MASK"))),
     maskblCurveEditorG(new CurveEditorGroup(options.lastlocalCurvesDir, "", 1)),
