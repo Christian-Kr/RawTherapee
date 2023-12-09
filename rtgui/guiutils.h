@@ -478,20 +478,20 @@ public:
 };
 
 
-/**
- * @brief subclass of Gtk::ScrolledWindow in order to handle the scrollwheel
- */
-class MyScrolledWindow final : public Gtk::ScrolledWindow
-{
-
-    bool on_scroll_event (GdkEventScroll* event) override;
-    void get_preferred_width_vfunc (int& minimum_width, int& natural_width) const override;
-    void get_preferred_height_vfunc (int& minimum_height, int& natural_height) const override;
-    void get_preferred_height_for_width_vfunc (int width, int &minimum_height, int &natural_height) const override;
-
-public:
-    MyScrolledWindow();
-};
+///**
+// * @brief subclass of Gtk::ScrolledWindow in order to handle the scrollwheel
+// */
+//class MyScrolledWindow final : public Gtk::ScrolledWindow
+//{
+//
+//    bool on_scroll_event (GdkEventScroll* event) override;
+//    void get_preferred_width_vfunc (int& minimum_width, int& natural_width) const override;
+//    void get_preferred_height_vfunc (int& minimum_height, int& natural_height) const override;
+//    void get_preferred_height_for_width_vfunc (int width, int &minimum_height, int &natural_height) const override;
+//
+//public:
+//    MyScrolledWindow();
+//};
 
 /**
  * @brief subclass of Gtk::ScrolledWindow in order to handle the large toolbars (wider than available space)

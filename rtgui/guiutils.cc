@@ -968,71 +968,71 @@ void RTExpander::on_enabled_change(int n_press, double x, double y)
     flushEvent = true;
 }
 
-/*
- *
- * Derived class of some widgets to properly handle the scroll wheel ;
- * the user has to use the Shift key to be able to change the widget's value,
- * otherwise the mouse wheel will scroll the editor's tabs content.
- *
- */
-MyScrolledWindow::MyScrolledWindow ()
-{
-}
-
-bool MyScrolledWindow::on_scroll_event (GdkEventScroll* event)
-{
-    if (!options.hideTPVScrollbar) {
-        Gtk::ScrolledWindow::on_scroll_event (event);
-        return true;
-    }
-
-    Glib::RefPtr<Gtk::Adjustment> adjust = get_vadjustment();
-    Gtk::Scrollbar *scroll = get_vscrollbar();
-
-    if (adjust && scroll) {
-        const double upperBound = adjust->get_upper();
-        const double lowerBound = adjust->get_lower();
-        double value = adjust->get_value();
-        double step  = adjust->get_step_increment();
-
-        if (event->direction == GDK_SCROLL_DOWN) {
-            const double value2 = rtengine::min<double>(value + step, upperBound);
-
-            if (value2 != value) {
-                scroll->set_value(value2);
-            }
-        } else if (event->direction == GDK_SCROLL_UP) {
-            const double value2 = rtengine::max<double>(value - step, lowerBound);
-
-            if (value2 != value) {
-                scroll->set_value(value2);
-            }
-        } else if (event->direction == GDK_SCROLL_SMOOTH) {
-            const double value2 = rtengine::LIM<double>(value + event->delta_y * step, lowerBound, upperBound);
-
-            if (value2 != value) {
-                scroll->set_value(value2);
-            }
-        }
-    }
-
-    return true;
-}
-
-void MyScrolledWindow::get_preferred_width_vfunc (int &minimum_width, int &natural_width) const
-{
-    natural_width = minimum_width = 100 * RTScalable::getScale();
-}
-
-void MyScrolledWindow::get_preferred_height_vfunc (int &minimum_height, int &natural_height) const
-{
-    natural_height = minimum_height = 50 * RTScalable::getScale();
-}
-
-void MyScrolledWindow::get_preferred_height_for_width_vfunc (int width, int &minimum_height, int &natural_height) const
-{
-    natural_height = minimum_height = 50 * RTScalable::getScale();
-}
+///*
+// *
+// * Derived class of some widgets to properly handle the scroll wheel ;
+// * the user has to use the Shift key to be able to change the widget's value,
+// * otherwise the mouse wheel will scroll the editor's tabs content.
+// *
+// */
+//MyScrolledWindow::MyScrolledWindow ()
+//{
+//}
+//
+//bool MyScrolledWindow::on_scroll_event (GdkEventScroll* event)
+//{
+//    if (!options.hideTPVScrollbar) {
+//        Gtk::ScrolledWindow::on_scroll_event (event);
+//        return true;
+//    }
+//
+//    Glib::RefPtr<Gtk::Adjustment> adjust = get_vadjustment();
+//    Gtk::Scrollbar *scroll = get_vscrollbar();
+//
+//    if (adjust && scroll) {
+//        const double upperBound = adjust->get_upper();
+//        const double lowerBound = adjust->get_lower();
+//        double value = adjust->get_value();
+//        double step  = adjust->get_step_increment();
+//
+//        if (event->direction == GDK_SCROLL_DOWN) {
+//            const double value2 = rtengine::min<double>(value + step, upperBound);
+//
+//            if (value2 != value) {
+//                scroll->set_value(value2);
+//            }
+//        } else if (event->direction == GDK_SCROLL_UP) {
+//            const double value2 = rtengine::max<double>(value - step, lowerBound);
+//
+//            if (value2 != value) {
+//                scroll->set_value(value2);
+//            }
+//        } else if (event->direction == GDK_SCROLL_SMOOTH) {
+//            const double value2 = rtengine::LIM<double>(value + event->delta_y * step, lowerBound, upperBound);
+//
+//            if (value2 != value) {
+//                scroll->set_value(value2);
+//            }
+//        }
+//    }
+//
+//    return true;
+//}
+//
+//void MyScrolledWindow::get_preferred_width_vfunc (int &minimum_width, int &natural_width) const
+//{
+//    natural_width = minimum_width = 100 * RTScalable::getScale();
+//}
+//
+//void MyScrolledWindow::get_preferred_height_vfunc (int &minimum_height, int &natural_height) const
+//{
+//    natural_height = minimum_height = 50 * RTScalable::getScale();
+//}
+//
+//void MyScrolledWindow::get_preferred_height_for_width_vfunc (int width, int &minimum_height, int &natural_height) const
+//{
+//    natural_height = minimum_height = 50 * RTScalable::getScale();
+//}
 
 /*
  *

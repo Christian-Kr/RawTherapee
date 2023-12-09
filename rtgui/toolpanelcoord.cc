@@ -17,6 +17,7 @@
  *  along with RawTherapee.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include <iostream>
+#include <memory>
 
 #include "multilangmgr.h"
 #include "toolpanelcoord.h"
@@ -390,14 +391,14 @@ ToolPanelCoordinator::ToolPanelCoordinator (bool batch) : ipc (nullptr), favorit
 
     toolPanelNotebook = new Gtk::Notebook();
     toolPanelNotebook->set_name("ToolPanelNotebook");
-    favoritePanelSW.reset(new MyScrolledWindow());
-    exposurePanelSW    = Gtk::manage (new MyScrolledWindow ());
-    detailsPanelSW     = Gtk::manage (new MyScrolledWindow ());
-    colorPanelSW       = Gtk::manage (new MyScrolledWindow ());
-    transformPanelSW   = Gtk::manage (new MyScrolledWindow ());
-    rawPanelSW         = Gtk::manage (new MyScrolledWindow ());
-    advancedPanelSW    = Gtk::manage (new MyScrolledWindow ());
-    locallabPanelSW     = Gtk::manage(new MyScrolledWindow());
+    favoritePanelSW = std::make_unique<Gtk::ScrolledWindow>();
+    exposurePanelSW    = Gtk::manage (new Gtk::ScrolledWindow ());
+    detailsPanelSW     = Gtk::manage (new Gtk::ScrolledWindow ());
+    colorPanelSW       = Gtk::manage (new Gtk::ScrolledWindow ());
+    transformPanelSW   = Gtk::manage (new Gtk::ScrolledWindow ());
+    rawPanelSW         = Gtk::manage (new Gtk::ScrolledWindow ());
+    advancedPanelSW    = Gtk::manage (new Gtk::ScrolledWindow ());
+    locallabPanelSW     = Gtk::manage(new Gtk::ScrolledWindow());
 
     // load panel endings
     for (int i = 0; i < 8; i++) {
