@@ -820,13 +820,13 @@ void RTExpander::set_inconsistent(bool isInconsistent)
 
         if (useEnabled) {
             if (isInconsistent) {
-                statusImage->set(inconsistentImage->get_surface());
+                statusImage->set(inconsistentImage->get_pixbuf_from_internal_surface());
             } else {
                 if (enabled) {
-                    statusImage->set(enabledImage->get_surface());
+                    statusImage->set(enabledImage->get_pixbuf_from_internal_surface());
                     get_style_context()->add_class("enabledTool");
                 } else {
-                    statusImage->set(disabledImage->get_surface());
+                    statusImage->set(disabledImage->get_pixbuf_from_internal_surface());
                     get_style_context()->remove_class("enabledTool");
                 }
             }
@@ -853,7 +853,7 @@ void RTExpander::setEnabled(bool isEnabled)
                 enabled = false;
 
                 if (!inconsistent) {
-                    statusImage->set(disabledImage->get_surface());
+                    statusImage->set(disabledImage->get_pixbuf_from_internal_surface());
                     get_style_context()->remove_class("enabledTool");
                     message.emit();
                 }
@@ -861,7 +861,7 @@ void RTExpander::setEnabled(bool isEnabled)
                 enabled = true;
 
                 if (!inconsistent) {
-                    statusImage->set(enabledImage->get_surface());
+                    statusImage->set(enabledImage->get_pixbuf_from_internal_surface());
                     get_style_context()->add_class("enabledTool");
                     message.emit();
                 }
@@ -892,9 +892,9 @@ void RTExpander::set_expanded(bool expanded )
 
     if (!useEnabled) {
         if (expanded ) {
-            statusImage->set(openedImage->get_surface());
+            statusImage->set(openedImage->get_pixbuf_from_internal_surface());
         } else {
-            statusImage->set(closedImage->get_surface());
+            statusImage->set(closedImage->get_pixbuf_from_internal_surface());
         }
     }
 
@@ -933,9 +933,9 @@ void RTExpander::on_toggle(int n_press, double x, double y)
 
     if (!useEnabled) {
         if (isVisible) {
-            statusImage->set(closedImage->get_surface());
+            statusImage->set(closedImage->get_pixbuf_from_internal_surface());
         } else {
-            statusImage->set(openedImage->get_surface());
+            statusImage->set(openedImage->get_pixbuf_from_internal_surface());
         }
     }
 
@@ -956,11 +956,11 @@ void RTExpander::on_enabled_change(int n_press, double x, double y)
 {
     if (enabled) {
         enabled = false;
-        statusImage->set(disabledImage->get_surface());
+        statusImage->set(disabledImage->get_pixbuf_from_internal_surface());
         get_style_context()->remove_class("enabledTool");
     } else {
         enabled = true;
-        statusImage->set(enabledImage->get_surface());
+        statusImage->set(enabledImage->get_pixbuf_from_internal_surface());
         get_style_context()->add_class("enabledTool");
     }
 

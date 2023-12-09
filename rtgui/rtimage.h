@@ -59,6 +59,14 @@ public:
     void changeImage(const Glib::RefPtr<const Gio::Icon> &gIcon, Gtk::IconSize size);
     void changeImage (const Glib::ustring& imageName);
     Cairo::RefPtr<Cairo::ImageSurface> get_surface();
+
+    /**
+     * Create a pixbuf internally from the surface and return it.
+     *
+     * @return Smart pointer to Gdk::Pixbuf.
+     */
+    Cairo::RefPtr<Gdk::Pixbuf> get_pixbuf_from_internal_surface() const;
+
     int get_width();
     int get_height();
 

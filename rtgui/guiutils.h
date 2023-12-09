@@ -360,12 +360,6 @@ public:
      */
     static void cleanup();
 
-    Glib::SignalProxy1< bool, GdkEventButton* > signal_button_release_event()
-    {
-        return titleWidget->signal_button_release_event();
-    };
-    type_signal_enabled_toggled signal_enabled_toggled();
-
     /**
      * Set the nesting level of the Expander to adapt its style accordingly.
      *
