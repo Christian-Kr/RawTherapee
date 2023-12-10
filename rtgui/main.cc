@@ -210,7 +210,7 @@ int processLineParams(int argc, char **argv)
 /**
  * Initialization of RawTherapee.
  */
-void init_rt()
+void rtInit()
 {
     extProgStore->init();
     SoundManager::init();
@@ -235,7 +235,7 @@ void init_rt()
 /**
  * Just a cleanup of the RawTherapee engine.
  */
-void cleanup_rt()
+void rtCleanup()
 {
     rtengine::cleanup();
 }
@@ -245,7 +245,7 @@ void cleanup_rt()
  *
  * @return The main RawTherapee window instance.
  */
-RTWindow *create_rt_window()
+RTWindow *rtCreateWindow()
 {
     auto iconPath = Glib::build_filename(argv0, "images");
     auto defaultIconTheme = Gtk::IconTheme::get_for_display(Gdk::Display::get_default());
@@ -276,7 +276,7 @@ public:
             delete rtWindow;
         }
 
-        cleanup_rt();
+        rtCleanup();
     }
 
 private:
@@ -286,9 +286,9 @@ private:
             return true;
         }
 
-        init_rt();
+        rtInit();
 
-        rtWindow = create_rt_window();
+        rtWindow = rtCreateWindow();
         add_window (*rtWindow);
 
         return true;
@@ -553,12 +553,12 @@ int main (int argc, char **argv)
         RTApplication app;
         ret = app.run (app_argc, app_argv);
     } else {
-        init_rt();
+        rtInit();
 
         if (fatalError.empty()) {
             Gtk::Main m (&argc, &argv);
             gdk_threads_enter();
-            const std::unique_ptr<RTWindow> rtWindow (create_rt_window());
+            const std::unique_ptr<RTWindow> rtWindow (rtCreateWindow());
             if (gimpPlugin) {
                 show_gimp_plugin_info_dialog(rtWindow.get());
             }
@@ -571,7 +571,7 @@ int main (int argc, char **argv)
                 }
             }
 
-            cleanup_rt();
+            rtCleanup();
         } else {
             Gtk::Main m (&argc, &argv);
             Gtk::MessageDialog msgd (Glib::ustring::compose("FATAL ERROR!\n\n%1", fatalError), true, Gtk::MessageType::ERROR, Gtk::ButtonsType::OK, true);
