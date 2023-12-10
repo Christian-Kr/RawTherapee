@@ -61,9 +61,15 @@ void loadProfiles(
         return;
     }
 
-    Glib::Dir dir(dirName);
+    std::shared_ptr<Glib::Dir> dir;
 
-    for (Glib::DirIterator entry = dir.begin(); entry != dir.end(); ++entry) {
+    try {
+        dir = std::make_shared<Glib::Dir>(dirName);
+    } catch (const Glib::FileError&) {
+        return;
+    }
+
+    for (Glib::DirIterator entry = dir->begin(); entry != dir->end(); ++entry) {
         const Glib::ustring fileName = *entry;
 
         if (fileName.size() < 4) {
