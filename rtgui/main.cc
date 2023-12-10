@@ -31,7 +31,7 @@
 #include "rtwindow.h"
 #include <cstring>
 #include <cstdlib>
-#include <locale.h>
+#include <clocale>
 #include <lensfun.h>
 #include <thread>
 #include "cachemanager.h"
