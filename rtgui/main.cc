@@ -504,8 +504,6 @@ int main (int argc, char **argv)
         g_setenv("GDK_SCALE", "1", true);
     }
 
-    gdk_threads_set_lock_functions (G_CALLBACK (myGdkLockEnter), (G_CALLBACK (myGdkLockLeave)));
-    gdk_threads_init();
     gtk_init (&argc, &argv);  // use the "--g-fatal-warnings" command line flag to make warnings fatal
 
     if (fatalError.empty() && remote) {
