@@ -99,13 +99,10 @@ int processLineParams ( int argc, char **argv )
                 case '-':
                     // GTK --argument, we're skipping it
                     break;
-
 #ifdef _WIN32
-
                 case 'w': // This case is handled outside this function
                     break;
 #endif
-
                 case 'v':
                     printf("RawTherapee, version %s\n", RTVERSION);
                     ret = 0;
@@ -114,7 +111,6 @@ int processLineParams ( int argc, char **argv )
 // TODO agriggio - there seems to be already some "single instance app" support for OSX in
 //  rtwindow. Disabling it here until I understand how to merge the two
 #ifndef __APPLE__
-
                 case 'R':
                     if (!gimpPlugin) {
                         remote = true;
@@ -122,7 +118,6 @@ int processLineParams ( int argc, char **argv )
 
                     break;
 #endif
-
                 case 'g':
                     if (currParam == "-gimp") {
                         gimpPlugin = true;
@@ -144,8 +139,10 @@ int processLineParams ( int argc, char **argv )
                     printf("Symbols:\n");
                     printf("  <Chevrons> indicate parameters you can change.\n\n");
                     printf("Usage:\n");
-                    printf("  %s <folder>           Start File Browser inside folder.\n",Glib::path_get_basename (argv[0]).c_str());
-                    printf("  %s <file>             Start Image Editor with file.\n\n",Glib::path_get_basename (argv[0]).c_str());
+                    printf("  %s <folder>           Start File Browser inside folder.\n",
+                           Glib::path_get_basename (argv[0]).c_str());
+                    printf("  %s <file>             Start Image Editor with file.\n\n",
+                           Glib::path_get_basename (argv[0]).c_str());
                     std::cout << std::endl;
                     printf("Options:\n");
 #ifdef _WIN32
@@ -190,14 +187,11 @@ bool init_rt()
     if (!rtengine::settings->verbose) {
         TIFFSetWarningHandler (nullptr);   // avoid annoying message boxes
     }
-
 #ifndef _WIN32
-
     // Move the old path to the new one if the new does not exist
     if (Glib::file_test (Glib::build_filename (options.rtdir, "cache"), Glib::FILE_TEST_IS_DIR) && !Glib::file_test (options.cacheBaseDir, Glib::FILE_TEST_IS_DIR)) {
         g_rename (Glib::build_filename (options.rtdir, "cache").c_str (), options.cacheBaseDir.c_str ());
     }
-
 #endif
 
     return true;
