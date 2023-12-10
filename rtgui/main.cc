@@ -69,29 +69,8 @@ bool simpleEditor = false;
 bool gimpPlugin = false;
 bool remote = false;
 unsigned char initialGdkScale = 1;
-//Glib::Threads::Thread* mainThread;
 
 namespace {
-
-// This recursive mutex will be used by gdk_threads_enter/leave instead of a simple mutex
-static Glib::Threads::RecMutex myGdkRecMutex;
-
-static void myGdkLockEnter()
-{
-    myGdkRecMutex.lock();
-}
-static void myGdkLockLeave()
-{
-    // Automatic gdk_flush for non main thread
-#if AUTO_GDK_FLUSH
-    //if (Glib::Thread::self() != mainThread) {
-    //    gdk_flush();
-    //}
-
-#endif
-    myGdkRecMutex.unlock();
-}
-
 
 /* Process line command options
  * Returns
