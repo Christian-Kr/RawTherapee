@@ -56,7 +56,8 @@
 #include "windows.h"
 #endif
 
-// Set this to 1 to make RT work when started with Eclipse and arguments, at least on Windows platform
+// Set this to 1 to make RT work when started with Eclipse and arguments, at least on Windows
+// platform
 #define ECLIPSE_ARGS 0
 
 // stores path to data files
@@ -110,7 +111,9 @@ int processLineParams ( int argc, char **argv )
                     ret = 0;
                     break;
 
-#ifndef __APPLE__ // TODO agriggio - there seems to be already some "single instance app" support for OSX in rtwindow. Disabling it here until I understand how to merge the two
+// TODO agriggio - there seems to be already some "single instance app" support for OSX in
+//  rtwindow. Disabling it here until I understand how to merge the two
+#ifndef __APPLE__
 
                 case 'R':
                     if (!gimpPlugin) {
