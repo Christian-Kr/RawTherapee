@@ -96,7 +96,8 @@ int processLineParams(int argc, char **argv)
     // Go through every argument and process it.
     for (auto iArg = 1; iArg < argc; iArg++) {
 
-        Glib::ustring currParam(argv[iArg]);
+        // Get a string from the argument to handle it more easily.
+        std::string currParam(argv[iArg]);
         if (currParam.empty()) {
             continue;
         }
