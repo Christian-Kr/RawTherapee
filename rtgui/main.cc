@@ -476,7 +476,8 @@ int main (int argc, char **argv)
     }
 
     if (gimpPlugin) {
-        if (!Glib::file_test (argv1, Glib::FileTest::EXISTS) || Glib::file_test (argv1, Glib::FILE_TEST_IS_DIR)) {
+        if (!Glib::file_test(argv1, Glib::FileTest::EXISTS) ||
+            Glib::file_test(argv1, Glib::FileTest::IS_DIR)) {
             printf ("Error: argv1 doesn't exist\n");
             return 1;
         }
@@ -485,7 +486,8 @@ int main (int argc, char **argv)
             printf ("Error: -gimp requires two arguments\n");
             return 1;
         }
-    } else if (!remote && Glib::file_test(argv1, Glib::FileTest::EXISTS) && !Glib::file_test(argv1, Glib::FILE_TEST_IS_DIR)) {
+    } else if (!remote && Glib::file_test(argv1, Glib::FileTest::EXISTS) &&
+               !Glib::file_test(argv1, Glib::FileTest::IS_DIR)) {
         simpleEditor = true;
     }
 
@@ -497,7 +499,8 @@ int main (int argc, char **argv)
         if (gscale && gscale[0] == '2') {
             initialGdkScale = 2;
         }
-        // HOMBRE: On Windows, if resolution is set to 200%, Gtk internal variables are SCALE=2 and DPI=96
+        // HOMBRE: On Windows, if resolution is set to 200%, Gtk internal variables are SCALE=2
+        // and DPI=96
         g_setenv("GDK_SCALE", "1", true);
     }
 
