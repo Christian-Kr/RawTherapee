@@ -232,12 +232,19 @@ void init_rt()
 #endif
 }
 
+/**
+ * Just a cleanup of the RawTherapee engine.
+ */
 void cleanup_rt()
 {
     rtengine::cleanup();
 }
 
-
+/**
+ * Create the main RawTherapee window.
+ *
+ * @return The main RawTherapee window instance.
+ */
 RTWindow *create_rt_window()
 {
     Glib::ustring icon_path = Glib::build_filename (argv0, "images");
