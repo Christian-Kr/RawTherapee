@@ -176,6 +176,9 @@ int processLineParams(int argc, char **argv)
                 }
             }
         } else {
+            // First char of argument is NOT "-" or it has just the size of 1.
+
+            // If the first argument has not been set for now. Set it with the given argv.
             if (argv1.empty()) {
                 argv1 = Glib::ustring(fname_to_utf8(argv[iArg]));
 
@@ -184,10 +187,15 @@ int processLineParams(int argc, char **argv)
 #endif
 
             } else if (gimpPlugin) {
+                // If argv1 has already been set and rt will be used as a gimp plugin, set the
+                // second argument with given argv.
+
                 argv2 = Glib::ustring(fname_to_utf8(argv[iArg]));
                 break;
             }
 
+            // Quit, cause no one expect more arguments of that type, when it will not be used
+            // as a gimp plugin.
             if (!gimpPlugin) {
                 break;
             }
