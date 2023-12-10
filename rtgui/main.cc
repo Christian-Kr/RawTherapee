@@ -254,7 +254,8 @@ RTWindow *rtCreateWindow()
 
     auto *rtWindow = new RTWindow();
 
-    rtWindow->setWindowSize(); // Need to be called after RTWindow creation to work with all OS Windows Manager
+    // Need to be called after RTWindow creation to work with all OS Window Manager.
+    rtWindow->setWindowSize();
 
     return rtWindow;
 }
