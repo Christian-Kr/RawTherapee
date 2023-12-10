@@ -58,46 +58,55 @@
 #endif
 
 // Set this to 1 to make RT work when started with Eclipse and arguments, at least on Windows
-// platform
+// platform.
 #define ECLIPSE_ARGS 0
 
-// stores path to data files
+// Stores path to data files.
 Glib::ustring argv0;
-Glib::ustring creditsPath;
-Glib::ustring licensePath;
 Glib::ustring argv1;
 Glib::ustring argv2;
+Glib::ustring creditsPath;
+Glib::ustring licensePath;
+
 bool simpleEditor = false;
 bool gimpPlugin = false;
 bool remote = false;
 unsigned char initialGdkScale = 1;
 
+// TODO - CK: Why is there a namespace here without a given name like 'RT'?
 namespace {
 
-/* Process line command options
- * Returns
- *  0 if process in batch has executed
- *  1 to start GUI (with a dir or file option)
- *  2 to start GUI because no files found
- *  -1 if there is an error in parameters
- *  -2 if an error occurred during processing
- *  -3 if at least one required procparam file was not found */
-//int processLineParams ( int argc, char **argv );
-int processLineParams ( int argc, char **argv )
+/**
+ * Process line command options.
+ *
+ * @param argc The number of arguments.
+ * @param argv The given argument.
+ * @returns 0 if process in batch has executed
+ *          1 to start GUI (with a dir or file option)
+ *          2 to start GUI because no files found
+ *          1 if there is an error in parameters
+ *          2 if an error occurred during processing
+ *          3 if at least one required procparam file was not found
+ */
+int processLineParams(int argc, char **argv)
 {
-    int ret = 1;
-    for ( int iArg = 1; iArg < argc; iArg++) {
-        Glib::ustring currParam (argv[iArg]);
-        if ( currParam.empty() ) {
+    // Set return value to default, which is: Start GUI (with a dir or file option).
+    auto ret = 1;
+
+    // Go through every argument and process it.
+    for (auto iArg = 1; iArg < argc; iArg++) {
+
+        Glib::ustring currParam(argv[iArg]);
+        if (currParam.empty()) {
             continue;
         }
 
 #if ECLIPSE_ARGS
-        currParam = currParam.substr (1, currParam.length() - 2);
+        currParam = currParam.substr(1, currParam.length() - 2);
 #endif
 
-        if ( currParam.at (0) == '-' && currParam.size() > 1 ) {
-            switch ( currParam.at (1) ) {
+        if (currParam.at(0) == '-' && currParam.size() > 1) {
+            switch (currParam.at(1)) {
                 case '-':
                     // GTK --argument, we're skipping it
                     break;
@@ -111,9 +120,6 @@ int processLineParams ( int argc, char **argv )
                     printf("RawTherapee, version %s\n", RTVERSION);
                     ret = 0;
                     break;
-
-// TODO agriggio - there seems to be already some "single instance app" support for OSX in
-//  rtwindow. Disabling it here until I understand how to merge the two
 
 #ifndef __APPLE__
                 case 'R':
@@ -132,7 +138,7 @@ int processLineParams ( int argc, char **argv )
                         break;
                     }
 
-                // no break here on purpose
+                // No break here on purpose.
 
                 case 'h':
                 case '?':
@@ -146,9 +152,9 @@ int processLineParams ( int argc, char **argv )
                     printf("  <Chevrons> indicate parameters you can change.\n\n");
                     printf("Usage:\n");
                     printf("  %s <folder>           Start File Browser inside folder.\n",
-                           Glib::path_get_basename (argv[0]).c_str());
+                           Glib::path_get_basename(argv[0]).c_str());
                     printf("  %s <file>             Start Image Editor with file.\n\n",
-                           Glib::path_get_basename (argv[0]).c_str());
+                           Glib::path_get_basename(argv[0]).c_str());
                     std::cout << std::endl;
                     printf("Options:\n");
 
@@ -170,14 +176,14 @@ int processLineParams ( int argc, char **argv )
             }
         } else {
             if (argv1.empty()) {
-                argv1 = Glib::ustring (fname_to_utf8 (argv[iArg]));
+                argv1 = Glib::ustring(fname_to_utf8(argv[iArg]));
 
 #if ECLIPSE_ARGS
-                argv1 = argv1.substr (1, argv1.length() - 2);
+                argv1 = argv1.substr(1, argv1.length() - 2);
 #endif
 
             } else if (gimpPlugin) {
-                argv2 = Glib::ustring (fname_to_utf8 (argv[iArg]));
+                argv2 = Glib::ustring(fname_to_utf8(argv[iArg]));
                 break;
             }
 
