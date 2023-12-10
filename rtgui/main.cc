@@ -76,6 +76,8 @@ unsigned char initialGdkScale = 1;
 // TODO - CK: Why is there a namespace here without a given name like 'RT'?
 namespace {
 
+// TODO - CK: Only 0, 1 and -1 are set in processLineParams. Return values might have been changed
+//  in history.
 /**
  * Process line command options.
  *
@@ -205,8 +207,10 @@ int processLineParams(int argc, char **argv)
     return ret;
 }
 
-
-bool init_rt()
+/**
+ * Initialization of RawTherapee.
+ */
+void init_rt()
 {
     extProgStore->init();
     SoundManager::init();
@@ -217,14 +221,11 @@ bool init_rt()
 
 #ifndef _WIN32
     // Move the old path to the new one if the new does not exist
-    if (Glib::file_test (Glib::build_filename (options.rtdir, "cache"), Glib::FILE_TEST_IS_DIR) && !Glib::file_test (options.cacheBaseDir, Glib::FILE_TEST_IS_DIR)) {
+    if (Glib::file_test(Glib::build_filename(options.rtdir, "cache"), Glib::FILE_TEST_IS_DIR) && !Glib::file_test (options.cacheBaseDir, Glib::FILE_TEST_IS_DIR)) {
         g_rename (Glib::build_filename (options.rtdir, "cache").c_str (), options.cacheBaseDir.c_str ());
     }
 #endif
-
-    return true;
 }
-
 
 void cleanup_rt()
 {
@@ -271,16 +272,12 @@ private:
             return true;
         }
 
-        if (!init_rt()) {
-            Gtk::MessageDialog msgd ("Fatal error!\nThe RT_SETTINGS and/or RT_PATH environment variables are set, but use a relative path. The path must be absolute!", true, Gtk::MessageType::ERROR, Gtk::ButtonsType::OK, true);
-            add_window (msgd);
-            msgd.run ();
-            return false;
-        } else {
-            rtWindow = create_rt_window();
-            add_window (*rtWindow);
-            return true;
-        }
+        init_rt();
+
+        rtWindow = create_rt_window();
+        add_window (*rtWindow);
+
+        return true;
     }
 
     // Override default signal handlers:
@@ -542,7 +539,9 @@ int main (int argc, char **argv)
         RTApplication app;
         ret = app.run (app_argc, app_argv);
     } else {
-        if (fatalError.empty() && init_rt()) {
+        init_rt();
+
+        if (fatalError.empty()) {
             Gtk::Main m (&argc, &argv);
             gdk_threads_enter();
             const std::unique_ptr<RTWindow> rtWindow (create_rt_window());
