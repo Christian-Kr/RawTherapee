@@ -248,7 +248,7 @@ void cleanup_rt()
 RTWindow *create_rt_window()
 {
     auto icon_path = Glib::build_filename(argv0, "images");
-    auto defaultIconTheme = Gtk::IconTheme::get_default();
+    auto defaultIconTheme = Gtk::IconTheme::get_for_display(Gdk::Display::get_default());
 
     defaultIconTheme->append_search_path (icon_path);
 
