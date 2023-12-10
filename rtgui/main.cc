@@ -24,16 +24,7 @@
 #endif
 
 #include "config.h"
-#include <gtkmm.h>
-#include <giomm.h>
-#include <iostream>
-#include <tiffio.h>
 #include "rtwindow.h"
-#include <cstring>
-#include <cstdlib>
-#include <clocale>
-#include <lensfun.h>
-#include <thread>
 #include "cachemanager.h"
 #include "editorpanel.h"
 #include "filecatalog.h"
@@ -46,6 +37,16 @@
 #include "../rtengine/dynamicprofile.h"
 #include "../rtengine/procparams.h"
 #include "pathutils.h"
+
+#include <gtkmm.h>
+#include <giomm.h>
+#include <iostream>
+#include <tiffio.h>
+#include <cstring>
+#include <cstdlib>
+#include <clocale>
+#include <lensfun.h>
+#include <thread>
 
 #ifndef _WIN32
 #include <glibmm/fileutils.h>
@@ -90,6 +91,7 @@ int processLineParams ( int argc, char **argv )
         if ( currParam.empty() ) {
             continue;
         }
+
 #if ECLIPSE_ARGS
         currParam = currParam.substr (1, currParam.length() - 2);
 #endif
@@ -99,10 +101,12 @@ int processLineParams ( int argc, char **argv )
                 case '-':
                     // GTK --argument, we're skipping it
                     break;
+
 #ifdef _WIN32
                 case 'w': // This case is handled outside this function
                     break;
 #endif
+
                 case 'v':
                     printf("RawTherapee, version %s\n", RTVERSION);
                     ret = 0;
@@ -110,6 +114,7 @@ int processLineParams ( int argc, char **argv )
 
 // TODO agriggio - there seems to be already some "single instance app" support for OSX in
 //  rtwindow. Disabling it here until I understand how to merge the two
+
 #ifndef __APPLE__
                 case 'R':
                     if (!gimpPlugin) {
@@ -118,6 +123,7 @@ int processLineParams ( int argc, char **argv )
 
                     break;
 #endif
+
                 case 'g':
                     if (currParam == "-gimp") {
                         gimpPlugin = true;
@@ -145,13 +151,17 @@ int processLineParams ( int argc, char **argv )
                            Glib::path_get_basename (argv[0]).c_str());
                     std::cout << std::endl;
                     printf("Options:\n");
+
 #ifdef _WIN32
                     printf("  -w Do not open the Windows console\n");
 #endif
+
                     printf("  -v Print RawTherapee version number and exit\n");
+
 #ifndef __APPLE__
                     printf("  -R Raise an already running RawTherapee instance (if available)\n");
 #endif
+
                     printf("  -h -? Display this help message\n");
 
                     ret = -1;
@@ -161,9 +171,11 @@ int processLineParams ( int argc, char **argv )
         } else {
             if (argv1.empty()) {
                 argv1 = Glib::ustring (fname_to_utf8 (argv[iArg]));
+
 #if ECLIPSE_ARGS
                 argv1 = argv1.substr (1, argv1.length() - 2);
 #endif
+
             } else if (gimpPlugin) {
                 argv2 = Glib::ustring (fname_to_utf8 (argv[iArg]));
                 break;
@@ -187,6 +199,7 @@ bool init_rt()
     if (!rtengine::settings->verbose) {
         TIFFSetWarningHandler (nullptr);   // avoid annoying message boxes
     }
+
 #ifndef _WIN32
     // Move the old path to the new one if the new does not exist
     if (Glib::file_test (Glib::build_filename (options.rtdir, "cache"), Glib::FILE_TEST_IS_DIR) && !Glib::file_test (options.cacheBaseDir, Glib::FILE_TEST_IS_DIR)) {
@@ -382,7 +395,6 @@ int main (int argc, char **argv)
 
     options.rtSettings.lensfunDbDirectory = LENSFUN_DB_PATH;
     options.rtSettings.lensfunDbBundleDirectory = LENSFUN_DB_PATH;
-
 #else
     argv0 = DATA_SEARCH_PATH;
     creditsPath = CREDITS_SEARCH_PATH;
@@ -454,9 +466,7 @@ int main (int argc, char **argv)
             return ret;
         }
     }
-
 #else
-
     if (argc > 1) {
         int ret = processLineParams ( argc, argv);
 
@@ -464,7 +474,6 @@ int main (int argc, char **argv)
             return ret;
         }
     }
-
 #endif
 
     Glib::ustring fatalError;
@@ -544,14 +553,12 @@ int main (int argc, char **argv)
     }
 
 #ifdef _WIN32
-
     if (consoleOpened) {
         printf ("Press any key to exit RawTherapee\n");
         fflush(stdout);
         FlushConsoleInputBuffer (GetStdHandle (STD_INPUT_HANDLE));
         getch();
     }
-
 #endif
 
     return ret;
