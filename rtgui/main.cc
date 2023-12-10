@@ -33,6 +33,7 @@
 #include <cstdlib>
 #include <locale.h>
 #include <lensfun.h>
+#include <thread>
 #include "cachemanager.h"
 #include "editorpanel.h"
 #include "filecatalog.h"
@@ -50,9 +51,7 @@
 #include <glibmm/fileutils.h>
 #include <glib.h>
 #include <glib/gstdio.h>
-#include <glibmm/threads.h>
 #else
-#include <glibmm/thread.h>
 #include "conio.h"
 #include "windows.h"
 #endif
