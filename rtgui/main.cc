@@ -221,9 +221,13 @@ void init_rt()
 
 #ifndef _WIN32
     // Move the old path to the new one if the new does not exist.
-    if (Glib::file_test(Glib::build_filename(Options::rtdir, "cache"), Glib::FileTest::IS_DIR) &&
-        !Glib::file_test(Options::cacheBaseDir, Glib::FileTest::IS_DIR)) {
-        g_rename(Glib::build_filename(Options::rtdir, "cache").c_str(), Options::cacheBaseDir.c_str());
+    auto rtdirCache = Glib::build_filename(Options::rtdir, "cache");
+
+    auto rtdirCacheIsDir = Glib::file_test(rtdirCache, Glib::FileTest::IS_DIR);
+    auto cacheBaseDirIsDir = Glib::file_test(Options::cacheBaseDir, Glib::FileTest::IS_DIR);
+
+    if (rtdirCacheIsDir && !cacheBaseDirIsDir) {
+        g_rename(rtdirCache.c_str(), Options::cacheBaseDir.c_str());
     }
 #endif
 }
