@@ -250,7 +250,7 @@ RTWindow *rtCreateWindow()
     auto iconPath = Glib::build_filename(argv0, "images");
     auto defaultIconTheme = Gtk::IconTheme::get_for_display(Gdk::Display::get_default());
 
-    defaultIconTheme->append_search_path (iconPath);
+    defaultIconTheme->add_search_path(iconPath);
 
     auto *rtWindow = new RTWindow();
 
