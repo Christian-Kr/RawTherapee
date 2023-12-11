@@ -42,8 +42,6 @@
 #include "windows.h"
 #endif
 
-// Stores path to data files.
-
 // Search path for data files.
 Glib::ustring argv0;
 
