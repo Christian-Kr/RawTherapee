@@ -55,16 +55,13 @@ Glib::ustring creditsPath;
 Glib::ustring licensePath;
 
 bool simpleEditor = false;
-bool remote = false;
 unsigned char initialGdkScale = 1;
 
 int main (int argc, char **argv)
 {
+    // TODO - CK: Is setlocale still necessary in GTK4 just for decimal point?
     setlocale(LC_ALL, "");
-    setlocale(LC_NUMERIC, "C"); // to set decimal point to "."
-
-    simpleEditor = false;
-    remote = false;
+    setlocale(LC_NUMERIC, "C");
 
     argv0 = "";
     argv1 = "";
@@ -130,11 +127,6 @@ int main (int argc, char **argv)
         fatalError = e.get_msg();
     }
 
-    if (!remote && Glib::file_test(argv1, Glib::FileTest::EXISTS) &&
-               !Glib::file_test(argv1, Glib::FileTest::IS_DIR)) {
-        simpleEditor = true;
-    }
-
     int ret = 0;
 
     if (rtoptions.pseudoHiDPISupport) {
@@ -148,13 +140,10 @@ int main (int argc, char **argv)
         g_setenv("GDK_SCALE", "1", true);
     }
 
-    gtk_init ();
-
     RTApplication app;
     app.register_application();
-    RTApplication::init();
 
-    if (fatalError.empty() && remote) {
+    if (fatalError.empty()) {
         // Start the remote version; Just open an existing instance if it exist.
 
         ret = app.run(argc, argv);
