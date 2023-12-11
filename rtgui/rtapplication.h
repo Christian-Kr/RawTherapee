@@ -85,4 +85,14 @@ private:
      * Create the application window and make it visible.
      */
     void create_window();
+
+    /**
+     * Initialize all command line options.
+     */
+    void init_main_options();
+
+    /**
+     * Initialize all actions for the application instance.
+     */
+    void init_actions();
 };

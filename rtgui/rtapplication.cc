@@ -22,6 +22,7 @@
 #include "soundman.h"
 #include "cachemanager.h"
 #include "extprog.h"
+#include "version.h"
 
 #include <glib/gstdio.h>
 #include <tiffio.h>
@@ -33,20 +34,41 @@ RTApplication::RTApplication()
             "com.rawtherapee.application",
             Gio::Application::Flags::HANDLES_OPEN)
 {
+    init_actions();
+    init_main_options();
+}
+
+RTApplication::~RTApplication() = default;
+
+void RTApplication::init_actions()
+{
     // Create custom action to handle multiple windows in primary application instance.
     auto action_create_window = Gio::SimpleAction::create("action-create-window");
     action_create_window->signal_activate().connect(
             sigc::mem_fun(*this, &RTApplication::on_create_window));
     add_action(action_create_window);
+}
 
-    // Let application parse arguments and handle them in on_handle_local_options.
+void RTApplication::init_main_options()
+{
+    // Option for not starting a new window if one already exist.
     add_main_option_entry(
             Gio::Application::OptionType::BOOL, "remote", 'r',
             "Raise an already running RawTherapee instance (if available)", "",
             Glib::OptionEntry::Flags::NO_ARG);
-}
 
-RTApplication::~RTApplication() = default;
+    // Show version of RawTherapee.
+    add_main_option_entry(
+            Gio::Application::OptionType::BOOL, "version", 'v',
+            "Print RawTherapee version number and exit", "",
+            Glib::OptionEntry::Flags::NO_ARG);
+
+    // Show detailed information like about in GUI application.
+    add_main_option_entry(
+            Gio::Application::OptionType::BOOL, "about", 'a',
+            "Display about information", "",
+            Glib::OptionEntry::Flags::NO_ARG);
+}
 
 void RTApplication::init()
 {
@@ -112,6 +134,26 @@ void RTApplication::on_open(
 
 int RTApplication::on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>& options)
 {
+    // If about (question mark) has been selected as an option, show detailed information.
+    if (options->contains("about"))
+    {
+        printf("  An advanced, cross-platform program for developing raw photos.\n\n");
+        printf("  Website: http://www.rawtherapee.com/\n");
+        printf("  Documentation: http://rawpedia.rawtherapee.com/\n");
+        printf("  Forum: https://discuss.pixls.us/c/software/rawtherapee\n");
+        printf("  Code and bug reports: https://github.com/Beep6581/RawTherapee\n\n");
+
+        return 0;
+    }
+
+    // If user wants to show the current version. Show it and exit application.
+    if (options->contains("version"))
+    {
+        printf("RawTherapee, version %s\n", RTVERSION);
+
+        return 0;
+    }
+
     if (options->contains("remote"))
     {
         // Calling with option "remote" active. Try to bring a primary window in front or if no
@@ -133,7 +175,4 @@ int RTApplication::on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>
 void RTApplication::on_startup()
 {
     Gtk::Application::on_startup();
-
-
-    std::cout << "Debug: Startup" << std::endl;
 }
