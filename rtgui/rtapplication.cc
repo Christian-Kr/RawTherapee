@@ -19,9 +19,7 @@
 #include "rtapplication.h"
 #include "rtoptions.h"
 #include "extprog.h"
-#include "soundman.h"
 #include "cachemanager.h"
-#include "extprog.h"
 #include "version.h"
 
 #include <glib/gstdio.h>
@@ -156,6 +154,8 @@ int RTApplication::on_handle_local_options(const Glib::RefPtr<Glib::VariantDict>
 void RTApplication::on_startup()
 {
     Gtk::Application::on_startup();
+
+    // TODO - CK: Finish initialization part.
 
     extProgStore->init();
     //SoundManager::init();
