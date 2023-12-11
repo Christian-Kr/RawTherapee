@@ -622,9 +622,28 @@ private:
     std::unique_ptr<Impl> pimpl;
 
 protected:
-    bool on_scroll_event (GdkEventScroll* event) override;
-    void get_preferred_width_vfunc (int &minimum_width, int &natural_width) const override;
-    void get_preferred_width_for_height_vfunc (int height, int &minimum_width, int &natural_width) const override;
+    /**
+     * Get called, when the scroll event will be emited.
+     *
+     * @param dx X delta.
+     * @param dy Y delta.
+     * @return True if the scroll event was handled, else false.
+     */
+    bool on_scroll_event(double dx, double dy);
+
+    /**
+     * Override of virtual implementation in Gtk::Widget.
+     *
+     * @param orientation
+     * @param for_size
+     * @param minimum
+     * @param natural
+     * @param minimum_baseline
+     * @param natural_baseline
+     */
+    void measure_vfunc(
+            Gtk::Orientation orientation, int for_size, int& minimum, int& natural,
+            int& minimum_baseline, int& natural_baseline) const override;
 
     void on_filename_set() override;
 

@@ -18,6 +18,7 @@
 
 #include "rtapplication.h"
 #include "rtoptions.h"
+#include "rtwindow.h"
 #include "extprog.h"
 #include "cachemanager.h"
 #include "version.h"

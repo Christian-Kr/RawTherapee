@@ -1478,30 +1478,36 @@ class MyFileChooserButton::Impl
 {
 public:
     Gtk::Box box_;
-    Gtk::Label lbl_{"", Gtk::ALIGN_START};
+    Gtk::Label lbl_{"", Gtk::Align::START};
 };
 
 MyFileChooserButton::MyFileChooserButton(const Glib::ustring &title, Gtk::FileChooserAction action):
     MyFileChooserWidget(title, action),
     pimpl(new Impl())
 {
-    pimpl->lbl_.set_ellipsize(Pango::ELLIPSIZE_MIDDLE);
-    pimpl->lbl_.set_justify(Gtk::JUSTIFY_LEFT);
+    pimpl->lbl_.set_ellipsize(Pango::EllipsizeMode::MIDDLE);
+    pimpl->lbl_.set_justify(Gtk::Justification::LEFT);
     on_filename_set();
-    pimpl->box_.pack_start(pimpl->lbl_, true, true);
-    pimpl->box_.pack_start(*Gtk::manage(new Gtk::Separator(Gtk::Orientation::VERTICAL)), false, false, 5);
-    pimpl->box_.pack_start(*Gtk::manage(make_folder_image().release()), false, false);
-    pimpl->box_.show_all_children();
-    add(pimpl->box_);
+    pimpl->box_.prepend(pimpl->lbl_);
+    pimpl->box_.prepend(*Gtk::manage(new Gtk::Separator(Gtk::Orientation::VERTICAL)));
+    pimpl->box_.prepend(*Gtk::manage(make_folder_image().release()));
+    //pimpl->box_.show_all_children();
+    pimpl->box_.set_parent(*this);
     signal_clicked().connect([this]() {
         show_chooser(this);
     });
 
     if (GTK_MINOR_VERSION < 20) {
-        set_border_width(2); // margin doesn't work on GTK < 3.20
+        //set_border_width(2); // margin doesn't work on GTK < 3.20
     }
 
     set_name("MyFileChooserButton");
+
+    // Scroll event listener.
+    auto scrollController = Gtk::EventControllerScroll::create();
+    scrollController->signal_scroll().connect(
+            sigc::mem_fun(*this, &MyFileChooserButton::on_scroll_event), false);
+    add_controller(scrollController);
 }
 
 void MyFileChooserButton::on_filename_set()
@@ -1513,28 +1519,29 @@ void MyFileChooserButton::on_filename_set()
     }
 }
 
-
 // For an unknown reason (a bug ?), it doesn't work when action = FILE_CHOOSER_ACTION_SELECT_FOLDER !
-bool MyFileChooserButton::on_scroll_event (GdkEventScroll* event)
+bool MyFileChooserButton::on_scroll_event(double dx, double dy)
 {
-
-    // If Shift is pressed, the widget is modified
-    if (event->state & GDK_SHIFT_MASK) {
-        Gtk::Button::on_scroll_event(event);
-        return true;
-    }
-
-    // ... otherwise the scroll event is sent back to an upper level
+    // TODO - CK: The signal cannot be given down to the next widget. Find a way to handle this.
+//    // If Shift is pressed, the widget is modified
+//    if (event->state & GDK_SHIFT_MASK)
+//    {
+//        Gtk::Button::on_scroll_event(event);
+//        return true;
+//    }
+//
+//    // ... otherwise the scroll event is sent back to an upper level
     return false;
 }
 
-void MyFileChooserButton::get_preferred_width_vfunc (int &minimum_width, int &natural_width) const
+void MyFileChooserButton::measure_vfunc(
+        Gtk::Orientation orientation, int for_size, int& minimum, int& natural,
+        int& minimum_baseline, int& natural_baseline) const
 {
-    minimum_width = natural_width = 35 * RTScalable::getScale();
-}
-void MyFileChooserButton::get_preferred_width_for_height_vfunc (int height, int &minimum_width, int &natural_width) const
-{
-    minimum_width = natural_width = 35 * RTScalable::getScale();
+    if (orientation == Gtk::Orientation::HORIZONTAL)
+    {
+        minimum = natural = 35 * RTScalable::getScale();
+    }
 }
 
 

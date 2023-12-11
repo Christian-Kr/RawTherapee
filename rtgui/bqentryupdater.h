@@ -18,7 +18,7 @@
  */
 #pragma once
 
-#include <glibmm/thread.h>
+#include <thread>
 
 #include "threadutils.h"
 
