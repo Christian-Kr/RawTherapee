@@ -35,7 +35,6 @@
 #include <clocale>
 
 #ifndef _WIN32
-#include <glibmm/fileutils.h>
 #include <glib.h>
 #else
 #include "conio.h"
