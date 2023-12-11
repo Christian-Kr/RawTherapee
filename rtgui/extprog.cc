@@ -28,7 +28,7 @@
 
 #include <gtkmm.h>
 
-#include "options.h"
+#include "rtoptions.h"
 #include "multilangmgr.h"
 
 Glib::ustring ExtProgAction::getFullName () const

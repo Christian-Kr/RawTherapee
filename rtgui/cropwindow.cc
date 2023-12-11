@@ -27,7 +27,7 @@
 #include "guiutils.h"
 #include "imagearea.h"
 #include "lockablecolorpicker.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "rtimage.h"
 #include "threadutils.h"
 #include "editcallbacks.h"

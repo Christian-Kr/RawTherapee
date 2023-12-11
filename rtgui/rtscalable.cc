@@ -25,7 +25,7 @@
 #include <librsvg/rsvg.h>
 
 #include "../rtengine/rt_math.h"
-#include "options.h"
+#include "rtoptions.h"
 
 double RTScalable::dpi = 0.;
 int RTScalable::scale = 0;

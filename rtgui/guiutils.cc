@@ -19,7 +19,7 @@
 #include "../rtengine/rt_math.h"
 
 #include "guiutils.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "../rtengine/utils.h"
 #include "../rtengine/procparams.h"
 #include "rtimage.h"

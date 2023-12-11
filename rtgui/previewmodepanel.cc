@@ -16,7 +16,7 @@
  *  along with RawTherapee.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include "previewmodepanel.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "multilangmgr.h"
 #include "imagearea.h"
 #include "rtimage.h"

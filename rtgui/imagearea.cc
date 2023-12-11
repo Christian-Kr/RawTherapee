@@ -19,12 +19,12 @@
 #include "imagearea.h"
 #include <ctime>
 #include <cmath>
-#include "options.h"
+#include "rtoptions.h"
 #include "multilangmgr.h"
 #include "cropwindow.h"
 #include "../rtengine/refreshmap.h"
 #include "../rtengine/procparams.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "rtscalable.h"
 
 ImageArea::ImageArea (ImageAreaPanel* p) : parent(p), fullImageWidth(0), fullImageHeight(0)

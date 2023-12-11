@@ -27,7 +27,7 @@
 #include "multilangmgr.h"
 #include "cachemanager.h"
 #include "../rtengine/color.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "pathutils.h"
 #include "rtimage.h"
 #include "rtwindow.h"

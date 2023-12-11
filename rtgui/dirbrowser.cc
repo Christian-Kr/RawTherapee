@@ -30,7 +30,7 @@
 #include "guiutils.h"
 #include "rtimage.h"
 #include "multilangmgr.h"
-#include "options.h"
+#include "rtoptions.h"
 
 namespace
 {

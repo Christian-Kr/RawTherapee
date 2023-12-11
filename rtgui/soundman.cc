@@ -19,7 +19,7 @@
 */
 
 #include "soundman.h"
-#include "options.h"
+#include "rtoptions.h"
 
 #ifdef _WIN32
 #include <windows.h>

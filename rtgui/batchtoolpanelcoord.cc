@@ -22,7 +22,7 @@
 
 #include "multilangmgr.h"
 #include "batchtoolpanelcoord.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "filepanel.h"
 #include "procparamchangers.h"
 #include "addsetids.h"

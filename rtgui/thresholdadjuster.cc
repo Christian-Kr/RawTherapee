@@ -21,7 +21,7 @@
 #include <cmath>
 #include "multilangmgr.h"
 #include "../rtengine/rtengine.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "guiutils.h"
 #include "rtimage.h"
 

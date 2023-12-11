@@ -18,7 +18,7 @@
  */
 
 #include "lockablecolorpicker.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "../rtengine/color.h"
 #include "../rtengine/improcfun.h"
 #include "../rtengine/rt_math.h"

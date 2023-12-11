@@ -23,7 +23,7 @@
 #include <gtkmm.h>
 
 #include "bqentryupdater.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "thumbbrowserentrybase.h"
 
 #include "../rtengine/noncopyable.h"

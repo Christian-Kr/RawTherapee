@@ -17,7 +17,7 @@
  */
 
 #include "rtapplication.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "extprog.h"
 #include "soundman.h"
 #include "cachemanager.h"
@@ -82,14 +82,14 @@ void RTApplication::init()
 
 #ifndef _WIN32
     // Move the old path to the new one if the new does not exist.
-    auto rtdirCache = Glib::build_filename(Options::rtdir, "cache");
+    auto rtdirCache = Glib::build_filename(RTOptions::rtdir, "cache");
 
     auto rtdirCacheIsDir = Glib::file_test(rtdirCache, Glib::FileTest::IS_DIR);
-    auto cacheBaseDirIsDir = Glib::file_test(Options::cacheBaseDir, Glib::FileTest::IS_DIR);
+    auto cacheBaseDirIsDir = Glib::file_test(RTOptions::cacheBaseDir, Glib::FileTest::IS_DIR);
 
     if (rtdirCacheIsDir && !cacheBaseDirIsDir)
     {
-        g_rename(rtdirCache.c_str(), Options::cacheBaseDir.c_str());
+        g_rename(rtdirCache.c_str(), RTOptions::cacheBaseDir.c_str());
     }
 #endif
 

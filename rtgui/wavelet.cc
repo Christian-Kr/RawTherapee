@@ -25,7 +25,7 @@
 #include "editcallbacks.h"
 #include "guiutils.h"
 #include "rtimage.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "eventmapper.h"
 #include "labgrid.h"
 #include "../rtengine/color.h"

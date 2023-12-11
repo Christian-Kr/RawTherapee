@@ -18,7 +18,7 @@
  */
 #include "thumbbrowserentrybase.h"
 
-#include "options.h"
+#include "rtoptions.h"
 #include "thumbbrowserbase.h"
 #include "../rtengine/rt_math.h"
 

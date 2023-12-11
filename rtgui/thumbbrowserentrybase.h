@@ -26,7 +26,7 @@
 #include "guiutils.h"
 #include "lwbuttonset.h"
 #include "threadutils.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "thumbnail.h"
 
 #include "../rtengine/coord2d.h"

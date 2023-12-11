@@ -19,7 +19,7 @@
 #include "histogrampanel.h"
 #include "multilangmgr.h"
 #include "guiutils.h"
-#include "options.h"
+#include "rtoptions.h"
 #include <cstring>
 #include <cmath>
 #include "rtimage.h"

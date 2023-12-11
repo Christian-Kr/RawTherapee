@@ -26,7 +26,7 @@
 #include <glibmm/keyfile.h>
 
 #include "rtengine.h"
-#include "../rtgui/options.h"
+#include "../rtgui/rtoptions.h"
 
 using namespace rtengine;
 using namespace rtengine::procparams;
@@ -176,7 +176,7 @@ bool DynamicProfileRules::loadRules()
     Glib::RefPtr<Glib::KeyFile> kf = Glib::KeyFile::create();
 
     try {
-        if (!kf->load_from_file (Glib::build_filename (Options::rtdir, "dynamicprofile.cfg"))) {
+        if (!kf->load_from_file (Glib::build_filename (RTOptions::rtdir, "dynamicprofile.cfg"))) {
             return false;
         }
     } catch (Glib::Error &e) {
@@ -271,7 +271,7 @@ bool DynamicProfileRules::storeRules()
         kf->set_string (group, "profilepath", rule.profilepath);
     }
 
-	std::string fn = Glib::build_filename (Options::rtdir, "dynamicprofile.cfg");
+	std::string fn = Glib::build_filename (RTOptions::rtdir, "dynamicprofile.cfg");
 	if (Glib::file_test(fn, Glib::FileTest::IS_SYMLINK)) {
 		// file is symlink; use target instead
 		// symlinks apparently are not recognízed on Windows

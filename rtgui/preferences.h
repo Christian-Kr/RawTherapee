@@ -23,7 +23,7 @@
 #include <gtkmm.h>
 
 #include "dynamicprofilepanel.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "../rtengine/profilestore.h"
 
 class ExternalEditorPreferences;

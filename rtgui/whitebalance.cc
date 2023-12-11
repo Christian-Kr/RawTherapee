@@ -21,7 +21,7 @@
 #include <iomanip>
 
 #include "rtimage.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "eventmapper.h"
 
 #include "../rtengine/colortemp.h"

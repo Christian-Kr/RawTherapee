@@ -23,7 +23,7 @@
 #include "eventmapper.h"
 #include "guiutils.h"
 #include "labgrid.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "pathutils.h"
 #include "rtimage.h"
 

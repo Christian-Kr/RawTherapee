@@ -28,7 +28,7 @@
 
 #include "delayed.h"
 #include "guiutils.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "pointermotionlistener.h"
 
 #include "../rtengine/array2D.h"

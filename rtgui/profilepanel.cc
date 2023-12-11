@@ -20,7 +20,7 @@
 
 #include "clipboard.h"
 #include "multilangmgr.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "profilestorecombobox.h"
 #include "paramsedited.h"
 #include "pathutils.h"

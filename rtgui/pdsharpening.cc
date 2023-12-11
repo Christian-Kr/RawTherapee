@@ -23,7 +23,7 @@
 #include "pdsharpening.h"
 
 #include "eventmapper.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "rtimage.h"
 
 #include "../rtengine/procparams.h"

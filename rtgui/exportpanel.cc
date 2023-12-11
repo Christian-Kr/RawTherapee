@@ -19,7 +19,7 @@
  */
 #include "exportpanel.h"
 #include "multilangmgr.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "rtimage.h"
 
 #include "../rtengine/procparams.h"

@@ -20,7 +20,7 @@
 
 #include <glibmm/ustring.h>
 
-#include "options.h"
+#include "rtoptions.h"
 
 #include "../rtengine/imageformat.h"
 #include "../rtengine/rtengine.h"

@@ -34,7 +34,7 @@
 #include "../rtengine/procparams.h"
 #include "../rtengine/profilestore.h"
 #include "../rtengine/rtengine.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "soundman.h"
 #include "rtimage.h"
 #include "version.h"
@@ -142,8 +142,8 @@ int main (int argc, char **argv)
     bool quickstart = dontLoadCache (argc, argv);
 
     try {
-        Options::load (quickstart);
-    } catch (Options::Error &e) {
+        RTOptions::load (quickstart);
+    } catch (RTOptions::Error &e) {
         std::cerr << std::endl
                   << "FATAL ERROR:" << std::endl
                   << e.get_msg() << std::endl;

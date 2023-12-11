@@ -32,7 +32,7 @@
 #include "filepanel.h"
 #include "guiutils.h"
 #include "popupbutton.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "navigator.h"
 #include "previewwindow.h"
 #include "progressconnector.h"

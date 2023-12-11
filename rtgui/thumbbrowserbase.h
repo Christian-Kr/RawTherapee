@@ -23,7 +23,7 @@
 #include <gtkmm.h>
 
 #include "guiutils.h"
-#include "options.h"
+#include "rtoptions.h"
 
 /*
  * Class handling the list of ThumbBrowserEntry objects and their position in it's allocated space

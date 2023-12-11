@@ -29,7 +29,7 @@
 #include "clipboard.h"
 #include "inspector.h"
 #include "multilangmgr.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "paramsedited.h"
 #include "profilestorecombobox.h"
 #include "procparamchangers.h"

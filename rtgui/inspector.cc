@@ -22,7 +22,7 @@
 #include "cursormanager.h"
 #include "guiutils.h"
 #include "multilangmgr.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "pathutils.h"
 #include "rtscalable.h"
 #include "../rtengine/previewimage.h"

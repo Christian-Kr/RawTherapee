@@ -21,7 +21,7 @@
 #include "rawexposure.h"
 
 #include "guiutils.h"
-#include "options.h"
+#include "rtoptions.h"
 
 #include "../rtengine/procparams.h"
 

@@ -20,7 +20,7 @@
 
 #include "inspector.h"
 #include "multilangmgr.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "rtscalable.h"
 #include "thumbbrowserbase.h"
 #include "thumbbrowserentrybase.h"

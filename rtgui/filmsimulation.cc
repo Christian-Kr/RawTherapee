@@ -4,7 +4,7 @@
 
 #include "filmsimulation.h"
 
-#include "options.h"
+#include "rtoptions.h"
 
 #include "../rtengine/clutstore.h"
 #include "../rtengine/procparams.h"

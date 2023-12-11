@@ -26,7 +26,7 @@
 #include "multilangmgr.h"
 #include "popuptogglebutton.h"
 #include "rtimage.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "pathutils.h"
 
 CurveEditorGroup::CurveEditorGroup (Glib::ustring& curveDir, Glib::ustring groupLabel, int blank) : curveDir(curveDir), line(0), curve_reset(nullptr),

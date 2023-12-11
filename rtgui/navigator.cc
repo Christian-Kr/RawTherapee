@@ -23,7 +23,7 @@
 #include "../rtengine/color.h"
 #include "../rtengine/improcfun.h"
 #include "../rtengine/rt_math.h"
-#include "options.h"
+#include "rtoptions.h"
 
 using namespace rtengine;
 

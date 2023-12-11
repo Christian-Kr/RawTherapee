@@ -24,7 +24,7 @@
 #include "curveeditor.h"
 #include "curveeditorgroup.h"
 #include "eventmapper.h"
-#include "options.h"
+#include "rtoptions.h"
 
 #include "../rtengine/procparams.h"
 #include "../rtengine/utils.h"

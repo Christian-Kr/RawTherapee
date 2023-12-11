@@ -21,7 +21,7 @@
 #include "../rtengine/rt_math.h"
 #include "controlspotpanel.h"
 #include "editwidgets.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "../rtengine/procparams.h"
 #include "rtimage.h"
 #include "eventmapper.h"

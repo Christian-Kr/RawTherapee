@@ -18,7 +18,7 @@
  */
 #include "recentbrowser.h"
 #include "multilangmgr.h"
-#include "options.h"
+#include "rtoptions.h"
 
 using namespace rtengine;
 

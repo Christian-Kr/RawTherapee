@@ -20,7 +20,7 @@
  */
 #include "locallabtools.h"
 
-#include "options.h"
+#include "rtoptions.h"
 #include "../rtengine/procparams.h"
 #include "locallab.h"
 #include "rtimage.h"

@@ -20,7 +20,7 @@
 #include "profilestorecombobox.h"
 
 #include "../rtengine/dynamicprofile.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "toolpanel.h"
 #include "guiutils.h"
 

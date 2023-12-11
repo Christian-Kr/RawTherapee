@@ -20,7 +20,7 @@
 
 #include "crop.h"
 
-#include "options.h"
+#include "rtoptions.h"
 #include "rtimage.h"
 
 #include "../rtengine/procparams.h"

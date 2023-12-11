@@ -16,7 +16,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with RawTherapee.  If not, see <https://www.gnu.org/licenses/>.
  */
-#include "options.h"
+#include "rtoptions.h"
 #include <cstdio>
 #include <glib/gstdio.h>
 #include <glibmm/date.h>
@@ -51,15 +51,15 @@
 #endif
 
 // User's settings directory, including images' profiles if used
-Glib::ustring Options::rtdir;
+Glib::ustring RTOptions::rtdir;
 // User's cached data directory
-Glib::ustring Options::cacheBaseDir;
+Glib::ustring RTOptions::cacheBaseDir;
 
-Options options;
+RTOptions options;
 Glib::ustring versionString = RTVERSION;
 Glib::ustring paramFileExtension = ".pp3";
 
-Options::Options()
+RTOptions::RTOptions()
 {
 
     defProfError = 0;
@@ -68,7 +68,7 @@ Options::Options()
 
 const char *DefaultLanguage = "English (US)";
 
-inline bool Options::checkProfilePath(Glib::ustring &path)
+inline bool RTOptions::checkProfilePath(Glib::ustring &path)
 {
     if (path.empty()) {
         return false;
@@ -85,7 +85,7 @@ inline bool Options::checkProfilePath(Glib::ustring &path)
     return !p.empty() && Glib::file_test(path + paramFileExtension, Glib::FileTest::EXISTS);
 }
 
-bool Options::checkDirPath(Glib::ustring &path, Glib::ustring errString)
+bool RTOptions::checkDirPath(Glib::ustring &path, Glib::ustring errString)
 {
     if (Glib::file_test(path, Glib::FileTest::EXISTS) && Glib::file_test(path, Glib::FileTest::IS_DIR)) {
         return true;
@@ -98,7 +98,7 @@ bool Options::checkDirPath(Glib::ustring &path, Glib::ustring errString)
     }
 }
 
-void Options::updatePaths()
+void RTOptions::updatePaths()
 {
 
     Glib::ustring tmpPath;
@@ -217,7 +217,7 @@ void Options::updatePaths()
     }
 }
 
-Glib::ustring Options::getPreferredProfilePath()
+Glib::ustring RTOptions::getPreferredProfilePath()
 {
     if (!userProfilePath.empty()) {
         return userProfilePath;
@@ -235,7 +235,7 @@ Glib::ustring Options::getPreferredProfilePath()
   *@return Send back the absolute path of the given filename or "Neutral" if "Neutral" has been set to profName. Implementer will have
   *        to test for this particular value. If the absolute path is invalid (e.g. the file doesn't exist), it will return an empty string.
   */
-Glib::ustring Options::findProfilePath(Glib::ustring &profName)
+Glib::ustring RTOptions::findProfilePath(Glib::ustring &profName)
 {
     if (profName.empty()) {
         return "";
@@ -291,7 +291,7 @@ Glib::ustring Options::findProfilePath(Glib::ustring &profName)
 
 }
 
-void Options::setDefaults()
+void RTOptions::setDefaults()
 {
 
     windowWidth = 1200;
@@ -509,7 +509,7 @@ void Options::setDefaults()
     ICCPC_profileVersion = "v4";
     ICCPC_illuminant = "DEF";
     ICCPC_description = "";
-    ICCPC_copyright = Options::getICCProfileCopyright();
+    ICCPC_copyright = RTOptions::getICCProfileCopyright();
     ICCPC_appendParamsToDesc = false;
 
     fastexport_bypass_sharpening         = true;
@@ -701,13 +701,13 @@ void Options::setDefaults()
     rtSettings.metadata_xmp_sync = rtengine::Settings::MetadataXmpSync::NONE;
 }
 
-Options* Options::copyFrom(Options* other)
+RTOptions* RTOptions::copyFrom(RTOptions* other)
 {
     *this = *other;
     return this;
 }
 
-void Options::filterOutParsedExtensions()
+void RTOptions::filterOutParsedExtensions()
 {
     parsedExtensions.clear();
     parsedExtensionsSet.clear();
@@ -719,7 +719,7 @@ void Options::filterOutParsedExtensions()
         }
 }
 
-void Options::readFromFile(Glib::ustring fname)
+void RTOptions::readFromFile(Glib::ustring fname)
 {
     setlocale(LC_NUMERIC, "C");  // to set decimal point to "."
 
@@ -2306,8 +2306,8 @@ void Options::readFromFile(Glib::ustring fname)
     }
 }
 
-bool Options::safeDirGet(const Glib::RefPtr<Glib::KeyFile>& keyFile, const Glib::ustring& section,
-                         const Glib::ustring& entryName, Glib::ustring& destination)
+bool RTOptions::safeDirGet(const Glib::RefPtr<Glib::KeyFile>& keyFile, const Glib::ustring& section,
+                           const Glib::ustring& entryName, Glib::ustring& destination)
 {
     try {
 
@@ -2321,7 +2321,7 @@ bool Options::safeDirGet(const Glib::RefPtr<Glib::KeyFile>& keyFile, const Glib:
     return false;
 }
 
-void Options::saveToFile(Glib::ustring fname)
+void RTOptions::saveToFile(Glib::ustring fname)
 {
 
     Glib::ustring keyData;
@@ -2769,7 +2769,7 @@ void Options::saveToFile(Glib::ustring fname)
     }
 }
 
-void Options::load(bool lightweight)
+void RTOptions::load(bool lightweight)
 {
 
     // Find the application data path
@@ -2816,7 +2816,7 @@ void Options::load(bool lightweight)
     // Read the global option file (the one located in the application's base folder)
     try {
         options.readFromFile(Glib::build_filename(argv0, "options"));
-    } catch (Options::Error &) {
+    } catch (RTOptions::Error &) {
         // ignore errors here
     }
 
@@ -2853,7 +2853,7 @@ void Options::load(bool lightweight)
     // Those values supersets those of the global option file
     try {
         options.readFromFile(Glib::build_filename(rtdir, "options"));
-    } catch (Options::Error &) {
+    } catch (RTOptions::Error &) {
         // If the local option file does not exist or is broken, and the local cache folder does not exist, recreate it
         if (!g_mkdir_with_parents(rtdir.c_str(), 511)) {
             // Save the option file
@@ -2962,7 +2962,7 @@ void Options::load(bool lightweight)
     rtengine::init(&options.rtSettings, argv0, rtdir, !lightweight);
 }
 
-void Options::save()
+void RTOptions::save()
 {
 
     options.saveToFile(Glib::build_filename(rtdir, "options"));
@@ -2971,7 +2971,7 @@ void Options::save()
 /*
  * return true if ext is a parsed extension (retained or not)
  */
-bool Options::is_parse_extention(Glib::ustring fname)
+bool RTOptions::is_parse_extention(Glib::ustring fname)
 {
     Glib::ustring ext = getExtension(fname).lowercase();
 
@@ -2992,13 +2992,13 @@ bool Options::is_parse_extention(Glib::ustring fname)
 /*
  * return true if fname ends with one of the retained image file extensions
  */
-bool Options::has_retained_extention(const Glib::ustring& fname)
+bool RTOptions::has_retained_extention(const Glib::ustring& fname)
 {
     return parsedExtensionsSet.find(getExtension(fname).lowercase()) != parsedExtensionsSet.end();
 }
 
 // Pattern matches "5.1" from "5.1-23-g12345678", when comparing option.version to RTVERSION
-bool Options::is_new_version() {
+bool RTOptions::is_new_version() {
     const std::string vs[] = {versionString, version};
     std::vector<std::string> vMajor;
 
@@ -3012,30 +3012,30 @@ bool Options::is_new_version() {
 /*
  * return true if ext is an enabled extension
  */
-bool Options::is_extention_enabled(const Glib::ustring& ext)
+bool RTOptions::is_extention_enabled(const Glib::ustring& ext)
 {
     return parsedExtensionsSet.find(ext.lowercase()) != parsedExtensionsSet.end();
 }
 
-Glib::ustring Options::getUserProfilePath()
+Glib::ustring RTOptions::getUserProfilePath()
 {
     return userProfilePath;
 }
 
-Glib::ustring Options::getGlobalProfilePath()
+Glib::ustring RTOptions::getGlobalProfilePath()
 {
     return globalProfilePath;
 }
 
-bool Options::is_defProfRawMissing()
+bool RTOptions::is_defProfRawMissing()
 {
     return defProfError & rtengine::toUnderlying(DefProfError::defProfRawMissing);
 }
-bool Options::is_defProfImgMissing()
+bool RTOptions::is_defProfImgMissing()
 {
     return defProfError & rtengine::toUnderlying(DefProfError::defProfImgMissing);
 }
-void Options::setDefProfRawMissing(bool value)
+void RTOptions::setDefProfRawMissing(bool value)
 {
     if (value) {
         defProfError |= rtengine::toUnderlying(DefProfError::defProfRawMissing);
@@ -3043,7 +3043,7 @@ void Options::setDefProfRawMissing(bool value)
         defProfError &= ~rtengine::toUnderlying(DefProfError::defProfRawMissing);
     }
 }
-void Options::setDefProfImgMissing(bool value)
+void RTOptions::setDefProfImgMissing(bool value)
 {
     if (value) {
         defProfError |= rtengine::toUnderlying(DefProfError::defProfImgMissing);
@@ -3051,15 +3051,15 @@ void Options::setDefProfImgMissing(bool value)
         defProfError &= ~rtengine::toUnderlying(DefProfError::defProfImgMissing);
     }
 }
-bool Options::is_bundledDefProfRawMissing()
+bool RTOptions::is_bundledDefProfRawMissing()
 {
     return defProfError & rtengine::toUnderlying(DefProfError::bundledDefProfRawMissing);
 }
-bool Options::is_bundledDefProfImgMissing()
+bool RTOptions::is_bundledDefProfImgMissing()
 {
     return defProfError & rtengine::toUnderlying(DefProfError::bundledDefProfImgMissing);
 }
-void Options::setBundledDefProfRawMissing(bool value)
+void RTOptions::setBundledDefProfRawMissing(bool value)
 {
     if (value) {
         defProfError |= rtengine::toUnderlying(DefProfError::bundledDefProfRawMissing);
@@ -3067,7 +3067,7 @@ void Options::setBundledDefProfRawMissing(bool value)
         defProfError &= ~rtengine::toUnderlying(DefProfError::bundledDefProfRawMissing);
     }
 }
-void Options::setBundledDefProfImgMissing(bool value)
+void RTOptions::setBundledDefProfImgMissing(bool value)
 {
     if (value) {
         defProfError |= rtengine::toUnderlying(DefProfError::bundledDefProfImgMissing);
@@ -3075,7 +3075,7 @@ void Options::setBundledDefProfImgMissing(bool value)
         defProfError &= ~rtengine::toUnderlying(DefProfError::bundledDefProfImgMissing);
     }
 }
-Glib::ustring Options::getICCProfileCopyright()
+Glib::ustring RTOptions::getICCProfileCopyright()
 {
     Glib::Date now;
     now.set_time_current();

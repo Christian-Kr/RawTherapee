@@ -20,7 +20,7 @@
 #include <unordered_set>
 
 #include "guiutils.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "rtimage.h"
 #include "rtscalable.h"
 #include "toollocationpref.h"

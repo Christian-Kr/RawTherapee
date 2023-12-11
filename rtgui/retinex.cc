@@ -7,7 +7,7 @@
 #include "curveeditorgroup.h"
 #include "mycurve.h"
 #include "rtimage.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "../rtengine/color.h"
 #include "eventmapper.h"
 

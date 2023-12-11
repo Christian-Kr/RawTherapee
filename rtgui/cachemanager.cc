@@ -31,7 +31,7 @@
 #include "cachemanager.h"
 
 #include "guiutils.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "thumbnail.h"
 #include "procparamchangers.h"
 

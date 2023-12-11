@@ -37,7 +37,7 @@
 #include "iccmatrices.h"
 #include "utils.h"
 
-#include "../rtgui/options.h"
+#include "../rtgui/rtoptions.h"
 #include "../rtgui/threadutils.h"
 #include "lcms2_plugin.h"
 

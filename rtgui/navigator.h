@@ -21,7 +21,7 @@
 #include <gtkmm.h>
 
 #include "delayed.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "pointermotionlistener.h"
 
 class PreviewWindow;

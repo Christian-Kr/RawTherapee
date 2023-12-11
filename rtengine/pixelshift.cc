@@ -30,7 +30,7 @@
 #include "rawimagesource.h"
 #include "sleef.h"
 #include "../rtgui/multilangmgr.h"
-#include "../rtgui/options.h"
+#include "../rtgui/rtoptions.h"
 
 //#define BENCHMARK
 #include "StopWatch.h"

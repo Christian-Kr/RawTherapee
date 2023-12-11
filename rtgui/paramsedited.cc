@@ -21,7 +21,7 @@
 #include "paramsedited.h"
 
 #include "addsetids.h"
-#include "options.h"
+#include "rtoptions.h"
 
 #include "../rtengine/procparams.h"
 

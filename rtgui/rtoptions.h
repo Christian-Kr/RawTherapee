@@ -134,7 +134,7 @@ class KeyFile;
 
 }
 
-class Options
+class RTOptions
 {
 public:
     class Error: public std::exception
@@ -485,9 +485,9 @@ public:
     bool sortDescending;
 
 
-    Options ();
+    RTOptions ();
 
-    Options* copyFrom        (Options* other);
+    RTOptions* copyFrom        (RTOptions* other);
     void filterOutParsedExtensions ();
     void setDefaults     ();
     void readFromFile (Glib::ustring fname);
@@ -515,7 +515,7 @@ public:
     static Glib::ustring getICCProfileCopyright();
 };
 
-extern Options options;
+extern RTOptions options;
 extern Glib::ustring argv0;
 extern Glib::ustring argv1;
 extern bool simpleEditor;

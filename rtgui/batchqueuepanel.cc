@@ -17,7 +17,7 @@
  *  along with RawTherapee.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include "batchqueuepanel.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "multilangmgr.h"
 #include "rtwindow.h"
 #include "soundman.h"

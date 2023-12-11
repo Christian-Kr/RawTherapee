@@ -47,7 +47,7 @@
 #include "settings.h"
 #include "utils.h"
 
-#include "../rtgui/options.h"
+#include "../rtgui/rtoptions.h"
 #include "../rtgui/version.h"
 
 

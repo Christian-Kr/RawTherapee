@@ -20,7 +20,7 @@
 
 #include "curveeditor.h"
 #include "curveeditorgroup.h"
-#include "options.h"
+#include "rtoptions.h"
 
 #include "../rtengine/color.h"
 #include "../rtengine/procparams.h"

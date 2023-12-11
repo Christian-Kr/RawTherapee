@@ -25,7 +25,7 @@
 #include "curveeditorgroup.h"
 #include "editbuffer.h"
 #include "guiutils.h"
-#include "options.h"
+#include "rtoptions.h"
 
 #include "../rtengine/color.h"
 #include "../rtengine/procparams.h"

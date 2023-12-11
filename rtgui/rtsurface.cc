@@ -21,7 +21,7 @@
 
 #include "rtsurface.h"
 
-#include "options.h"
+#include "rtoptions.h"
 
 namespace
 {

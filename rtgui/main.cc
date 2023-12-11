@@ -25,15 +25,13 @@
 
 #include "config.h"
 #include "rtapplication.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "rtimage.h"
-#include "version.h"
 #include "pathutils.h"
 
 #include <gtkmm.h>
 #include <giomm.h>
 #include <iostream>
-#include <tiffio.h>
 #include <clocale>
 
 #ifndef _WIN32
@@ -62,19 +60,14 @@ unsigned char initialGdkScale = 1;
 
 int main (int argc, char **argv)
 {
-    setlocale (LC_ALL, "");
-    setlocale (LC_NUMERIC, "C"); // to set decimal point to "."
+    setlocale(LC_ALL, "");
+    setlocale(LC_NUMERIC, "C"); // to set decimal point to "."
 
     simpleEditor = false;
     remote = false;
 
     argv0 = "";
-
-
     argv1 = "";
-
-
-    argv2 = "";
 
     Glib::init();  // called by Gtk::Main, but this may be important for thread handling, so we call it ourselves now
     Gio::init ();
@@ -135,8 +128,8 @@ int main (int argc, char **argv)
     Glib::ustring fatalError;
 
     try {
-        Options::load();
-    } catch (Options::Error &e) {
+        RTOptions::load();
+    } catch (RTOptions::Error &e) {
         fatalError = e.get_msg();
     }
 

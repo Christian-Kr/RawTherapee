@@ -28,7 +28,7 @@
 #include "../rtengine/procparams.h"
 
 #include "guiutils.h"
-#include "options.h"
+#include "rtoptions.h"
 #include "rtimage.h"
 #include "cachemanager.h"
 #include "multilangmgr.h"
