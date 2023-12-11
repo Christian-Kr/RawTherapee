@@ -1711,14 +1711,14 @@ void RawImageSource::preprocess(const RAWParams &raw, const LensProfParams &lens
 
         if (numFrames == 4) {
             double fitParams[64];
-            float *buffer = CA_correct_RT(raw.ca_autocorrect, raw.caautoiterations, raw.cared, raw.cablue, raw.ca_avoidcolourshift, raw.bayersensor.border, *rawDataFrames[0], fitParams, false, true, nullptr, false, options.chunkSizeCA, options.measure);
+            float *buffer = CA_correct_RT(raw.ca_autocorrect, raw.caautoiterations, raw.cared, raw.cablue, raw.ca_avoidcolourshift, raw.bayersensor.border, *rawDataFrames[0], fitParams, false, true, nullptr, false, rtoptions.chunkSizeCA, rtoptions.measure);
             for (int i = 1; i < 3; ++i) {
-                CA_correct_RT(raw.ca_autocorrect, raw.caautoiterations, raw.cared, raw.cablue, raw.ca_avoidcolourshift, raw.bayersensor.border, *rawDataFrames[i], fitParams, true, false, buffer, false, options.chunkSizeCA, options.measure);
+                CA_correct_RT(raw.ca_autocorrect, raw.caautoiterations, raw.cared, raw.cablue, raw.ca_avoidcolourshift, raw.bayersensor.border, *rawDataFrames[i], fitParams, true, false, buffer, false, rtoptions.chunkSizeCA, rtoptions.measure);
             }
 
-            CA_correct_RT(raw.ca_autocorrect, raw.caautoiterations, raw.cared, raw.cablue, raw.ca_avoidcolourshift, raw.bayersensor.border, *rawDataFrames[3], fitParams, true, false, buffer, true, options.chunkSizeCA, options.measure);
+            CA_correct_RT(raw.ca_autocorrect, raw.caautoiterations, raw.cared, raw.cablue, raw.ca_avoidcolourshift, raw.bayersensor.border, *rawDataFrames[3], fitParams, true, false, buffer, true, rtoptions.chunkSizeCA, rtoptions.measure);
         } else {
-            CA_correct_RT(raw.ca_autocorrect, raw.caautoiterations, raw.cared, raw.cablue, raw.ca_avoidcolourshift, raw.bayersensor.border, rawData, nullptr, false, false, nullptr, true, options.chunkSizeCA, options.measure);
+            CA_correct_RT(raw.ca_autocorrect, raw.caautoiterations, raw.cared, raw.cablue, raw.ca_avoidcolourshift, raw.bayersensor.border, rawData, nullptr, false, false, nullptr, true, rtoptions.chunkSizeCA, rtoptions.measure);
         }
     }
 
@@ -1755,7 +1755,7 @@ void RawImageSource::demosaic(const RAWParams &raw, bool autoContrast, double &c
         } else if (raw.bayersensor.method == RAWParams::BayerSensor::getMethodString(RAWParams::BayerSensor::Method::AHD)) {
             ahd_demosaic();
         } else if (raw.bayersensor.method == RAWParams::BayerSensor::getMethodString(RAWParams::BayerSensor::Method::AMAZE)) {
-            amaze_demosaic_RT(0, 0, W, H, rawData, red, green, blue, options.chunkSizeAMAZE, options.measure);
+            amaze_demosaic_RT(0, 0, W, H, rawData, red, green, blue, rtoptions.chunkSizeAMAZE, rtoptions.measure);
         } else if (raw.bayersensor.method == RAWParams::BayerSensor::getMethodString(RAWParams::BayerSensor::Method::AMAZEBILINEAR)
                    || raw.bayersensor.method == RAWParams::BayerSensor::getMethodString(RAWParams::BayerSensor::Method::AMAZEVNG4)
                    || raw.bayersensor.method == RAWParams::BayerSensor::getMethodString(RAWParams::BayerSensor::Method::DCBBILINEAR)
@@ -1783,7 +1783,7 @@ void RawImageSource::demosaic(const RAWParams &raw, bool autoContrast, double &c
         } else if (raw.bayersensor.method == RAWParams::BayerSensor::getMethodString(RAWParams::BayerSensor::Method::MONO)) {
             nodemosaic(true);
         } else if (raw.bayersensor.method == RAWParams::BayerSensor::getMethodString(RAWParams::BayerSensor::Method::RCD)) {
-            rcd_demosaic(options.chunkSizeRCD, options.measure);
+            rcd_demosaic(rtoptions.chunkSizeRCD, rtoptions.measure);
         } else {
             nodemosaic(false);
         }
@@ -1791,9 +1791,9 @@ void RawImageSource::demosaic(const RAWParams &raw, bool autoContrast, double &c
         if (raw.xtranssensor.method == RAWParams::XTransSensor::getMethodString(RAWParams::XTransSensor::Method::FAST)) {
             fast_xtrans_interpolate(rawData, red, green, blue);
         } else if (raw.xtranssensor.method == RAWParams::XTransSensor::getMethodString(RAWParams::XTransSensor::Method::ONE_PASS)) {
-            xtrans_interpolate(1, false, options.chunkSizeXT, options.measure);
+            xtrans_interpolate(1, false, rtoptions.chunkSizeXT, rtoptions.measure);
         } else if (raw.xtranssensor.method == RAWParams::XTransSensor::getMethodString(RAWParams::XTransSensor::Method::THREE_PASS)) {
-            xtrans_interpolate(3, true, options.chunkSizeXT, options.measure);
+            xtrans_interpolate(3, true, rtoptions.chunkSizeXT, rtoptions.measure);
         } else if (raw.xtranssensor.method == RAWParams::XTransSensor::getMethodString(RAWParams::XTransSensor::Method::FOUR_PASS) || raw.xtranssensor.method == RAWParams::XTransSensor::getMethodString(RAWParams::XTransSensor::Method::TWO_PASS)) {
             if (!autoContrast) {
                 double threshold = raw.xtranssensor.dualDemosaicContrast;

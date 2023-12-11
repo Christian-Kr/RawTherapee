@@ -311,7 +311,7 @@ bool ExtProgStore::openInPhotoshop (const Glib::ustring& fileName)
 
 #else
 
-    const auto cmdLine = Glib::ustring("\"") + Glib::build_filename(options.psDir, "Photoshop.exe") + "\" " + Glib::shell_quote(fileName);
+    const auto cmdLine = Glib::ustring("\"") + Glib::build_filename(rtoptions.psDir, "Photoshop.exe") + "\" " + Glib::shell_quote(fileName);
 
 #endif
 
@@ -321,7 +321,7 @@ bool ExtProgStore::openInPhotoshop (const Glib::ustring& fileName)
 bool ExtProgStore::openInCustomEditor (const Glib::ustring& fileName, const Glib::ustring* command)
 {
     if (!command) {
-        command = &(options.customEditorProg);
+        command = &(rtoptions.customEditorProg);
     }
 
 #if defined _WIN32

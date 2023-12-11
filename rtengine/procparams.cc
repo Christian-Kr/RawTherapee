@@ -2413,7 +2413,7 @@ ColorManagementParams::ColorManagementParams() :
     labgridcieWx(-0.18964),//D50 0.3457, 0.3585,
     labgridcieWy(-0.16636),//
     aRendIntent(RI_RELATIVE),
-    outputProfile(options.rtSettings.srgb),
+    outputProfile(rtoptions.rtSettings.srgb),
     outputIntent(RI_RELATIVE),
     outputBPC(true)
 {
@@ -6512,7 +6512,7 @@ int ProcParams::save(const Glib::ustring& fname, const Glib::ustring& fname2, bo
 
 // Lens profile
         saveToKeyfile(!pedited || pedited->lensProf.lcMode, "LensProfile", "LcMode", lensProf.getMethodString(lensProf.lcMode), keyFile);
-		saveToKeyfile(!pedited || pedited->lensProf.lcpFile, "LensProfile", "LCPFile", relativePathIfInside2(fname, options.rtSettings.lensProfilesPath, fnameAbsolute, lensProf.lcpFile), keyFile);
+		saveToKeyfile(!pedited || pedited->lensProf.lcpFile, "LensProfile", "LCPFile", relativePathIfInside2(fname, rtoptions.rtSettings.lensProfilesPath, fnameAbsolute, lensProf.lcpFile), keyFile);
         saveToKeyfile(!pedited || pedited->lensProf.useDist, "LensProfile", "UseDistortion", lensProf.useDist, keyFile);
         saveToKeyfile(!pedited || pedited->lensProf.useVign, "LensProfile", "UseVignette", lensProf.useVign, keyFile);
         saveToKeyfile(!pedited || pedited->lensProf.useCA, "LensProfile", "UseCA", lensProf.useCA, keyFile);
@@ -7334,7 +7334,7 @@ int ProcParams::save(const Glib::ustring& fname, const Glib::ustring& fname2, bo
         saveToKeyfile(!pedited || pedited->prsharpening.deconviter, "PostResizeSharpening", "DeconvIterations", prsharpening.deconviter, keyFile);
 
 // Color management
-		saveToKeyfile(!pedited || pedited->icm.inputProfile, "Color Management", "InputProfile", relativePathIfInside2(fname, options.rtSettings.cameraProfilesPath, fnameAbsolute, icm.inputProfile), keyFile);
+		saveToKeyfile(!pedited || pedited->icm.inputProfile, "Color Management", "InputProfile", relativePathIfInside2(fname, rtoptions.rtSettings.cameraProfilesPath, fnameAbsolute, icm.inputProfile), keyFile);
         saveToKeyfile(!pedited || pedited->icm.toneCurve, "Color Management", "ToneCurve", icm.toneCurve, keyFile);
         saveToKeyfile(!pedited || pedited->icm.applyLookTable, "Color Management", "ApplyLookTable", icm.applyLookTable, keyFile);
         saveToKeyfile(!pedited || pedited->icm.applyBaselineExposureOffset, "Color Management", "ApplyBaselineExposureOffset", icm.applyBaselineExposureOffset, keyFile);
@@ -7708,9 +7708,9 @@ int ProcParams::save(const Glib::ustring& fname, const Glib::ustring& fname2, bo
         saveToKeyfile(!pedited || pedited->colorToning.labregionsShowMask, "ColorToning", "LabRegionsShowMask", colorToning.labregionsShowMask, keyFile);
 
 // Raw
-        saveToKeyfile(!pedited || pedited->raw.darkFrame, "RAW", "DarkFrame", relativePathIfInside2(fname, options.rtSettings.darkFramesPath, fnameAbsolute, raw.dark_frame), keyFile);
+        saveToKeyfile(!pedited || pedited->raw.darkFrame, "RAW", "DarkFrame", relativePathIfInside2(fname, rtoptions.rtSettings.darkFramesPath, fnameAbsolute, raw.dark_frame), keyFile);
         saveToKeyfile(!pedited || pedited->raw.df_autoselect, "RAW", "DarkFrameAuto", raw.df_autoselect, keyFile);
-        saveToKeyfile(!pedited || pedited->raw.ff_file, "RAW", "FlatFieldFile", relativePathIfInside2(fname, options.rtSettings.flatFieldsPath, fnameAbsolute, raw.ff_file), keyFile);       
+        saveToKeyfile(!pedited || pedited->raw.ff_file, "RAW", "FlatFieldFile", relativePathIfInside2(fname, rtoptions.rtSettings.flatFieldsPath, fnameAbsolute, raw.ff_file), keyFile);
         saveToKeyfile(!pedited || pedited->raw.ff_AutoSelect, "RAW", "FlatFieldAutoSelect", raw.ff_AutoSelect, keyFile);
         saveToKeyfile(!pedited || pedited->raw.ff_FromMetaData, "RAW", "FlatFieldFromMetaData", raw.ff_FromMetaData, keyFile);
         saveToKeyfile(!pedited || pedited->raw.ff_BlurRadius, "RAW", "FlatFieldBlurRadius", raw.ff_BlurRadius, keyFile);
@@ -8623,7 +8623,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
 
             if (keyFile->has_key("LensProfile", "LCPFile")) {
-				lensProf.lcpFile = expandRelativePath2(fname, options.rtSettings.lensProfilesPath, "", keyFile->get_string("LensProfile", "LCPFile"));
+				lensProf.lcpFile = expandRelativePath2(fname, rtoptions.rtSettings.lensProfilesPath, "", keyFile->get_string("LensProfile", "LCPFile"));
 
                 if (pedited) {
                     pedited->lensProf.lcpFile = true;
@@ -9663,7 +9663,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
 
         if (keyFile->has_group("Color Management")) {
             if (keyFile->has_key("Color Management", "InputProfile")) {
-				icm.inputProfile = expandRelativePath2(fname, options.rtSettings.cameraProfilesPath, "file:", keyFile->get_string("Color Management", "InputProfile"));
+				icm.inputProfile = expandRelativePath2(fname, rtoptions.rtSettings.cameraProfilesPath, "file:", keyFile->get_string("Color Management", "InputProfile"));
 
                 if (pedited) {
                     pedited->icm.inputProfile = true;
@@ -10439,7 +10439,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
 
         if (keyFile->has_group("RAW")) {
             if (keyFile->has_key("RAW", "DarkFrame")) {
-                raw.dark_frame = expandRelativePath2(fname, options.rtSettings.darkFramesPath, "", keyFile->get_string("RAW", "DarkFrame"));
+                raw.dark_frame = expandRelativePath2(fname, rtoptions.rtSettings.darkFramesPath, "", keyFile->get_string("RAW", "DarkFrame"));
 
                 if (pedited) {
                     pedited->raw.darkFrame = true;
@@ -10447,7 +10447,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
             }
             assignFromKeyfile(keyFile, "RAW", "DarkFrameAuto", raw.df_autoselect, pedited->raw.df_autoselect);
             if (keyFile->has_key("RAW", "FlatFieldFile")) {
-                raw.ff_file = expandRelativePath2(fname, options.rtSettings.flatFieldsPath, "", keyFile->get_string("RAW", "FlatFieldFile"));
+                raw.ff_file = expandRelativePath2(fname, rtoptions.rtSettings.flatFieldsPath, "", keyFile->get_string("RAW", "FlatFieldFile"));
 
                 if (pedited) {
                     pedited->raw.ff_file = true;

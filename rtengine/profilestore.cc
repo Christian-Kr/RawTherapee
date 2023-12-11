@@ -126,9 +126,9 @@ void ProfileStore::_parseProfiles ()
 
     folders.push_back ("<<< ROOT >>>"); // Fake path, so parentFolderId == 0 will be used to attach a ProfileStoreEntry to the root container, not sub-menu
 
-    Glib::ustring p1 = options.getUserProfilePath();
-    Glib::ustring p2 = options.getGlobalProfilePath();
-    bool displayLevel0 = options.useBundledProfiles && !p1.empty() && !p2.empty() && p1 != p2;
+    Glib::ustring p1 = rtoptions.getUserProfilePath();
+    Glib::ustring p2 = rtoptions.getGlobalProfilePath();
+    bool displayLevel0 = rtoptions.useBundledProfiles && !p1.empty() && !p2.empty() && p1 != p2;
 
     Glib::ustring virtualPath;
     Glib::ustring currDir;
@@ -160,19 +160,19 @@ void ProfileStore::_parseProfiles ()
     }
 
     // Check if the default profiles has been found.
-    if (findEntryFromFullPathU (options.defProfRaw) == nullptr) {
-        options.setDefProfRawMissing (true);
+    if (findEntryFromFullPathU (rtoptions.defProfRaw) == nullptr) {
+        rtoptions.setDefProfRawMissing (true);
 
         if (settings->verbose) {
-            printf ("WARNING: Default profile \"%s\" for raw images not found!\n", options.defProfRaw.c_str());
+            printf ("WARNING: Default profile \"%s\" for raw images not found!\n", rtoptions.defProfRaw.c_str());
         }
     }
 
-    if (findEntryFromFullPathU (options.defProfImg) == nullptr) {
-        options.setDefProfImgMissing (true);
+    if (findEntryFromFullPathU (rtoptions.defProfImg) == nullptr) {
+        rtoptions.setDefProfImgMissing (true);
 
         if (settings->verbose) {
-            printf ("WARNING: Default profile \"%s\" for standard images not found!\n", options.defProfImg.c_str());
+            printf ("WARNING: Default profile \"%s\" for standard images not found!\n", rtoptions.defProfImg.c_str());
         }
     }
 }
@@ -432,7 +432,7 @@ const ProcParams* ProfileStore::getDefaultProcParams (bool isRaw)
     //Note: the mutex is locked in getProfile, called below
     //      eventual initialization is done there too
 
-    const PartialProfile* pProf = getProfile (isRaw ? options.defProfRaw : options.defProfImg);
+    const PartialProfile* pProf = getProfile (isRaw ? rtoptions.defProfRaw : rtoptions.defProfImg);
 
     if (!pProf) {
         pProf = internalDefaultProfile;
@@ -452,7 +452,7 @@ const PartialProfile* ProfileStore::getDefaultPartialProfile (bool isRaw)
     //Note: the mutex is locked in getProfile, called below
     //      eventual initialization is done there too
 
-    const PartialProfile* pProf = getProfile (isRaw ? options.defProfRaw : options.defProfImg);
+    const PartialProfile* pProf = getProfile (isRaw ? rtoptions.defProfRaw : rtoptions.defProfImg);
 
     if (!pProf) {
         pProf = internalDefaultProfile;

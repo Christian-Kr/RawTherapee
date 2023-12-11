@@ -515,7 +515,7 @@ public:
     static Glib::ustring getICCProfileCopyright();
 };
 
-extern RTOptions options;
+extern RTOptions rtoptions;
 extern Glib::ustring argv0;
 extern Glib::ustring argv1;
 extern bool simpleEditor;

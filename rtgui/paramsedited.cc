@@ -2173,23 +2173,23 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (toneCurve.brightness) {
-        toEdit.toneCurve.brightness = dontforceSet && options.baBehav[ADDSET_TC_BRIGHTNESS] ? toEdit.toneCurve.brightness + mods.toneCurve.brightness : mods.toneCurve.brightness;
+        toEdit.toneCurve.brightness = dontforceSet && rtoptions.baBehav[ADDSET_TC_BRIGHTNESS] ? toEdit.toneCurve.brightness + mods.toneCurve.brightness : mods.toneCurve.brightness;
     }
 
     if (toneCurve.black) {
-        toEdit.toneCurve.black = dontforceSet && options.baBehav[ADDSET_TC_BLACKLEVEL] ? toEdit.toneCurve.black + mods.toneCurve.black : mods.toneCurve.black;
+        toEdit.toneCurve.black = dontforceSet && rtoptions.baBehav[ADDSET_TC_BLACKLEVEL] ? toEdit.toneCurve.black + mods.toneCurve.black : mods.toneCurve.black;
     }
 
     if (toneCurve.contrast) {
-        toEdit.toneCurve.contrast = dontforceSet && options.baBehav[ADDSET_TC_CONTRAST] ? toEdit.toneCurve.contrast + mods.toneCurve.contrast : mods.toneCurve.contrast;
+        toEdit.toneCurve.contrast = dontforceSet && rtoptions.baBehav[ADDSET_TC_CONTRAST] ? toEdit.toneCurve.contrast + mods.toneCurve.contrast : mods.toneCurve.contrast;
     }
 
     if (toneCurve.saturation) {
-        toEdit.toneCurve.saturation = dontforceSet && options.baBehav[ADDSET_TC_SATURATION] ? toEdit.toneCurve.saturation + mods.toneCurve.saturation : mods.toneCurve.saturation;
+        toEdit.toneCurve.saturation = dontforceSet && rtoptions.baBehav[ADDSET_TC_SATURATION] ? toEdit.toneCurve.saturation + mods.toneCurve.saturation : mods.toneCurve.saturation;
     }
 
     if (toneCurve.shcompr) {
-        toEdit.toneCurve.shcompr = dontforceSet && options.baBehav[ADDSET_TC_SHCOMP] ? toEdit.toneCurve.shcompr + mods.toneCurve.shcompr : mods.toneCurve.shcompr;
+        toEdit.toneCurve.shcompr = dontforceSet && rtoptions.baBehav[ADDSET_TC_SHCOMP] ? toEdit.toneCurve.shcompr + mods.toneCurve.shcompr : mods.toneCurve.shcompr;
     }
 
     if (toneCurve.autoexp) {
@@ -2201,15 +2201,15 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (toneCurve.expcomp) {
-        toEdit.toneCurve.expcomp = dontforceSet && options.baBehav[ADDSET_TC_EXPCOMP] ? toEdit.toneCurve.expcomp + mods.toneCurve.expcomp : mods.toneCurve.expcomp;
+        toEdit.toneCurve.expcomp = dontforceSet && rtoptions.baBehav[ADDSET_TC_EXPCOMP] ? toEdit.toneCurve.expcomp + mods.toneCurve.expcomp : mods.toneCurve.expcomp;
     }
 
     if (toneCurve.hlcompr) {
-        toEdit.toneCurve.hlcompr = dontforceSet && options.baBehav[ADDSET_TC_HLCOMPAMOUNT] ? toEdit.toneCurve.hlcompr + mods.toneCurve.hlcompr : mods.toneCurve.hlcompr;
+        toEdit.toneCurve.hlcompr = dontforceSet && rtoptions.baBehav[ADDSET_TC_HLCOMPAMOUNT] ? toEdit.toneCurve.hlcompr + mods.toneCurve.hlcompr : mods.toneCurve.hlcompr;
     }
 
     if (toneCurve.hlcomprthresh) {
-        toEdit.toneCurve.hlcomprthresh = dontforceSet && options.baBehav[ADDSET_TC_HLCOMPTHRESH] ? toEdit.toneCurve.hlcomprthresh + mods.toneCurve.hlcomprthresh : mods.toneCurve.hlcomprthresh;
+        toEdit.toneCurve.hlcomprthresh = dontforceSet && rtoptions.baBehav[ADDSET_TC_HLCOMPTHRESH] ? toEdit.toneCurve.hlcomprthresh + mods.toneCurve.hlcomprthresh : mods.toneCurve.hlcomprthresh;
     }
 
     if (toneCurve.hrenabled) {
@@ -2293,15 +2293,15 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (retinex.gam) {
-        toEdit.retinex.gam = dontforceSet && options.baBehav[ADDSET_RETI_GAM] ? toEdit.retinex.gam + mods.retinex.gam : mods.retinex.gam;
+        toEdit.retinex.gam = dontforceSet && rtoptions.baBehav[ADDSET_RETI_GAM] ? toEdit.retinex.gam + mods.retinex.gam : mods.retinex.gam;
     }
 
     if (retinex.slope) {
-        toEdit.retinex.slope = dontforceSet && options.baBehav[ADDSET_RETI_SLO] ? toEdit.retinex.slope + mods.retinex.slope : mods.retinex.slope;
+        toEdit.retinex.slope = dontforceSet && rtoptions.baBehav[ADDSET_RETI_SLO] ? toEdit.retinex.slope + mods.retinex.slope : mods.retinex.slope;
     }
 
     if (retinex.str) {
-        toEdit.retinex.str = dontforceSet && options.baBehav[ADDSET_RETI_STR] ? toEdit.retinex.str + mods.retinex.str : mods.retinex.str;
+        toEdit.retinex.str = dontforceSet && rtoptions.baBehav[ADDSET_RETI_STR] ? toEdit.retinex.str + mods.retinex.str : mods.retinex.str;
     }
 
     if (retinex.scal) {
@@ -2329,11 +2329,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (retinex.neigh) {
-        toEdit.retinex.neigh = dontforceSet && options.baBehav[ADDSET_RETI_NEIGH] ? toEdit.retinex.neigh + mods.retinex.neigh : mods.retinex.neigh;
+        toEdit.retinex.neigh = dontforceSet && rtoptions.baBehav[ADDSET_RETI_NEIGH] ? toEdit.retinex.neigh + mods.retinex.neigh : mods.retinex.neigh;
     }
 
     if (retinex.limd) {
-        toEdit.retinex.limd = dontforceSet && options.baBehav[ADDSET_RETI_LIMD] ? toEdit.retinex.limd + mods.retinex.limd : mods.retinex.limd;
+        toEdit.retinex.limd = dontforceSet && rtoptions.baBehav[ADDSET_RETI_LIMD] ? toEdit.retinex.limd + mods.retinex.limd : mods.retinex.limd;
     }
 
     if (retinex.highl) {
@@ -2345,11 +2345,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (retinex.offs) {
-        toEdit.retinex.offs = dontforceSet && options.baBehav[ADDSET_RETI_OFFS] ? toEdit.retinex.offs + mods.retinex.offs : mods.retinex.offs;
+        toEdit.retinex.offs = dontforceSet && rtoptions.baBehav[ADDSET_RETI_OFFS] ? toEdit.retinex.offs + mods.retinex.offs : mods.retinex.offs;
     }
 
     if (retinex.vart) {
-        toEdit.retinex.vart = dontforceSet && options.baBehav[ADDSET_RETI_VART] ? toEdit.retinex.vart + mods.retinex.vart : mods.retinex.vart;
+        toEdit.retinex.vart = dontforceSet && rtoptions.baBehav[ADDSET_RETI_VART] ? toEdit.retinex.vart + mods.retinex.vart : mods.retinex.vart;
     }
 
     if (retinex.highlights) {
@@ -2415,15 +2415,15 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (labCurve.brightness) {
-        toEdit.labCurve.brightness = dontforceSet && options.baBehav[ADDSET_LC_BRIGHTNESS] ? toEdit.labCurve.brightness + mods.labCurve.brightness : mods.labCurve.brightness;
+        toEdit.labCurve.brightness = dontforceSet && rtoptions.baBehav[ADDSET_LC_BRIGHTNESS] ? toEdit.labCurve.brightness + mods.labCurve.brightness : mods.labCurve.brightness;
     }
 
     if (labCurve.contrast) {
-        toEdit.labCurve.contrast = dontforceSet && options.baBehav[ADDSET_LC_CONTRAST] ? toEdit.labCurve.contrast + mods.labCurve.contrast : mods.labCurve.contrast;
+        toEdit.labCurve.contrast = dontforceSet && rtoptions.baBehav[ADDSET_LC_CONTRAST] ? toEdit.labCurve.contrast + mods.labCurve.contrast : mods.labCurve.contrast;
     }
 
     if (labCurve.chromaticity) {
-        toEdit.labCurve.chromaticity = dontforceSet && options.baBehav[ADDSET_LC_CHROMATICITY] ? toEdit.labCurve.chromaticity + mods.labCurve.chromaticity : mods.labCurve.chromaticity;
+        toEdit.labCurve.chromaticity = dontforceSet && rtoptions.baBehav[ADDSET_LC_CHROMATICITY] ? toEdit.labCurve.chromaticity + mods.labCurve.chromaticity : mods.labCurve.chromaticity;
     }
 
     if (labCurve.gamutmunselmethod) {
@@ -2445,7 +2445,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
 #define ADDSETVAL_(v, i)                                                                        \
     do {                                                                                        \
         if ( v ) {                                                                              \
-            toEdit. v = dontforceSet && options.baBehav[ i ] ? toEdit. v + mods. v : mods. v ;  \
+            toEdit. v = dontforceSet && rtoptions.baBehav[ i ] ? toEdit. v + mods. v : mods. v ;  \
         }                                                                                       \
     } while (false)
 
@@ -2500,7 +2500,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (colorToning.satprotectionthreshold) {
-        toEdit.colorToning.satProtectionThreshold = dontforceSet && options.baBehav[ADDSET_COLORTONING_SATTHRESHOLD] ? toEdit.colorToning.satProtectionThreshold + mods.colorToning.satProtectionThreshold : mods.colorToning.satProtectionThreshold;
+        toEdit.colorToning.satProtectionThreshold = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SATTHRESHOLD] ? toEdit.colorToning.satProtectionThreshold + mods.colorToning.satProtectionThreshold : mods.colorToning.satProtectionThreshold;
     }
 
     if (colorToning.autosat) {
@@ -2508,11 +2508,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (colorToning.saturatedopacity) {
-        toEdit.colorToning.saturatedOpacity = dontforceSet && options.baBehav[ADDSET_COLORTONING_SATOPACITY] ? toEdit.colorToning.saturatedOpacity + mods.colorToning.saturatedOpacity : mods.colorToning.saturatedOpacity;
+        toEdit.colorToning.saturatedOpacity = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SATOPACITY] ? toEdit.colorToning.saturatedOpacity + mods.colorToning.saturatedOpacity : mods.colorToning.saturatedOpacity;
     }
 
     if (colorToning.strength) {
-        toEdit.colorToning.strength = dontforceSet && options.baBehav[ADDSET_COLORTONING_STRENGTH] ? toEdit.colorToning.strength + mods.colorToning.strength : mods.colorToning.strength;
+        toEdit.colorToning.strength = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_STRENGTH] ? toEdit.colorToning.strength + mods.colorToning.strength : mods.colorToning.strength;
     }
 
     if (colorToning.shadowsColSat) {
@@ -2524,7 +2524,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (colorToning.balance) {
-        toEdit.colorToning.balance = dontforceSet && options.baBehav[ADDSET_COLORTONING_BALANCE] ? toEdit.colorToning.balance + mods.colorToning.balance : mods.colorToning.balance;
+        toEdit.colorToning.balance = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_BALANCE] ? toEdit.colorToning.balance + mods.colorToning.balance : mods.colorToning.balance;
     }
 
     if (colorToning.clcurve) {
@@ -2544,47 +2544,47 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (colorToning.satlow) {
-        toEdit.colorToning.satlow = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.satlow + mods.colorToning.satlow : mods.colorToning.satlow;
+        toEdit.colorToning.satlow = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.satlow + mods.colorToning.satlow : mods.colorToning.satlow;
     }
 
     if (colorToning.sathigh) {
-        toEdit.colorToning.sathigh = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.sathigh + mods.colorToning.sathigh : mods.colorToning.sathigh;
+        toEdit.colorToning.sathigh = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.sathigh + mods.colorToning.sathigh : mods.colorToning.sathigh;
     }
 
     if (colorToning.redlow) {
-        toEdit.colorToning.redlow = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.redlow + mods.colorToning.redlow : mods.colorToning.redlow;
+        toEdit.colorToning.redlow = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.redlow + mods.colorToning.redlow : mods.colorToning.redlow;
     }
 
     if (colorToning.greenlow) {
-        toEdit.colorToning.greenlow = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.greenlow + mods.colorToning.greenlow : mods.colorToning.greenlow;
+        toEdit.colorToning.greenlow = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.greenlow + mods.colorToning.greenlow : mods.colorToning.greenlow;
     }
 
     if (colorToning.bluelow) {
-        toEdit.colorToning.bluelow = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.bluelow + mods.colorToning.bluelow : mods.colorToning.bluelow;
+        toEdit.colorToning.bluelow = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.bluelow + mods.colorToning.bluelow : mods.colorToning.bluelow;
     }
 
     if (colorToning.redmed) {
-        toEdit.colorToning.redmed = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.redmed + mods.colorToning.redmed : mods.colorToning.redmed;
+        toEdit.colorToning.redmed = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.redmed + mods.colorToning.redmed : mods.colorToning.redmed;
     }
 
     if (colorToning.greenmed) {
-        toEdit.colorToning.greenmed = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.greenmed + mods.colorToning.greenmed : mods.colorToning.greenmed;
+        toEdit.colorToning.greenmed = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.greenmed + mods.colorToning.greenmed : mods.colorToning.greenmed;
     }
 
     if (colorToning.bluemed) {
-        toEdit.colorToning.bluemed = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.bluemed + mods.colorToning.bluemed : mods.colorToning.bluemed;
+        toEdit.colorToning.bluemed = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.bluemed + mods.colorToning.bluemed : mods.colorToning.bluemed;
     }
 
     if (colorToning.redhigh) {
-        toEdit.colorToning.redhigh = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.redhigh + mods.colorToning.redhigh : mods.colorToning.redhigh;
+        toEdit.colorToning.redhigh = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.redhigh + mods.colorToning.redhigh : mods.colorToning.redhigh;
     }
 
     if (colorToning.greenhigh) {
-        toEdit.colorToning.greenhigh = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.greenhigh + mods.colorToning.greenhigh : mods.colorToning.greenhigh;
+        toEdit.colorToning.greenhigh = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.greenhigh + mods.colorToning.greenhigh : mods.colorToning.greenhigh;
     }
 
     if (colorToning.bluehigh) {
-        toEdit.colorToning.bluehigh = dontforceSet && options.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.bluehigh + mods.colorToning.bluehigh : mods.colorToning.bluehigh;
+        toEdit.colorToning.bluehigh = dontforceSet && rtoptions.baBehav[ADDSET_COLORTONING_SPLIT] ? toEdit.colorToning.bluehigh + mods.colorToning.bluehigh : mods.colorToning.bluehigh;
     }
 
     if (colorToning.labgridALow) {
@@ -2616,11 +2616,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (sharpenEdge.passes) {
-        toEdit.sharpenEdge.passes = dontforceSet && options.baBehav[ADDSET_SHARPENEDGE_PASS] ? toEdit.sharpenEdge.passes + mods.sharpenEdge.passes : mods.sharpenEdge.passes;
+        toEdit.sharpenEdge.passes = dontforceSet && rtoptions.baBehav[ADDSET_SHARPENEDGE_PASS] ? toEdit.sharpenEdge.passes + mods.sharpenEdge.passes : mods.sharpenEdge.passes;
     }
 
     if (sharpenEdge.amount) {
-        toEdit.sharpenEdge.amount = dontforceSet && options.baBehav[ADDSET_SHARPENEDGE_AMOUNT] ? toEdit.sharpenEdge.amount + mods.sharpenEdge.amount : mods.sharpenEdge.amount;
+        toEdit.sharpenEdge.amount = dontforceSet && rtoptions.baBehav[ADDSET_SHARPENEDGE_AMOUNT] ? toEdit.sharpenEdge.amount + mods.sharpenEdge.amount : mods.sharpenEdge.amount;
     }
 
     if (sharpenEdge.threechannels) {
@@ -2636,15 +2636,15 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (sharpenMicro.amount) {
-        toEdit.sharpenMicro.amount = dontforceSet && options.baBehav[ADDSET_SHARPENMICRO_AMOUNT] ? toEdit.sharpenMicro.amount + mods.sharpenMicro.amount : mods.sharpenMicro.amount;
+        toEdit.sharpenMicro.amount = dontforceSet && rtoptions.baBehav[ADDSET_SHARPENMICRO_AMOUNT] ? toEdit.sharpenMicro.amount + mods.sharpenMicro.amount : mods.sharpenMicro.amount;
     }
 
     if (sharpenMicro.contrast) {
-        toEdit.sharpenMicro.contrast = dontforceSet && options.baBehav[ADDSET_SHARPENMICRO_CONTRAST] ? toEdit.sharpenMicro.contrast + mods.sharpenMicro.contrast : mods.sharpenMicro.contrast;
+        toEdit.sharpenMicro.contrast = dontforceSet && rtoptions.baBehav[ADDSET_SHARPENMICRO_CONTRAST] ? toEdit.sharpenMicro.contrast + mods.sharpenMicro.contrast : mods.sharpenMicro.contrast;
     }
 
     if (sharpenMicro.uniformity) {
-        toEdit.sharpenMicro.uniformity = dontforceSet && options.baBehav[ADDSET_SHARPENMICRO_UNIFORMITY] ? toEdit.sharpenMicro.uniformity + mods.sharpenMicro.uniformity : mods.sharpenMicro.uniformity;
+        toEdit.sharpenMicro.uniformity = dontforceSet && rtoptions.baBehav[ADDSET_SHARPENMICRO_UNIFORMITY] ? toEdit.sharpenMicro.uniformity + mods.sharpenMicro.uniformity : mods.sharpenMicro.uniformity;
     }
 
     if (sharpening.enabled) {
@@ -2652,23 +2652,23 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (sharpening.contrast) {
-        toEdit.sharpening.contrast = dontforceSet && options.baBehav[ADDSET_SHARP_CONTRAST] ? toEdit.sharpening.contrast + mods.sharpening.contrast : mods.sharpening.contrast;
+        toEdit.sharpening.contrast = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_CONTRAST] ? toEdit.sharpening.contrast + mods.sharpening.contrast : mods.sharpening.contrast;
     }
 
     if (sharpening.radius) {
-        toEdit.sharpening.radius = dontforceSet && options.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.sharpening.radius + mods.sharpening.radius : mods.sharpening.radius;
+        toEdit.sharpening.radius = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.sharpening.radius + mods.sharpening.radius : mods.sharpening.radius;
     }
 
     if (sharpening.blurradius) {
-        toEdit.sharpening.blurradius = dontforceSet && options.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.sharpening.blurradius + mods.sharpening.blurradius : mods.sharpening.blurradius;
+        toEdit.sharpening.blurradius = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.sharpening.blurradius + mods.sharpening.blurradius : mods.sharpening.blurradius;
     }
 
     if (sharpening.gamma) {
-        toEdit.sharpening.gamma = dontforceSet && options.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.sharpening.gamma + mods.sharpening.gamma : mods.sharpening.gamma;
+        toEdit.sharpening.gamma = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.sharpening.gamma + mods.sharpening.gamma : mods.sharpening.gamma;
     }
 
     if (sharpening.amount) {
-        toEdit.sharpening.amount = dontforceSet && options.baBehav[ADDSET_SHARP_AMOUNT] ? toEdit.sharpening.amount + mods.sharpening.amount : mods.sharpening.amount;
+        toEdit.sharpening.amount = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_AMOUNT] ? toEdit.sharpening.amount + mods.sharpening.amount : mods.sharpening.amount;
     }
 
     if (sharpening.threshold) {
@@ -2680,11 +2680,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (sharpening.edges_radius) {
-        toEdit.sharpening.edges_radius = dontforceSet && options.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.sharpening.edges_radius + mods.sharpening.edges_radius : mods.sharpening.edges_radius;
+        toEdit.sharpening.edges_radius = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.sharpening.edges_radius + mods.sharpening.edges_radius : mods.sharpening.edges_radius;
     }
 
     if (sharpening.edges_tolerance) {
-        toEdit.sharpening.edges_tolerance = dontforceSet && options.baBehav[ADDSET_SHARP_EDGETOL] ? toEdit.sharpening.edges_tolerance + mods.sharpening.edges_tolerance : mods.sharpening.edges_tolerance;
+        toEdit.sharpening.edges_tolerance = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_EDGETOL] ? toEdit.sharpening.edges_tolerance + mods.sharpening.edges_tolerance : mods.sharpening.edges_tolerance;
     }
 
     if (sharpening.halocontrol) {
@@ -2692,7 +2692,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (sharpening.halocontrol_amount) {
-        toEdit.sharpening.halocontrol_amount = dontforceSet && options.baBehav[ADDSET_SHARP_HALOCTRL] ? toEdit.sharpening.halocontrol_amount + mods.sharpening.halocontrol_amount : mods.sharpening.halocontrol_amount;
+        toEdit.sharpening.halocontrol_amount = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_HALOCTRL] ? toEdit.sharpening.halocontrol_amount + mods.sharpening.halocontrol_amount : mods.sharpening.halocontrol_amount;
     }
 
     if (sharpening.method) {
@@ -2700,19 +2700,19 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (sharpening.deconvamount) {
-        toEdit.sharpening.deconvamount = dontforceSet && options.baBehav[ADDSET_SHARP_AMOUNT] ? toEdit.sharpening.deconvamount + mods.sharpening.deconvamount : mods.sharpening.deconvamount;
+        toEdit.sharpening.deconvamount = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_AMOUNT] ? toEdit.sharpening.deconvamount + mods.sharpening.deconvamount : mods.sharpening.deconvamount;
     }
 
     if (sharpening.deconvradius) {
-        toEdit.sharpening.deconvradius = dontforceSet && options.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.sharpening.deconvradius + mods.sharpening.deconvradius : mods.sharpening.deconvradius;
+        toEdit.sharpening.deconvradius = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.sharpening.deconvradius + mods.sharpening.deconvradius : mods.sharpening.deconvradius;
     }
 
     if (sharpening.deconviter) {
-        toEdit.sharpening.deconviter = dontforceSet && options.baBehav[ADDSET_SHARP_ITER] ? toEdit.sharpening.deconviter + mods.sharpening.deconviter : mods.sharpening.deconviter;
+        toEdit.sharpening.deconviter = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_ITER] ? toEdit.sharpening.deconviter + mods.sharpening.deconviter : mods.sharpening.deconviter;
     }
 
     if (sharpening.deconvdamping) {
-        toEdit.sharpening.deconvdamping = dontforceSet && options.baBehav[ADDSET_SHARP_DAMPING] ? toEdit.sharpening.deconvdamping + mods.sharpening.deconvdamping : mods.sharpening.deconvdamping;
+        toEdit.sharpening.deconvdamping = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_DAMPING] ? toEdit.sharpening.deconvdamping + mods.sharpening.deconvdamping : mods.sharpening.deconvdamping;
     }
 
     if (pdsharpening.enabled) {
@@ -2720,7 +2720,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (pdsharpening.contrast) {
-        toEdit.pdsharpening.contrast = dontforceSet && options.baBehav[ADDSET_SHARP_CONTRAST] ? toEdit.pdsharpening.contrast + mods.pdsharpening.contrast : mods.pdsharpening.contrast;
+        toEdit.pdsharpening.contrast = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_CONTRAST] ? toEdit.pdsharpening.contrast + mods.pdsharpening.contrast : mods.pdsharpening.contrast;
     }
 
     if (pdsharpening.autoContrast) {
@@ -2732,15 +2732,15 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (pdsharpening.deconvradius) {
-        toEdit.pdsharpening.deconvradius = dontforceSet && options.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.pdsharpening.deconvradius + mods.pdsharpening.deconvradius : mods.pdsharpening.deconvradius;
+        toEdit.pdsharpening.deconvradius = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.pdsharpening.deconvradius + mods.pdsharpening.deconvradius : mods.pdsharpening.deconvradius;
     }
 
     if (pdsharpening.deconvradiusOffset) {
-        toEdit.pdsharpening.deconvradiusOffset = dontforceSet && options.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.pdsharpening.deconvradiusOffset + mods.pdsharpening.deconvradiusOffset : mods.pdsharpening.deconvradiusOffset;
+        toEdit.pdsharpening.deconvradiusOffset = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.pdsharpening.deconvradiusOffset + mods.pdsharpening.deconvradiusOffset : mods.pdsharpening.deconvradiusOffset;
     }
 
     if (pdsharpening.deconviter) {
-        toEdit.pdsharpening.deconviter = dontforceSet && options.baBehav[ADDSET_SHARP_ITER] ? toEdit.pdsharpening.deconviter + mods.pdsharpening.deconviter : mods.pdsharpening.deconviter;
+        toEdit.pdsharpening.deconviter = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_ITER] ? toEdit.pdsharpening.deconviter + mods.pdsharpening.deconviter : mods.pdsharpening.deconviter;
     }
 
     if (pdsharpening.deconvitercheck) {
@@ -2752,15 +2752,15 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (prsharpening.contrast) {
-        toEdit.prsharpening.contrast = dontforceSet && options.baBehav[ADDSET_SHARP_CONTRAST] ? toEdit.prsharpening.contrast + mods.prsharpening.contrast : mods.prsharpening.contrast;
+        toEdit.prsharpening.contrast = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_CONTRAST] ? toEdit.prsharpening.contrast + mods.prsharpening.contrast : mods.prsharpening.contrast;
     }
 
     if (prsharpening.radius) {
-        toEdit.prsharpening.radius = dontforceSet && options.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.prsharpening.radius + mods.prsharpening.radius : mods.prsharpening.radius;
+        toEdit.prsharpening.radius = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.prsharpening.radius + mods.prsharpening.radius : mods.prsharpening.radius;
     }
 
     if (prsharpening.amount) {
-        toEdit.prsharpening.amount = dontforceSet && options.baBehav[ADDSET_SHARP_AMOUNT] ? toEdit.prsharpening.amount + mods.prsharpening.amount : mods.prsharpening.amount;
+        toEdit.prsharpening.amount = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_AMOUNT] ? toEdit.prsharpening.amount + mods.prsharpening.amount : mods.prsharpening.amount;
     }
 
     if (prsharpening.threshold) {
@@ -2772,11 +2772,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (prsharpening.edges_radius) {
-        toEdit.prsharpening.edges_radius = dontforceSet && options.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.prsharpening.edges_radius + mods.prsharpening.edges_radius : mods.prsharpening.edges_radius;
+        toEdit.prsharpening.edges_radius = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.prsharpening.edges_radius + mods.prsharpening.edges_radius : mods.prsharpening.edges_radius;
     }
 
     if (prsharpening.edges_tolerance) {
-        toEdit.prsharpening.edges_tolerance = dontforceSet && options.baBehav[ADDSET_SHARP_EDGETOL] ? toEdit.prsharpening.edges_tolerance + mods.prsharpening.edges_tolerance : mods.prsharpening.edges_tolerance;
+        toEdit.prsharpening.edges_tolerance = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_EDGETOL] ? toEdit.prsharpening.edges_tolerance + mods.prsharpening.edges_tolerance : mods.prsharpening.edges_tolerance;
     }
 
     if (prsharpening.halocontrol) {
@@ -2784,7 +2784,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (prsharpening.halocontrol_amount) {
-        toEdit.prsharpening.halocontrol_amount = dontforceSet && options.baBehav[ADDSET_SHARP_HALOCTRL] ? toEdit.prsharpening.halocontrol_amount + mods.prsharpening.halocontrol_amount : mods.prsharpening.halocontrol_amount;
+        toEdit.prsharpening.halocontrol_amount = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_HALOCTRL] ? toEdit.prsharpening.halocontrol_amount + mods.prsharpening.halocontrol_amount : mods.prsharpening.halocontrol_amount;
     }
 
     if (prsharpening.method) {
@@ -2792,19 +2792,19 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (prsharpening.deconvamount) {
-        toEdit.prsharpening.deconvamount = dontforceSet && options.baBehav[ADDSET_SHARP_AMOUNT] ? toEdit.prsharpening.deconvamount + mods.prsharpening.deconvamount : mods.prsharpening.deconvamount;
+        toEdit.prsharpening.deconvamount = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_AMOUNT] ? toEdit.prsharpening.deconvamount + mods.prsharpening.deconvamount : mods.prsharpening.deconvamount;
     }
 
     if (prsharpening.deconvradius) {
-        toEdit.prsharpening.deconvradius = dontforceSet && options.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.prsharpening.deconvradius + mods.prsharpening.deconvradius : mods.prsharpening.deconvradius;
+        toEdit.prsharpening.deconvradius = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_RADIUS] ? toEdit.prsharpening.deconvradius + mods.prsharpening.deconvradius : mods.prsharpening.deconvradius;
     }
 
     if (prsharpening.deconviter) {
-        toEdit.prsharpening.deconviter = dontforceSet && options.baBehav[ADDSET_SHARP_ITER] ? toEdit.prsharpening.deconviter + mods.prsharpening.deconviter : mods.prsharpening.deconviter;
+        toEdit.prsharpening.deconviter = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_ITER] ? toEdit.prsharpening.deconviter + mods.prsharpening.deconviter : mods.prsharpening.deconviter;
     }
 
     if (prsharpening.deconvdamping) {
-        toEdit.prsharpening.deconvdamping = dontforceSet && options.baBehav[ADDSET_SHARP_DAMPING] ? toEdit.prsharpening.deconvdamping + mods.prsharpening.deconvdamping : mods.prsharpening.deconvdamping;
+        toEdit.prsharpening.deconvdamping = dontforceSet && rtoptions.baBehav[ADDSET_SHARP_DAMPING] ? toEdit.prsharpening.deconvdamping + mods.prsharpening.deconvdamping : mods.prsharpening.deconvdamping;
     }
 
     if (vibrance.enabled) {
@@ -2812,11 +2812,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (vibrance.pastels) {
-        toEdit.vibrance.pastels = dontforceSet && options.baBehav[ADDSET_VIBRANCE_PASTELS] ? toEdit.vibrance.pastels + mods.vibrance.pastels : mods.vibrance.pastels;
+        toEdit.vibrance.pastels = dontforceSet && rtoptions.baBehav[ADDSET_VIBRANCE_PASTELS] ? toEdit.vibrance.pastels + mods.vibrance.pastels : mods.vibrance.pastels;
     }
 
     if (vibrance.saturated) {
-        toEdit.vibrance.saturated = dontforceSet && options.baBehav[ADDSET_VIBRANCE_SATURATED] ? toEdit.vibrance.saturated + mods.vibrance.saturated : mods.vibrance.saturated;
+        toEdit.vibrance.saturated = dontforceSet && rtoptions.baBehav[ADDSET_VIBRANCE_SATURATED] ? toEdit.vibrance.saturated + mods.vibrance.saturated : mods.vibrance.saturated;
     }
 
     if (vibrance.psthreshold) {
@@ -2852,11 +2852,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (wb.equal) {
-        toEdit.wb.equal = dontforceSet && options.baBehav[ADDSET_WB_EQUAL] ? toEdit.wb.equal + mods.wb.equal : mods.wb.equal;
+        toEdit.wb.equal = dontforceSet && rtoptions.baBehav[ADDSET_WB_EQUAL] ? toEdit.wb.equal + mods.wb.equal : mods.wb.equal;
     }
 
     if (wb.tempBias) {
-        toEdit.wb.tempBias = dontforceSet && options.baBehav[ADDSET_WB_TEMPBIAS] ? toEdit.wb.tempBias + mods.wb.tempBias : mods.wb.tempBias;
+        toEdit.wb.tempBias = dontforceSet && rtoptions.baBehav[ADDSET_WB_TEMPBIAS] ? toEdit.wb.tempBias + mods.wb.tempBias : mods.wb.tempBias;
     }
 
     if (wb.observer) {
@@ -2888,11 +2888,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (wb.green) {
-        toEdit.wb.green = dontforceSet && options.baBehav[ADDSET_WB_GREEN] ? toEdit.wb.green + mods.wb.green : mods.wb.green;
+        toEdit.wb.green = dontforceSet && rtoptions.baBehav[ADDSET_WB_GREEN] ? toEdit.wb.green + mods.wb.green : mods.wb.green;
     }
 
     if (wb.temperature) {
-        toEdit.wb.temperature = dontforceSet && options.baBehav[ADDSET_WB_TEMPERATURE] ? toEdit.wb.temperature + mods.wb.temperature : mods.wb.temperature;
+        toEdit.wb.temperature = dontforceSet && rtoptions.baBehav[ADDSET_WB_TEMPERATURE] ? toEdit.wb.temperature + mods.wb.temperature : mods.wb.temperature;
     }
 
     //if (colorShift.a)                     toEdit.colorShift.a = dontforceSet && options.baBehav[ADDSET_CS_BLUEYELLOW] ? toEdit.colorShift.a + mods.colorShift.a : mods.colorShift.a;
@@ -2960,7 +2960,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (colorappearance.degree) {
-        toEdit.colorappearance.degree = dontforceSet && options.baBehav[ADDSET_CAT_DEGREE] ? toEdit.colorappearance.degree + mods.colorappearance.degree : mods.colorappearance.degree;
+        toEdit.colorappearance.degree = dontforceSet && rtoptions.baBehav[ADDSET_CAT_DEGREE] ? toEdit.colorappearance.degree + mods.colorappearance.degree : mods.colorappearance.degree;
     }
 
     if (colorappearance.autodegree) {
@@ -2968,7 +2968,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (colorappearance.degreeout) {
-        toEdit.colorappearance.degreeout = dontforceSet && options.baBehav[ADDSET_CAT_DEGREEOUT] ? toEdit.colorappearance.degreeout + mods.colorappearance.degreeout : mods.colorappearance.degreeout;
+        toEdit.colorappearance.degreeout = dontforceSet && rtoptions.baBehav[ADDSET_CAT_DEGREEOUT] ? toEdit.colorappearance.degreeout + mods.colorappearance.degreeout : mods.colorappearance.degreeout;
     }
 
     if (colorappearance.autodegreeout) {
@@ -2988,7 +2988,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (colorappearance.adapscen) {
-        toEdit.colorappearance.adapscen = dontforceSet && options.baBehav[ADDSET_CAT_ADAPTSCENE] ? toEdit.colorappearance.adapscen + mods.colorappearance.adapscen : mods.colorappearance.adapscen;
+        toEdit.colorappearance.adapscen = dontforceSet && rtoptions.baBehav[ADDSET_CAT_ADAPTSCENE] ? toEdit.colorappearance.adapscen + mods.colorappearance.adapscen : mods.colorappearance.adapscen;
     }
 
     if (colorappearance.autoybscen) {
@@ -3000,11 +3000,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (colorappearance.adaplum) {
-        toEdit.colorappearance.adaplum = dontforceSet && options.baBehav[ADDSET_CAT_ADAPTVIEWING] ? toEdit.colorappearance.adaplum + mods.colorappearance.adaplum : mods.colorappearance.adaplum;
+        toEdit.colorappearance.adaplum = dontforceSet && rtoptions.baBehav[ADDSET_CAT_ADAPTVIEWING] ? toEdit.colorappearance.adaplum + mods.colorappearance.adaplum : mods.colorappearance.adaplum;
     }
 
     if (colorappearance.badpixsl) {
-        toEdit.colorappearance.badpixsl = dontforceSet && options.baBehav[ADDSET_CAT_BADPIX] ? toEdit.colorappearance.badpixsl + mods.colorappearance.badpixsl : mods.colorappearance.badpixsl;
+        toEdit.colorappearance.badpixsl = dontforceSet && rtoptions.baBehav[ADDSET_CAT_BADPIX] ? toEdit.colorappearance.badpixsl + mods.colorappearance.badpixsl : mods.colorappearance.badpixsl;
     }
 
     if (colorappearance.wbmodel) {
@@ -3020,7 +3020,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (colorappearance.tempout) {
-        toEdit.colorappearance.tempout = dontforceSet && options.baBehav[ADDSET_CAT_TEMPOUT] ? toEdit.colorappearance.tempout + mods.colorappearance.tempout : mods.colorappearance.tempout;
+        toEdit.colorappearance.tempout = dontforceSet && rtoptions.baBehav[ADDSET_CAT_TEMPOUT] ? toEdit.colorappearance.tempout + mods.colorappearance.tempout : mods.colorappearance.tempout;
     }
 
     if (colorappearance.autotempout) {
@@ -3044,39 +3044,39 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (colorappearance.jlight) {
-        toEdit.colorappearance.jlight = dontforceSet && options.baBehav[ADDSET_CAT_LIGHT] ? toEdit.colorappearance.jlight + mods.colorappearance.jlight : mods.colorappearance.jlight;
+        toEdit.colorappearance.jlight = dontforceSet && rtoptions.baBehav[ADDSET_CAT_LIGHT] ? toEdit.colorappearance.jlight + mods.colorappearance.jlight : mods.colorappearance.jlight;
     }
 
     if (colorappearance.qbright) {
-        toEdit.colorappearance.qbright = dontforceSet && options.baBehav[ADDSET_CAT_BRIGHT] ? toEdit.colorappearance.qbright + mods.colorappearance.qbright : mods.colorappearance.qbright;
+        toEdit.colorappearance.qbright = dontforceSet && rtoptions.baBehav[ADDSET_CAT_BRIGHT] ? toEdit.colorappearance.qbright + mods.colorappearance.qbright : mods.colorappearance.qbright;
     }
 
     if (colorappearance.chroma) {
-        toEdit.colorappearance.chroma = dontforceSet && options.baBehav[ADDSET_CAT_CHROMA] ? toEdit.colorappearance.chroma + mods.colorappearance.chroma : mods.colorappearance.chroma;
+        toEdit.colorappearance.chroma = dontforceSet && rtoptions.baBehav[ADDSET_CAT_CHROMA] ? toEdit.colorappearance.chroma + mods.colorappearance.chroma : mods.colorappearance.chroma;
     }
 
     if (colorappearance.schroma) {
-        toEdit.colorappearance.schroma = dontforceSet && options.baBehav[ADDSET_CAT_CHROMA_S] ? toEdit.colorappearance.schroma + mods.colorappearance.schroma : mods.colorappearance.schroma;
+        toEdit.colorappearance.schroma = dontforceSet && rtoptions.baBehav[ADDSET_CAT_CHROMA_S] ? toEdit.colorappearance.schroma + mods.colorappearance.schroma : mods.colorappearance.schroma;
     }
 
     if (colorappearance.mchroma) {
-        toEdit.colorappearance.mchroma = dontforceSet && options.baBehav[ADDSET_CAT_CHROMA_M] ? toEdit.colorappearance.mchroma + mods.colorappearance.mchroma : mods.colorappearance.mchroma;
+        toEdit.colorappearance.mchroma = dontforceSet && rtoptions.baBehav[ADDSET_CAT_CHROMA_M] ? toEdit.colorappearance.mchroma + mods.colorappearance.mchroma : mods.colorappearance.mchroma;
     }
 
     if (colorappearance.contrast) {
-        toEdit.colorappearance.contrast = dontforceSet && options.baBehav[ADDSET_CAT_CONTRAST] ? toEdit.colorappearance.contrast + mods.colorappearance.contrast : mods.colorappearance.contrast;
+        toEdit.colorappearance.contrast = dontforceSet && rtoptions.baBehav[ADDSET_CAT_CONTRAST] ? toEdit.colorappearance.contrast + mods.colorappearance.contrast : mods.colorappearance.contrast;
     }
 
     if (colorappearance.qcontrast) {
-        toEdit.colorappearance.qcontrast = dontforceSet && options.baBehav[ADDSET_CAT_CONTRAST_Q] ? toEdit.colorappearance.qcontrast + mods.colorappearance.qcontrast : mods.colorappearance.qcontrast;
+        toEdit.colorappearance.qcontrast = dontforceSet && rtoptions.baBehav[ADDSET_CAT_CONTRAST_Q] ? toEdit.colorappearance.qcontrast + mods.colorappearance.qcontrast : mods.colorappearance.qcontrast;
     }
 
     if (colorappearance.colorh) {
-        toEdit.colorappearance.colorh = dontforceSet && options.baBehav[ADDSET_CAT_HUE] ? toEdit.colorappearance.colorh + mods.colorappearance.colorh : mods.colorappearance.colorh;
+        toEdit.colorappearance.colorh = dontforceSet && rtoptions.baBehav[ADDSET_CAT_HUE] ? toEdit.colorappearance.colorh + mods.colorappearance.colorh : mods.colorappearance.colorh;
     }
 
     if (colorappearance.rstprotection) {
-        toEdit.colorappearance.rstprotection = dontforceSet && options.baBehav[ADDSET_CAT_RSTPRO] ? toEdit.colorappearance.rstprotection + mods.colorappearance.rstprotection : mods.colorappearance.rstprotection;
+        toEdit.colorappearance.rstprotection = dontforceSet && rtoptions.baBehav[ADDSET_CAT_RSTPRO] ? toEdit.colorappearance.rstprotection + mods.colorappearance.rstprotection : mods.colorappearance.rstprotection;
     }
 
     if (colorappearance.surrsource) {
@@ -3119,7 +3119,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (dirpyrDenoise.luma) {
-        toEdit.dirpyrDenoise.luma = dontforceSet && options.baBehav[ADDSET_DIRPYRDN_LUMA] ? toEdit.dirpyrDenoise.luma + mods.dirpyrDenoise.luma : mods.dirpyrDenoise.luma;
+        toEdit.dirpyrDenoise.luma = dontforceSet && rtoptions.baBehav[ADDSET_DIRPYRDN_LUMA] ? toEdit.dirpyrDenoise.luma + mods.dirpyrDenoise.luma : mods.dirpyrDenoise.luma;
     }
 
     if (dirpyrDenoise.lcurve) {
@@ -3131,27 +3131,27 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (dirpyrDenoise.Ldetail) {
-        toEdit.dirpyrDenoise.Ldetail = dontforceSet && options.baBehav[ADDSET_DIRPYRDN_LUMDET] ? toEdit.dirpyrDenoise.Ldetail + mods.dirpyrDenoise.Ldetail : mods.dirpyrDenoise.Ldetail;
+        toEdit.dirpyrDenoise.Ldetail = dontforceSet && rtoptions.baBehav[ADDSET_DIRPYRDN_LUMDET] ? toEdit.dirpyrDenoise.Ldetail + mods.dirpyrDenoise.Ldetail : mods.dirpyrDenoise.Ldetail;
     }
 
     if (dirpyrDenoise.chroma) {
-        toEdit.dirpyrDenoise.chroma = dontforceSet && options.baBehav[ADDSET_DIRPYRDN_CHROMA] ? toEdit.dirpyrDenoise.chroma + mods.dirpyrDenoise.chroma : mods.dirpyrDenoise.chroma;
+        toEdit.dirpyrDenoise.chroma = dontforceSet && rtoptions.baBehav[ADDSET_DIRPYRDN_CHROMA] ? toEdit.dirpyrDenoise.chroma + mods.dirpyrDenoise.chroma : mods.dirpyrDenoise.chroma;
     }
 
     if (dirpyrDenoise.redchro) {
-        toEdit.dirpyrDenoise.redchro = dontforceSet && options.baBehav[ADDSET_DIRPYRDN_CHROMARED] ? toEdit.dirpyrDenoise.redchro + mods.dirpyrDenoise.redchro : mods.dirpyrDenoise.redchro;
+        toEdit.dirpyrDenoise.redchro = dontforceSet && rtoptions.baBehav[ADDSET_DIRPYRDN_CHROMARED] ? toEdit.dirpyrDenoise.redchro + mods.dirpyrDenoise.redchro : mods.dirpyrDenoise.redchro;
     }
 
     if (dirpyrDenoise.bluechro) {
-        toEdit.dirpyrDenoise.bluechro = dontforceSet && options.baBehav[ADDSET_DIRPYRDN_CHROMABLUE] ? toEdit.dirpyrDenoise.bluechro + mods.dirpyrDenoise.bluechro : mods.dirpyrDenoise.bluechro;
+        toEdit.dirpyrDenoise.bluechro = dontforceSet && rtoptions.baBehav[ADDSET_DIRPYRDN_CHROMABLUE] ? toEdit.dirpyrDenoise.bluechro + mods.dirpyrDenoise.bluechro : mods.dirpyrDenoise.bluechro;
     }
 
     if (dirpyrDenoise.gamma) {
-        toEdit.dirpyrDenoise.gamma = dontforceSet && options.baBehav[ADDSET_DIRPYRDN_GAMMA] ? toEdit.dirpyrDenoise.gamma + mods.dirpyrDenoise.gamma : mods.dirpyrDenoise.gamma;
+        toEdit.dirpyrDenoise.gamma = dontforceSet && rtoptions.baBehav[ADDSET_DIRPYRDN_GAMMA] ? toEdit.dirpyrDenoise.gamma + mods.dirpyrDenoise.gamma : mods.dirpyrDenoise.gamma;
     }
 
     if (dirpyrDenoise.passes) {
-        toEdit.dirpyrDenoise.passes = dontforceSet && options.baBehav[ADDSET_DIRPYRDN_PASSES] ? toEdit.dirpyrDenoise.passes + mods.dirpyrDenoise.passes : mods.dirpyrDenoise.passes;
+        toEdit.dirpyrDenoise.passes = dontforceSet && rtoptions.baBehav[ADDSET_DIRPYRDN_PASSES] ? toEdit.dirpyrDenoise.passes + mods.dirpyrDenoise.passes : mods.dirpyrDenoise.passes;
     }
 
 //  if (dirpyrDenoise.perform)              toEdit.dirpyrDenoise.perform = mods.dirpyrDenoise.perform;
@@ -3232,7 +3232,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (sh.highlights) {
-        toEdit.sh.highlights = dontforceSet && options.baBehav[ADDSET_SH_HIGHLIGHTS] ? toEdit.sh.highlights + mods.sh.highlights : mods.sh.highlights;
+        toEdit.sh.highlights = dontforceSet && rtoptions.baBehav[ADDSET_SH_HIGHLIGHTS] ? toEdit.sh.highlights + mods.sh.highlights : mods.sh.highlights;
     }
 
     if (sh.htonalwidth) {
@@ -3240,7 +3240,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (sh.shadows) {
-        toEdit.sh.shadows = dontforceSet && options.baBehav[ADDSET_SH_SHADOWS] ? toEdit.sh.shadows + mods.sh.shadows : mods.sh.shadows;
+        toEdit.sh.shadows = dontforceSet && rtoptions.baBehav[ADDSET_SH_SHADOWS] ? toEdit.sh.shadows + mods.sh.shadows : mods.sh.shadows;
     }
 
     if (sh.stonalwidth) {
@@ -3262,7 +3262,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     for (size_t i = 0; i < toneEqualizer.bands.size(); ++i) {
         if (toneEqualizer.bands[i]) {
             toEdit.toneEqualizer.bands[i] =
-                dontforceSet && options.baBehav[ADDSET_TONE_EQUALIZER_BANDS]
+                    dontforceSet && rtoptions.baBehav[ADDSET_TONE_EQUALIZER_BANDS]
                     ? toEdit.toneEqualizer.bands[i] + mods.toneEqualizer.bands[i]
                     : mods.toneEqualizer.bands[i];
         }
@@ -3270,7 +3270,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
 
     if (toneEqualizer.regularization) {
         toEdit.toneEqualizer.regularization =
-            dontforceSet && options.baBehav[ADDSET_TONE_EQUALIZER_REGULARIZATION]
+                dontforceSet && rtoptions.baBehav[ADDSET_TONE_EQUALIZER_REGULARIZATION]
                 ? toEdit.toneEqualizer.regularization + mods.toneEqualizer.regularization
                 : mods.toneEqualizer.regularization;
     }
@@ -3281,7 +3281,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
 
     if (toneEqualizer.pivot) {
         toEdit.toneEqualizer.pivot =
-            dontforceSet && options.baBehav[ADDSET_TONE_EQUALIZER_PIVOT]
+                dontforceSet && rtoptions.baBehav[ADDSET_TONE_EQUALIZER_PIVOT]
                 ? toEdit.toneEqualizer.pivot + mods.toneEqualizer.pivot
                 : mods.toneEqualizer.pivot;
     }
@@ -3343,11 +3343,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (rotate.degree) {
-        toEdit.rotate.degree = dontforceSet && options.baBehav[ADDSET_ROTATE_DEGREE] ? toEdit.rotate.degree + mods.rotate.degree : mods.rotate.degree;
+        toEdit.rotate.degree = dontforceSet && rtoptions.baBehav[ADDSET_ROTATE_DEGREE] ? toEdit.rotate.degree + mods.rotate.degree : mods.rotate.degree;
     }
 
     if (distortion.amount) {
-        toEdit.distortion.amount = dontforceSet && options.baBehav[ADDSET_DIST_AMOUNT] ? toEdit.distortion.amount + mods.distortion.amount : mods.distortion.amount;
+        toEdit.distortion.amount = dontforceSet && rtoptions.baBehav[ADDSET_DIST_AMOUNT] ? toEdit.distortion.amount + mods.distortion.amount : mods.distortion.amount;
     }
 
     if (lensProf.lcMode) {
@@ -3387,59 +3387,59 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (perspective.horizontal) {
-        toEdit.perspective.horizontal = dontforceSet && options.baBehav[ADDSET_PERSPECTIVE] ? toEdit.perspective.horizontal + mods.perspective.horizontal : mods.perspective.horizontal;
+        toEdit.perspective.horizontal = dontforceSet && rtoptions.baBehav[ADDSET_PERSPECTIVE] ? toEdit.perspective.horizontal + mods.perspective.horizontal : mods.perspective.horizontal;
     }
 
     if (perspective.vertical) {
-        toEdit.perspective.vertical = dontforceSet && options.baBehav[ADDSET_PERSPECTIVE] ? toEdit.perspective.vertical + mods.perspective.vertical : mods.perspective.vertical;
+        toEdit.perspective.vertical = dontforceSet && rtoptions.baBehav[ADDSET_PERSPECTIVE] ? toEdit.perspective.vertical + mods.perspective.vertical : mods.perspective.vertical;
     }
 
     if (perspective.camera_crop_factor) {
-        toEdit.perspective.camera_crop_factor = dontforceSet && options.baBehav[ADDSET_PERSP_CAM_FOCAL_LENGTH] ? toEdit.perspective.camera_crop_factor + mods.perspective.camera_crop_factor : mods.perspective.camera_crop_factor;
+        toEdit.perspective.camera_crop_factor = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_CAM_FOCAL_LENGTH] ? toEdit.perspective.camera_crop_factor + mods.perspective.camera_crop_factor : mods.perspective.camera_crop_factor;
     }
 
     if (perspective.camera_focal_length) {
-        toEdit.perspective.camera_focal_length = dontforceSet && options.baBehav[ADDSET_PERSP_CAM_FOCAL_LENGTH] ? toEdit.perspective.camera_focal_length + mods.perspective.camera_focal_length : mods.perspective.camera_focal_length;
+        toEdit.perspective.camera_focal_length = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_CAM_FOCAL_LENGTH] ? toEdit.perspective.camera_focal_length + mods.perspective.camera_focal_length : mods.perspective.camera_focal_length;
     }
 
     if (perspective.camera_pitch) {
-        toEdit.perspective.camera_pitch = dontforceSet && options.baBehav[ADDSET_PERSP_CAM_ANGLE] ? toEdit.perspective.camera_pitch + mods.perspective.camera_pitch : mods.perspective.camera_pitch;
+        toEdit.perspective.camera_pitch = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_CAM_ANGLE] ? toEdit.perspective.camera_pitch + mods.perspective.camera_pitch : mods.perspective.camera_pitch;
     }
 
     if (perspective.camera_roll) {
-        toEdit.perspective.camera_roll = dontforceSet && options.baBehav[ADDSET_PERSP_CAM_ANGLE] ? toEdit.perspective.camera_roll + mods.perspective.camera_roll : mods.perspective.camera_roll;
+        toEdit.perspective.camera_roll = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_CAM_ANGLE] ? toEdit.perspective.camera_roll + mods.perspective.camera_roll : mods.perspective.camera_roll;
     }
 
     if (perspective.camera_shift_horiz) {
-        toEdit.perspective.camera_shift_horiz = dontforceSet && options.baBehav[ADDSET_PERSP_CAM_SHIFT] ? toEdit.perspective.camera_shift_horiz + mods.perspective.camera_shift_horiz : mods.perspective.camera_shift_horiz;
+        toEdit.perspective.camera_shift_horiz = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_CAM_SHIFT] ? toEdit.perspective.camera_shift_horiz + mods.perspective.camera_shift_horiz : mods.perspective.camera_shift_horiz;
     }
 
     if (perspective.camera_shift_vert) {
-        toEdit.perspective.camera_shift_vert = dontforceSet && options.baBehav[ADDSET_PERSP_CAM_SHIFT] ? toEdit.perspective.camera_shift_vert + mods.perspective.camera_shift_vert : mods.perspective.camera_shift_vert;
+        toEdit.perspective.camera_shift_vert = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_CAM_SHIFT] ? toEdit.perspective.camera_shift_vert + mods.perspective.camera_shift_vert : mods.perspective.camera_shift_vert;
     }
 
     if (perspective.camera_yaw) {
-        toEdit.perspective.camera_yaw = dontforceSet && options.baBehav[ADDSET_PERSP_CAM_ANGLE] ? toEdit.perspective.camera_yaw + mods.perspective.camera_yaw : mods.perspective.camera_yaw;
+        toEdit.perspective.camera_yaw = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_CAM_ANGLE] ? toEdit.perspective.camera_yaw + mods.perspective.camera_yaw : mods.perspective.camera_yaw;
     }
 
     if (perspective.projection_pitch) {
-        toEdit.perspective.projection_pitch = dontforceSet && options.baBehav[ADDSET_PERSP_PROJ_ANGLE] ? toEdit.perspective.projection_pitch + mods.perspective.projection_pitch : mods.perspective.projection_pitch;
+        toEdit.perspective.projection_pitch = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_PROJ_ANGLE] ? toEdit.perspective.projection_pitch + mods.perspective.projection_pitch : mods.perspective.projection_pitch;
     }
 
     if (perspective.projection_rotate) {
-        toEdit.perspective.projection_rotate = dontforceSet && options.baBehav[ADDSET_PERSP_PROJ_ROTATE] ? toEdit.perspective.projection_rotate + mods.perspective.projection_rotate : mods.perspective.projection_rotate;
+        toEdit.perspective.projection_rotate = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_PROJ_ROTATE] ? toEdit.perspective.projection_rotate + mods.perspective.projection_rotate : mods.perspective.projection_rotate;
     }
 
     if (perspective.projection_shift_horiz) {
-        toEdit.perspective.projection_shift_horiz = dontforceSet && options.baBehav[ADDSET_PERSP_PROJ_SHIFT] ? toEdit.perspective.projection_shift_horiz + mods.perspective.projection_shift_horiz : mods.perspective.projection_shift_horiz;
+        toEdit.perspective.projection_shift_horiz = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_PROJ_SHIFT] ? toEdit.perspective.projection_shift_horiz + mods.perspective.projection_shift_horiz : mods.perspective.projection_shift_horiz;
     }
 
     if (perspective.projection_shift_vert) {
-        toEdit.perspective.projection_shift_vert = dontforceSet && options.baBehav[ADDSET_PERSP_PROJ_SHIFT] ? toEdit.perspective.projection_shift_vert + mods.perspective.projection_shift_vert : mods.perspective.projection_shift_vert;
+        toEdit.perspective.projection_shift_vert = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_PROJ_SHIFT] ? toEdit.perspective.projection_shift_vert + mods.perspective.projection_shift_vert : mods.perspective.projection_shift_vert;
     }
 
     if (perspective.projection_yaw) {
-        toEdit.perspective.projection_yaw = dontforceSet && options.baBehav[ADDSET_PERSP_PROJ_ANGLE] ? toEdit.perspective.projection_yaw + mods.perspective.projection_yaw : mods.perspective.projection_yaw;
+        toEdit.perspective.projection_yaw = dontforceSet && rtoptions.baBehav[ADDSET_PERSP_PROJ_ANGLE] ? toEdit.perspective.projection_yaw + mods.perspective.projection_yaw : mods.perspective.projection_yaw;
     }
 
     if (perspective.control_lines) {
@@ -3452,23 +3452,23 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (gradient.degree) {
-        toEdit.gradient.degree = dontforceSet && options.baBehav[ADDSET_GRADIENT_DEGREE] ? toEdit.gradient.degree + mods.gradient.degree : mods.gradient.degree;
+        toEdit.gradient.degree = dontforceSet && rtoptions.baBehav[ADDSET_GRADIENT_DEGREE] ? toEdit.gradient.degree + mods.gradient.degree : mods.gradient.degree;
     }
 
     if (gradient.feather) {
-        toEdit.gradient.feather = dontforceSet && options.baBehav[ADDSET_GRADIENT_FEATHER] ? toEdit.gradient.feather + mods.gradient.feather : mods.gradient.feather;
+        toEdit.gradient.feather = dontforceSet && rtoptions.baBehav[ADDSET_GRADIENT_FEATHER] ? toEdit.gradient.feather + mods.gradient.feather : mods.gradient.feather;
     }
 
     if (gradient.strength) {
-        toEdit.gradient.strength = dontforceSet && options.baBehav[ADDSET_GRADIENT_STRENGTH] ? toEdit.gradient.strength + mods.gradient.strength : mods.gradient.strength;
+        toEdit.gradient.strength = dontforceSet && rtoptions.baBehav[ADDSET_GRADIENT_STRENGTH] ? toEdit.gradient.strength + mods.gradient.strength : mods.gradient.strength;
     }
 
     if (gradient.centerX) {
-        toEdit.gradient.centerX = dontforceSet && options.baBehav[ADDSET_GRADIENT_CENTER] ? toEdit.gradient.centerX + mods.gradient.centerX : mods.gradient.centerX;
+        toEdit.gradient.centerX = dontforceSet && rtoptions.baBehav[ADDSET_GRADIENT_CENTER] ? toEdit.gradient.centerX + mods.gradient.centerX : mods.gradient.centerX;
     }
 
     if (gradient.centerY) {
-        toEdit.gradient.centerY = dontforceSet && options.baBehav[ADDSET_GRADIENT_CENTER] ? toEdit.gradient.centerY + mods.gradient.centerY : mods.gradient.centerY;
+        toEdit.gradient.centerY = dontforceSet && rtoptions.baBehav[ADDSET_GRADIENT_CENTER] ? toEdit.gradient.centerY + mods.gradient.centerY : mods.gradient.centerY;
     }
 
 
@@ -6207,43 +6207,43 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (pcvignette.strength) {
-        toEdit.pcvignette.strength = dontforceSet && options.baBehav[ADDSET_PCVIGNETTE_STRENGTH] ? toEdit.pcvignette.strength + mods.pcvignette.strength : mods.pcvignette.strength;
+        toEdit.pcvignette.strength = dontforceSet && rtoptions.baBehav[ADDSET_PCVIGNETTE_STRENGTH] ? toEdit.pcvignette.strength + mods.pcvignette.strength : mods.pcvignette.strength;
     }
 
     if (pcvignette.feather) {
-        toEdit.pcvignette.feather = dontforceSet && options.baBehav[ADDSET_PCVIGNETTE_FEATHER] ? toEdit.pcvignette.feather + mods.pcvignette.feather : mods.pcvignette.feather;
+        toEdit.pcvignette.feather = dontforceSet && rtoptions.baBehav[ADDSET_PCVIGNETTE_FEATHER] ? toEdit.pcvignette.feather + mods.pcvignette.feather : mods.pcvignette.feather;
     }
 
     if (pcvignette.roundness) {
-        toEdit.pcvignette.roundness = dontforceSet && options.baBehav[ADDSET_PCVIGNETTE_ROUNDNESS] ? toEdit.pcvignette.roundness + mods.pcvignette.roundness : mods.pcvignette.roundness;
+        toEdit.pcvignette.roundness = dontforceSet && rtoptions.baBehav[ADDSET_PCVIGNETTE_ROUNDNESS] ? toEdit.pcvignette.roundness + mods.pcvignette.roundness : mods.pcvignette.roundness;
     }
 
     if (cacorrection.red) {
-        toEdit.cacorrection.red = dontforceSet && options.baBehav[ADDSET_CA] ? toEdit.cacorrection.red + mods.cacorrection.red : mods.cacorrection.red;
+        toEdit.cacorrection.red = dontforceSet && rtoptions.baBehav[ADDSET_CA] ? toEdit.cacorrection.red + mods.cacorrection.red : mods.cacorrection.red;
     }
 
     if (cacorrection.blue) {
-        toEdit.cacorrection.blue = dontforceSet && options.baBehav[ADDSET_CA] ? toEdit.cacorrection.blue + mods.cacorrection.blue : mods.cacorrection.blue;
+        toEdit.cacorrection.blue = dontforceSet && rtoptions.baBehav[ADDSET_CA] ? toEdit.cacorrection.blue + mods.cacorrection.blue : mods.cacorrection.blue;
     }
 
     if (vignetting.amount) {
-        toEdit.vignetting.amount = dontforceSet && options.baBehav[ADDSET_VIGN_AMOUNT] ? toEdit.vignetting.amount + mods.vignetting.amount : mods.vignetting.amount;
+        toEdit.vignetting.amount = dontforceSet && rtoptions.baBehav[ADDSET_VIGN_AMOUNT] ? toEdit.vignetting.amount + mods.vignetting.amount : mods.vignetting.amount;
     }
 
     if (vignetting.radius) {
-        toEdit.vignetting.radius = dontforceSet && options.baBehav[ADDSET_VIGN_RADIUS] ? toEdit.vignetting.radius + mods.vignetting.radius : mods.vignetting.radius;
+        toEdit.vignetting.radius = dontforceSet && rtoptions.baBehav[ADDSET_VIGN_RADIUS] ? toEdit.vignetting.radius + mods.vignetting.radius : mods.vignetting.radius;
     }
 
     if (vignetting.strength) {
-        toEdit.vignetting.strength = dontforceSet && options.baBehav[ADDSET_VIGN_STRENGTH] ? toEdit.vignetting.strength + mods.vignetting.strength : mods.vignetting.strength;
+        toEdit.vignetting.strength = dontforceSet && rtoptions.baBehav[ADDSET_VIGN_STRENGTH] ? toEdit.vignetting.strength + mods.vignetting.strength : mods.vignetting.strength;
     }
 
     if (vignetting.centerX) {
-        toEdit.vignetting.centerX = dontforceSet && options.baBehav[ADDSET_VIGN_CENTER] ? toEdit.vignetting.centerX + mods.vignetting.centerX : mods.vignetting.centerX;
+        toEdit.vignetting.centerX = dontforceSet && rtoptions.baBehav[ADDSET_VIGN_CENTER] ? toEdit.vignetting.centerX + mods.vignetting.centerX : mods.vignetting.centerX;
     }
 
     if (vignetting.centerY) {
-        toEdit.vignetting.centerY = dontforceSet && options.baBehav[ADDSET_VIGN_CENTER] ? toEdit.vignetting.centerY + mods.vignetting.centerY : mods.vignetting.centerY;
+        toEdit.vignetting.centerY = dontforceSet && rtoptions.baBehav[ADDSET_VIGN_CENTER] ? toEdit.vignetting.centerY + mods.vignetting.centerY : mods.vignetting.centerY;
     }
 
     if (chmixer.enabled) {
@@ -6252,15 +6252,15 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
 
     for (int i = 0; i < 3; i++) {
         if (chmixer.red[i]) {
-            toEdit.chmixer.red[i] = dontforceSet && options.baBehav[ADDSET_CHMIXER] ? toEdit.chmixer.red[i] + mods.chmixer.red[i] : mods.chmixer.red[i];
+            toEdit.chmixer.red[i] = dontforceSet && rtoptions.baBehav[ADDSET_CHMIXER] ? toEdit.chmixer.red[i] + mods.chmixer.red[i] : mods.chmixer.red[i];
         }
 
         if (chmixer.green[i]) {
-            toEdit.chmixer.green[i] = dontforceSet && options.baBehav[ADDSET_CHMIXER] ? toEdit.chmixer.green[i] + mods.chmixer.green[i] : mods.chmixer.green[i];
+            toEdit.chmixer.green[i] = dontforceSet && rtoptions.baBehav[ADDSET_CHMIXER] ? toEdit.chmixer.green[i] + mods.chmixer.green[i] : mods.chmixer.green[i];
         }
 
         if (chmixer.blue[i]) {
-            toEdit.chmixer.blue[i] = dontforceSet && options.baBehav[ADDSET_CHMIXER] ? toEdit.chmixer.blue[i] + mods.chmixer.blue[i] : mods.chmixer.blue[i];
+            toEdit.chmixer.blue[i] = dontforceSet && rtoptions.baBehav[ADDSET_CHMIXER] ? toEdit.chmixer.blue[i] + mods.chmixer.blue[i] : mods.chmixer.blue[i];
         }
     }
 
@@ -6293,47 +6293,47 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (blackwhite.mixerRed) {
-        toEdit.blackwhite.mixerRed = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerRed + mods.blackwhite.mixerRed : mods.blackwhite.mixerRed;
+        toEdit.blackwhite.mixerRed = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerRed + mods.blackwhite.mixerRed : mods.blackwhite.mixerRed;
     }
 
     if (blackwhite.mixerOrange) {
-        toEdit.blackwhite.mixerOrange = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerOrange + mods.blackwhite.mixerOrange : mods.blackwhite.mixerOrange;
+        toEdit.blackwhite.mixerOrange = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerOrange + mods.blackwhite.mixerOrange : mods.blackwhite.mixerOrange;
     }
 
     if (blackwhite.mixerYellow) {
-        toEdit.blackwhite.mixerYellow = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerYellow + mods.blackwhite.mixerYellow : mods.blackwhite.mixerYellow;
+        toEdit.blackwhite.mixerYellow = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerYellow + mods.blackwhite.mixerYellow : mods.blackwhite.mixerYellow;
     }
 
     if (blackwhite.mixerGreen) {
-        toEdit.blackwhite.mixerGreen = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerGreen + mods.blackwhite.mixerGreen : mods.blackwhite.mixerGreen;
+        toEdit.blackwhite.mixerGreen = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerGreen + mods.blackwhite.mixerGreen : mods.blackwhite.mixerGreen;
     }
 
     if (blackwhite.mixerCyan) {
-        toEdit.blackwhite.mixerCyan = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerCyan + mods.blackwhite.mixerCyan : mods.blackwhite.mixerCyan;
+        toEdit.blackwhite.mixerCyan = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerCyan + mods.blackwhite.mixerCyan : mods.blackwhite.mixerCyan;
     }
 
     if (blackwhite.mixerBlue) {
-        toEdit.blackwhite.mixerBlue = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerBlue + mods.blackwhite.mixerBlue : mods.blackwhite.mixerBlue;
+        toEdit.blackwhite.mixerBlue = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerBlue + mods.blackwhite.mixerBlue : mods.blackwhite.mixerBlue;
     }
 
     if (blackwhite.mixerMagenta) {
-        toEdit.blackwhite.mixerMagenta = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerMagenta + mods.blackwhite.mixerMagenta : mods.blackwhite.mixerMagenta;
+        toEdit.blackwhite.mixerMagenta = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerMagenta + mods.blackwhite.mixerMagenta : mods.blackwhite.mixerMagenta;
     }
 
     if (blackwhite.mixerPurple) {
-        toEdit.blackwhite.mixerPurple = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerPurple + mods.blackwhite.mixerPurple : mods.blackwhite.mixerPurple;
+        toEdit.blackwhite.mixerPurple = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_HUES] ? toEdit.blackwhite.mixerPurple + mods.blackwhite.mixerPurple : mods.blackwhite.mixerPurple;
     }
 
     if (blackwhite.gammaRed) {
-        toEdit.blackwhite.gammaRed = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_GAMMA] ? toEdit.blackwhite.gammaRed + mods.blackwhite.gammaRed : mods.blackwhite.gammaRed;
+        toEdit.blackwhite.gammaRed = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_GAMMA] ? toEdit.blackwhite.gammaRed + mods.blackwhite.gammaRed : mods.blackwhite.gammaRed;
     }
 
     if (blackwhite.gammaGreen) {
-        toEdit.blackwhite.gammaGreen = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_GAMMA] ? toEdit.blackwhite.gammaGreen + mods.blackwhite.gammaGreen : mods.blackwhite.gammaGreen;
+        toEdit.blackwhite.gammaGreen = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_GAMMA] ? toEdit.blackwhite.gammaGreen + mods.blackwhite.gammaGreen : mods.blackwhite.gammaGreen;
     }
 
     if (blackwhite.gammaBlue) {
-        toEdit.blackwhite.gammaBlue = dontforceSet && options.baBehav[ADDSET_BLACKWHITE_GAMMA] ? toEdit.blackwhite.gammaBlue + mods.blackwhite.gammaBlue : mods.blackwhite.gammaBlue;
+        toEdit.blackwhite.gammaBlue = dontforceSet && rtoptions.baBehav[ADDSET_BLACKWHITE_GAMMA] ? toEdit.blackwhite.gammaBlue + mods.blackwhite.gammaBlue : mods.blackwhite.gammaBlue;
     }
 
     if (blackwhite.beforeCurve) {
@@ -6357,7 +6357,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (resize.scale) {
-        toEdit.resize.scale = dontforceSet && options.baBehav[ADDSET_RESIZE_SCALE] ? toEdit.resize.scale + mods.resize.scale : mods.resize.scale;
+        toEdit.resize.scale = dontforceSet && rtoptions.baBehav[ADDSET_RESIZE_SCALE] ? toEdit.resize.scale + mods.resize.scale : mods.resize.scale;
     }
 
     if (resize.appliesTo) {
@@ -6545,19 +6545,19 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (raw.bayersensor.exBlack0) {
-        toEdit.raw.bayersensor.black0 = dontforceSet && options.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.bayersensor.black0 + mods.raw.bayersensor.black0 : mods.raw.bayersensor.black0;
+        toEdit.raw.bayersensor.black0 = dontforceSet && rtoptions.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.bayersensor.black0 + mods.raw.bayersensor.black0 : mods.raw.bayersensor.black0;
     }
 
     if (raw.bayersensor.exBlack1) {
-        toEdit.raw.bayersensor.black1 = dontforceSet && options.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.bayersensor.black1 + mods.raw.bayersensor.black1 : mods.raw.bayersensor.black1;
+        toEdit.raw.bayersensor.black1 = dontforceSet && rtoptions.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.bayersensor.black1 + mods.raw.bayersensor.black1 : mods.raw.bayersensor.black1;
     }
 
     if (raw.bayersensor.exBlack2) {
-        toEdit.raw.bayersensor.black2 = dontforceSet && options.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.bayersensor.black2 + mods.raw.bayersensor.black2 : mods.raw.bayersensor.black2;
+        toEdit.raw.bayersensor.black2 = dontforceSet && rtoptions.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.bayersensor.black2 + mods.raw.bayersensor.black2 : mods.raw.bayersensor.black2;
     }
 
     if (raw.bayersensor.exBlack3) {
-        toEdit.raw.bayersensor.black3 = dontforceSet && options.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.bayersensor.black3 + mods.raw.bayersensor.black3 : mods.raw.bayersensor.black3;
+        toEdit.raw.bayersensor.black3 = dontforceSet && rtoptions.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.bayersensor.black3 + mods.raw.bayersensor.black3 : mods.raw.bayersensor.black3;
     }
 
     if (raw.bayersensor.exTwoGreen) {
@@ -6645,11 +6645,11 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (raw.bayersensor.greenEq) {
-        toEdit.raw.bayersensor.greenthresh = dontforceSet && options.baBehav[ADDSET_PREPROCESS_GREENEQUIL] ? toEdit.raw.bayersensor.greenthresh + mods.raw.bayersensor.greenthresh : mods.raw.bayersensor.greenthresh;
+        toEdit.raw.bayersensor.greenthresh = dontforceSet && rtoptions.baBehav[ADDSET_PREPROCESS_GREENEQUIL] ? toEdit.raw.bayersensor.greenthresh + mods.raw.bayersensor.greenthresh : mods.raw.bayersensor.greenthresh;
     }
 
     if (raw.bayersensor.linenoise) {
-        toEdit.raw.bayersensor.linenoise = dontforceSet && options.baBehav[ADDSET_PREPROCESS_LINEDENOISE] ? toEdit.raw.bayersensor.linenoise + mods.raw.bayersensor.linenoise : mods.raw.bayersensor.linenoise;
+        toEdit.raw.bayersensor.linenoise = dontforceSet && rtoptions.baBehav[ADDSET_PREPROCESS_LINEDENOISE] ? toEdit.raw.bayersensor.linenoise + mods.raw.bayersensor.linenoise : mods.raw.bayersensor.linenoise;
     }
 
     if (raw.bayersensor.linenoiseDirection) {
@@ -6681,15 +6681,15 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (raw.xtranssensor.exBlackRed) {
-        toEdit.raw.xtranssensor.blackred = dontforceSet && options.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.xtranssensor.blackred + mods.raw.xtranssensor.blackred : mods.raw.xtranssensor.blackred;
+        toEdit.raw.xtranssensor.blackred = dontforceSet && rtoptions.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.xtranssensor.blackred + mods.raw.xtranssensor.blackred : mods.raw.xtranssensor.blackred;
     }
 
     if (raw.xtranssensor.exBlackGreen) {
-        toEdit.raw.xtranssensor.blackgreen = dontforceSet && options.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.xtranssensor.blackgreen + mods.raw.xtranssensor.blackgreen : mods.raw.xtranssensor.blackgreen;
+        toEdit.raw.xtranssensor.blackgreen = dontforceSet && rtoptions.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.xtranssensor.blackgreen + mods.raw.xtranssensor.blackgreen : mods.raw.xtranssensor.blackgreen;
     }
 
     if (raw.xtranssensor.exBlackBlue) {
-        toEdit.raw.xtranssensor.blackblue = dontforceSet && options.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.xtranssensor.blackblue + mods.raw.xtranssensor.blackblue : mods.raw.xtranssensor.blackblue;
+        toEdit.raw.xtranssensor.blackblue = dontforceSet && rtoptions.baBehav[ADDSET_RAWEXPOS_BLACKS] ? toEdit.raw.xtranssensor.blackblue + mods.raw.xtranssensor.blackblue : mods.raw.xtranssensor.blackblue;
     }
 
     if (raw.ca_autocorrect) {
@@ -6701,19 +6701,19 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (raw.caautoiterations) {
-        toEdit.raw.caautoiterations = dontforceSet && options.baBehav[ADDSET_RAWCACORR] ? toEdit.raw.caautoiterations + mods.raw.caautoiterations : mods.raw.caautoiterations;
+        toEdit.raw.caautoiterations = dontforceSet && rtoptions.baBehav[ADDSET_RAWCACORR] ? toEdit.raw.caautoiterations + mods.raw.caautoiterations : mods.raw.caautoiterations;
     }
 
     if (raw.cared) {
-        toEdit.raw.cared = dontforceSet && options.baBehav[ADDSET_RAWCACORR] ? toEdit.raw.cared + mods.raw.cared : mods.raw.cared;
+        toEdit.raw.cared = dontforceSet && rtoptions.baBehav[ADDSET_RAWCACORR] ? toEdit.raw.cared + mods.raw.cared : mods.raw.cared;
     }
 
     if (raw.cablue) {
-        toEdit.raw.cablue = dontforceSet && options.baBehav[ADDSET_RAWCACORR] ? toEdit.raw.cablue + mods.raw.cablue : mods.raw.cablue;
+        toEdit.raw.cablue = dontforceSet && rtoptions.baBehav[ADDSET_RAWCACORR] ? toEdit.raw.cablue + mods.raw.cablue : mods.raw.cablue;
     }
 
     if (raw.exPos) {
-        toEdit.raw.expos = dontforceSet && options.baBehav[ADDSET_RAWEXPOS_LINEAR] ? toEdit.raw.expos + mods.raw.expos : mods.raw.expos;
+        toEdit.raw.expos = dontforceSet && rtoptions.baBehav[ADDSET_RAWEXPOS_LINEAR] ? toEdit.raw.expos + mods.raw.expos : mods.raw.expos;
     }
 
     if (raw.hotPixelFilter) {
@@ -6761,7 +6761,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (raw.ff_clipControl) {
-        toEdit.raw.ff_clipControl = dontforceSet && options.baBehav[ADDSET_RAWFFCLIPCONTROL] ? toEdit.raw.ff_clipControl + mods.raw.ff_clipControl : mods.raw.ff_clipControl;
+        toEdit.raw.ff_clipControl = dontforceSet && rtoptions.baBehav[ADDSET_RAWFFCLIPCONTROL] ? toEdit.raw.ff_clipControl + mods.raw.ff_clipControl : mods.raw.ff_clipControl;
     }
 
     if (wavelet.enabled) {
@@ -7025,19 +7025,19 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (wavelet.sky) {
-        toEdit.wavelet.sky = dontforceSet && options.baBehav[ADDSET_WA_SKYPROTECT] ? toEdit.wavelet.sky + mods.wavelet.sky : mods.wavelet.sky;
+        toEdit.wavelet.sky = dontforceSet && rtoptions.baBehav[ADDSET_WA_SKYPROTECT] ? toEdit.wavelet.sky + mods.wavelet.sky : mods.wavelet.sky;
     }
 
     if (wavelet.thr) {
-        toEdit.wavelet.thr = dontforceSet && options.baBehav[ADDSET_WA_THRR] ? toEdit.wavelet.thr + mods.wavelet.thr : mods.wavelet.thr;
+        toEdit.wavelet.thr = dontforceSet && rtoptions.baBehav[ADDSET_WA_THRR] ? toEdit.wavelet.thr + mods.wavelet.thr : mods.wavelet.thr;
     }
 
     if (wavelet.thrH) {
-        toEdit.wavelet.thrH = dontforceSet && options.baBehav[ADDSET_WA_THRRH] ? toEdit.wavelet.thrH + mods.wavelet.thrH : mods.wavelet.thrH;
+        toEdit.wavelet.thrH = dontforceSet && rtoptions.baBehav[ADDSET_WA_THRRH] ? toEdit.wavelet.thrH + mods.wavelet.thrH : mods.wavelet.thrH;
     }
 
     if (wavelet.radius) {
-        toEdit.wavelet.radius = dontforceSet && options.baBehav[ADDSET_WA_RADIUS] ? toEdit.wavelet.radius + mods.wavelet.radius : mods.wavelet.radius;
+        toEdit.wavelet.radius = dontforceSet && rtoptions.baBehav[ADDSET_WA_RADIUS] ? toEdit.wavelet.radius + mods.wavelet.radius : mods.wavelet.radius;
     }
 
     if (wavelet.sup) {
@@ -7191,18 +7191,18 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
 
     for (int i = 0; i < 9; i++) {
         if (wavelet.c[i]) {
-            toEdit.wavelet.c[i] = dontforceSet && options.baBehav[ADDSET_WA] ? toEdit.wavelet.c[i] + mods.wavelet.c[i] : mods.wavelet.c[i];
+            toEdit.wavelet.c[i] = dontforceSet && rtoptions.baBehav[ADDSET_WA] ? toEdit.wavelet.c[i] + mods.wavelet.c[i] : mods.wavelet.c[i];
         }
     }
 
     for (int i = 0; i < 9; i++) {
         if (wavelet.ch[i]) {
-            toEdit.wavelet.ch[i] = dontforceSet && options.baBehav[ADDSET_WA] ? toEdit.wavelet.ch[i] + mods.wavelet.ch[i] : mods.wavelet.ch[i];
+            toEdit.wavelet.ch[i] = dontforceSet && rtoptions.baBehav[ADDSET_WA] ? toEdit.wavelet.ch[i] + mods.wavelet.ch[i] : mods.wavelet.ch[i];
         }
     }
 
     if (wavelet.skinprotect) {
-        toEdit.wavelet.skinprotect = dontforceSet && options.baBehav[ADDSET_WA_SKINPROTECT] ? toEdit.wavelet.skinprotect + mods.wavelet.skinprotect : mods.wavelet.skinprotect;
+        toEdit.wavelet.skinprotect = dontforceSet && rtoptions.baBehav[ADDSET_WA_SKINPROTECT] ? toEdit.wavelet.skinprotect + mods.wavelet.skinprotect : mods.wavelet.skinprotect;
     }
 
     if (wavelet.hueskin) {
@@ -7246,79 +7246,79 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (wavelet.resconH) {
-        toEdit.wavelet.resconH = dontforceSet && options.baBehav[ADDSET_WA_RESCONH] ? toEdit.wavelet.resconH + mods.wavelet.resconH : mods.wavelet.resconH;
+        toEdit.wavelet.resconH = dontforceSet && rtoptions.baBehav[ADDSET_WA_RESCONH] ? toEdit.wavelet.resconH + mods.wavelet.resconH : mods.wavelet.resconH;
     }
 
     if (wavelet.reschro) {
-        toEdit.wavelet.reschro = dontforceSet && options.baBehav[ADDSET_WA_RESCHRO] ? toEdit.wavelet.reschro + mods.wavelet.reschro : mods.wavelet.reschro;
+        toEdit.wavelet.reschro = dontforceSet && rtoptions.baBehav[ADDSET_WA_RESCHRO] ? toEdit.wavelet.reschro + mods.wavelet.reschro : mods.wavelet.reschro;
     }
 
     if (wavelet.tmrs) {
-        toEdit.wavelet.tmrs = dontforceSet && options.baBehav[ADDSET_WA_TMRS] ? toEdit.wavelet.tmrs + mods.wavelet.tmrs : mods.wavelet.tmrs;
+        toEdit.wavelet.tmrs = dontforceSet && rtoptions.baBehav[ADDSET_WA_TMRS] ? toEdit.wavelet.tmrs + mods.wavelet.tmrs : mods.wavelet.tmrs;
     }
 
     if (wavelet.edgs) {
-        toEdit.wavelet.edgs = dontforceSet && options.baBehav[ADDSET_WA_EDGS] ? toEdit.wavelet.edgs + mods.wavelet.edgs : mods.wavelet.edgs;
+        toEdit.wavelet.edgs = dontforceSet && rtoptions.baBehav[ADDSET_WA_EDGS] ? toEdit.wavelet.edgs + mods.wavelet.edgs : mods.wavelet.edgs;
     }
 
     if (wavelet.scale) {
-        toEdit.wavelet.scale = dontforceSet && options.baBehav[ADDSET_WA_SCALE] ? toEdit.wavelet.scale + mods.wavelet.scale : mods.wavelet.scale;
+        toEdit.wavelet.scale = dontforceSet && rtoptions.baBehav[ADDSET_WA_SCALE] ? toEdit.wavelet.scale + mods.wavelet.scale : mods.wavelet.scale;
     }
 
     if (wavelet.gamma) {
-        toEdit.wavelet.gamma = dontforceSet && options.baBehav[ADDSET_WA_GAMMA] ? toEdit.wavelet.gamma + mods.wavelet.gamma : mods.wavelet.gamma;
+        toEdit.wavelet.gamma = dontforceSet && rtoptions.baBehav[ADDSET_WA_GAMMA] ? toEdit.wavelet.gamma + mods.wavelet.gamma : mods.wavelet.gamma;
     }
 
     if (wavelet.rescon) {
-        toEdit.wavelet.rescon = dontforceSet && options.baBehav[ADDSET_WA_RESCON] ? toEdit.wavelet.rescon + mods.wavelet.rescon : mods.wavelet.rescon;
+        toEdit.wavelet.rescon = dontforceSet && rtoptions.baBehav[ADDSET_WA_RESCON] ? toEdit.wavelet.rescon + mods.wavelet.rescon : mods.wavelet.rescon;
     }
 
     if (wavelet.thres) {
-        toEdit.wavelet.thres = dontforceSet && options.baBehav[ADDSET_WA_THRES] ? toEdit.wavelet.thres + mods.wavelet.thres : mods.wavelet.thres;
+        toEdit.wavelet.thres = dontforceSet && rtoptions.baBehav[ADDSET_WA_THRES] ? toEdit.wavelet.thres + mods.wavelet.thres : mods.wavelet.thres;
     }
 
     if (wavelet.threshold) {
-        toEdit.wavelet.threshold = dontforceSet && options.baBehav[ADDSET_WA_THRESHOLD] ? toEdit.wavelet.threshold + mods.wavelet.threshold : mods.wavelet.threshold;
+        toEdit.wavelet.threshold = dontforceSet && rtoptions.baBehav[ADDSET_WA_THRESHOLD] ? toEdit.wavelet.threshold + mods.wavelet.threshold : mods.wavelet.threshold;
     }
 
     if (wavelet.threshold2) {
-        toEdit.wavelet.threshold2 = dontforceSet && options.baBehav[ADDSET_WA_THRESHOLD2] ? toEdit.wavelet.threshold2 + mods.wavelet.threshold2 : mods.wavelet.threshold2;
+        toEdit.wavelet.threshold2 = dontforceSet && rtoptions.baBehav[ADDSET_WA_THRESHOLD2] ? toEdit.wavelet.threshold2 + mods.wavelet.threshold2 : mods.wavelet.threshold2;
     }
 
     if (wavelet.edgedetect) {
-        toEdit.wavelet.edgedetect = dontforceSet && options.baBehav[ADDSET_WA_EDGEDETECT] ? toEdit.wavelet.edgedetect + mods.wavelet.edgedetect : mods.wavelet.edgedetect;
+        toEdit.wavelet.edgedetect = dontforceSet && rtoptions.baBehav[ADDSET_WA_EDGEDETECT] ? toEdit.wavelet.edgedetect + mods.wavelet.edgedetect : mods.wavelet.edgedetect;
     }
 
     if (wavelet.edgedetectthr) {
-        toEdit.wavelet.edgedetectthr = dontforceSet && options.baBehav[ADDSET_WA_EDGEDETECTTHR] ? toEdit.wavelet.edgedetectthr + mods.wavelet.edgedetectthr : mods.wavelet.edgedetectthr;
+        toEdit.wavelet.edgedetectthr = dontforceSet && rtoptions.baBehav[ADDSET_WA_EDGEDETECTTHR] ? toEdit.wavelet.edgedetectthr + mods.wavelet.edgedetectthr : mods.wavelet.edgedetectthr;
     }
 
     if (wavelet.edgedetectthr2) {
-        toEdit.wavelet.edgedetectthr2 = dontforceSet && options.baBehav[ADDSET_WA_EDGEDETECTTHR2] ? toEdit.wavelet.edgedetectthr2 + mods.wavelet.edgedetectthr2 : mods.wavelet.edgedetectthr2;
+        toEdit.wavelet.edgedetectthr2 = dontforceSet && rtoptions.baBehav[ADDSET_WA_EDGEDETECTTHR2] ? toEdit.wavelet.edgedetectthr2 + mods.wavelet.edgedetectthr2 : mods.wavelet.edgedetectthr2;
     }
 
     if (wavelet.chro) {
-        toEdit.wavelet.chro = dontforceSet && options.baBehav[ADDSET_WA_CHRO] ? toEdit.wavelet.chro + mods.wavelet.chro : mods.wavelet.chro;
+        toEdit.wavelet.chro = dontforceSet && rtoptions.baBehav[ADDSET_WA_CHRO] ? toEdit.wavelet.chro + mods.wavelet.chro : mods.wavelet.chro;
     }
 
     if (wavelet.chroma) {
-        toEdit.wavelet.chroma = dontforceSet && options.baBehav[ADDSET_WA_CHROMA] ? toEdit.wavelet.chroma + mods.wavelet.chroma : mods.wavelet.chroma;
+        toEdit.wavelet.chroma = dontforceSet && rtoptions.baBehav[ADDSET_WA_CHROMA] ? toEdit.wavelet.chroma + mods.wavelet.chroma : mods.wavelet.chroma;
     }
 
     if (wavelet.contrast) {
-        toEdit.wavelet.contrast = dontforceSet && options.baBehav[ADDSET_WA_CONTRAST] ? toEdit.wavelet.contrast + mods.wavelet.contrast : mods.wavelet.contrast;
+        toEdit.wavelet.contrast = dontforceSet && rtoptions.baBehav[ADDSET_WA_CONTRAST] ? toEdit.wavelet.contrast + mods.wavelet.contrast : mods.wavelet.contrast;
     }
 
     if (wavelet.edgrad) {
-        toEdit.wavelet.edgrad = dontforceSet && options.baBehav[ADDSET_WA_EDGRAD] ? toEdit.wavelet.edgrad + mods.wavelet.edgrad : mods.wavelet.edgrad;
+        toEdit.wavelet.edgrad = dontforceSet && rtoptions.baBehav[ADDSET_WA_EDGRAD] ? toEdit.wavelet.edgrad + mods.wavelet.edgrad : mods.wavelet.edgrad;
     }
 
     if (wavelet.edgval) {
-        toEdit.wavelet.edgval = dontforceSet && options.baBehav[ADDSET_WA_EDGVAL] ? toEdit.wavelet.edgval + mods.wavelet.edgval : mods.wavelet.edgval;
+        toEdit.wavelet.edgval = dontforceSet && rtoptions.baBehav[ADDSET_WA_EDGVAL] ? toEdit.wavelet.edgval + mods.wavelet.edgval : mods.wavelet.edgval;
     }
 
     if (wavelet.strength) {
-        toEdit.wavelet.strength = dontforceSet && options.baBehav[ADDSET_WA_STRENGTH] ? toEdit.wavelet.strength + mods.wavelet.strength : mods.wavelet.strength;
+        toEdit.wavelet.strength = dontforceSet && rtoptions.baBehav[ADDSET_WA_STRENGTH] ? toEdit.wavelet.strength + mods.wavelet.strength : mods.wavelet.strength;
     }
 
 
@@ -7336,16 +7336,16 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
 
     for (int i = 0; i < 6; i++) {
         if (dirpyrequalizer.mult[i]) {
-            toEdit.dirpyrequalizer.mult[i] = dontforceSet && options.baBehav[ADDSET_DIRPYREQ] ? toEdit.dirpyrequalizer.mult[i] + mods.dirpyrequalizer.mult[i] : mods.dirpyrequalizer.mult[i];
+            toEdit.dirpyrequalizer.mult[i] = dontforceSet && rtoptions.baBehav[ADDSET_DIRPYREQ] ? toEdit.dirpyrequalizer.mult[i] + mods.dirpyrequalizer.mult[i] : mods.dirpyrequalizer.mult[i];
         }
     }
 
     if (dirpyrequalizer.threshold) {
-        toEdit.dirpyrequalizer.threshold = dontforceSet && options.baBehav[ADDSET_DIRPYREQ_THRESHOLD] ? toEdit.dirpyrequalizer.threshold + mods.dirpyrequalizer.threshold : mods.dirpyrequalizer.threshold;
+        toEdit.dirpyrequalizer.threshold = dontforceSet && rtoptions.baBehav[ADDSET_DIRPYREQ_THRESHOLD] ? toEdit.dirpyrequalizer.threshold + mods.dirpyrequalizer.threshold : mods.dirpyrequalizer.threshold;
     }
 
     if (dirpyrequalizer.skinprotect) {
-        toEdit.dirpyrequalizer.skinprotect = dontforceSet && options.baBehav[ADDSET_DIRPYREQ_SKINPROTECT] ? toEdit.dirpyrequalizer.skinprotect + mods.dirpyrequalizer.skinprotect : mods.dirpyrequalizer.skinprotect;
+        toEdit.dirpyrequalizer.skinprotect = dontforceSet && rtoptions.baBehav[ADDSET_DIRPYREQ_SKINPROTECT] ? toEdit.dirpyrequalizer.skinprotect + mods.dirpyrequalizer.skinprotect : mods.dirpyrequalizer.skinprotect;
     }
 
     if (dirpyrequalizer.hueskin) {
@@ -7378,7 +7378,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (filmSimulation.strength) {
-        toEdit.filmSimulation.strength = dontforceSet && options.baBehav[ADDSET_FILMSIMULATION_STRENGTH] ? toEdit.filmSimulation.strength + mods.filmSimulation.strength : mods.filmSimulation.strength;
+        toEdit.filmSimulation.strength = dontforceSet && rtoptions.baBehav[ADDSET_FILMSIMULATION_STRENGTH] ? toEdit.filmSimulation.strength + mods.filmSimulation.strength : mods.filmSimulation.strength;
     }
 
     if (softlight.enabled) {
@@ -7386,7 +7386,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (softlight.strength) {
-        toEdit.softlight.strength = dontforceSet && options.baBehav[ADDSET_SOFTLIGHT_STRENGTH] ? toEdit.softlight.strength + mods.softlight.strength : mods.softlight.strength;
+        toEdit.softlight.strength = dontforceSet && rtoptions.baBehav[ADDSET_SOFTLIGHT_STRENGTH] ? toEdit.softlight.strength + mods.softlight.strength : mods.softlight.strength;
     }
 
     if (dehaze.enabled) {
@@ -7394,7 +7394,7 @@ void ParamsEdited::combine(rtengine::procparams::ProcParams& toEdit, const rteng
     }
 
     if (dehaze.strength) {
-        toEdit.dehaze.strength = dontforceSet && options.baBehav[ADDSET_DEHAZE_STRENGTH] ? toEdit.dehaze.strength + mods.dehaze.strength : mods.dehaze.strength;
+        toEdit.dehaze.strength = dontforceSet && rtoptions.baBehav[ADDSET_DEHAZE_STRENGTH] ? toEdit.dehaze.strength + mods.dehaze.strength : mods.dehaze.strength;
     }
 
     if (dehaze.depth) {

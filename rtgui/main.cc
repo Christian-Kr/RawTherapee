@@ -118,8 +118,8 @@ int main (int argc, char **argv)
     argv0 = DATA_SEARCH_PATH;
     creditsPath = CREDITS_SEARCH_PATH;
     licensePath = LICENCE_SEARCH_PATH;
-    options.rtSettings.lensfunDbDirectory = LENSFUN_DB_PATH;
-    options.rtSettings.lensfunDbBundleDirectory = LENSFUN_DB_PATH;
+    rtoptions.rtSettings.lensfunDbDirectory = LENSFUN_DB_PATH;
+    rtoptions.rtSettings.lensfunDbBundleDirectory = LENSFUN_DB_PATH;
 #endif
 
     Glib::ustring fatalError;
@@ -137,7 +137,7 @@ int main (int argc, char **argv)
 
     int ret = 0;
 
-    if (options.pseudoHiDPISupport) {
+    if (rtoptions.pseudoHiDPISupport) {
         // Reading/updating GDK_SCALE early if it exists
         const gchar *gscale = g_getenv("GDK_SCALE");
         if (gscale && gscale[0] == '2') {

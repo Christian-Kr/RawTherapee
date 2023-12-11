@@ -531,7 +531,7 @@ dfInfo* rtengine::DFManager::Implementation::addFileInfo(const Glib::ustring& fi
 {
     const auto ext = getFileExtension(filename);
 
-    if (ext.empty() || !options.is_extention_enabled(ext)) {
+    if (ext.empty() || !rtoptions.is_extention_enabled(ext)) {
         return nullptr;
     }
 
@@ -553,7 +553,7 @@ dfInfo* rtengine::DFManager::Implementation::addFileInfo(const Glib::ustring& fi
             return nullptr;
         }
 
-        if (!options.fbShowHidden && info->is_hidden()) {
+        if (!rtoptions.fbShowHidden && info->is_hidden()) {
             return nullptr;
         }
 

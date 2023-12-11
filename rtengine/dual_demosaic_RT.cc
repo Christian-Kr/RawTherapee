@@ -46,19 +46,19 @@ void RawImageSource::dual_demosaic_RT(bool isBayer, const procparams::RAWParams 
         if(isBayer) {
             if (raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::AMAZEBILINEAR) ||
                 raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::AMAZEVNG4)) {
-                amaze_demosaic_RT(0, 0, winw, winh, rawData, red, green, blue, options.chunkSizeAMAZE, options.measure);
+                amaze_demosaic_RT(0, 0, winw, winh, rawData, red, green, blue, rtoptions.chunkSizeAMAZE, rtoptions.measure);
             } else if (raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::DCBBILINEAR) ||
                        raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::DCBVNG4)) {
                 dcb_demosaic(raw.bayersensor.dcb_iterations, raw.bayersensor.dcb_enhance);
             } else if (raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::RCDBILINEAR) ||
                        raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::RCDVNG4)) {
-                rcd_demosaic(options.chunkSizeRCD, options.measure);
+                rcd_demosaic(rtoptions.chunkSizeRCD, rtoptions.measure);
             }
         } else {
             if (raw.xtranssensor.method == procparams::RAWParams::XTransSensor::getMethodString(procparams::RAWParams::XTransSensor::Method::FOUR_PASS)) {
-                xtrans_interpolate (3, true, options.chunkSizeXT, options.measure);
+                xtrans_interpolate (3, true, rtoptions.chunkSizeXT, rtoptions.measure);
             } else {
-                xtrans_interpolate (1, false, options.chunkSizeXT, options.measure);
+                xtrans_interpolate (1, false, rtoptions.chunkSizeXT, rtoptions.measure);
             }
         }
 
@@ -71,19 +71,19 @@ void RawImageSource::dual_demosaic_RT(bool isBayer, const procparams::RAWParams 
         if (raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::AMAZEBILINEAR) ||
             raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::AMAZEVNG4) ||
             raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::PIXELSHIFT)) {
-            amaze_demosaic_RT(0, 0, winw, winh, rawData, red, green, blue, options.chunkSizeAMAZE, options.measure);
+            amaze_demosaic_RT(0, 0, winw, winh, rawData, red, green, blue, rtoptions.chunkSizeAMAZE, rtoptions.measure);
         } else if (raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::DCBBILINEAR) ||
                    raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::DCBVNG4)) {
             dcb_demosaic(raw.bayersensor.dcb_iterations, raw.bayersensor.dcb_enhance);
         } else if (raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::RCDBILINEAR) ||
                    raw.bayersensor.method == procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::RCDVNG4)) {
-            rcd_demosaic(options.chunkSizeRCD, options.measure);
+            rcd_demosaic(rtoptions.chunkSizeRCD, rtoptions.measure);
         }
     } else {
         if (raw.xtranssensor.method == procparams::RAWParams::XTransSensor::getMethodString(procparams::RAWParams::XTransSensor::Method::FOUR_PASS)) {
-            xtrans_interpolate (3, true, options.chunkSizeXT, options.measure);
+            xtrans_interpolate (3, true, rtoptions.chunkSizeXT, rtoptions.measure);
         } else {
-            xtrans_interpolate (1, false, options.chunkSizeXT, options.measure);
+            xtrans_interpolate (1, false, rtoptions.chunkSizeXT, rtoptions.measure);
         }
     }
 

@@ -310,7 +310,7 @@ void RawImageSource::pixelshift(int winx, int winy, int winw, int winh, const pr
 {
 BENCHFUN
     if(numFrames != 4) { // fallback for non pixelshift files
-        amaze_demosaic_RT(winx, winy, winw, winh, rawData, red, green, blue, options.chunkSizeAMAZE, options.measure);
+        amaze_demosaic_RT(winx, winy, winw, winh, rawData, red, green, blue, rtoptions.chunkSizeAMAZE, rtoptions.measure);
         return;
     }
 
@@ -342,7 +342,7 @@ BENCHFUN
                 } else if (bayerParams.pixelShiftDemosaicMethod == bayerParams.getPSDemosaicMethodString(procparams::RAWParams::BayerSensor::PSDemosaicMethod::RCDVNG4)) {
                     dual_demosaic_RT (true, rawParamsIn, winw, winh, *(rawDataFrames[0]), red, green, blue, bayerParams.dualDemosaicContrast, true);
                 } else {
-                    amaze_demosaic_RT(winx, winy, winw, winh, *(rawDataFrames[0]), red, green, blue, options.chunkSizeAMAZE, options.measure);
+                    amaze_demosaic_RT(winx, winy, winw, winh, *(rawDataFrames[0]), red, green, blue, rtoptions.chunkSizeAMAZE, rtoptions.measure);
                 }
                 multi_array2D<float, 3> redTmp(winw, winh);
                 multi_array2D<float, 3> greenTmp(winw, winh);
@@ -356,7 +356,7 @@ BENCHFUN
                     } else if (bayerParams.pixelShiftDemosaicMethod == bayerParams.getPSDemosaicMethodString(procparams::RAWParams::BayerSensor::PSDemosaicMethod::RCDVNG4)) {
                         dual_demosaic_RT (true, rawParamsIn, winw, winh, *(rawDataFrames[i + 1]), redTmp[i], greenTmp[i], blueTmp[i], bayerParams.dualDemosaicContrast, true);
                     } else {
-                        amaze_demosaic_RT(winx, winy, winw, winh, *(rawDataFrames[i + 1]), redTmp[i], greenTmp[i], blueTmp[i], options.chunkSizeAMAZE, options.measure);
+                        amaze_demosaic_RT(winx, winy, winw, winh, *(rawDataFrames[i + 1]), redTmp[i], greenTmp[i], blueTmp[i], rtoptions.chunkSizeAMAZE, rtoptions.measure);
                     }
                 }
                 if(bayerParams.pixelShiftMedian) {
@@ -409,7 +409,7 @@ BENCHFUN
                     rawParamsTmp.bayersensor.method = procparams::RAWParams::BayerSensor::getMethodString(procparams::RAWParams::BayerSensor::Method::RCDVNG4);
                     dual_demosaic_RT (true, rawParamsTmp, winw, winh, rawData, red, green, blue, bayerParams.dualDemosaicContrast, true);
                 } else {
-                    amaze_demosaic_RT(winx, winy, winw, winh, rawData, red, green, blue, options.chunkSizeAMAZE, options.measure);
+                    amaze_demosaic_RT(winx, winy, winw, winh, rawData, red, green, blue, rtoptions.chunkSizeAMAZE, rtoptions.measure);
                 }
             }
         }

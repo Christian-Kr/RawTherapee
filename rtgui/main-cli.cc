@@ -135,8 +135,8 @@ int main (int argc, char **argv)
     argv0 = DATA_SEARCH_PATH;
     creditsPath = CREDITS_SEARCH_PATH;
     licensePath = LICENCE_SEARCH_PATH;
-    options.rtSettings.lensfunDbDirectory = LENSFUN_DB_PATH;
-    options.rtSettings.lensfunDbBundleDirectory = LENSFUN_DB_PATH;
+    rtoptions.rtSettings.lensfunDbDirectory = LENSFUN_DB_PATH;
+    rtoptions.rtSettings.lensfunDbBundleDirectory = LENSFUN_DB_PATH;
 #endif
 
     bool quickstart = dontLoadCache (argc, argv);
@@ -150,34 +150,34 @@ int main (int argc, char **argv)
         return -2;
     }
 
-    if (options.is_defProfRawMissing()) {
-        options.defProfRaw = DEFPROFILE_RAW;
+    if (rtoptions.is_defProfRawMissing()) {
+        rtoptions.defProfRaw = DEFPROFILE_RAW;
         std::cerr << std::endl
                   << "The default profile for raw photos could not be found or is not set." << std::endl
                   << "Please check your profiles' directory, it may be missing or damaged." << std::endl
                   << "\"" << DEFPROFILE_RAW << "\" will be used instead." << std::endl << std::endl;
     }
-    if (options.is_bundledDefProfRawMissing()) {
+    if (rtoptions.is_bundledDefProfRawMissing()) {
         std::cerr << std::endl
-                  << "The bundled profile \"" << options.defProfRaw << "\" could not be found!" << std::endl
+                  << "The bundled profile \"" << rtoptions.defProfRaw << "\" could not be found!" << std::endl
                   << "Your installation could be damaged." << std::endl
                   << "Default internal values will be used instead." << std::endl << std::endl;
-        options.defProfRaw = DEFPROFILE_INTERNAL;
+        rtoptions.defProfRaw = DEFPROFILE_INTERNAL;
     }
 
-    if (options.is_defProfImgMissing()) {
-        options.defProfImg = DEFPROFILE_IMG;
+    if (rtoptions.is_defProfImgMissing()) {
+        rtoptions.defProfImg = DEFPROFILE_IMG;
         std::cerr << std::endl
                   << "The default profile for non-raw photos could not be found or is not set." << std::endl
                   << "Please check your profiles' directory, it may be missing or damaged." << std::endl
                   << "\"" << DEFPROFILE_IMG << "\" will be used instead." << std::endl << std::endl;
     }
-    if (options.is_bundledDefProfImgMissing()) {
+    if (rtoptions.is_bundledDefProfImgMissing()) {
         std::cerr << std::endl
-                  << "The bundled profile " << options.defProfImg << " could not be found!" << std::endl
+                  << "The bundled profile " << rtoptions.defProfImg << " could not be found!" << std::endl
                   << "Your installation could be damaged." << std::endl
                   << "Default internal values will be used instead." << std::endl << std::endl;
-        options.defProfImg = DEFPROFILE_INTERNAL;
+        rtoptions.defProfImg = DEFPROFILE_INTERNAL;
     }
 
     TIFFSetWarningHandler (nullptr);   // avoid annoying message boxes
@@ -185,9 +185,9 @@ int main (int argc, char **argv)
 #ifndef _WIN32
 
     // Move the old path to the new one if the new does not exist
-    if (Glib::file_test (Glib::build_filename (options.rtdir, "cache"), Glib::FileTest::IS_DIR) && !Glib::file_test (options.cacheBaseDir, Glib::FileTest::IS_DIR)) {
-        if (g_rename (Glib::build_filename (options.rtdir, "cache").c_str (), options.cacheBaseDir.c_str ()) == -1) {
-            std::cout << "g_rename " <<  Glib::build_filename (options.rtdir, "cache").c_str () << " => " << options.cacheBaseDir.c_str () << " failed." << std::endl;
+    if (Glib::file_test (Glib::build_filename (rtoptions.rtdir, "cache"), Glib::FileTest::IS_DIR) && !Glib::file_test (rtoptions.cacheBaseDir, Glib::FileTest::IS_DIR)) {
+        if (g_rename (Glib::build_filename (rtoptions.rtdir, "cache").c_str (), rtoptions.cacheBaseDir.c_str ()) == -1) {
+            std::cout << "g_rename " << Glib::build_filename (rtoptions.rtdir, "cache").c_str () << " => " << rtoptions.cacheBaseDir.c_str () << " failed." << std::endl;
         }
     }
 
@@ -429,8 +429,8 @@ int processLineParams ( int argc, char **argv )
                         }
 
                         if (Glib::file_test (argument, Glib::FileTest::IS_REGULAR)) {
-                            bool notAll = allExtensions && !options.is_parse_extention (argument);
-                            bool notRetained = !allExtensions && !options.has_retained_extention (argument);
+                            bool notAll = allExtensions && !rtoptions.is_parse_extention (argument);
+                            bool notRetained = !allExtensions && !rtoptions.has_retained_extention (argument);
 
                             if (notAll || notRetained) {
                                 if (notAll) {
@@ -462,8 +462,8 @@ int processLineParams ( int argc, char **argv )
 
                                     const auto fileName = Glib::build_filename (argument, file->get_name());
                                     bool isDir = file->get_file_type() == Gio::FileType::DIRECTORY;
-                                    bool notAll = allExtensions && !options.is_parse_extention (fileName);
-                                    bool notRetained = !allExtensions && !options.has_retained_extention (fileName);
+                                    bool notAll = allExtensions && !rtoptions.is_parse_extention (fileName);
+                                    bool notRetained = !allExtensions && !rtoptions.has_retained_extention (fileName);
 
                                     if (isDir || notAll || notRetained) {
                                         if (isDir) {
@@ -583,26 +583,26 @@ int processLineParams ( int argc, char **argv )
 #endif
 
             if ( outputDirectory ) {
-                options.savePathFolder = outputPath;
-                options.saveUsePathTemplate = false;
+                rtoptions.savePathFolder = outputPath;
+                rtoptions.saveUsePathTemplate = false;
             } else {
-                options.saveUsePathTemplate = true;
+                rtoptions.saveUsePathTemplate = true;
 
-                if (options.savePathTemplate.empty())
+                if (rtoptions.savePathTemplate.empty())
                     // If the save path template is empty, we use its default value
                 {
-                    options.savePathTemplate = "%p1/converted/%f";
+                    rtoptions.savePathTemplate = "%p1/converted/%f";
                 }
             }
 
             if (outputType == "jpg") {
-                options.saveFormat.format = outputType;
-                options.saveFormat.jpegQuality = compression;
-                options.saveFormat.jpegSubSamp = subsampling;
+                rtoptions.saveFormat.format = outputType;
+                rtoptions.saveFormat.jpegQuality = compression;
+                rtoptions.saveFormat.jpegSubSamp = subsampling;
             } else if (outputType == "tif") {
-                options.saveFormat.format = outputType;
+                rtoptions.saveFormat.format = outputType;
             } else if (outputType == "png") {
-                options.saveFormat.format = outputType;
+                rtoptions.saveFormat.format = outputType;
             }
 
             break;
@@ -631,9 +631,9 @@ int processLineParams ( int argc, char **argv )
 
     if (useDefault) {
         rawParams = new rtengine::procparams::PartialProfile (true, true);
-        Glib::ustring profPath = options.findProfilePath (options.defProfRaw);
+        Glib::ustring profPath = rtoptions.findProfilePath (rtoptions.defProfRaw);
 
-        if (options.is_defProfRawMissing() || profPath.empty() || (profPath != DEFPROFILE_DYNAMIC && rawParams->load (profPath == DEFPROFILE_INTERNAL ? DEFPROFILE_INTERNAL : Glib::build_filename (profPath, Glib::path_get_basename (options.defProfRaw.c_str()) + paramFileExtension)))) {
+        if (rtoptions.is_defProfRawMissing() || profPath.empty() || (profPath != DEFPROFILE_DYNAMIC && rawParams->load (profPath == DEFPROFILE_INTERNAL ? DEFPROFILE_INTERNAL : Glib::build_filename (profPath, Glib::path_get_basename (rtoptions.defProfRaw.c_str()) + paramFileExtension)))) {
             std::cerr << "Error: default raw processing profile not found." << std::endl;
             rawParams->deleteInstance();
             delete rawParams;
@@ -642,9 +642,9 @@ int processLineParams ( int argc, char **argv )
         }
 
         imgParams = new rtengine::procparams::PartialProfile (true);
-        profPath = options.findProfilePath (options.defProfImg);
+        profPath = rtoptions.findProfilePath (rtoptions.defProfImg);
 
-        if (options.is_defProfImgMissing() || profPath.empty() || (profPath != DEFPROFILE_DYNAMIC && imgParams->load (profPath == DEFPROFILE_INTERNAL ? DEFPROFILE_INTERNAL : Glib::build_filename (profPath, Glib::path_get_basename (options.defProfImg.c_str()) + paramFileExtension)))) {
+        if (rtoptions.is_defProfImgMissing() || profPath.empty() || (profPath != DEFPROFILE_DYNAMIC && imgParams->load (profPath == DEFPROFILE_INTERNAL ? DEFPROFILE_INTERNAL : Glib::build_filename (profPath, Glib::path_get_basename (rtoptions.defProfImg.c_str()) + paramFileExtension)))) {
             std::cerr << "Error: default non-raw processing profile not found." << std::endl;
             imgParams->deleteInstance();
             delete imgParams;
@@ -721,7 +721,7 @@ int processLineParams ( int argc, char **argv )
 
         if (useDefault) {
             if (isRaw) {
-                if (options.defProfRaw == DEFPROFILE_DYNAMIC) {
+                if (rtoptions.defProfRaw == DEFPROFILE_DYNAMIC) {
                     rawParams->deleteInstance();
                     delete rawParams;
                     rawParams = ProfileStore::getInstance()->loadDynamicProfile (ii->getMetaData(), inputFile);
@@ -730,7 +730,7 @@ int processLineParams ( int argc, char **argv )
                 std::cout << "  Merging default raw processing profile." << std::endl;
                 rawParams->applyTo (&currentParams);
             } else {
-                if (options.defProfImg == DEFPROFILE_DYNAMIC) {
+                if (rtoptions.defProfImg == DEFPROFILE_DYNAMIC) {
                     imgParams->deleteInstance();
                     delete imgParams;
                     imgParams = ProfileStore::getInstance()->loadDynamicProfile (ii->getMetaData(), inputFile);

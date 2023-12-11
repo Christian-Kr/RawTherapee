@@ -455,7 +455,7 @@ public:
         if (loadAll) {
             loadProfiles(profilesDir, &fileProfiles, &fileProfileContents, nullptr, false);
             loadProfiles(userICCDir, &fileProfiles, &fileProfileContents, nullptr, false);
-            Glib::ustring user_output_icc_dir = Glib::build_filename(options.rtdir, "iccprofiles", "output");
+            Glib::ustring user_output_icc_dir = Glib::build_filename(rtoptions.rtdir, "iccprofiles", "output");
             loadProfiles(user_output_icc_dir, &fileProfiles, &fileProfileContents, nullptr, false);
         }
 
@@ -467,7 +467,7 @@ public:
 
         if (loadAll) {
             loadProfiles(stdProfilesDir, nullptr, nullptr, &fileStdProfilesFileNames, true);
-            Glib::ustring user_input_icc_dir = Glib::build_filename(options.rtdir, "iccprofiles", "input");
+            Glib::ustring user_input_icc_dir = Glib::build_filename(rtoptions.rtdir, "iccprofiles", "input");
             loadProfiles(user_input_icc_dir, nullptr, nullptr, &fileStdProfilesFileNames, true);
         }
 

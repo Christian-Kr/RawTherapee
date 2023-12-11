@@ -55,7 +55,7 @@ Glib::ustring RTOptions::rtdir;
 // User's cached data directory
 Glib::ustring RTOptions::cacheBaseDir;
 
-RTOptions options;
+RTOptions rtoptions;
 Glib::ustring versionString = RTVERSION;
 Glib::ustring paramFileExtension = ".pp3";
 
@@ -535,7 +535,7 @@ void RTOptions::setDefaults()
     fastexport_bypass_raw_ff             = true;
     fastexport_icm_input_profile         = "(camera)";
     fastexport_icm_working_profile       = "ProPhoto";
-    fastexport_icm_output_profile        = options.rtSettings.srgb;
+    fastexport_icm_output_profile        = rtoptions.rtSettings.srgb;
     fastexport_icm_outputIntent          = rtengine::RI_RELATIVE;
     fastexport_icm_outputBPC             = true;
     fastexport_resize_enabled            = true;
@@ -2290,7 +2290,7 @@ void RTOptions::readFromFile(Glib::ustring fname)
     } catch (Glib::Error &err) {
         Glib::ustring msg = Glib::ustring::compose("Options::readFromFile / Error code %1 while reading values from \"%2\":\n%3", err.code(), fname, err.what());
 
-        if (options.rtSettings.verbose) {
+        if (rtoptions.rtSettings.verbose) {
             printf("%s\n", msg.c_str());
         }
 
@@ -2298,7 +2298,7 @@ void RTOptions::readFromFile(Glib::ustring fname)
     } catch (...) {
         Glib::ustring msg = Glib::ustring::compose("Options::readFromFile / Unknown exception while trying to load \"%1\"!", fname);
 
-        if (options.rtSettings.verbose) {
+        if (rtoptions.rtSettings.verbose) {
             printf("%s\n", msg.c_str());
         }
 
@@ -2806,7 +2806,7 @@ void RTOptions::load(bool lightweight)
 #endif
     }
 
-    if (options.rtSettings.verbose) {
+    if (rtoptions.rtSettings.verbose) {
         printf("Settings directory (rtdir) = %s\n", rtdir.c_str());
     }
 
@@ -2815,12 +2815,12 @@ void RTOptions::load(bool lightweight)
 
     // Read the global option file (the one located in the application's base folder)
     try {
-        options.readFromFile(Glib::build_filename(argv0, "options"));
+        rtoptions.readFromFile(Glib::build_filename(argv0, "options"));
     } catch (RTOptions::Error &) {
         // ignore errors here
     }
 
-    if (!options.multiUser && path == nullptr) {
+    if (!rtoptions.multiUser && path == nullptr) {
         rtdir = Glib::build_filename(argv0, "mysettings");
     }
 
@@ -2837,7 +2837,7 @@ void RTOptions::load(bool lightweight)
     }
 
     // No environment variable provided, so falling back to the multi user mode, if enabled
-    else if (options.multiUser) {
+    else if (rtoptions.multiUser) {
 #ifdef _WIN32
         cacheBaseDir = Glib::build_filename(rtdir, "cache");
 #else
@@ -2852,12 +2852,12 @@ void RTOptions::load(bool lightweight)
     // Read the user option file (the one located somewhere in the user's home folder)
     // Those values supersets those of the global option file
     try {
-        options.readFromFile(Glib::build_filename(rtdir, "options"));
+        rtoptions.readFromFile(Glib::build_filename(rtdir, "options"));
     } catch (RTOptions::Error &) {
         // If the local option file does not exist or is broken, and the local cache folder does not exist, recreate it
         if (!g_mkdir_with_parents(rtdir.c_str(), 511)) {
             // Save the option file
-            options.saveToFile(Glib::build_filename(rtdir, "options"));
+            rtoptions.saveToFile(Glib::build_filename(rtdir, "options"));
         }
     }
 
@@ -2870,54 +2870,54 @@ void RTOptions::load(bool lightweight)
 
 #endif
 
-    if (options.rtSettings.verbose) {
+    if (rtoptions.rtSettings.verbose) {
         printf("Cache directory (cacheBaseDir) = %s\n", cacheBaseDir.c_str());
     }
 
     // Update profile's path and recreate it if necessary
-    options.updatePaths();
+    rtoptions.updatePaths();
 
     // Check default Raw and Img procparams existence
-    if (options.defProfRaw.empty()) {
-        options.defProfRaw = DEFPROFILE_RAW;
+    if (rtoptions.defProfRaw.empty()) {
+        rtoptions.defProfRaw = DEFPROFILE_RAW;
     } else {
-        if (!options.findProfilePath(options.defProfRaw).empty()) {
-            if (options.rtSettings.verbose) {
-                std::cout << "Default profile for raw images \"" << options.defProfRaw << "\" found" << std::endl;
+        if (!rtoptions.findProfilePath(rtoptions.defProfRaw).empty()) {
+            if (rtoptions.rtSettings.verbose) {
+                std::cout << "Default profile for raw images \"" << rtoptions.defProfRaw << "\" found" << std::endl;
             }
         } else {
-            if (options.defProfRaw != DEFPROFILE_RAW) {
-                options.setDefProfRawMissing(true);
+            if (rtoptions.defProfRaw != DEFPROFILE_RAW) {
+                rtoptions.setDefProfRawMissing(true);
 
                 Glib::ustring dpr(DEFPROFILE_RAW);
 
-                if (options.findProfilePath(dpr).empty()) {
-                    options.setBundledDefProfRawMissing(true);
+                if (rtoptions.findProfilePath(dpr).empty()) {
+                    rtoptions.setBundledDefProfRawMissing(true);
                 }
             } else {
-                options.setBundledDefProfRawMissing(true);
+                rtoptions.setBundledDefProfRawMissing(true);
             }
         }
     }
 
-    if (options.defProfImg.empty()) {
-        options.defProfImg = DEFPROFILE_IMG;
+    if (rtoptions.defProfImg.empty()) {
+        rtoptions.defProfImg = DEFPROFILE_IMG;
     } else {
-        if (!options.findProfilePath(options.defProfImg).empty()) {
-            if (options.rtSettings.verbose) {
-                std::cout << "Default profile for non-raw images \"" << options.defProfImg << "\" found" << std::endl;
+        if (!rtoptions.findProfilePath(rtoptions.defProfImg).empty()) {
+            if (rtoptions.rtSettings.verbose) {
+                std::cout << "Default profile for non-raw images \"" << rtoptions.defProfImg << "\" found" << std::endl;
             }
         } else {
-            if (options.defProfImg != DEFPROFILE_IMG) {
-                options.setDefProfImgMissing(true);
+            if (rtoptions.defProfImg != DEFPROFILE_IMG) {
+                rtoptions.setDefProfImgMissing(true);
 
                 Glib::ustring dpi(DEFPROFILE_IMG);
 
-                if (options.findProfilePath(dpi).empty()) {
-                    options.setBundledDefProfImgMissing(true);
+                if (rtoptions.findProfilePath(dpi).empty()) {
+                    rtoptions.setBundledDefProfImgMissing(true);
                 }
             } else {
-                options.setBundledDefProfImgMissing(true);
+                rtoptions.setBundledDefProfImgMissing(true);
             }
         }
     }
@@ -2941,31 +2941,31 @@ void RTOptions::load(bool lightweight)
     Glib::ustring languageTranslation = "";
     Glib::ustring localeTranslation = "";
 
-    if (options.languageAutoDetect) {
-        options.language = langMgr.getOSUserLanguage();
+    if (rtoptions.languageAutoDetect) {
+        rtoptions.language = langMgr.getOSUserLanguage();
     }
 
-    if (!options.language.empty()) {
-        std::vector<Glib::ustring> langPortions = Glib::Regex::split_simple(" ", options.language);
+    if (!rtoptions.language.empty()) {
+        std::vector<Glib::ustring> langPortions = Glib::Regex::split_simple(" ", rtoptions.language);
 
         if (langPortions.size() >= 1) {
             languageTranslation = Glib::build_filename(argv0, "languages", langPortions.at(0));
         }
 
         if (langPortions.size() >= 2) {
-            localeTranslation = Glib::build_filename(argv0, "languages", options.language);
+            localeTranslation = Glib::build_filename(argv0, "languages", rtoptions.language);
         }
     }
 
-    langMgr.load(options.language, {localeTranslation, languageTranslation, defaultTranslation});
+    langMgr.load(rtoptions.language, {localeTranslation, languageTranslation, defaultTranslation});
 
-    rtengine::init(&options.rtSettings, argv0, rtdir, !lightweight);
+    rtengine::init(&rtoptions.rtSettings, argv0, rtdir, !lightweight);
 }
 
 void RTOptions::save()
 {
 
-    options.saveToFile(Glib::build_filename(rtdir, "options"));
+    rtoptions.saveToFile(Glib::build_filename(rtdir, "options"));
 }
 
 /*
