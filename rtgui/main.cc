@@ -44,10 +44,6 @@
 #include "windows.h"
 #endif
 
-// Set this to 1 to make RT work when started with Eclipse and arguments, at least on Windows
-// platform.
-#define ECLIPSE_ARGS 0
-
 // Stores path to data files.
 Glib::ustring argv0;
 Glib::ustring argv1;
@@ -84,10 +80,6 @@ int processLineParams(int argc, char **argv)
         if (currParam.empty()) {
             continue;
         }
-
-#if ECLIPSE_ARGS
-        currParam = currParam.substr(1, currParam.length() - 2);
-#endif
 
         if (currParam.at(0) == '-' && currParam.size() > 1) {
             switch (currParam.at(1)) {
@@ -154,11 +146,6 @@ int processLineParams(int argc, char **argv)
             // If the first argument has not been set for now. Set it with the given argv.
             if (argv1.empty()) {
                 argv1 = Glib::ustring(fname_to_utf8(argv[iArg]));
-
-#if ECLIPSE_ARGS
-                argv1 = argv1.substr(1, argv1.length() - 2);
-#endif
-
             }
             break;
         }
