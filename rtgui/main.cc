@@ -45,9 +45,14 @@
 #endif
 
 // Stores path to data files.
+
+// Search path for data files.
 Glib::ustring argv0;
+
+// TODO - CK: This will be handled by RTApplication in future.
+// Single files from the command line to be opened.
 Glib::ustring argv1;
-Glib::ustring argv2;
+
 Glib::ustring creditsPath;
 Glib::ustring licensePath;
 
@@ -62,8 +67,13 @@ int main (int argc, char **argv)
 
     simpleEditor = false;
     remote = false;
+
     argv0 = "";
+
+
     argv1 = "";
+
+
     argv2 = "";
 
     Glib::init();  // called by Gtk::Main, but this may be important for thread handling, so we call it ourselves now
