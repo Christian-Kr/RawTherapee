@@ -6091,7 +6091,7 @@ int ProcParams::save(const Glib::ustring& fname, const Glib::ustring& fname2, bo
     Glib::ustring sPParams;
 
     try {
-        Glib::RefPtr<Glib::KeyFile> keyFile;
+        Glib::RefPtr<Glib::KeyFile> keyFile = Glib::KeyFile::create();
 
 // Version
         keyFile->set_string("Version", "AppVersion", RTVERSION);
@@ -7856,7 +7856,7 @@ int ProcParams::load(const Glib::ustring& fname, ParamsEdited* pedited)
         return 1;
     }
 
-    Glib::RefPtr<Glib::KeyFile> keyFile;
+    Glib::RefPtr<Glib::KeyFile> keyFile = Glib::KeyFile::create();
 
     try {
         std::unique_ptr<ParamsEdited> dummy_pedited;

@@ -55,19 +55,19 @@ void RTApplication::init_main_options()
     add_main_option_entry(
             Gio::Application::OptionType::BOOL, "remote", 'r',
             "Raise an already running RawTherapee instance (if available)", "",
-            Glib::OptionEntry::Flags::NO_ARG);
+            Glib::OptionEntry::Flags::NONE);
 
     // Show version of RawTherapee.
     add_main_option_entry(
             Gio::Application::OptionType::BOOL, "version", 'v',
             "Print RawTherapee version number and exit", "",
-            Glib::OptionEntry::Flags::NO_ARG);
+            Glib::OptionEntry::Flags::NONE);
 
     // Show detailed information like about in GUI application.
     add_main_option_entry(
             Gio::Application::OptionType::BOOL, "about", 'a',
             "Display about information", "",
-            Glib::OptionEntry::Flags::NO_ARG);
+            Glib::OptionEntry::Flags::NONE);
 }
 
 void RTApplication::init()

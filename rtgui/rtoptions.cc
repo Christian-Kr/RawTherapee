@@ -723,7 +723,7 @@ void RTOptions::readFromFile(Glib::ustring fname)
 {
     setlocale(LC_NUMERIC, "C");  // to set decimal point to "."
 
-    Glib::RefPtr<Glib::KeyFile> keyFile;
+    Glib::RefPtr<Glib::KeyFile> keyFile = Glib::KeyFile::create();
 
     if (!Glib::file_test(fname, Glib::FileTest::EXISTS)) {
         Glib::ustring msg = Glib::ustring::compose("Options file %1 does not exist", fname);
@@ -2328,7 +2328,7 @@ void RTOptions::saveToFile(Glib::ustring fname)
 
     try {
 
-        Glib::RefPtr<Glib::KeyFile> keyFile;
+        Glib::RefPtr<Glib::KeyFile> keyFile = Glib::KeyFile::create();
 
         keyFile->set_boolean("General", "TabbedEditor", tabbedUI);
         keyFile->set_boolean("General", "StoreLastProfile", savesParamsAtExit);

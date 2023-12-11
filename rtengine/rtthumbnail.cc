@@ -2162,7 +2162,7 @@ bool Thumbnail::readImage (const Glib::ustring& fname)
 bool Thumbnail::readData  (const Glib::ustring& fname)
 {
     setlocale (LC_NUMERIC, "C"); // to set decimal point to "."
-    Glib::RefPtr<Glib::KeyFile> keyFile;
+    Glib::RefPtr<Glib::KeyFile> keyFile = Glib::KeyFile::create();
 
     try {
         MyMutex::MyLock thmbLock (thumbMutex);
@@ -2299,7 +2299,7 @@ bool Thumbnail::writeData  (const Glib::ustring& fname)
 
     try {
 
-        Glib::RefPtr<Glib::KeyFile> keyFile;
+        Glib::RefPtr<Glib::KeyFile> keyFile = Glib::KeyFile::create();
 
         try {
             keyFile->load_from_file (fname);
