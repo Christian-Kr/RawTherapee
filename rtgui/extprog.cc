@@ -49,7 +49,7 @@ bool ExtProgAction::execute (const std::vector<Glib::ustring>& fileNames) const
             continue;
         }
 
-        Gtk::MessageDialog (M("MAIN_MSG_IMAGEUNPROCESSED"), true, Gtk::MessageType::ERROR, Gtk::ButtonsType::OK, true).run ();
+        //Gtk::MessageDialog (M("MAIN_MSG_IMAGEUNPROCESSED"), true, Gtk::MessageType::ERROR, Gtk::ButtonsType::OK, true).run ();
         return false;
     }
 
@@ -208,10 +208,10 @@ bool ExtProgStore::spawnCommandAsync (const Glib::ustring& cmd)
 
         return true;
 
-    } catch (const Glib::Exception& exception) {
+    } catch (const Glib::Error& error) {
 
         if (rtengine::settings->verbose) {
-            std::cerr << "Failed to execute \"" << cmd << "\": " << exception.what() << std::endl;
+            std::cerr << "Failed to execute \"" << cmd << "\": " << error.what() << std::endl;
         }
 
         return false;
@@ -227,10 +227,10 @@ bool ExtProgStore::spawnCommandSync (const Glib::ustring& cmd)
 
         Glib::spawn_command_line_sync (cmd, nullptr, nullptr, &exitStatus);
 
-    } catch (const Glib::Exception& exception) {
+    } catch (const Glib::Error& error) {
 
         if (rtengine::settings->verbose) {
-            std::cerr << "Failed to execute \"" << cmd << "\": " << exception.what() << std::endl;
+            std::cerr << "Failed to execute \"" << cmd << "\": " << error.what() << std::endl;
         }
 
     }
@@ -363,7 +363,7 @@ bool ExtProgStore::openInExternalEditor(const Glib::ustring &fileName, const Edi
     try {
         Glib::RefPtr<Gio::AppInfo> appInfo =
             Gio::AppInfo::create_from_commandline(
-                editorInfo.commandline, editorInfo.name, Gio::APP_INFO_CREATE_NONE);
+                editorInfo.commandline, editorInfo.name, Gio::AppInfo::CreateFlags::NONE);
         success = appInfo->launch(Gio::File::create_for_path(fileName));
     } catch (const Glib::Error &e) {
         std::cerr

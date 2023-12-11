@@ -24,34 +24,21 @@
 #endif
 
 #include "config.h"
-#include "rtwindow.h"
-#include "cachemanager.h"
-#include "editorpanel.h"
-#include "filecatalog.h"
-#include "filepanel.h"
+#include "rtapplication.h"
 #include "options.h"
-#include "soundman.h"
 #include "rtimage.h"
 #include "version.h"
-#include "extprog.h"
-#include "../rtengine/dynamicprofile.h"
-#include "../rtengine/procparams.h"
 #include "pathutils.h"
 
 #include <gtkmm.h>
 #include <giomm.h>
 #include <iostream>
 #include <tiffio.h>
-#include <cstring>
-#include <cstdlib>
 #include <clocale>
-#include <lensfun.h>
-#include <thread>
 
 #ifndef _WIN32
 #include <glibmm/fileutils.h>
 #include <glib.h>
-#include <glib/gstdio.h>
 #else
 #include "conio.h"
 #include "windows.h"
@@ -69,15 +56,12 @@ Glib::ustring creditsPath;
 Glib::ustring licensePath;
 
 bool simpleEditor = false;
-bool gimpPlugin = false;
 bool remote = false;
 unsigned char initialGdkScale = 1;
 
 // TODO - CK: Why is there a namespace here without a given name like 'RT'?
 namespace {
 
-// TODO - CK: Only 0, 1 and -1 are set in processLineParams. Return values might have been changed
-//  in history.
 /**
  * Process line command options.
  *
@@ -85,10 +69,7 @@ namespace {
  * @param argv The given argument.
  * @returns 0 if process in batch has executed
  *          1 to start GUI (with a dir or file option)
- *          2 to start GUI because no files found
- *          -1 if there is an error in parameters
- *          -2 if an error occurred during processing
- *          -3 if at least one required procparam file was not found
+ *         -1 if there is an error in parameters
  */
 int processLineParams(int argc, char **argv)
 {
@@ -126,20 +107,10 @@ int processLineParams(int argc, char **argv)
 
 #ifndef __APPLE__
                 case 'R':
-                    if (!gimpPlugin) {
-                        remote = true;
-                    }
+                    remote = true;
 
                     break;
 #endif
-
-                case 'g':
-                    if (currParam == "-gimp") {
-                        gimpPlugin = true;
-                        simpleEditor = true;
-                        remote = false;
-                        break;
-                    }
 
                 // No break here on purpose.
 
@@ -188,175 +159,12 @@ int processLineParams(int argc, char **argv)
                 argv1 = argv1.substr(1, argv1.length() - 2);
 #endif
 
-            } else if (gimpPlugin) {
-                // If argv1 has already been set and rt will be used as a gimp plugin, set the
-                // second argument with given argv.
-
-                argv2 = Glib::ustring(fname_to_utf8(argv[iArg]));
-                break;
             }
-
-            // Quit, cause no one expect more arguments of that type, when it will not be used
-            // as a gimp plugin.
-            if (!gimpPlugin) {
-                break;
-            }
+            break;
         }
     }
 
     return ret;
-}
-
-/**
- * Initialization of RawTherapee.
- */
-void rtInit()
-{
-    extProgStore->init();
-    SoundManager::init();
-
-    if (!rtengine::settings->verbose) {
-        TIFFSetWarningHandler (nullptr);   // avoid annoying message boxes
-    }
-
-#ifndef _WIN32
-    // Move the old path to the new one if the new does not exist.
-    auto rtdirCache = Glib::build_filename(Options::rtdir, "cache");
-
-    auto rtdirCacheIsDir = Glib::file_test(rtdirCache, Glib::FileTest::IS_DIR);
-    auto cacheBaseDirIsDir = Glib::file_test(Options::cacheBaseDir, Glib::FileTest::IS_DIR);
-
-    if (rtdirCacheIsDir && !cacheBaseDirIsDir) {
-        g_rename(rtdirCache.c_str(), Options::cacheBaseDir.c_str());
-    }
-#endif
-}
-
-/**
- * Just a cleanup of the RawTherapee engine.
- */
-void rtCleanup()
-{
-    rtengine::cleanup();
-}
-
-/**
- * Create the main RawTherapee window.
- *
- * @return The main RawTherapee window instance.
- */
-RTWindow *rtCreateWindow()
-{
-    auto iconPath = Glib::build_filename(argv0, "images");
-    auto defaultIconTheme = Gtk::IconTheme::get_for_display(Gdk::Display::get_default());
-
-    defaultIconTheme->add_search_path(iconPath);
-
-    auto *rtWindow = new RTWindow();
-
-    // Need to be called after RTWindow creation to work with all OS Window Manager.
-    rtWindow->setWindowSize();
-
-    return rtWindow;
-}
-
-
-class RTApplication: public Gtk::Application
-{
-public:
-    RTApplication():
-        Gtk::Application ("com.rawtherapee.application",
-                          Gio::APPLICATION_HANDLES_OPEN),
-        rtWindow (nullptr)
-    {
-    }
-
-    ~RTApplication() override
-    {
-        if (rtWindow) {
-            delete rtWindow;
-        }
-
-        rtCleanup();
-    }
-
-private:
-    bool create_window()
-    {
-        if (rtWindow) {
-            return true;
-        }
-
-        rtInit();
-
-        rtWindow = rtCreateWindow();
-        add_window (*rtWindow);
-
-        return true;
-    }
-
-    // Override default signal handlers:
-    void on_activate() override
-    {
-        if (create_window()) {
-            rtWindow->present();
-        }
-    }
-
-    void on_open (const Gio::Application::type_vec_files& files,
-                  const Glib::ustring& hint) override
-    {
-        if (create_window()) {
-            struct Data {
-                std::vector<Thumbnail *> entries;
-                Glib::ustring lastfilename;
-                FileCatalog *filecatalog;
-            };
-            Data *d = new Data;
-            d->filecatalog = rtWindow->fpanel->fileCatalog;
-
-            for (const auto &f : files) {
-                Thumbnail *thm = cacheMgr->getEntry (f->get_path());
-
-                if (thm) {
-                    d->entries.push_back (thm);
-                    d->lastfilename = f->get_path();
-                }
-            }
-
-            if (!d->entries.empty()) {
-                const auto doit =
-                [] (gpointer data) -> gboolean {
-                    Data *d = static_cast<Data *> (data);
-                    d->filecatalog->openRequested (d->entries);
-                    d->filecatalog->selectImage (d->lastfilename, true);
-                    delete d;
-                    return FALSE;
-                };
-                gdk_threads_add_idle (doit, d);
-            } else {
-                delete d;
-            }
-
-            rtWindow->present();
-        }
-    }
-
-private:
-    RTWindow *rtWindow;
-};
-
-void show_gimp_plugin_info_dialog(Gtk::Window *parent)
-{
-    if (options.gimpPluginShowInfoDialog) {
-        Gtk::MessageDialog info(*parent, M("GIMP_PLUGIN_INFO"), false, Gtk::MESSAGE_INFO, Gtk::ButtonsType::OK, true);
-        Gtk::Box *box = info.get_message_area();
-        Gtk::CheckButton dontshowagain(M("DONT_SHOW_AGAIN"));
-        dontshowagain.show();
-        box->pack_start(dontshowagain);
-        info.run();
-        options.gimpPluginShowInfoDialog = !dontshowagain.get_active();
-    }
 }
 
 } // namespace
@@ -368,7 +176,6 @@ int main (int argc, char **argv)
     setlocale (LC_NUMERIC, "C"); // to set decimal point to "."
 
     simpleEditor = false;
-    gimpPlugin = false;
     remote = false;
     argv0 = "";
     argv1 = "";
@@ -430,79 +237,6 @@ int main (int argc, char **argv)
     options.rtSettings.lensfunDbBundleDirectory = LENSFUN_DB_PATH;
 #endif
 
-#ifdef _WIN32
-    bool consoleOpened = false;
-
-    // suppression of annoying error boxes
-    SetErrorMode (SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
-
-    if (argc > 1) {
-        if (!remote && !Glib::file_test (argv1, Glib::FileTest::EXISTS ) && !Glib::file_test (argv1, Glib::FILE_TEST_IS_DIR)) {
-            const bool stdoutRedirecttoConsole = (GetFileType (GetStdHandle (STD_OUTPUT_HANDLE)) == 0x0000);
-            // open console, if stdout is invalid
-            if (stdoutRedirecttoConsole) {
-                // check if parameter -w was passed.
-                // We have to do that in this step, because it controls whether to open a console to show the output of following steps
-                bool Console = true;
-
-                for (int i = 1; i < argc; i++)
-                    if (!strcmp (argv[i], "-w") || !strcmp (argv[i], "-R") || !strcmp (argv[i], "-gimp")) {
-                        Console = false;
-                        break;
-                    }
-
-                if (Console && AllocConsole()) {
-                    AttachConsole ( GetCurrentProcessId() ) ;
-                    // Don't allow CTRL-C in console to terminate RT
-                    SetConsoleCtrlHandler ( NULL, true );
-                    // Set title of console
-                    char consoletitle[128];
-                    snprintf(consoletitle, sizeof(consoletitle), "RawTherapee %s Console", RTVERSION);
-                    SetConsoleTitle (consoletitle);
-                    // increase size of screen buffer
-                    COORD c;
-                    c.X = 200;
-                    c.Y = 1000;
-                    SetConsoleScreenBufferSize ( GetStdHandle ( STD_OUTPUT_HANDLE ), c );
-                    // Disable console-Cursor
-                    CONSOLE_CURSOR_INFO cursorInfo;
-                    cursorInfo.dwSize = 100;
-                    cursorInfo.bVisible = false;
-                    SetConsoleCursorInfo ( GetStdHandle ( STD_OUTPUT_HANDLE ), &cursorInfo );
-
-                    // we also redirect stderr to console
-                    freopen ( "CON", "w", stdout ) ;
-                    freopen ( "CON", "w", stderr ) ;
-
-                    freopen ( "CON", "r", stdin ) ;
-
-                    consoleOpened = true;
-                }
-            }
-        }
-        int ret = processLineParams ( argc, argv);
-
-        if ( ret <= 0 ) {
-            fflush(stdout);
-            if (consoleOpened) {
-                printf ("Press any key to exit RawTherapee\n");
-                FlushConsoleInputBuffer (GetStdHandle (STD_INPUT_HANDLE));
-                getch();
-            }
-
-            return ret;
-        }
-    }
-#else
-    if (argc > 1) {
-        int ret = processLineParams ( argc, argv);
-
-        if ( ret <= 0 ) {
-            return ret;
-        }
-    }
-#endif
-
     Glib::ustring fatalError;
 
     try {
@@ -511,18 +245,7 @@ int main (int argc, char **argv)
         fatalError = e.get_msg();
     }
 
-    if (gimpPlugin) {
-        if (!Glib::file_test(argv1, Glib::FileTest::EXISTS) ||
-            Glib::file_test(argv1, Glib::FileTest::IS_DIR)) {
-            printf ("Error: argv1 doesn't exist\n");
-            return 1;
-        }
-
-        if (argv2.empty()) {
-            printf ("Error: -gimp requires two arguments\n");
-            return 1;
-        }
-    } else if (!remote && Glib::file_test(argv1, Glib::FileTest::EXISTS) &&
+    if (!remote && Glib::file_test(argv1, Glib::FileTest::EXISTS) &&
                !Glib::file_test(argv1, Glib::FileTest::IS_DIR)) {
         simpleEditor = true;
     }
@@ -542,41 +265,27 @@ int main (int argc, char **argv)
 
     gtk_init ();
 
+    RTApplication app;
+    app.register_application();
+    RTApplication::init();
+
     if (fatalError.empty() && remote) {
-        char *app_argv[2] = { const_cast<char *> (argv0.c_str()) };
-        int app_argc = 1;
+        // Start the remote version; Just open an existing instance if it exist.
 
-        if (!argv1.empty()) {
-            app_argc = 2;
-            app_argv[1] = const_cast<char *> (argv1.c_str());
-        }
-
-        RTApplication app;
-        ret = app.run (app_argc, app_argv);
+        ret = app.run(argc, argv);
     } else {
-        rtInit();
+        // Start a new GUI instance.
+
+        // Add additional icon path.
+        auto iconPath = Glib::build_filename(argv0, "images");
+        auto defaultIconTheme = Gtk::IconTheme::get_for_display(Gdk::Display::get_default());
+
+        defaultIconTheme->add_search_path(iconPath);
 
         if (fatalError.empty()) {
-            Gtk::Main m (&argc, &argv);
-            gdk_threads_enter();
-            const std::unique_ptr<RTWindow> rtWindow (rtCreateWindow());
-            if (gimpPlugin) {
-                show_gimp_plugin_info_dialog(rtWindow.get());
-            }
-            m.run (*rtWindow);
-            gdk_threads_leave();
-
-            if (gimpPlugin && rtWindow->epanel && rtWindow->epanel->isRealized()) {
-                if (!rtWindow->epanel->saveImmediately(argv2, SaveFormat())) {
-                    ret = -2;
-                }
-            }
-
-            rtCleanup();
+            app.run(argc, argv);
         } else {
-            Gtk::Main m (&argc, &argv);
-            Gtk::MessageDialog msgd (Glib::ustring::compose("FATAL ERROR!\n\n%1", fatalError), true, Gtk::MessageType::ERROR, Gtk::ButtonsType::OK, true);
-            msgd.run ();
+            std::cout << Glib::ustring::compose("FATAL ERROR!\n\n%1", fatalError) << std::endl;
             ret = -2;
         }
     }
