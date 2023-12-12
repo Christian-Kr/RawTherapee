@@ -648,13 +648,13 @@ protected:
     void on_filename_set() override;
 
 public:
-    explicit MyFileChooserButton(const Glib::ustring &title, Gtk::FileChooserAction action=Gtk::FILE_CHOOSER_ACTION_OPEN);
+    explicit MyFileChooserButton(const Glib::ustring &title, Gtk::FileChooser::Action action = Gtk::FileChooser::Action::OPEN);
 };
 
 class MyFileChooserEntry : public Gtk::Box, public MyFileChooserWidget
 {
 public:
-    explicit MyFileChooserEntry(const Glib::ustring &title, Gtk::FileChooserAction action = Gtk::FILE_CHOOSER_ACTION_OPEN);
+    explicit MyFileChooserEntry(const Glib::ustring &title, Gtk::FileChooser::Action action = Gtk::FileChooser::Action::OPEN);
 
     Glib::ustring get_placeholder_text() const;
     void set_placeholder_text(const Glib::ustring &text);
@@ -741,7 +741,7 @@ public:
 /**
  * Basic image menu item.
  */
-class MyImageMenuItem final : public Gtk::MenuItem, public MyImageMenuItemInterface
+class MyImageMenuItem final : public Gtk::Me, public MyImageMenuItemInterface
 {
     class Impl;
     std::unique_ptr<Impl> pimpl;
