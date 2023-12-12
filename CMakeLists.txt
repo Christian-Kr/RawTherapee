@@ -552,14 +552,14 @@ if(WITH_SYSTEM_KLT)
     find_package(KLT REQUIRED)
 endif()
 
-# Check for libcanberra-gtk3 (sound events on Linux):
-if(UNIX AND (NOT APPLE))
-    option(USE_LIBCANBERRA "Build with libcanberra" ON)
-    if(USE_LIBCANBERRA)
-       pkg_check_modules(CANBERRA-GTK REQUIRED libcanberra-gtk3)
-       add_definitions(-DUSE_CANBERRA)
-    endif()
-endif()
+## Check for libcanberra-gtk3 (sound events on Linux):
+#if(UNIX AND (NOT APPLE))
+#    option(USE_LIBCANBERRA "Build with libcanberra" ON)
+#    if(USE_LIBCANBERRA)
+#       pkg_check_modules(CANBERRA-GTK REQUIRED libcanberra-gtk3)
+#       add_definitions(-DUSE_CANBERRA)
+#    endif()
+#endif()
 
 if(WITH_MYFILE_MMAP)
     add_definitions(-DMYFILE_MMAP)

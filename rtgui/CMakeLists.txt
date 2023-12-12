@@ -4,175 +4,176 @@ set(CLISOURCEFILES
     editcallbacks.cc
     main-cli.cc
     multilangmgr.cc
-    options.cc
+        rtoptions.cc
     paramsedited.cc
     pathutils.cc
     threadutils.cc
 )
 
 set(NONCLISOURCEFILES
-    adjuster.cc
+#    adjuster.cc
     alignedmalloc.cc
-    batchqueue.cc
-    batchqueuebuttonset.cc
-    batchqueueentry.cc
-    batchqueuepanel.cc
-    batchtoolpanelcoord.cc
-    bayerpreprocess.cc
-    bayerprocess.cc
-    bayerrawexposure.cc
-    blackwhite.cc
-    bqentryupdater.cc
-    browserfilter.cc
-    cacheimagedata.cc
-    cachemanager.cc
-    cacorrection.cc
-    checkbox.cc
-    chmixer.cc
-    clipboard.cc
-    coarsepanel.cc
-    colorappearance.cc
-    coloredbar.cc
-    colortoning.cc
-    controllines.cc
-    controlspotpanel.cc
-    coordinateadjuster.cc
-    crop.cc
-    crophandler.cc
-    cropwindow.cc
-    cursormanager.cc
-    curveeditor.cc
-    curveeditorgroup.cc
-    darkframe.cc
-    defringe.cc
-    dehaze.cc
-    diagonalcurveeditorsubgroup.cc
-    dirbrowser.cc
-    dirpyrdenoise.cc
-    dirpyrequalizer.cc
-    distortion.cc
-    dynamicprofilepanel.cc
-    editbuffer.cc
+#    batchqueue.cc
+#    batchqueuebuttonset.cc
+#    batchqueueentry.cc
+#    batchqueuepanel.cc
+#    batchtoolpanelcoord.cc
+#    bayerpreprocess.cc
+#    bayerprocess.cc
+#    bayerrawexposure.cc
+#    blackwhite.cc
+#    bqentryupdater.cc
+#    browserfilter.cc
+#    cacheimagedata.cc
+#    cachemanager.cc
+#    cacorrection.cc
+#    checkbox.cc
+#    chmixer.cc
+#    clipboard.cc
+#    coarsepanel.cc
+#    colorappearance.cc
+#    coloredbar.cc
+#    colortoning.cc
+#    controllines.cc
+#    controlspotpanel.cc
+#    coordinateadjuster.cc
+#    crop.cc
+#    crophandler.cc
+#    cropwindow.cc
+#    cursormanager.cc
+#    curveeditor.cc
+#    curveeditorgroup.cc
+#    darkframe.cc
+#    defringe.cc
+#    dehaze.cc
+#    diagonalcurveeditorsubgroup.cc
+#    dirbrowser.cc
+#    dirpyrdenoise.cc
+#    dirpyrequalizer.cc
+#    distortion.cc
+#    dynamicprofilepanel.cc
+#    editbuffer.cc
     editcallbacks.cc
-    editorpanel.cc
-    editwidgets.cc
-    editwindow.cc
-    epd.cc
-    eventmapper.cc
-    exiffiltersettings.cc
-    exifpanel.cc
-    exportpanel.cc
-    externaleditorpreferences.cc
+#    editorpanel.cc
+#    editwidgets.cc
+#    editwindow.cc
+#    epd.cc
+#    eventmapper.cc
+#    exiffiltersettings.cc
+#    exifpanel.cc
+#    exportpanel.cc
+#    externaleditorpreferences.cc
     extprog.cc
-    fattaltonemap.cc
-    filebrowser.cc
-    filebrowserentry.cc
-    filecatalog.cc
-    filepanel.cc
-    filethumbnailbuttonset.cc
-    filmnegative.cc
-    filmsimulation.cc
-    filterpanel.cc
-    flatcurveeditorsubgroup.cc
-    flatfield.cc
-    gradient.cc
-    guiutils.cc
-    histogrampanel.cc
-    history.cc
-    hsvequalizer.cc
-    iccprofilecreator.cc
-    icmpanel.cc
-    imagearea.cc
-    imageareapanel.cc
-    impulsedenoise.cc
-    indclippedpanel.cc
-    inspector.cc
-    iptcpanel.cc
-    labcurve.cc
-    labgrid.cc
-    lensgeom.cc
-    lensprofile.cc
-    localcontrast.cc
-    locallab.cc
-    locallabtools.cc
-    locallabtools2.cc
-    lockablecolorpicker.cc
-    lwbutton.cc
-    lwbuttonset.cc
+#    fattaltonemap.cc
+#    filebrowser.cc
+#    filebrowserentry.cc
+#    filecatalog.cc
+#    filepanel.cc
+#    filethumbnailbuttonset.cc
+#    filmnegative.cc
+#    filmsimulation.cc
+#    filterpanel.cc
+#    flatcurveeditorsubgroup.cc
+#    flatfield.cc
+#    gradient.cc
+#    guiutils.cc
+#    histogrampanel.cc
+#    history.cc
+#    hsvequalizer.cc
+#    iccprofilecreator.cc
+#    icmpanel.cc
+#    imagearea.cc
+#    imageareapanel.cc
+#    impulsedenoise.cc
+#    indclippedpanel.cc
+#    inspector.cc
+#    iptcpanel.cc
+#    labcurve.cc
+#    labgrid.cc
+#    lensgeom.cc
+#    lensprofile.cc
+#    localcontrast.cc
+#    locallab.cc
+#    locallabtools.cc
+#    locallabtools2.cc
+#    lockablecolorpicker.cc
+#    lwbutton.cc
+#    lwbuttonset.cc
     main.cc
-    metadatapanel.cc
+    rtapplication.cc
+#    metadatapanel.cc
     multilangmgr.cc
-    mycurve.cc
-    mydiagonalcurve.cc
-    myflatcurve.cc
-    navigator.cc
-    options.cc
+#    mycurve.cc
+#    mydiagonalcurve.cc
+#    myflatcurve.cc
+#    navigator.cc
+        rtoptions.cc
     paramsedited.cc
-    partialpastedlg.cc
+#    partialpastedlg.cc
     pathutils.cc
-    pcvignette.cc
-    pdsharpening.cc
-    perspective.cc
-    placesbrowser.cc
-    popupbutton.cc
-    popupcommon.cc
-    popuptogglebutton.cc
-    preferences.cc
-    preprocess.cc
-    preprocesswb.cc
-    previewhandler.cc
-    previewloader.cc
-    previewmodepanel.cc
-    previewwindow.cc
-    profilepanel.cc
-    profilestorecombobox.cc
-    prsharpening.cc
-    rawcacorrection.cc
-    rawexposure.cc
-    recentbrowser.cc
-    renamedlg.cc
-    resize.cc
-    retinex.cc
-    rgbcurves.cc
-    rotate.cc
-    rtappchooserdialog.cc
-    rtimage.cc
-    rtscalable.cc
-    rtsurface.cc
+#    pcvignette.cc
+#    pdsharpening.cc
+#    perspective.cc
+#    placesbrowser.cc
+#    popupbutton.cc
+#    popupcommon.cc
+#    popuptogglebutton.cc
+#    preferences.cc
+#    preprocess.cc
+#    preprocesswb.cc
+#    previewhandler.cc
+#    previewloader.cc
+#    previewmodepanel.cc
+#    previewwindow.cc
+#    profilepanel.cc
+#    profilestorecombobox.cc
+#    prsharpening.cc
+#    rawcacorrection.cc
+#    rawexposure.cc
+#    recentbrowser.cc
+#    renamedlg.cc
+#    resize.cc
+#    retinex.cc
+#    rgbcurves.cc
+#    rotate.cc
+#    rtappchooserdialog.cc
+#    rtimage.cc
+#    rtscalable.cc
+#    rtsurface.cc
     rtwindow.cc
-    saveasdlg.cc
-    saveformatpanel.cc
-    sensorbayer.cc
-    sensorxtrans.cc
-    shadowshighlights.cc
-    sharpenedge.cc
-    sharpening.cc
-    sharpenmicro.cc
-    shcselector.cc
-    softlight.cc
-    soundman.cc
-    splash.cc
-    spot.cc
+#    saveasdlg.cc
+#    saveformatpanel.cc
+#    sensorbayer.cc
+#    sensorxtrans.cc
+#    shadowshighlights.cc
+#    sharpenedge.cc
+#    sharpening.cc
+#    sharpenmicro.cc
+#    shcselector.cc
+#    softlight.cc
+#    soundman.cc
+#    splash.cc
+#    spot.cc
     threadutils.cc
-    thresholdadjuster.cc
-    thresholdselector.cc
-    thumbbrowserbase.cc
-    thumbbrowserentrybase.cc
-    thumbimageupdater.cc
-    thumbnail.cc
-    tonecurve.cc
-    toneequalizer.cc
-    toolbar.cc
-    toollocationpref.cc
-    toolpanel.cc
-    toolpanelcoord.cc
-    vibrance.cc
-    vignetting.cc
-    wavelet.cc
-    whitebalance.cc
-    xtransprocess.cc
-    xtransrawexposure.cc
-    zoompanel.cc
+#    thresholdadjuster.cc
+#    thresholdselector.cc
+#    thumbbrowserbase.cc
+#    thumbbrowserentrybase.cc
+#    thumbimageupdater.cc
+#    thumbnail.cc
+#    tonecurve.cc
+#    toneequalizer.cc
+#    toolbar.cc
+#    toollocationpref.cc
+#    toolpanel.cc
+#    toolpanelcoord.cc
+#    vibrance.cc
+#    vignetting.cc
+#    wavelet.cc
+#    whitebalance.cc
+#    xtransprocess.cc
+#    xtransrawexposure.cc
+#    zoompanel.cc
 )
 
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR})
@@ -213,7 +214,6 @@ if(WIN32)
         )
 else()
     include_directories(${EXTRA_INCDIR}
-        ${CANBERRA-GTK_INCLUDE_DIRS}
         ${EXPAT_INCLUDE_DIRS}
         ${FFTW3F_LIBRARY_DIRS}
         ${GIOMM_INCLUDE_DIRS}
@@ -231,7 +231,6 @@ else()
         ${TIFF_INCLUDE_DIRS}
         )
     link_directories(${EXTRA_LIBDIR}
-        ${CANBERRA-GTK_LIBRARY_DIRS}
         ${EXPAT_LIBRARY_DIRS}
         ${FFTW3F_LIBRARY_DIRS}
         ${GIOMM_LIBRARY_DIRS}
@@ -252,9 +251,9 @@ endif()
 
 # Excluding libatomic needed by Clang/FreeBSD, #3636
 # Now handled in cmake/modules/findATOMIC.cmake, #6821
-# if(OPENMP_FOUND AND NOT APPLE AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
-#     set(EXTRA_LIB_RTGUI "${EXTRA_LIB_RTGUI}" "atomic")
-# endif()
+if(OPENMP_FOUND AND NOT APPLE AND NOT ${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
+    set(EXTRA_LIB_RTGUI "${EXTRA_LIB_RTGUI}" "atomic")
+endif()
 
 # Create config.h which defines where data are stored
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/config.h.in" "${CMAKE_CURRENT_BINARY_DIR}/config.h")
@@ -281,7 +280,6 @@ set_target_properties(rth-cli PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS}" OUTP
 
 # Add linked libraries dependencies to executables targets
 target_link_libraries(rth rtengine
-    ${CANBERRA-GTK_LIBRARIES}
     ${EXPAT_LIBRARIES}
     ${EXTRA_LIB_RTGUI}
     ${FFTW3F_LIBRARIES}
